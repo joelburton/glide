@@ -1,0 +1,121 @@
+from docutils import nodes
+from sphinx import addnodes
+from sphinx.util.compat import Directive
+
+
+def setup(app):
+    app.add_node(exercise, latex=(skipnode, skipnode))
+    app.add_node(answer,   latex=(skipnode, skipnode))
+    app.add_node(answers,  latex=(skipnode, skipnode))
+    app.add_node(showanswerlinks,  latex=(skipnode, skipnode))
+
+    app.add_directive('exercise', ExerciseDirective)
+    app.add_directive('answer', AnswerDirective)
+    app.add_directive('answers', AnswersDirective)
+
+    app.add_javascript('exercises.js')
+
+    app.connect('doctree-resolved', fix_answers)
+            
+
+
+
+def skipnode(self, node): pass
+class answer(nodes.General, nodes.Element):
+    pass
+class showanswerlinks(nodes.General, nodes.Element):
+    pass
+class exercise(nodes.General, nodes.Element):
+    pass
+class answers(nodes.General, nodes.Element):
+    pass
+
+
+
+
+class AnswerDirective(Directive):
+    """.. newlide: directive"""
+    has_content = True
+
+    def run(self):
+        node = answer('')
+        node.document = self.state.document
+        self.state.nested_parse(self.content, self.content_offset, node)
+        return [node]
+
+class ExerciseDirective(Directive):
+    """.. newlide: directive"""
+    has_content = True
+
+    def run(self):
+        node = exercise('')
+        node.document = self.state.document
+        self.state.nested_parse(self.content, self.content_offset, node)
+        return [node]
+
+class AnswersDirective(Directive):
+    """.. newlide: directive"""
+
+    def run(self):
+        node = answers('')
+        node.document = self.state.document
+        return [node]
+
+
+
+
+
+
+from sphinx.addnodes import start_of_file
+
+def fix_answers(app, doctree, fromdocname):
+
+    if app.builder.name=="jlatex":
+
+        # Find each file in handouts
+        for sect in doctree.traverse(start_of_file):
+            exercise_count = 0
+            ex_w_answers = []
+
+            # Find each exercise in current file and keep in list
+            for ex in sect.traverse(exercise):
+                exercise_count += 1
+                ex['exercisenum'] = exercise_count
+                myansw = ex.traverse(answer)
+                if myansw:
+                    ex_w_answers.append(ex.deepcopy())
+
+                    # For every answer, either delete (latex) or add show links (html)
+                    for answ in myansw:
+                        ex.remove(answ)
+
+            # For latex builder, add exercise-answer sections
+            if ex_w_answers:
+                for answs in sect.traverse(answers):
+                    answs_section = nodes.section('')
+                    answs_section += nodes.title('', 'Exercise Answers')
+                    parent = answs.parent.parent
+                    gparent = parent.parent
+                    for ex in ex_w_answers:
+                        answs_section.append(ex)
+                    gparent.insert(gparent.index(parent)+1, answs_section.deepcopy())
+                    answs.parent.remove(answs)
+
+    else:
+
+        exercise_count = 0
+
+        for ex in doctree.traverse(exercise):
+            exercise_count += 1
+            ex['exercisenum'] = exercise_count
+            for ans in ex.traverse(answer):
+                aid = "ans-%s" % exercise_count
+                ans.attributes['ids'] = [aid]
+
+                # Find the right place to add the show-answer link. This is a bit
+                # tricky, but essentially, it's the exercise right before the
+                # answer--look into that, and find the last paragraph, and put it
+                # at the end
+                myexercise = ans.parent
+                last_parent = myexercise.children[-2]  # -1 is answer itself!
+                last_parent.append(showanswerlinks('', aid=aid))

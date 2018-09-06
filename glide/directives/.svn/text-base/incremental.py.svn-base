@@ -1,0 +1,159 @@
+"""Incremental fix-ups.
+
+We want incremental on the following places:
+
+
+<ul class='incremental'>
+  <li>1</li>
+  <li>2</li>>
+</ul>
+
+  ^ Here, nothing should appear. After next, 1 appears. After next, 2 appears.
+
+
+
+<ul class='incremental'>
+  <li class='non-incremental'>0</li>
+  <li>1</li>
+  <li>2</li>
+</ul>
+
+  ^ Here, is same, with "0" appearing before any next.
+
+
+
+<ul>
+  <li>Appears Now</li>
+  <li class='incremental'>1</li>
+</ul>
+
+  ^ Here, we want to make one bullet/thing as incremental
+
+
+
+The problem is that using the .. container:: and :role: features of rst
+create <div> and <spans> that wrap the <ul> and <li> elements, and slidey
+(and most slide-html software) expects the incremental class to be on the
+<ul> or <li>, as above.
+
+
+So, we have new classes/roles:
+
+  .. container:: nest-incremental
+
+    - 1
+    - 2
+      - 3
+      - 4
+    - 5
+
+^ In this case, everything will  be incremental, including the appearance of
+"3" and "4" (hence, the *nest*). For nest, we have to find all contained
+<ul>s and attach incremental.
+
+
+
+Or:
+
+  .. container:: item-incremental
+
+    - 1
+    - 2
+      - 2 Appears when 2 does
+      - 2 As does this
+    - 3
+
+^ "item" incremental only attaches incremental onto the direct items. For
+this, we have to find all direct-child <ul>s and attach incremental.
+
+
+
+Lastly:
+
+  .. container:: one-incremental
+
+    - 1
+    - 1
+      -1
+
+^ Here, the entire thing appears with the first next. For this, we just
+put incremental on the div itself.
+
+
+
+We also have the role :incremental:, which is added to the <li> containing 
+the inline span:
+
+  - 0
+  - 0
+  - 1 :incremental:`Hello, World`
+
+
+
+And, similarly, the role :non-incremental:, which is added to the <li>
+containing the inline span:
+
+  - 0 :non-incremental:`Hello, World`
+  - 1
+  - 2
+  - 3
+"""
+
+from docutils import nodes
+from sphinx.util.compat import Directive
+
+def setup(app):
+    app.connect('doctree-resolved', process_incremental)
+            
+def process_incremental(app, doctree, fromdocname):
+    """Process newslide nodes, ->slides for slides, removing for html/latex"""
+    
+    # Only add the classes for slides; for other things, we remove
+    # all mention of this stuff
+    slides = (app.builder.name == 'slides')
+
+    search = doctree.traverse(nodes.container) + doctree.traverse(nodes.literal_block)
+    for node in search:
+        if 'nest-incremental' in node['classes']:
+            # Put incremental on descendant uls (not just children), 
+            # list items appear by bullet 
+            if slides:
+                for ul in node.traverse(nodes.bullet_list):
+                    ul['classes'].append('incremental')
+            node['classes'].remove('nest-incremental')
+        if 'item-incremental' in node['classes']:
+            # Put incremental on child uls, list items appear by bullet 
+            if slides:
+                for ul in node.children[0].traverse(
+                        nodes.bullet_list, descend=0, siblings=1):
+                    ul['classes'].append('incremental')
+            node['classes'].remove('item-incremental')
+        if 'one-incremental' in node['classes']:
+            # Put incremental on div, list items appear all at once
+            node['classes'].remove('one-incremental')
+            if slides:
+                node['classes'].append('incremental')
+    
+    def parent_li(anode):
+        # Get ancestor <li>, and mark everything between with
+        # non-incremental
+        while True:
+            anode = anode.parent
+            if anode.__class__ == nodes.list_item:
+                break
+            anode['classes'].append('non-incremental')
+        return anode
+
+    # Handle :incremental: and :non-incremental: by removing that
+    # role from the <span> and adding it to the ancestral <li>
+    for node in doctree.traverse(nodes.inline):
+        if 'incremental' in node['classes']:
+            if slides:
+                li = parent_li(node)
+                li['classes'].append('incremental')
+                for innerul in li.traverse(nodes.bullet_list):
+                    innerul['classes'].append('non-incremental')
+            node['classes'].remove('incremental')
+        if 'non-incremental' in node['classes']:
+            if slides:
+                parent_li(node)['classes'].append('non-incremental')

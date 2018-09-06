@@ -1,0 +1,47 @@
+{# Overall page structure for RevealJS theme: single HTML page for each section #}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    {%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
+
+    {% if theme_fonts %}
+    <link href='{{ theme_fonts }}'
+          rel='stylesheet' type='text/css'>
+    {% endif %}
+</head>
+<body>
+<div id="page-wrapper">
+    <div id="page-sidebar">
+        <header>
+            <p class="project">{{ project }}</p>
+
+            <p class="title">{{ title }}</p>
+
+            <p class="backlink"><a href="{{ backurl }}"> &laquo; Back to Homepage</a></p>
+
+        </header>
+        <div id="toc">
+            {{ toc }}
+        </div>
+    </div>
+    <div id="page-content">
+
+        {%- block document %}
+        {% block body %} {% endblock %}
+        {%- endblock %}
+
+    </div>
+</div>
+{%- for scriptfile in script_files %}
+<script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+{%- endfor %}
+{%- block footer %} {% endblock %}
+</body>
+</html>

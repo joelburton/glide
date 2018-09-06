@@ -1,0 +1,65 @@
+{# Overall page structure for RevealJS theme: single HTML page for each section #}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+
+  {%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
+  <!--<title>{{ title|striptags }}{{ titlesuffix }}</title>-->
+  <title>{{ title }}</title>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+  <link rel="stylesheet" href="{{ pathto('_static/revealjs/css/reveal.css', 1) }}"/>
+  <link rel="stylesheet" href="{{ pathto('_static/revealjs/css/theme/white.css', 1) }}" id="theme"/>
+  <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
+  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
+
+</head>
+<body>
+
+{%- block document %}
+  <div class="reveal">
+
+    <footer id="slide-footer"></footer>
+
+    <div class="slides">
+      <section>
+        <h2>{{ title }}</h2>
+
+        <div class="event">{{ version }}</div>
+      </section>
+
+      {% block body %} {% endblock %}
+
+    </div>
+  </div>
+{%- endblock %}
+
+<script src="{{ pathto('_static/revealjs/lib/js/head.min.js', 1) }}"></script>
+<script src="{{ pathto('_static/revealjs/js/reveal.js', 1) }}"></script>
+<script>
+  Reveal.initialize({
+    controlsBackArrows: "faded",
+    progress: true,
+    slideNumber: true,
+    maxScale: 5,
+    width: 1280,
+    height: 800,
+    margin: 0.1,
+    transition: 'slide',
+    dependencies: [
+      {src: "{{ pathto('_static/revealjs/plugin/notes/notes.js', 1) }}", async: true},
+    ]
+  });
+  // External links should open in new window
+  var externalLinks = document.getElementsByClassName("external");
+  for (var i = 0; i < externalLinks.length; i++)
+    externalLinks[i].setAttribute('target', '_blank');
+</script>
+
+</body>
+</html>

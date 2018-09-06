@@ -1,0 +1,23 @@
+"""Course code processor.
+
+Replaces |coursecode| throughout.
+"""
+
+# Yeah, I guess this should be a transformer. But it's really fast+easy to do
+# it this way, when the file is read, and before it gets parsed into nodes.
+
+import re
+VERSION = re.compile('\|coursecode\|')
+
+def setup(app):
+    app.connect('source-read', fixversion)
+    app.add_config_value('course_code', 'COURSE', 'env')
+
+def fixversion(app, docname, source):
+    # Replace "|coursecode|" in read text with coursecode from config
+    # We need this since otherwise we don't see |coursecode| in
+    # literal blocks, etc, and we want to change it EVERYWHERE.
+    text = source[0]
+    text = VERSION.sub(app.config['course_code'], text)
+    source[0] = text
+

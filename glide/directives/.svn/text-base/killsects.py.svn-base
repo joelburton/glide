@@ -1,0 +1,80 @@
+from docutils import nodes
+from sphinx import addnodes
+
+### XXX: THIS *MUST* BE REGISTERED IN COMMONCONFS BEFORE COURSEDAY
+### OTHERWISE THAT KILLS THESE NEW SECTIONS (yuck!)
+
+def setup(app):
+    app.add_node(subsectioninfo)
+    app.connect('doctree-resolved', process_killsects)
+
+def process_killsects(app, doctree, fromdocname):
+    """Go through nodes and remove 2nd-level sections.
+
+    For good organization, my handouts are divided into 3 levels of
+    sections:
+
+    Chapter      
+      Subsection  
+        Slide      
+
+    This is great for the latex/html versions. For the slides, though,
+    we want it "flattened" into Chapter/Slide.
+
+    This moves all the slides directly into the chapter, getting
+    rid of the subsections. It does add a "sectiontitle" node right
+    after each slide, though, with the subsection name -- the
+    slide writers use this to create the subsection as an overline
+    in the slides.
+    """
+
+    if app.builder.name != 'slides': return
+    
+    # The overline will contain the chapter title
+    # and the subsection title. Get the top title.
+
+    chapter_title = doctree.traverse(nodes.title)[0].astext()
+
+    for sect in doctree.traverse(nodes.section):
+
+        # Is this the chapter? If so, skip it
+        if sect.parent == sect.document: continue 
+
+        # Is this a slide (or deeper)? If so, skip it
+        if sect.parent.parent != sect.document: continue
+
+        # Get the subsection title
+        subsection_title = sect.children[0].astext()
+
+        # Find all the slides directly inside of it, and
+        # add the subsection node into them
+        for subsect in sect.traverse(nodes.section, include_self=0):
+            id = subsect['ids'][0]
+            subsect.insert(1, 
+                    subsectioninfo('', 
+                            chapter_title=chapter_title, 
+                            subsection_title=subsection_title,
+                            edit_link="%s/%s.rst" % (app.config.editor_url, fromdocname),
+                            handouts_link="../html/%s.html#%s" % (fromdocname, id)
+                    ))
+
+        # Find everything in my subsection, and move them to the
+        # parent node.
+        for item in sect.children[1:]:
+            sect.parent.append(item.deepcopy())
+
+        # And then delete them (doing this in two loops, just to be
+        # cautious!)
+        for item in sect.children[1:]:
+            sect.remove(item)
+
+        # And get rid of the subsection entirely, now that it's empty
+        sect.parent.remove(sect)
+
+class subsectioninfo(nodes.General, nodes.paragraph):
+    """Subsection Info node.
+
+    Contains the chapter title and subsection title. Used for writing
+    the overline onto slides.
+    """
+    pass

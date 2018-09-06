@@ -1,0 +1,100 @@
+"""More flexible graphviz directive."""
+
+from sphinx.util.compat import Directive
+from docutils import nodes
+from docutils.parsers.rst.directives import unchanged
+from sphinx.ext.graphviz import graphviz, render_dot_latex, render_dot_html, GraphvizError, render_dot
+import re
+
+FIXFONT = re.compile('font-size:11.00;')
+
+class JGraphviz(Directive):
+    """
+    Directive to insert arbitrary dot markup.
+    """
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = { 'jlatex':unchanged, 'slides':unchanged, 'html':unchanged }
+
+    def run(self):
+        node = jgraphviz()
+        node['code'] = '\n'.join(self.content)
+        node['options'] = self.options
+        return [node]
+
+
+class JGraphvizSimple(Directive):
+    """
+    Directive to insert arbitrary dot markup.
+    """
+    has_content = True
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = { 'jlatex':unchanged, 'slides':unchanged, 'html':unchanged }
+
+    def run(self):
+        node = jgraphviz()
+        node['code'] = '%s %s {\n%s\n}\n' % \
+                (self.name[1:], self.arguments[0], '\n'.join(self.content))
+        node['options'] = self.options
+        return [node]
+
+class jgraphviz(graphviz):
+    pass
+
+
+def render_dot_svg(self, node, code, options, prefix='graphviz', imgcls=None):
+    try:
+        fname, outfn = render_dot(self, code, options, 'svg', prefix)
+    except GraphvizError, exc:
+        self.builder.warn('dot code %r: ' % code + str(exc))
+        raise nodes.SkipNode
+
+    f = open(outfn,"r")
+    contents= f.read()
+    f.close()
+    f = open(outfn,"w")
+    f.write(FIXFONT.sub('font-size:9.00pt;', contents))
+    f.close()
+
+    self.body.append(self.starttag(node, 'p', CLASS='graphviz'))
+    if fname is None:
+        self.body.append(self.encode(code))
+    else:
+        imgcss = imgcls and 'class="%s"' % imgcls or ''
+        self.body.append("""<object data="%s" type="image/svg+xml" %s><embed src="%s" type="image/svg+xml" /></object>""" % (fname, fname,imgcss))
+    self.body.append('</p>\n')
+    raise nodes.SkipNode
+
+def html_visit_jgraphviz(self, node):
+    buildoptions = node['options'].get(self.builder.name)
+    if buildoptions:
+        options = [ o.strip() for o in buildoptions.split(' ') ]
+    else:
+        options = []
+    if self.builder.name == 'slides':
+        render_dot_svg(self, node, node['code'], options)
+    else:
+        render_dot_html(self, node, node['code'], options)
+
+
+def latex_visit_jgraphviz(self, node):
+    buildoptions = node['options'].get(self.builder.name)
+    if buildoptions:
+        options = [ o.strip() for o in buildoptions.split(' ') ]
+    else:
+        options = []
+    render_dot_latex(self, node, node['code'], options)
+    import pdb; pdb.set_trace()
+
+
+def setup(app):
+    app.add_node(jgraphviz,
+                 html=(html_visit_jgraphviz, None),
+                 latex=(latex_visit_jgraphviz, None))
+    app.add_directive('jgraphviz', JGraphviz)
+    app.add_directive('jgraph', JGraphvizSimple)
+    app.add_directive('jdigraph', JGraphvizSimple)

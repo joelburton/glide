@@ -1,0 +1,195 @@
+"""Convenience function to create xref'd directives
+with more flexibility than Sphinx's built-in."""
+
+from sphinx import addnodes
+from docutils.parsers.rst import directives, roles
+from docutils import nodes
+from sphinx.directives.desc import DescDirective, additional_xref_types
+from sphinx.util import ws_re
+from sphinx.util.compat import directive_dwim
+from sphinx.roles import xfileref_role, innernodetypes
+
+
+class GenericXRefDirective(DescDirective):
+    """Class for generic cross-referenced directive."""
+
+    has_content = True
+
+    def parse_signature(self, sig, signode):
+        # Many subclasses will override this to change how the node
+        # is printed
+
+        signode.clear()
+        signode += addnodes.desc_name(sig, sig)
+        name = ws_re.sub('', sig)
+        return name
+
+    def add_target_and_index(self, name, sig, signode):
+        rolename, indextemplates = additional_xref_types[self.desctype][:2]
+        targetname = '%s-%s' % (rolename, name)
+        signode['ids'].append(targetname)
+        self.state.document.note_explicit_target(signode)
+        for indextemplate in indextemplates:
+            indextype = 'single'
+            colon = indextemplate.find(':')
+            indexentry = _(indextemplate) % (sig,)
+            if colon != -1:
+                indextype = indexentry[:colon].strip()
+                indexentry = indexentry[colon+1:].strip()
+            self.indexnode['entries'].append((indextype, indexentry,
+                                              targetname, targetname))
+        self.env.note_reftarget(rolename, name, targetname)
+
+def add_xref_type(directivename,
+        indextemplates=[], 
+        klass=GenericXRefDirective, 
+        ref_nodeclass=None ):
+    """Add a new XRef type.
+
+    directivename - string name of directive
+
+    indextemplates - list of index templates with %s once in each
+
+    klass - optional class of directive (for overriding methods)
+
+    ref_nodeclass - node to wrap references (for example, to use bold
+        rather than the default 'desc' nodetype)
+    """
+
+    rolename = directivename
+    additional_xref_types[directivename] = ( 
+            rolename, indextemplates, None )
+    directives.register_directive(directivename, directive_dwim(klass))
+    roles.register_local_role(rolename, xfileref_role)
+    if ref_nodeclass is not None:
+        innernodetypes[rolename] = ref_nodeclass
+
+
+
+################################### LET'S CREATE SOME !
+
+class TGVDirective(GenericXRefDirective):
+    final_argument_whitespace = True
+    option_spec={'value':directives.unchanged}
+
+    def parse_signature(self, sig, signode):
+        # Just like normal with "= value" after name
+        signode.clear()
+        value = self.options['value']
+        # XXX: for some reason, in the LaTeX writer, this is glued
+        # onto the node prior to this; might have to use something
+        # other than desc_name, or such to fix this.
+        title = nodes.Text(sig)
+        param = nodes.emphasis('', ' = %s' % value)
+        desc = addnodes.desc_name(sig)
+        desc += title
+        desc += param
+        signode += desc
+
+        name = ws_re.sub('', sig)
+        return name
+
+class PermissionDirective(GenericXRefDirective):
+    final_argument_whitespace = True
+
+class StereotypeDirective(GenericXRefDirective):
+    def parse_signature(self, sig, signode):
+        # Just like normal, except printed name is <<%s>>
+        signode.clear()
+        signode += addnodes.desc_name(sig, "<<%s>>" % sig)
+        name = ws_re.sub('', sig)
+        return name
+
+class extimage(nodes.General, nodes.Element):
+    """External images.
+
+    These nodes expect to be passed one option, URL. They should
+    be written for HTML as <img src="url" />. For offline viewing
+    and LaTeX, it is expected these nodes are skipped.
+    """
+    pass
+
+def skipimage(self, node):
+    raise nodes.SkipNode
+
+class BuildoutRecipeDirective(GenericXRefDirective):
+    option_spec={'url':directives.uri}
+
+    def parse_signature(self, sig, signode):
+        # Just like normal, with URL after
+        url = self.options['url']
+        signode.clear()
+        signode += addnodes.desc_name(sig)
+        signode += nodes.reference(sig, sig, refuri=url)
+        name = ws_re.sub('', sig)
+        return name
+
+
+class ProductDirective(GenericXRefDirective):
+    option_spec={'url':directives.uri, 'screenshot':directives.uri}
+
+    def parse_signature(self, sig, signode):
+        # Just like normal, with URL after, and, if given,
+        # the screenshot as an extimage.
+        url = self.options['url']
+        screenshot = self.options.get('screenshot')
+        signode.clear()
+        signode += addnodes.desc_name(sig)
+        signode += nodes.reference(sig, sig, refuri=url)
+        if screenshot:
+            signode += extimage('', url=screenshot)
+        name = ws_re.sub('', sig)
+        return name
+
+def setup(app):
+
+    # Archetype stereotypes
+    add_xref_type( 'stereotype',
+            ('<<%s>> (Archetypes stereotype)',
+             '%s (Archetypes stereotype)',
+             'Archetypes stereotype;<<%s>>',
+             'Stereotypes;<<%s>>',),
+            StereotypeDirective )
+
+    # Buildout filenames
+    add_xref_type( 'buildoutfile', 
+            ('%s (buildout file)','buildout files;%s') )
+
+    # Roles
+    add_xref_type( 'atfield',
+            ('%s (Archetypes field type)', 'UML;%s field type', 'Archetypes;%s', 'field types;%s', 'Archetypes field types;%s') )
+
+    # Configlet
+    add_xref_type( 'configlet',
+            ('%s (Site Setup configlet)', 'Site Setup configlets;%s', 'Cofiglets;%s') )
+
+    # Roles
+    add_xref_type( 'srole',
+            ('%s (role)', 'security;%s (role)', 'roles;%s') )
+
+    # Permissions
+    # Perms can have spaces in them, so need the whitespace arg
+    add_xref_type( 'permission', 
+            ('%s (permission)', 'permissions;%s'), 
+            PermissionDirective )
+
+
+    # Buildout recipes
+    # Print refs to these are italics; allow URL
+    add_xref_type( 'buildoutrecipe', 
+            ('buildout recipes;%s','%s (buildout recipe)'), 
+            BuildoutRecipeDirective, ref_nodeclass=nodes.emphasis)
+
+    # Add-on products
+    # Print refs to these are italics; allow URL + screenshot
+    app.add_node(extimage, latex=(skipimage,None))
+    add_xref_type( 'product', 
+            ('add-on products;%s','%s',), 
+            ProductDirective, ref_nodeclass=nodes.emphasis)
+
+    # Archetypes tagged values
+    # Allow value
+    add_xref_type( 'tgv', 
+            ('Archetypes tagged values;%s','Archetypes tagged values;%s',), 
+            TGVDirective)
+

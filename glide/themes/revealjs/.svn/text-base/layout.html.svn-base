@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      {%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
+    <title>{{ title|striptags }}{{ titlesuffix }}</title>
+    <script src="{{ pathto('_static/slidy.js', 1) }}" charset="utf-8" type="text/javascript"></script> 
+    <script src="{{ pathto('_static/jquery.js', 1) }}" charset="utf-8" type="text/javascript"></script> 
+    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    <meta name="copyright"  content="Copyright &#169; {{ copyright }}" /> 
+    <meta name="font-size-adjustment" content="+3" /> 
+    <script type="text/javascript">mouseClickEnabled=false</script>
+    <script lang="text/javascript">
+      $(document).ready(function(){
+        $(".ansshowhide").click(function(){
+          $(this).parents("div.exercise").find(".answer").slideToggle('fast');
+        })
+       });
+    </script>
+
+{%- block extrahead %} {% endblock %}
+  </head>
+  <body>
+    <div class="background"> 
+      <a href="{{ pathto('.',1) }}/index.html">
+        <img id="head-logo" src="{{ pathto('_static/logo.gif', 1) }}" />
+      </a>
+    </div> 
+
+{%- block header %}{% endblock %}
+
+{%- block document %}
+<div class="slide cover">
+  <h1>{{ title }}</h1>
+  <div class="author">{{ slide_author }}</div>
+  <div class="email">{{ slide_email }}</div>
+  <div class="event">{{ version }}</div>
+</div>
+
+      {% block body %} {% endblock %}
+    <div class="slide cover">
+      <h1>Next:
+        <a href="{{ next.link }}">{{next.title}}</a>
+      </h1>
+    </div>
+{%- endblock %}
+
+  </body>
+</html>

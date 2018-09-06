@@ -1,0 +1,90 @@
+"""Newslide directive.
+
+Creates a break that slides can use to make a new slide, but that
+latex/html will ignore.
+"""
+
+from docutils import nodes
+from sphinx.util.compat import Directive
+
+def setup(app):
+    app.add_node(newslide)
+    app.add_directive('newslide', NewslideDirective)
+    app.connect('doctree-resolved', process_newslides)
+            
+def process_newslides(app, doctree, fromdocname):
+    """Process newslide nodes, ->slides for slides, removing for html/latex"""
+    
+    while doctree.traverse(newslide):
+        node = doctree.traverse(newslide)[0]
+
+        # for non-slide builders, remove this node
+        if app.builder.name != 'slides': 
+            node.parent.remove(node)
+            continue
+        
+        # Get the "real slide" (ie, the non-virtual slide we're in)
+        realslide = node.parent
+        
+        # Get text title of the curr sect; we'll use this for our title, too
+        localtitle = node.attributes['localtitle'].strip()
+
+        # Find the last slide that wasn't a "newslide"-made one
+        checkslide = realslide
+        while 1:
+            if "localtitle" not in checkslide.attributes:
+                break
+            # Move to slide before this one
+            idx = checkslide.parent.index(checkslide)
+            checkslide = checkslide.parent.children[idx-1]
+
+        realtitle = checkslide.children[0].astext().strip()
+        if localtitle and localtitle.startswith('+'):
+            title = "%s: %s" % (realtitle, localtitle[1:])
+        elif localtitle:
+            title = localtitle
+        else:
+            title = realtitle
+        
+        # Make a new section, with a title in it
+        newsect=nodes.section('', localtitle=localtitle)
+        doctree.set_id(newsect)
+                
+        # Add the same title to it
+        newsect += nodes.title('', title)
+        
+        # Find "..newslide" in the real slide section
+        myidx = realslide.index(node)
+
+        # Get the nodes right after me and paste it into new section
+        for afterme in realslide[myidx+1:]:
+            newsect.append(afterme.deepcopy())
+            realslide.remove(afterme)
+         
+        # Move this new section to after my current section
+        chapter = realslide.parent
+        chapter.insert(chapter.index(realslide)+1, newsect)
+
+        # Get rid of the newslide node itself
+        realslide.remove(node)
+    
+class newslide(nodes.General, nodes.Element):
+    """newslide node.
+    
+    This will never survive past the event, so now one should
+    have to write a visit_ method in a writer for it.
+    """
+    pass
+
+    
+class NewslideDirective(Directive):
+    optional_arguments = 1
+    final_argument_whitespace = True
+
+    """The directive just adds a node"""
+    def run(self):
+        localtitle = ""
+        if self.arguments:
+            localtitle = self.arguments[0]
+        return [newslide('', localtitle=localtitle)]
+

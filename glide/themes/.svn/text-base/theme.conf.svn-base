@@ -1,0 +1,12 @@
+[theme]
+inherit = default
+stylesheet = plonebootcamps.css
+
+[options]
+footerbgcolor    = white
+sidebarbgcolor   = #7391b4
+footertextcolor  = #666
+relbarbgcolor    = #345
+sidebarlinkcolor = #d0e6ff
+
+

@@ -1,0 +1,98 @@
+from docutils import nodes
+from sphinx.util.compat import Directive
+from docutils.parsers.rst import directives
+from sphinx import addnodes
+
+"""Courseday processor.
+
+Courseday is a directive used on the index page to divvy up the TOC into
+coursedays.
+"""
+
+def setup(app):
+    app.add_node(courseday)
+    app.add_directive('courseday', CourseDayDirective)
+    app.connect('doctree-resolved', process_coursedays)
+    app.add_config_value('nobasic', False, 'env')
+
+def process_coursedays(app, doctree, fromdocname):
+    """Change ..courseday into a new section with title.
+
+    In the index.rst file, we use .. courseday:: to separate the course days.
+    Except in the latex builder, this should be turned into real sections
+    (in this page, but *after* the logical structuring for the rest of the
+    project has happened).
+
+    This way, we get this index page with nice sections.
+    """
+    
+    for day in doctree.traverse(courseday):
+        
+        # for non-slide builders, remove this node
+        if app.builder.name=='jlatex': 
+            day.parent.remove(day)
+            continue
+
+        # if the slide builder and a "noslides" courseday,
+        # kill this and the TOC following it. We use this for
+        # making the "pre-class" and "indexes" section not appear
+        # in the slides
+        if (app.builder.name=='slides' and day.attributes.get('slides')=='hide'):
+            idx = day.parent.index(day)
+            toc = day.parent.children[idx+1]
+            day.parent.remove(day)
+            day.parent.remove(toc)
+            continue
+
+        # Make a new section node and put the day in it as text
+        sect = nodes.section('')
+        doctree.set_id(sect)
+        sect += nodes.title('', day.attributes['dayname'])
+
+        # Move today's TOC into the new sect node
+        toc = day.parent.children[day.parent.index(day)+1]
+        sect.append(toc.deepcopy())
+        day.parent.remove(toc)
+
+        # Replace the pre-existing "day" node with this new sect node
+        day.parent.replace(day, sect)
+
+class courseday(nodes.General, nodes.Element):
+    """Courseday node.
+
+    This will always get either remove or rewritten in the event
+    above, so no one ever needs to make a visit_ method for it
+    in a writer.
+    """
+
+    pass
+
+class CourseDayDirective(Directive):
+    """Directive should be given the day, like 'Monday' as the arg."""
+
+
+    has_content = True
+    final_argument_whitespace = True
+    required_arguments = 1
+    option_spec={'slides':directives.unchanged, 'nobasic':directives.unchanged}
+
+    def run(self):
+        if ( self.state.document.settings.env.config.nobasic and 
+                self.options.get('nobasic') ):
+            return []
+        header = courseday('',
+                dayname=self.arguments[0].strip(), 
+                slides=self.options.get('slides'))
+
+        toc = addnodes.toctree()
+        toc['parent'] = self.state.document.settings.env.docname
+        items = [ d.strip() for d in self.content if d.strip() ]
+        toc['entries'] = [ (None, d) for d in items ]
+        toc['includefiles'] = items
+        toc['maxdepth'] = 1
+        toc['glob'] = 0
+        toc['hidden'] = False
+        toc['numbered'] = False
+
+        return [header, toc]
+

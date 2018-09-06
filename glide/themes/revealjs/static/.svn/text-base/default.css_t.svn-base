@@ -1,0 +1,405 @@
+/**
+ * Slide stylesheet for Joel Burton
+ *
+ * IMPORTANT: DO NOT NAME classes with names starting with "slide";
+ * This breaks the JavaScript!
+ */
+
+@import url("basic.css");
+@import url("roles.css");
+
+/* -- page layout ----------------------------------------------------------- */
+
+body
+{
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+  color: black;
+  background-color: white;
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+  font-size: 14pt;
+}
+
+div.slide {
+  z-index: 20;
+  margin: 0 0 0 0;
+  padding: 0;
+  border-width: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 120%;
+  background-color: transparent;
+}
+
+/* -- slide background/header -------------------- */
+
+div.background {
+  z-index: 0;
+  position: absolute;
+  vertical-align: bottom;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: auto;
+  height: 3.5em;
+  padding: 0 0 0 0.2em;
+  margin: 0 0 0 0;
+  border-width: 0;
+  background-color: {{ theme_footerbgcolor }};
+  display: none;
+}
+
+/* this rule is hidden from IE which doesn't support + selector */
+div.slide + div[class].slide { page-break-before: always;}
+
+div.slide h1 {
+  color: white;
+  font-size: 120%;
+  margin: 1.1em 0 1.5em 50px;
+  padding: 0;
+  z-index: 101 !important;
+}
+
+p.subsectioninfo { 
+  color: white;
+  position: absolute;
+  top: .4em;
+  left: 50px;
+  padding: 0;
+  margin: 0;
+  font-size: 60%;
+  border-bottom: solid 1px white;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+}
+
+p.subsectioninfo a { 
+  color: white !important; 
+}
+
+#head-logo {
+  top: 20px;
+  right: 20px;
+  position: absolute;
+  border: none;
+}
+
+
+/* -- slide footer ------------------------------- */
+
+p.copyright { font-size: smaller }
+
+div.toolbar {
+  position: fixed; 
+  z-index: 200;
+  top: auto; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  height: 1.2em; 
+  text-align: right;
+  padding-left: 1em;
+  padding-right: 1em; 
+  font-size: 50%;
+  color: red; 
+  background: rgb(240,240,240);
+}
+
+div.toolbar a { display: none } /* hide help, contents, restart */
+
+table.hlist td { vertical-align: top; }
+
+/* -- cover slide -------------------------------- */
+
+div.slide.cover {
+  color: white;
+  font-weight: bold;
+  background-color: {{ theme_footerbgcolor }};
+  padding: 0;
+  height: 100%;
+  text-align: center;
+}
+
+div.slide.cover h1 {
+  font-size: 150%;
+  margin: 3em 0 1em 0;
+  height: auto;
+}
+
+div.slide.cover .author {  
+  width: 50%;
+  font-size: 110%;
+  padding-top: 0.5em;
+  margin: 0 auto 0.5em auto;
+  border-top: 2px white solid;
+}
+  
+div.slide.cover .email {
+  width: 50%;
+  font-size: 80%;
+  font-weight: normal;
+  margin: 0 auto 2em auto;
+  padding-bottom: 1em;
+  border-bottom: 2px white solid;
+}
+
+div.slide.cover .event {
+  padding-bottom: 4em;
+  background: url(logo.gif) 50% 100% no-repeat;
+  font-size: 100%;
+}
+
+/* -- utilities ---------------------------------- */
+
+/* the next two classes support vertical and horizontal centering */
+div.vbox {
+  float: left;
+  height: 40%;
+  width: 50%;
+  margin-top: -240px;
+}
+div.hbox {
+  width:60%;
+  margin-top: 0;
+  margin-left:auto;
+  margin-right:auto;
+  height: 60%;
+  border:1px solid silver;
+  background:#F0F0F0;
+  overflow:auto;
+  text-align:left;
+  clear:both;
+}
+
+br + br { display: none; }
+
+/* -- body styles ----------------------------------------------------------- */
+
+p,pre,ul,ol,blockquote,h2,h3,h4,h5,h6,dl,table {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+a {
+    color: {{ theme_linkcolor }};
+    text-decoration: none;
+}
+a:hover, a:active { 
+  color: red; 
+  text-decoration: underline 
+}
+
+pre {
+    padding: 5px;
+    background-color: {{ theme_codebgcolor }};
+    color: {{ theme_codetextcolor }};
+    border: 1px solid #ac9;
+    border-left: none;
+    border-right: none;
+    font-size: 70%;
+    line-height: 1.4;
+}
+
+tt {
+    background-color: #ecf0f3;
+    padding: 0 1px 0 1px;
+    font-size: 0.95em;
+}
+
+.highlight {
+    background-color: transparent;
+}
+
+.center { text-align: center }
+
+.padtop { margin-top: 3.5em; }
+
+div dt
+{
+  margin-left: 0;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+div dd
+{
+  margin-left: 2em;
+  margin-bottom: 0.5em;
+}
+
+td,th { padding: 0.2em }
+
+.drawing pre {
+  line-height: 1;
+  font-size: 60%;
+  background: url( 'graph.gif' );
+  font-weight: bold;
+  color: #333;
+  padding: 0.5em 1em 1em 1em;
+  border-bottom: solid 2px #ccc;
+  border-right: solid 2px #ccc;
+}
+
+.onlyslide-large {
+  font-size: 150%;
+}
+
+.onlyslide-small {
+  font-size: 75%;
+}
+
+div.slide > img {
+  margin: 0 auto 0 auto !important;
+  text-align: center;
+}
+
+.caption {
+  font-weight: bold;
+}
+
+tt.descname {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  font-size: 90%
+}
+
+dt {
+  margin-top: 0.5em !important
+}
+
+dl.function { 
+  font-size: 85%;
+}
+
+dl.function tt {
+  font-size: 110%;
+}
+
+p.graphviz {
+  text-align: center;
+}
+
+
+/* -- lists -------------------------------------- */
+
+ul, ol {
+  margin: 0.5em 1.5em 0.5em 1.5em;
+  padding: 0;
+}
+
+ul li { 
+  margin: 0.1em 0em 0.6em 0;
+  padding: 0 0 0 40px;
+  line-height: 140%;
+}
+
+ol li { 
+  margin: 0.1em 0em 0.6em 35px;
+  padding: 0 0 0 5px;
+  line-height: 140%;
+}
+
+ul li {
+  list-style: none;
+  background: transparent url(bullet.png) no-repeat 5px 0.3em;
+}
+
+li li { 
+  list-style-type: disc;
+  background: transparent;
+  padding: 0 0 0 0;
+  font-size: 95%;
+}
+
+li li li { 
+  list-style-type: circle;
+  background: transparent;
+  padding: 0 0 0 0;
+  font-size: 95%;
+}
+
+li p { 
+  padding: 0; 
+  margin: 0; 
+}
+
+li p + p {
+  margin-top: 0.75em;
+}
+
+li blockquote {
+  background-color: red;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+li pre { 
+  margin-left: 0; 
+}
+
+.toctree-l1 {
+  font-size: 80%;
+  margin: 0;
+}
+
+.hlist ul { 
+  margin-top: 0 !important;  
+}
+
+ul ul ul { margin-right: 0 }
+ul ul ul ul { margin-right: 0; }
+
+/* Answer show/hide */
+
+.hidden { display: none; }
+
+.ansshowhide { 
+  margin-left: 1em;
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; 
+}
+.ansshowhide {
+  color: red !important;
+}
+
+.answer {
+  margin: 0.8em 1em 1em 0em;
+  border-top: solid 2px red;
+  border-bottom: solid 2px red;
+}
+
+.answer ul {
+  margin-right: 0.5em;
+}
+.answer li {
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.exercise {
+  margin-bottom: 2em;
+}
+
+.field-body li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+  
+.answer table, 
+.selenium table {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  border: solid 1px black;
+}
+.answer table td,
+.selenium table td {
+  font-size: 85%;
+  padding: 0.3em;
+}
