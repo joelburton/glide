@@ -23,9 +23,7 @@ def ignore_visit_speaker(self, node):
 
 def setup(app):
     app.add_node(speakernote,
-                 html=(ignore_visit_speaker, None),
-                 latex=(ignore_visit_speaker, None)
-                 )
+                 latex=(ignore_visit_speaker, None))
     app.add_directive('speaker', speakernoteDirective)
 
 

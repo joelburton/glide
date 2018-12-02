@@ -11,7 +11,7 @@ setup(name='Glide',
       url='https://github.com/joelburton/glide',
       packages=['glide', 'glide/directives', 'glide/writers'],
       python_requires=">= 3.6.0",
-      install_requires=["Sphinx (>=1.7.5,<=1.8)"],
+      install_requires=["Sphinx (>=1.8.2)"],
       include_package_data=True,
       package_data={'themes': ['*']}
      )

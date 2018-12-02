@@ -43,9 +43,7 @@ def ignore_visit_interslide(self, node):
 
 def setup(app):
     app.add_node(interslide,
-                 html=(ignore_visit_interslide, None),
-                 latex=(ignore_visit_interslide, None)
-                 )
+                 latex=(ignore_visit_interslide, None))
     app.add_directive('interslide', interslideDirective)
 
 

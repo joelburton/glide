@@ -113,6 +113,22 @@ class HandoutsTranslator(HTMLTranslator):
 
         return super().should_be_compact_paragraph(node)
 
+    # Added for Sphinx 1.8: can't find a way to ignore speakernote/interslide
+    # directives in handouts but not revealjs --- so, all html things will
+    # come here
+
+    def visit_speakernote(self, node):
+        raise SkipNode()
+
+    def depart_speakernote(self, node):
+        raise SkipNode()
+
+    def visit_interslide(self, node):
+        raise SkipNode()
+
+    def depart_interslide(self, node):
+        raise SkipNode()
+
 
 class HandoutsBuilder(StandaloneHTMLBuilder):
     """Builder for making HTML handouts using Sphinx."""

@@ -167,8 +167,6 @@ def process_incremental(app, doctree, fromdocname):
 
             # Put 'fragment' on direct child li's of our direct child ul:
             if slides:
-                # import pdb; pdb.set_trace()
-
                 lst = node if isinstance(node, nodes.Sequential) else node.children[0]
 
                 if isinstance(lst, nodes.definition_list):
