@@ -15,6 +15,7 @@ COLOR_MAP = {
     'gray': 'gray',
 }
 
+# Untested since Sphinx 1.7
 
 class LaTeXTranslator(BaseTranslator):
     """Translator for Sphinx structure -> Joel-style LaTeX."""

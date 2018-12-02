@@ -8,6 +8,8 @@ from sphinx.writers.html import HTMLTranslator
 __author__ = "Joel Burton <joel@joelburton.com>"
 
 
+# Updated to Sphinx 1.8
+
 class RevealJSTranslator(HTMLTranslator):
     """Translator for Sphinx structure -> RevealJS HTML structure.
 

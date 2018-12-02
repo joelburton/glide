@@ -8,7 +8,7 @@ from sphinx.writers.html import HTMLTranslator
 __author__ = "Joel Burton <joel@joelburton.com>"
 
 
-# Updated for Sphinx 1.7
+# Updated for Sphinx 1.8
 
 
 class HandoutsTranslator(HTMLTranslator):
