@@ -120,6 +120,7 @@ pre.literal-block {
     padding: 0.5em;
     max-width: 50rem;
     min-width: 30rem;
+    font-size: 50%;
     font-family: {{ theme_codefont }};
 }
 
@@ -240,6 +241,7 @@ pre.literal-block {
 .docutils.literal {
     border: solid 1px {{ theme_clientlightcolor }};
     font-family: {{ theme_codefont }};
+    font-size: 90%;
     padding: 0 0.1em;
 }
 

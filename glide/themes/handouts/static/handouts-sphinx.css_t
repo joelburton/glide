@@ -285,7 +285,7 @@ dt {
 }
 
 pre {
-    font-family: Inconsolata, monospace;
+    font-family: Source Code Pro, monospace;
     font-size: 90%;
 }
 
@@ -302,7 +302,7 @@ pre {
 
 code {
     color: #E74C3C;
-    font-family: Inconsolata, monospace;
+    font-family: Source Code Pro, monospace;
     border: solid 1px #eee;
     padding: 0 5px;
     font-size: 90%;

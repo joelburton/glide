@@ -17,6 +17,10 @@
   <link rel="stylesheet" href="{{ pathto('_static/revealjs/css/theme/white.css', 1) }}" id="theme"/>
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
   <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
+  {% if theme_fonts %}
+  <link href='{{ theme_fonts }}'
+        rel='stylesheet' type='text/css'>
+  {% endif %}
 
 </head>
 <body>
