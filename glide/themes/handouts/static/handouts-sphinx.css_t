@@ -265,7 +265,7 @@ blockquote {
 }
 
 body {
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: {{ theme_bodyfont }};
 }
 
 /*@media screen {*/
@@ -278,6 +278,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
+    font-family: {{ theme_headfont }};
 }
 
 dt {
@@ -285,7 +286,7 @@ dt {
 }
 
 pre {
-    font-family: Source Code Pro, monospace;
+    font-family: {{ theme_codefont }};
     font-size: 90%;
 }
 
@@ -302,7 +303,7 @@ pre {
 
 code {
     color: #E74C3C;
-    font-family: Source Code Pro, monospace;
+    font-family: {{ theme_codefont }};
     border: solid 1px #eee;
     padding: 0 5px;
     font-size: 90%;

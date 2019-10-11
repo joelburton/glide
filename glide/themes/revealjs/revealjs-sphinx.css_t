@@ -25,6 +25,7 @@
 
 .reveal {
     font-size: 38px;
+    font-family: {{ theme_bodyfont }};
 }
 
 /* Theme logo at the bottom left of every slide. */
@@ -40,6 +41,10 @@
 }
 
 /* "Section" headings */
+.reveal h2, h3, h4, h5, h6 {
+    font-family: {{ theme_headfont }};
+}
+
 .reveal h2 {
     padding: 0.3em 0.4em;
     border-radius: 0.5em;
