@@ -29,7 +29,7 @@ body {
     #page-sidebar {
         display: block;
         width: 275px;
-        background-color: #58595B;
+        background-color: {{ theme_sidebarcolor }};
         color: #ddd;
     }
 
