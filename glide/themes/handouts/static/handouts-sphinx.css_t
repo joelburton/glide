@@ -29,7 +29,7 @@ body {
     #page-sidebar {
         display: block;
         width: 275px;
-        background-color: #58595B;
+        background-color: {{ theme_sidebarcolor }};
         color: #ddd;
     }
 
@@ -313,7 +313,6 @@ pre.literal-block {
     background-color: white;
     border: solid 1px #ddd;
     margin: 0.2em 0 0.4em 0;
-    /*padding: 1em;*/
     padding: 0.6em;
 }
 
@@ -603,13 +602,20 @@ cite {
 .compare21 > div:first-child { width: 65%; }
 .compare21 > div:last-child { width: 32%; }
 
+.hover-reveal {
+  position: relative;
+}
+
 .hover-reveal:before {
     content: "Hover to reveal";
     position: absolute;
+    top: 2em;
+    text-align: center;
+    width: 100%;
 }
 
 .hover-reveal:hover:before {
-    content: "";
+    visibility: hidden;
 }
 
 .hover-reveal > * {
@@ -634,6 +640,26 @@ cite {
 .hover-reveal:hover {
     background-color: transparent;
 }
+
+/* for code blocks, use both hover-reveal and hover-reveal-tight */
+
+.hover-reveal-tight {
+    padding: 0;
+    margin-bottom: 0;
+    max-width: 38em;
+    min-width: 39em;
+}
+
+.hover-reveal-tight:hover {
+    border-color: transparent;
+}
+
+.hover-reveal-tight .highlight {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 
 @media print {
     .hover-reveal > * {

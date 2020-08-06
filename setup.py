@@ -7,7 +7,7 @@
 from setuptools import setup
 
 setup(name='Glide',
-      version='1.4',
+      version='1.4.1',
       description='Curriculum presentation system.',
       author='Joel Burton',
       author_email='joel@joelburton.com',
