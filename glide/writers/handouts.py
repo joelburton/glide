@@ -8,9 +8,6 @@ from glide import version, logger
 from .common import FixCompactParagraphsTranslatorMixin
 
 
-
-
-
 class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     """Translator for Sphinx structure -> HTML handouts."""
 
@@ -81,10 +78,10 @@ class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     def grand_depart_literal_block(self, node):
         self.body.append('\n</pre>\n</div>\n')
 
-
-from docutils.writers.html4css1 import HTMLTranslator as Grandparent
-Grandparent.visit_literal_block = HandoutsTranslator.grand_visit_literal_block
-Grandparent.depart_literal_block = HandoutsTranslator.grand_depart_literal_block
+# need to do this to make a wrapper for parsed-literal::
+# from docutils.writers.html4css1 import HTMLTranslator as Grandparent
+# Grandparent.visit_literal_block = HandoutsTranslator.grand_visit_literal_block
+# Grandparent.depart_literal_block = HandoutsTranslator.grand_depart_literal_block
 
 
 class HandoutsBuilder(StandaloneHTMLBuilder):
