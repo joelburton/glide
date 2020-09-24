@@ -1,0 +1,6 @@
+digraph aniams {
+    Organisms -> { Plants Fungi Animals Bacteria Protists };
+    Animals -> { Cnidaria Molluscs Chordata Arthropods Echinoderms };
+    Chordata -> { Actinopterygii Mammalia Chondrichthyes Aves Amphibia Reptilia };
+    Mammalia -> { Carnivora Primate Artiodactyla Rodentia };
+}

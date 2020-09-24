@@ -2,6 +2,10 @@
 Demo Lecture
 ============
 
+
+:overall rating df dsflkj lkdfj dsjf sfl slsdjl sdf: 17
+:design of system: yes
+
 .. general ideas for improving our build system
 
   FIXME: do we need compound support, so that things in a compound are closed together?
@@ -10,8 +14,831 @@ Demo Lecture
   FIXME: can we set latex title, etc in body, so we don't have to change conf for, say,
     the employee handbook?
 
+  FIXME: add docs for fail
+
+Admonitions
+===========
+
+Shell
+-----
+
+.. code-block:: psql
+   :caption: ``psql movies``
+
+   psql (12.4)
+   Type "help" for help.
+
+   joel=# \d
+   Did not find any relations.
+   joel=#
+
+.. code-block:: postgres
+
+   CREATE TABLE countries (
+     code VARCHAR(2) PRIMARY KEY,
+     country TEXT NOT NULL UNIQUE);
+
+   CREATE TABLE flights (
+     id SERIAL PRIMARY KEY,
+     airline_code VARCHAR(3) NOT NULL REFERENCES airlines,
+     depart_at TIMESTAMPTZ NOT NULL,
+     arrive_at TIMESTAMPTZ NOT NULL,
+     depart_city_id INT NOT NULL REFERENCES cities,
+     arrive_city_id INT NOT NULL REFERENCES cities);
+
+.. code-block:: html+jinja
+
+   {% extends 'base.html' %}
+
+   {% block title %} FlaskCafe {% endblock %}
+
+   {% block content %}
+
+   <div class="homepage">
+     <h1 class="display-1">Flask Cafe</h1>
+     <h3 class="display-5">Where Coffee Dreams Come True.</h3>
+     <a class="mt-5 btn btn-primary" href="/cafes">View Our Cafes</a>
+   </div>
+
+   <style>
+       body {
+         background: url(/static/images/homepage.jpg) no-repeat center center fixed;
+         background-size: cover;
+       }
+
+       .display-1, .display-5 {
+         color: white;
+         text-shadow: black 3px 3px !important;
+         letter-spacing: 0.05em
+       }
+   </style>
+
+   {% endblock %}
+
+.. code-block:: http
+
+  HTTP/1.1 200 OK
+  Date: Mon, 20 Apr 2018 07:09:16 GMT       # Ok?
+  Server: Apache
+  Content-Type: text/html
+
+.. code-block:: shell
+
+   $ echo "foo"
+
+   $ echo "foo"
+
+   $ ls
+   hi
+   there
+   joel
+
+.. sidebar:: Understanding This
+   :class: sidebar40
+
+   While the computer executes this from the
+   bottom, it's helpful to think about the smallest
+   case first: **the sum of an empty list of numbers is zero.**
+   That's our *base case*.
+
+.. parsed-literal::
+   :class: line-height-1 code-140  code-35c
+
+           `n: []  base    ⭣0`:green:
+           `──────────────────`:green:
+         `n: [1]     3 + ⭡[] ⭣3`:orange:
+         `──────────────────────`:orange:
+       `n: [2,3]      2 + ⭡[3] ⭣5`:blue:
+       `──────────────────────────`:blue:
+     `n: [1,2,3]     1 + ⭡[2,3] ⭣6`:cmd:
+     `──────────────────────────────`:cmd:
+   add([1,2,3])              ⭡[1,2,3]
+
+.. parsed-literal::
+   :class: line-height-1 code-140  code-30c
+
+   │ diagram here
+   │ with lines
+   │ like this
+   │
+   │ │ :blue:`recursion`
+   │ │
+   │ │ |larr| `x`
+
+CSV Tables
+----------
+
+.. csv-table:: Frozen Delights!
+   :header: "Treat", "Quantity", "Description"
+   :widths: 10, 10, 30
+
+   "Albatross", 2.99, "On a stick!"
+   "Crunchy Frog", 1.49, "If we took the bones out, it wouldn't be
+   crunchy, now would it?"
+   "Gannet Ripple", 1.99, "On a stick!"
+
+Another Section
++++++++++++++++
+
+Ok?
+
+Hide Me
+~~~~~~~
+
+Nope
+
+Function
+--------
+
+.. py:function:: spam(eggs)
+                 ham(eggs)
+
+.. py:function:: filterwarnings(action, message='', category=Warning, \
+                                module='', lineno=0, append=False)
+
+   Spam or ham the foo.
+
+Container Hover?
+----------------
+
+For example if we have code like this:
+
+.. code-block:: python
+
+   x = 12
+
+.. code-block:: python
+
+   x = 12
+
+
+.. code-block:: python
+   :class: hover-reveal-code
+
+   x == 17
+
+.. container:: hover-reveal
+
+   Secret?
+
+Topic
+-----
+
+Before
+
+.. topic:: Ends with Para
+
+   This is foo
+
+.. topic:: Foo Bar Baz
+
+   This is foo
+
+   .. container::
+
+      And bar
+
+.. topic:: Foo Bar Baz
+   :class: hover-reveal
+
+   This is foo
+
+After
+
+Containers
+----------
+
+Before
+
+.. container::
+
+   Hey
+
+   There
+
+After
+
+.. container::
+
+   - one
+
+   - two
+
+After
+
+| Then
+| This
+
+After
+
+.. code-block:: python
+
+   x == 2
+
+After
+
+Text
+----
+
+Hello *italic* **bold**. Also, `this is a variable`, :title:`Book Title`, and ``x = 10``
+
+Use :kbd:`Control-R` to refresh.
+
+First
+-----
+
+.. parsed-literal::
+
+   foo bar x
+
+.. parsed-literal::
+
+    `red`:red: `green`:green: `orange`:orange: `tan`:tan: `blue`:blue: `gray`:gray: `gone`:gone: `inv-red`:inv-red:
+
+And in a console:
+
+.. parsed-literal::
+    :class: console
+
+    This is a `shell`:tan: `minor`:gray:
+
+    `cmd`:cmd: `red`:red: `green`:green: `orange`:orange: `tan`:tan: `blue`:blue: `gray`:gray: `gone`:gone: `inv-red`:inv-red:
+
+Console w/nothing:
+
+.. parsed-literal::
+   :class: console
+
+   Hey
+
+
+Long Code
+---------
+
+Let's see some code:
+
+.. code-block:: python
+   :caption: oh
+   :class: foo
+
+   class A:
+      pass
+
+
+And more:
+
+.. code-block:: python
+
+    class Cat5(object):
+        """Cat with class methods."""
+
+        _SELECT = "SELECT name, hunger FROM Cats WHERE name = :name"
+        _UPDATE = "UPDATE Cats SET hunger = :hunger WHERE name = :name and so on"234
+
+        def __init__(self, name, hunger):     # special method
+            self.name = name                  # object attribute
+            self.hunger = hunger
+
+        def feed(self, calories):
+            """Feed cat, update hunger, and update database."""
+
+            self.hunger = self.hunger - calories
+            db.session.execute(
+                self._UPDATE, {'hunger': self.hunger,'name': self.name})
+            db.session.commit()
+
+        def feed(self, calories):
+            """Feed cat, update hunger, and update database."""
+
+            self.hunger = self.hunger - calories
+            db.session.execute(
+                self._UPDATE, {'hunger': self.hunger,'name': self.name})
+            db.session.execute(
+                self._UPDATE, {'hunger': self.hunger,'name': self.name})
+            db.session.commit()
+
+
+Runtime
+-------
+
+`link here <http://foo.com>`_
+
+"Hello"
+
+.. sectionauthor:: Joel
+.. codeauthor:: Joel
+
+:func:`format`
+
+
+.. code-block:: python
+
+   if x == 2:
+
+.. code-block:: python
+   :force:
+
+   if x == 2:
+
+
+.. versionadded:: woot
+
+   Why?
+
+.. versionchanged:: 3.4
+   Why?
+
+.. deprecated:: 5.6
+   Why?
+
+
+.. danger:: foo
+
+   Bear!
+
+.. danger:: foo
+   Bear3!
+
+.. seealso:: One More!
+
+   Why?
+
+
+:command:`ls`
+
+:file:`/foo/bar/{x}/baz`
+
+:abbr:`LIFO (la la)`
+
+:program:`vim`
+
+:samp:`foo{x}bar`
+
+|today|
+
+how is rst-class diff than class?
+
+----
+
+gwllo
+
+runs in |On^2| or |Onlogn| or |On| or |O!| but not |O2^n| or |O1| or |Ologn|
+
+.. |log2| replace:: log\ :sub:`2`
+.. |Ologn| replace:: O(log\ :sub:`2`\ *n*)
+.. |On^2| replace:: O(*n*\ :sup:`2`)
+.. |Onlogn| replace:: O(*n* log\ :sub:`2`\ *n*)
+.. |On| replace:: O(*n*)
+.. |O!| replace:: O(*n!*)
+.. |O2^n| replace:: O(2\ :sup:`n`)
+.. |O1| replace:: O(1)
+.. |italn| replace:: *n*
+
+Line Breaks
+-----------
+
+.. role:: js(code)
+   :language: js
+
+:js:`x == "hello"` and ``x == "hello"``
+
+Hello, how is this looking -- is it |handouts-br|
+okay?
+
+Just checking!
+
+| Hello, how is this looking -- is it
+| okay?
+|
+| Just checking!
+
+omg prefer to reveal-br -- wait, that affects all builders
+
+Test usage like this:
+
+|
+
+Ok?
+
+.. highlights::
+
+    - This
+
+    - This
+
+.. pull-quote::
+
+    And I knew
+
+.. epigraph::
+
+    And also
+
+    -- Eliot
+
+.. compound::
+
+    Hello, this a
+    normal thing.
+
+        not me
+        i'm different
+
+    Back to the normal
+    thing
+
+
+Admin
+-----
+
+attention
+caution
+danger
+error
+hint
+important
+note
+tip
+warning
+
+
+
+.. attention:: Attention Title
+
+    Body
+
+.. admonition:: Fluffy!
+   :class: caution
+
+   Body This One Is Merged?
+
+.. caution:: Caution Title
+
+    Body
+
+.. danger:: Danger Title
+
+    Body
+
+.. error:: Error Title
+
+    Body
+
+.. hint:: Hint Title
+
+    Body
+
+.. important:: Important Title
+
+    Body
+
+.. note:: Notex Title
+
+    Body
+
+.. tip:: Tip Title
+
+    Body
+
+.. warning:: Warning Title
+
+    Body
+
+.. sidebar:: This is an sidebar
+
+    Aside body
+
+.. topic:: Topic
+
+    Topic
+
+Doctest
+=======
+
+JSX
+---
+
+`JoelBurton.com <http://joelburton.com/>`__
+
+.. code-block:: jsx
+
+  return <p>Hello</p>
+
+Math
+----
+
+Adding math:
+
+.. math::
+
+    r = \frac{\sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\Sigma^n_{i=1}(x_i - \bar{x})^2 \times \Sigma^n_{i=1}(y_i - \bar{y})^2}}
+
+Or `n = {x}^2`:math: for inline.
+
+Doctest
+-------
+
+https://graphs.grevian.org/
+https://renenyffenegger.ch/notes/tools/Graphviz/examples/index
+http://magjac.com/graphviz-visual-editor/
+https://github.com/fcurella/jsx-lexer
+imgmath_image_format = 'svg'
+imgmath_font_size  12
+
+
+.. doctest:: python
+
+    >>> 1 + 1
+    2
+
+Graphviz
+========
+
+Graphviz
+--------
+
+.. graphviz:: animals.dot
+    :align: right
+    :caption: wut wut
+    :size: 12,12
+
+.. digraph:: animals-two
+    :caption: wut wut
+    :size: 8,8
+
+    a -> b
+
+.. graph:: animals
+    :caption: wut wut
+    :size: 8,8
+
+    a -- b
+
+
+
+
 Section Heading
 ===============
+
+Works on Definition Lists
+-------------------------
+
+Hello
+    :incremental-li:`There`
+
+Hello2
+    :incremental-li:`2`
+
+
+.. container::
+
+    - One
+
+    - :incremental-li:`Two`
+
+      - Three
+
+Incremental Text
+----------------
+
+|  :incremental-current-visible:`current-visible`
+|  :incremental-fade-out:`fade-out`
+|  :incremental-semi-fade-out:`semi-fade-out`
+|  :incremental-strike:`strike`
+|  :incremental-highlight-red:`highlight-red`
+|  :incremental-highlight-green:`highlight-green`
+|  :incremental-highlight-blue:`highlight-blue`
+|  :incremental-highlight-current-red:`highlight-current-red`
+|  :incremental-highlight-current-green:`highlight-current-green`
+|  :incremental-highlight-current-blue:`highlight-current-blue`
+|  :incremental-fade-in-then-out:`fade-in-then-out` (not working)
+|  :incremental-fade-in-then-semi-out:`fade-in-then-semi-out` (not working)
+
+Incremental Parts
+-----------------
+
+TODO here
+
+Not just for list items --- anything "incremental-able"
+
+.. container:: compare
+
+    .. container::
+
+        - :incremental-current-visible:`current-visible`
+        - :incremental-fade-out:`fade-out`
+        - :incremental-semi-fade-out:`semi-fade-out`
+        - :incremental-strike:`strike`
+        - :incremental-highlight-red:`highlight-red`
+        - :incremental-highlight-green:`highlight-green`
+        - :incremental-highlight-blue:`highlight-blue`
+        - :incremental-highlight-current-red:`highlight-current-red`
+        - :incremental-highlight-current-green:`highlight-current-green`
+        - :incremental-highlight-current-blue:`highlight-current-blue`
+
+    .. container::
+
+        - :incremental-li-fade-up:`fade-up`
+        - :incremental-li-fade-down:`fade-down`
+        - :incremental-li-fade-left:`fade-left`
+        - :incremental-li-fade-right:`fade-right`
+        - :incremental-li-grow:`grow`
+        - :incremental-li-shrink:`shrink`
+        - :incremental-li-zoom-in:`zoom-in`
+        - :incremental-fade-in-then-out:`fade-in-then-out` (not working)
+        - :incremental-fade-in-then-semi-out:`fade-in-then-semi-out` (not working)
+
+Not just for list items --- anything "incremental-able"
+
+.. container:: compare
+
+    .. container::
+
+      .. code-block:: python
+
+         x = 1
+
+    .. container::
+
+      .. container::
+
+        - :incremental-li-fade-up:`fade-up`
+        - :incremental-li-fade-down:`fade-down`
+        - :incremental-li-fade-left:`fade-left`
+
+      .. container::
+
+        - :incremental-li-fade-right:`fade-right`
+        - :incremental-li-grow:`grow`
+        - :incremental-li-shrink:`shrink`
+        - :incremental-li-zoom-in:`zoom-in`
+        - :incremental-fade-in-then-out:`fade-in-then-out` (not working)
+        - :incremental-fade-in-then-semi-out:`fade-in-then-semi-out` (not working)
+
+Quotation
+---------
+
+.. epigraph::
+
+   In the beginning, there was Unix.
+
+   -- Joel Burton
+
+Does This Look Ok?
+------------------
+
+- a
+
+- b
+
+.. newslide::
+
+- c
+
+- d
+
+Block Fades
+-----------
+
+.. container:: one-incremental fade-up
+
+    fade-up
+
+.. container:: one-incremental fade-down
+
+    fade-down
+
+.. container:: one-incremental fade-left
+
+    fade-left
+
+.. container:: one-incremental fade-right
+
+    fade-right
+
+.. container:: one-incremental fade-out
+
+    fade-out
+
+.. container:: one-incremental semi-fade-out
+
+    semi-fade-out
+
+.. container:: one-incremental fade-in-then-out
+
+    fade-in-then-out
+
+.. container:: one-incremental fade-in-then-semi-semi-out
+
+    fade-in-then-semi-out
+
+Block Grow
+----------
+
+.. container:: one-incremental grow
+
+    grow
+
+.. container:: one-incremental shrink
+
+    shrink
+
+.. container:: one-incremental zoom-in
+
+    zoom-in
+
+Typography & Color
+------------------
+
+.. container:: one-incremental strike
+
+    strike
+
+.. container:: one-incremental strike highlight-red
+
+    strike highlight-red (combining)
+
+.. container:: one-incremental highlight-red
+
+    highlight-red
+
+.. container:: one-incremental highlight-current-red
+
+    highlight-current-red
+
+.. container:: one-incremental highlight-green
+
+    highlight-green
+
+.. container:: one-incremental highlight-current-green
+
+    current-highlight-green
+
+.. container:: one-incremental highlight-blue
+
+    highlight-blue
+
+.. container:: one-incremental highlight-current-blue
+
+    highlight-current-blue
+
+
+
+Option List
+-----------
+
+.. container:: item-incremental
+
+    -x    X
+    -a    Y
+
+.. container:: item-incremental
+
+    | Hey
+    | Jude
+
+.. container:: item-incremental
+
+    ====== =======
+    Hey    Jude
+    ====== =======
+    One    Thing
+    And    Another
+    ====== =======
+
+
+Field List
+----------
+
+.. container:: item-incremental
+
+    :hey: you
+    :there: me
+
+Works on Definition Lists
+-------------------------
+
+.. container:: item-incremental
+
+    Item Incremental
+        Works on definition lists, too
+
+        Inner
+            Is this valid?
+
+        Or
+            Is this?
+
+    Just
+        Put it on a container around the list
+
+.. container:: item-incremental
+
+    - One
+
+      - Two
+
+    - Three
 
 Slide Title
 -----------
@@ -148,17 +975,6 @@ Symbols
 
 - |super2|  SUPERSCRIPT 2
 
-.. newslide::
-
-- |pycmd|   The command to run Python
-
-And the same replacement, inside the console:
-
-.. parsed-literal::
-   :class: console
-
-   $ |pycmd| `show_prompt.py`:cmd:
-
 Lists
 =====
 
@@ -177,14 +993,18 @@ Lists
 
   - Try to stick to 2
 
-    - Our CSS only stylizes up to level 3
+    - Our CSS only stylizes up to level 4
 
     - So stop here
+
+      - Or here
 
 - And back to level one
 
 Complex Lists
 -------------
+
+Here is a list:
 
 - You can also have lists that are not "simple"
 
@@ -218,6 +1038,27 @@ More about complex lists:
 
 - The spacing should work out
 
+Numbered Lists
+--------------
+
+Simple:
+
+1. One
+
+2. Two
+
+   - Inner point
+
+Not Simple:
+
+1. Paragraph about one.
+
+   And another.
+
+2. Two
+
+   - Inner point.
+
 Horizontal Lists
 ----------------
 
@@ -229,6 +1070,7 @@ You can make short, side-by-side lists like this:
   - two
   - three
   - four
+  - five
 
 You can specify # columns, too:
 
@@ -241,6 +1083,7 @@ You can specify # columns, too:
   - four
   - five
   - six
+  - seven
 
 Organization
 ============
@@ -304,6 +1147,7 @@ You can also use newslide to get background colors
 
 .. interslide::
   :background: porcupine.jpg
+
 
 Images
 ======
@@ -852,7 +1696,7 @@ in handouts---so don't use them for anything too important.
 
 An important case is sidebar-next-to-code:
 
-.. sidebar:: **Lightly implemented**
+.. sidebar:: Lightly implemented
 
   Note that that isn't a very complete implementation: it should include
   methods for things like finding the number of items in the `ODict`,
@@ -863,31 +1707,32 @@ An important case is sidebar-next-to-code:
   and it suffers from O(n) when deleting items from the `ODict`.
 
 .. code-block:: python
+   :class: code-90 code-65c
 
-        class OrderedDict(object):
-            """Ordered dictionary, built using a dictionary and a list."""
+   class OrderedDict(object):
+       """Ordered dictionary, built from dictionary and list."""
 
-            def __init__(self):
-                self._dict = {}
-                self._list = []
+       def __init__(self):
+           self._dict = {}
+           self._list = []
 
-            def get(self, key):
-                """Get a key. O(1)."""
+       def get(self, key):
+           """Get a key. O(1)."""
 
-                return self._dict.get(key)  # O(1)
+           return self._dict.get(key)  # O(1)
 
-            def set(self, key, value):
-                """Set a key. O(1)."""
+       def set(self, key, value):
+           """Set a key. O(1)."""
 
-                if key not in self._dict:   # O(1)
-                    self._list.append(key)  # O(1)
-                self._dict[key] = value     # O(1)
+           if key not in self._dict:   # O(1)
+               self._list.append(key)  # O(1)
+           self._dict[key] = value     # O(1)
 
-            def delete(self, key):
-                """Remove a key. O(n)."""
+       def delete(self, key):
+           """Remove a key. O(n)."""
 
-                del self._dict[key]         # O(1)
-                self._list.remove(key)      # O(n)  <-- :(
+           del self._dict[key]         # O(1)
+           self._list.remove(key)      # O(n)  <-- :(
 
 Topics
 ------
@@ -999,6 +1844,106 @@ For longer listings:
     .. literalinclude:: demo-demo/demo-include.py
       :caption: (smaller)
 
+.. container:: compare compare23
+
+  .. container::
+
+    .. literalinclude:: demo-demo/demo-include.py
+      :caption: (normal size)
+
+  .. container:: small
+
+    .. literalinclude:: demo-demo/demo-include.py
+      :caption: (smaller)
+
+.. container:: compare compare21
+
+  .. container::
+
+    .. literalinclude:: demo-demo/demo-include.py
+      :caption: (normal size)
+
+  .. container:: small
+
+    .. literalinclude:: demo-demo/demo-include.py
+      :caption: (smaller)
+
+Small Code
+----------
+
+Sizes 150% down
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-150
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-140
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-130
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-120
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-110
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-100
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-90
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-80
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-70
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-60
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-50
+
+Widths 100 down
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-85c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-80c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-70c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-60c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-50c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-40c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-30c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-20c
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-10c
+
+Combined
+
+.. literalinclude:: demo-demo/wide.py
+  :class: code-10c code-200
+
+.. literalinclude:: demo-demo/demo-include.py
+  :class: code-60c code-120
+  :linenos:
+  :emphasize-lines: 4,5
 
 Text-Heavy
 ----------
@@ -1146,8 +2091,25 @@ OSet (HashMap+DLL)      O(1)       O(1)        O(1)        O(1)         `***`:re
 ODict (HashMap+DLL)     O(1)       O(1)        O(1)        O(1)         `***`:red:
 ====================== =========== =========== =========== ============ ============
 
-Centered Columns
-----------------
+Two In A Row
+------------
+
+====================== =========== =========== =========== ============ ============
+Data Structure         Get         Add         Delete      Iterate      Memory
+====================== =========== =========== =========== ============ ============
+Tree                   `O(n)`:red: O(1)        O(1)        O(1)         `*`:green:
+Binary Search Tree     O(log n)    `O(n)`:red: `O(n)`:red: O(1)         `*`:green:
+====================== =========== =========== =========== ============ ============
+
+====================== =========== =========== =========== ============ ============
+Data Structure         Get         Add         Delete      Iterate      Memory
+====================== =========== =========== =========== ============ ============
+Tree                   `O(n)`:red: O(1)        O(1)        O(1)         `*`:green:
+Binary Search Tree     O(log n)    `O(n)`:red: `O(n)`:red: O(1)         `*`:green:
+====================== =========== =========== =========== ============ ============
+
+Arranging Columns
+-----------------
 
 Can center columns other than first:
 
@@ -1158,10 +2120,17 @@ Can center columns other than first:
   ====================== =========== =========== =========== ============ ============
   Tree                   `O(n)`:red: O(1)        O(1)        O(1)         `*`:green:
   Binary Search Tree     O(log n)    `O(n)`:red: `O(n)`:red: O(1)         `*`:green:
-  Dictionary (Hash Map)  O(1)        O(1)        O(1)        `O(n)`:red:  `**`:orange:
-  Set (Hash Map)         O(1)        O(1)        O(1)        `O(n)`:red:  `**`:orange:
-  OSet (HashMap+DLL)      O(1)       O(1)        O(1)        O(1)         `***`:red:
-  ODict (HashMap+DLL)     O(1)       O(1)        O(1)        O(1)         `***`:red:
+  ====================== =========== =========== =========== ============ ============
+
+Can right justify columns other than first:
+
+.. rst-class:: td-right
+
+  ====================== =========== =========== =========== ============ ============
+  Data Structure         Get         Add         Delete      Iterate      Memory
+  ====================== =========== =========== =========== ============ ============
+  Tree                   `O(n)`:red: O(1)        O(1)        O(1)         `*`:green:
+  Binary Search Tree     O(log n)    `O(n)`:red: `O(n)`:red: O(1)         `*`:green:
   ====================== =========== =========== =========== ============ ============
 
 Right Columns
@@ -1246,24 +2215,27 @@ Or `n = {x}^2`:math: for inline.
 Graphs
 ======
 
+
 Graphs
 ------
 
-Graphviz graphs are super-common and useful:
+.. nope
 
-.. jdigraph:: org
-  :revealjs: -Grankdir=TB -Gsize=11,6.5!
-  :handouts: -Grankdir=TB -Gsize=5.5,4!
-  :latex: -Grankdir=TB -Gsize=5.5,4!
+    Graphviz graphs are super-common and useful:
 
-  Organisms -> { Plants, Fungi, Animals, Bacteria, Protists };
-  Animals -> { Cnidaria, Molluscs, Chordata, Arthropods, Echinoderms };
-  Chordata -> { Actinopterygii, Mammalia, Chondrichthyes, Aves, Amphibia, Reptilia };
-  Mammalia -> { Carnivora, Primate, Artiodactyla, Rodentia };
+    .. jdigraph:: org
+      :revealjs: -Grankdir=TB -Gsize=11,6.5!
+      :handouts: -Grankdir=TB -Gsize=5.5,4!
+      :latex: -Grankdir=TB -Gsize=5.5,4!
 
-Put in sizes for `revealjs`, `handouts`, and `latex`.
+      Organisms -> { Plants, Fungi, Animals, Bacteria, Protists };
+      Animals -> { Cnidaria, Molluscs, Chordata, Arthropods, Echinoderms };
+      Chordata -> { Actinopterygii, Mammalia, Chondrichthyes, Aves, Amphibia, Reptilia };
+      Mammalia -> { Carnivora, Primate, Artiodactyla, Rodentia };
 
-Generally, `handouts` and `latex` will be about half the size of `revealjs`.
+    Put in sizes for `revealjs`, `handouts`, and `latex`.
+
+    Generally, `handouts` and `latex` will be about half the size of `revealjs`.
 
 Newer Style
 -----------

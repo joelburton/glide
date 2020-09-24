@@ -1,29 +1,34 @@
 """Sphinx translator and builder for handouts."""
 
-from docutils import nodes
-from docutils.nodes import SkipNode, section, note, warning
+from docutils.nodes import SkipNode, section, Node, Element
 from sphinx.builders.html import StandaloneHTMLBuilder
 from sphinx.writers.html import HTMLTranslator
 
-__author__ = "Joel Burton <joel@joelburton.com>"
+from glide import version, logger
+from .common import FixCompactParagraphsTranslatorMixin
 
 
-# Updated for Sphinx 1.8
 
 
-class HandoutsTranslator(HTMLTranslator):
-    """Translator for Sphinx structure -> HTML handouts.
 
-    Overrides Sphinx HTML translator.
-    """
+class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
+    """Translator for Sphinx structure -> HTML handouts."""
 
+    # Keep track of previous title so we don't repeat ourselves
     _previous_title = ""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args):
+        super().__init__(*args)
+        # The default value here is silly-low, and this is the only way to fix.
+        # These are used for "fields" used to describe documents (often, but
+        # not always at the top), like:
+        #
+        # :author: Elmo
+        # :color: red
+
         self.settings.field_name_limit = 50
 
-    def visit_title(self, node):
+    def visit_title(self, node: Element) -> None:
         """Handle titles.
 
         Two changes from the standard HTML Writer:
@@ -38,96 +43,48 @@ class HandoutsTranslator(HTMLTranslator):
              Using jQuery
              ------------
 
-             blah, blah
-
              Using jQuery
              ------------
 
-             more blah
-
-           We need this to make two separate slides---but we don't want the handouts
-           to have a new heading for the second heading.
+           We need this to make two separate slides---but we don't want the
+           handouts to have a new heading for the second heading.
         """
 
-        # Notes and Warnings normally automatically get a admonition-title of "Note" or
-        # "Warning". We want to use the first paragraph as the title, so skip making
-        # the normal title
-        if isinstance(node.parent, note) or isinstance(node.parent, warning):
-            raise SkipNode
-
         if isinstance(node.parent, section):
-
             if str(node) == self._previous_title:
+                # Don't make a title if our title would be same as previous
                 raise SkipNode
-
             self._previous_title = str(node)
 
         return super().visit_title(node)
 
-    def should_be_compact_paragraph(self, node):
-        """Can this text be 'compacted' into a non-paragraph?
+    def unknown_visit(self, node: Node) -> None:
+        """We should never get here, so warn user."""
 
-        Sphinx will try to 'compact' text into not being a paragraph when possible.
-        For example, for:
+        logger.warning("Handouts hit unexpected node: %s", node)
+        raise SkipNode
 
-          - hello
+    # todo doc:
+    # doing this so highlgiht and literals both have a wrapper around pre
 
-          - there
+    # add newline after opening tag, don't use <code> for code
 
-          - reader
+    # super()._visit_literal_block = super().visit_literal_block
 
-        It realizes that since those are simple lines, it doesn't need to put
-        <p> tags around the text inside the <li> tags---whereas for::
+    def grand_visit_literal_block(self, node):
+        self.body.append(self.starttag(node, 'div', CLASS='parsed-literal-wrapper'))
+        # prob should make this <pre> myself, so it doesn't get the classes
+        self.body.append("<pre>")
+        # self.body.append(self.starttag(node, 'pre', CLASS='literal-block'))
 
-          - hello
+    # add newline
+    def grand_depart_literal_block(self, node):
+        self.body.append('\n</pre>\n</div>\n')
 
-          - there
 
-          - reader
-
-            I love readers!
-
-        It would need to keep paragraphs inside the <li> tags.
-
-        We often put text inside containers for incremental-appearance, like this:
-
-          The answer is:
-
-          .. container:: one-incremental
-
-            Forty-two
-
-        Seeing just a simple thing inside the container, Sphinx wouldn't wrap it
-        in a paragraph, just <div>. This makes for ugly line breaks.
-
-        Therefore, when we're directly inside a container, we should never
-        compact paragraphs. Otherwise, follow Sphinx's rules.
-
-        Should you want to compact things directly inside a container, you can
-        add a 'non-paragraph' class to it.
-        """
-
-        if isinstance(node.parent, nodes.container):
-            if 'non-paragraph' not in node.parent.attributes['classes']:
-                return False
-
-        return super().should_be_compact_paragraph(node)
-
-    # Added for Sphinx 1.8: can't find a way to ignore speakernote/interslide
-    # directives in handouts but not revealjs --- so, all html things will
-    # come here
-
-    def visit_speakernote(self, node):
-        raise SkipNode()
-
-    def depart_speakernote(self, node):
-        raise SkipNode()
-
-    def visit_interslide(self, node):
-        raise SkipNode()
-
-    def depart_interslide(self, node):
-        raise SkipNode()
+from docutils.writers.html4css1 import HTMLTranslator as Grandparent
+Grandparent.visit_literal_block = HandoutsTranslator.grand_visit_literal_block
+Grandparent.depart_literal_block = HandoutsTranslator.grand_depart_literal_block
 
 
 class HandoutsBuilder(StandaloneHTMLBuilder):
@@ -138,7 +95,26 @@ class HandoutsBuilder(StandaloneHTMLBuilder):
     # Do not generate any support for search
     search = None
 
+    def init_js_files(self) -> None:
+        """Override to remove not-needed JS files."""
+
+        # This is what we're overriding to remove
+        # self.add_js_file('jquery.js')
+        # self.add_js_file('underscore.js')
+        # self.add_js_file('doctools.js')
+        # self.add_js_file('language_data.js')
+
+        for filename, attrs in self.app.registry.js_files:
+            self.add_js_file(filename, **attrs)
+
+        for filename, attrs in self.get_builder_config('js_files', 'html'):
+            self.add_js_file(filename, **attrs)
+
+        if self.config.language and self._get_translations_js():
+            self.add_js_file('translations.js')
+
 
 def setup(app):
     app.add_builder(HandoutsBuilder)
     app.set_translator('handouts', HandoutsTranslator)
+    return {'version': version, 'parallel_read_safe': True}

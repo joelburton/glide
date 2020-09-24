@@ -1,7 +1,7 @@
 """Do nothing plot directive for people who don't have matplotlib.
 
 We use matplotlib to draw business charts---but not everyone who uses our build
-system may have that installed or need to work on materails that require charts.
+system may have that installed or need to work on materials that require charts.
 
 Normally, if you try to build a document with the matplotlib plot directive::
 
@@ -12,10 +12,10 @@ Normally, if you try to build a document with the matplotlib plot directive::
 
 it would raise a fatal error if you don't have the matplotlib extension.
 
-Therefore, you can use this extension and it will provide a no-op plot directive.
+Instead, use this extension and it will provide a no-op plot directive.
 
-NOTE: this just SKIP BUILDING CHARTS. That may not be a good idea--the chart might
-be important for the presentation. This is just a workaround!
+NOTE: this just SKIPS BUILDING CHARTS. That may not be a good idea --- the chart
+might be important for the presentation. This is just a workaround!
 
 Much better idea: install matplotlib, yo! ::
 
@@ -27,21 +27,23 @@ tools. If your computer doesn't have all that fun stuff, you can get a Python
 distribution, like Enthought, which provides it.
 
 Snarkily and happily yours, Joel <joel@joelburton.com>
-
 """
 
 from docutils.parsers.rst import Directive
 
+from glide import version, logger
+
+
 class NoPlotDirective(Directive):
-    """Directive that doesn't do anything."""
+    """No-op directive for people without matplotlib to not get errors."""
 
     has_content = True
 
     def run(self):
+        logger.warning("Overridden plot directive: skipped matplotlib drawing")
         return []
 
 
 def setup(app):
-    """Sphinx directive setup."""
-
     app.add_directive('plot', NoPlotDirective)
+    return {'version': version, 'parallel_read_safe': True}

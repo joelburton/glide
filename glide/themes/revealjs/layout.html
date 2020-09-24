@@ -4,23 +4,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-
-  {%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
-  <!--<title>{{ title|striptags }}{{ titlesuffix }}</title>-->
   <title>{{ title }}</title>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-  <link rel="stylesheet" href="{{ pathto('_static/revealjs/css/reveal.css', 1) }}"/>
-  <link rel="stylesheet" href="{{ pathto('_static/revealjs/css/theme/white.css', 1) }}" id="theme"/>
-  <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
-  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
+  <link rel=stylesheet href="https://unpkg.com/reveal.js@4/dist/reset.css">
+  <link rel=stylesheet href="https://unpkg.com/reveal.js@4/dist/reveal.css">
+  <link rel=stylesheet
+        href="https://unpkg.com/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}">
   {% if theme_fonts %}
-  <link href='{{ theme_fonts }}'
-        rel='stylesheet' type='text/css'>
+    <link href='{{ theme_fonts }}' rel='stylesheet'>
   {% endif %}
+
+  <style>
+    :root {
+      --theme-bodyfont: {{ theme_bodyfont }};
+      --theme-headfont: {{ theme_headfont }};
+      --theme-codefont: {{ theme_codefont }};
+      --theme-clientcolor: {{ theme_clientcolor }};
+      --theme-clientlightcolor: {{  theme_clientlightcolor }};
+    }
+  </style>
 
 </head>
 <body>
@@ -28,42 +32,47 @@
 {%- block document %}
   <div class="reveal">
 
-    <footer id="slide-footer"></footer>
+    <footer id="slide-footer">
+      <img alt="" src="{{ pathto('_static/footer-logo.png', 1) }}">
+    </footer>
 
     <div class="slides">
       <section>
         <h2>{{ title }}</h2>
-
         <div class="event">{{ version }}</div>
       </section>
 
       {% block body %} {% endblock %}
-
     </div>
+
   </div>
 {%- endblock %}
 
-<script src="{{ pathto('_static/revealjs/lib/js/head.min.js', 1) }}"></script>
-<script src="{{ pathto('_static/revealjs/js/reveal.js', 1) }}"></script>
+<script src="https://unpkg.com/reveal.js@4/dist/reveal.js"></script>
+<script src="https://unpkg.com/reveal.js@4/plugin/zoom/zoom.js"></script>
+<script src="https://unpkg.com/reveal.js@4/plugin/search/search.js"></script>
+<script src="https://unpkg.com/reveal.js@4/plugin/notes/notes.js"></script>
 <script>
-  Reveal.initialize({
-    controlsBackArrows: "faded",
-    progress: true,
-    slideNumber: true,
-    maxScale: 5,
-    width: 1280,
-    height: 800,
-    margin: 0.1,
-    transition: 'slide',
-    dependencies: [
-      {src: "{{ pathto('_static/revealjs/plugin/notes/notes.js', 1) }}", async: true},
-    ]
-  });
-  // External links should open in new window
-  var externalLinks = document.getElementsByClassName("external");
-  for (var i = 0; i < externalLinks.length; i++)
-    externalLinks[i].setAttribute('target', '_blank');
+    Reveal.initialize({
+        hash: true,
+        transition: "slide", // or "none"
+        hideCursorTime: 1000,
+        width: 1280,
+        height: 720, // was 800
+        margin: 0.03,
+        plugins: [RevealZoom, RevealSearch, RevealNotes]
+    });
+
+    for (const link of document.getElementsByClassName("external")) {
+        link.setAttribute('target', '_blank');
+    }
 </script>
+
+{%- for scriptfile in script_files %}
+  <script src="{{ pathto(scriptfile, 1) }}"></script>
+{%- endfor %}
+
+{%- block footer %} {% endblock %}
 
 </body>
 </html>

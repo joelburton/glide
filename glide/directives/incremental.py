@@ -1,21 +1,20 @@
 """Incremental items for RevealJS.
 
-RevealJS has "fragments", which allows items to change appearance (roll-in, out, change color,
-etc.) as the user forward/back navigates.
+RevealJS has "fragments", which allows items to change appearance (roll-in, out,
+change color, etc.) as the user forward/back navigates.
 
 
 Nested
 ------
 
-Sometimes we want a bullet list to have each list item to appear individually::
+For each "part" to be a separate fragment, deeply nesting:
 
   .. container:: nest-incremental
 
-  - 1
-  - 2
-  .. don't forget this blank line
-    - 3
-    - 4
+    - 1
+    - 2
+      - 3
+      - 4
 
 This creates::
 
@@ -29,17 +28,20 @@ This creates::
     </li>
   </ul>
 
+This works on `<ul>`, `<ol>`, `|-blocks`, `:fields:`, `<dl>`, option lists,
+and table rows.
+
 Non-Nested
 ----------
 
-Sometimes we want a bullet list to have each top-level list item to appear individually::
+For a list with a pause before each top-list-level::
 
   .. container:: item-incremental
 
-  - 1
-  - 2
+    - 1
     - 2
-    - 2
+      - 2
+      - 2
 
 This creates::
 
@@ -53,17 +55,20 @@ This creates::
     </li>
   </ul>
 
+This works on `<ul>`, `<ol>`, `|-blocks`, `:fields:`, `<dl>`, option lists,
+and table rows.
+
 All at Once
 -----------
 
-Sometimes we want an item to appear all at once::
+To have only a single pause, before everything is shown at once::
 
   .. container:: one-incremental
 
-  - 1
-  - 1
     - 1
     - 1
+      - 1
+      - 1
 
 This creates::
 
@@ -77,28 +82,25 @@ This creates::
     </li>
   </ul>
 
-Note that `one-incremental` can be used an *any* type of thing; the others
-can only be used on lists.
-
+This works on anything.
 
 Additional Classes
 ------------------
 
-Note that for *all* of these (nest-, item-, one-), you can add additional RevealJS classes,
-like `roll-in` or `highlight-blue`::
+Note that for *all* of these (nest-, item-, one-), you can add additional
+RevealJS fragment styles, like `fade-out` or `highlight-blue`::
 
-  .. container:: one-incremental roll-in
+  .. container:: one-incremental fade-out highlight-blue
 
-  - 1
-  - 1
     - 1
     - 1
+      - 1
+      - 1
 
+Incremental Single List Items
+-----------------------------
 
-Interpreted Text Roles
-----------------------
-
-Sometimes we want to be more flexible and note exactly which list items are fragmented::
+To be more flexible and note exactly which list items are fragmented::
 
   - 1
   - 1
@@ -112,12 +114,11 @@ This creates::
     <li class='fragment'>2</li>
   </ul>
 
-We can use the extra fragment classes of RevealJS by adding them to the 'incremental' role,
-like so::
+This can use a fragment style of RevealJS by adding it, like::
 
   - 1
   - 1
-  - :incremental-roll-on:`2`
+  - :incremental-li-roll-on:`2`
 
 This creates::
 
@@ -127,133 +128,164 @@ This creates::
     <li class='fragment roll-on'>2</li>
   </ul>
 
+This only works for <li> and <dd> (not <dl>!).
 
-You can also use :incremental`Hello` to have single words appear as fragments.
+Incremental Inline Text
+-----------------------
 
-You can extra classes of RevealJS like this too, :incremental-highlight-current-red:`Ah`.
+You can also use :incremental:`Hello` to have any text appear as fragments.
 
+You can add a fragment style class, too: :incremental-highlight-red:`Hello`.
 """
 
 from docutils import nodes
 from docutils.parsers.rst import roles
 
-
-def setup(app):
-    app.connect('doctree-resolved', process_incremental)
+from glide import version
 
 
+###############################################################################
+# Incremental classes
+
+# These are all item-increment-able thing where the parts are immediate
+# children of the sequential item
+
+DEEP_1 = (
+    nodes.list_item,
+    nodes.option_list_item,
+    nodes.line,
+    nodes.field,
+)
+
+# ... where the parts are grandchildren
+DEEP_2 = (
+    nodes.term,
+    nodes.definition,
+)
+
+# ... where the parts are great-grandchildren
+DEEP_3 = (
+    nodes.row,
+)
+
+# for nesting, the depth doesn't matter: all are made incrementing
+# noinspection PyTypeChecker
+DEEP_ALL = DEEP_1 + DEEP_2 + DEEP_3
+
+
+# noinspection PyUnusedLocal
 def process_incremental(app, doctree, fromdocname):
-    """Process incremental roles."""
+    """Process incremental classes."""
 
-    # Only add the classes for slides; for other things, we remove all
-    # mention of this stuff
-    slides = (app.builder.name == 'revealjs')
+    # Loop through doctree and for every item w/an incremental class:
+    # - remove those classes [they're not useful after this]
+    # - if building slides, add appropriate "fragment" class
+
+    building_slides = (app.builder.name == 'revealjs')
 
     for node in doctree.traverse(nodes.Element):
 
         # nest-incremental: Make all items appear one-at-a-time
-
         if 'nest-incremental' in node['classes']:
             node['classes'].remove('nest-incremental')
-            # Put 'fragment' on all descendant li's
-            if slides:
-                for li in node.traverse(nodes.list_item):
-                    li['classes'].extend(['fragment'] + node['classes'])
+            if not building_slides:
+                continue
 
-        # item-incremental: Make top-level bullet items appear one-at-a-time
+            for item in node.traverse(
+                    lambda n:
+                    isinstance(n, DEEP_ALL)):
+                item['classes'].extend(['fragment'] + node['classes'])
 
-        if 'item-incremental' in node['classes']:
+        # item-incremental: Make top-level items appear one-at-a-time
+        elif 'item-incremental' in node['classes']:
             node['classes'].remove('item-incremental')
+            if not building_slides:
+                continue
 
-            # Put 'fragment' on direct child li's of our direct child ul:
-            if slides:
-                lst = node if isinstance(node, nodes.Sequential) else node.children[0]
+            # Figure out where list is: are we the list? or its parent?
+            # (normally, we'll be the parent, but if the class was put
+            # directly on the list rather than a container (as it would be
+            # if we used .. rst-class), we could be the list:
+            lst = (node if isinstance(node, nodes.Sequential)
+                   else node.children[0])
 
-                if isinstance(lst, nodes.definition_list):
-                    # For definition lists, we put a fragment on the DL itself,
-                    # and then in the writer, on the individual dt/dd pairs, we'll
-                    # put out the HTML class + data attributes we need.
-                    lst['classes'].append('dl-fragment')
+            # Add to children 1 deep
+            for item in lst.traverse(
+                    lambda n:
+                    isinstance(n, DEEP_1) and n.parent is lst):
+                item['classes'].extend(['fragment'] + node['classes'])
 
-                else:
-                    # Must be a <ul>
-                    for ul in lst.traverse(nodes.Sequential,
-                                           descend=0,
-                                           siblings=1):
-                        for li in ul.children[0].traverse(nodes.list_item,
-                                                          descend=0,
-                                                          siblings=1):
-                            li['classes'].extend(['fragment'] + node['classes'])
+            # Add to children 2 deep
+            for item in lst.traverse(
+                    lambda n:
+                    isinstance(n, DEEP_2) and n.parent.parent is lst):
+                item['classes'].extend(['fragment'] + node['classes'])
+
+            # Add to children 3 deep
+            for item in lst.traverse(
+                    lambda n:
+                    isinstance(n, DEEP_3) and n.parent.parent.parent is lst):
+                item['classes'].extend(['fragment'] + node['classes'])
 
         # one-incremental: make the whole item appear at once
-
-        if 'one-incremental' in node['classes']:
+        elif 'one-incremental' in node['classes']:
             node['classes'].remove('one-incremental')
 
-            # Put 'fragment' on the wrapper around the list
-            if slides:
-                node['classes'].extend(['fragment'] + node['classes'])
+            if not building_slides:
+                continue
+
+            node['classes'].extend(['fragment'] + node['classes'])
 
 
 ###############################################################################
 # Interpreted text roles
 
+# noinspection PyUnusedLocal,PyDefaultArgument
+def incremental_li(name,
+                   rawtext,
+                   text,
+                   lineno,
+                   inliner,
+                   options={},
+                   content=[]):
+    """Add an incremental class to an `<li>` or `<dd>`::
 
-def incremental_parent(parent_node_type,
-                       name,
-                       rawtext,
-                       text,
-                       lineno,
-                       inliner,
-                       options={},
-                       content=[]):
-    """Add an incremental class onto the given parent node.
+        - :incremental-li:`Appears`
 
-    Used to add incremental class onto li, paragraph, etc.
+    Can have a fragment style added to name like::
+
+        - :incremental-li-highlight-red:`Turns Red`
     """
 
-    builder = inliner.document.settings.env.app.builder.name
-    if builder == 'revealjs':
+    if inliner.document.settings.env.app.builder.name == 'revealjs':
+        # ["fragment"] or with a fragment style, like ["fragment", "fade-out"]
         classes = ['fragment'] + name.split("-", 2)[2:]
 
-        # keep going up until we have the requested parent_node_type
-        anode = inliner.parent
-        while anode.__class__ != parent_node_type:
-            anode = anode.parent
-
-        anode['classes'].extend(classes)
+        node = inliner.parent
+        node['classes'].extend(classes)
 
     return [nodes.inline(text=text)], []
 
 
-def incremental_li(*args, **kwargs):
-    """Make list item incremental.
+# noinspection PyUnusedLocal,PyDefaultArgument
+def incremental_text(name,
+                     rawtext,
+                     text,
+                     lineno,
+                     inliner,
+                     options={},
+                     content=[]):
+    """Add incremental class around inlined text.
 
-    Example:
+        :incremental:`Appears`
 
-        - Appears normally
-        - :incremental-li:`Appears as fragment`
-        - :incremental-li-highlight-current-red:`Can use other classes`
-    """
+    Can have a fragment style added to name like::
 
-    return incremental_parent(nodes.list_item, *args, **kwargs)
-
-
-def inline_incremental(name,
-                       rawtext,
-                       text,
-                       lineno,
-                       inliner,
-                       options={},
-                       content=[]):
-    """Add incremental class around inlined item.
-
-    For when you want :incremental:`text to appear` as fragments.
-
-    You can add other classes :incremental-roll-in:`also`.
+        :incremental-highlight-red:`Turns Red`
     """
 
     if inliner.document.settings.env.app.builder.name == 'revealjs':
+        # ["fragment"] or with a fragment style, like ["fragment", "fade-out"]
         classes = ['fragment'] + name.split("-", 1)[1:]
     else:
         classes = []
@@ -261,27 +293,44 @@ def inline_incremental(name,
     return [nodes.inline(text=text, classes=classes)], []
 
 
-######################################
-# Register Interpreted text roles
+###############################################################################
+# Register extension
 
-FRAGMENT_STYLES = [
-    "grow",  # doesn't work on inlines; is always there
-    "shrink",  # doesn't work on inlines; is always there
-    "roll-in",  # doesn't work on inlines; is always there
-    "fade-out",
+FRAGMENT_STYLES_INLINE = [
     "current-visible",
-    "highlight-current-blue",
-    "highlight-current-red",
-    "highlight-current-green",
+    "fade-out",
+    "semi-fade-out",
+    "fade-in-then-out",  # doesn't currently work
+    "fade-in-then-semi-out",  # doesn't currently work
+    "strike",
     "highlight-red",
     "highlight-green",
     "highlight-blue",
+    "highlight-current-red",
+    "highlight-current-green",
+    "highlight-current-blue",
 ]
 
-roles.register_local_role("incremental", inline_incremental)
-for fs in FRAGMENT_STYLES:
-    roles.register_local_role("incremental-%s" % fs, inline_incremental)
+FRAGMENT_STYLES_BLOCK = FRAGMENT_STYLES_INLINE + [
+    "fade-up",
+    "fade-down",
+    "fade-left",
+    "fade-right",
+    "grow",
+    "shrink",
+    "zoom-in",
+]
 
-roles.register_local_role("incremental-li", incremental_li)
-for fs in FRAGMENT_STYLES:
-    roles.register_local_role("incremental-li-%s" % fs, incremental_li)
+
+def setup(app):
+    roles.register_local_role("incremental", incremental_text)
+    for fs in FRAGMENT_STYLES_INLINE:
+        roles.register_local_role("incremental-%s"
+                                  % fs, incremental_text)
+
+    roles.register_local_role("incremental-li", incremental_li)
+    for fs in FRAGMENT_STYLES_BLOCK:
+        roles.register_local_role("incremental-li-%s" % fs, incremental_li)
+
+    app.connect('doctree-resolved', process_incremental)
+    return {'version': version, 'parallel_read_safe': True}

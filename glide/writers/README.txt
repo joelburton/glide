@@ -8,8 +8,8 @@ In order to tweak the HTML we get for RevealJS and handouts, and to tweak the
 LaTeX we ultimately turn into our PDFs, we have custom Sphinx builders, writers,
 and translators.
 
-In most cases, these do the same thing as the standad Sphinx ones (they subclass
+In most cases, these do the same thing as the standard Sphinx ones (they subclass
 those, and don't try to override most things).
 
 This code requires an intermediate level of understanding of the Sphinx API.
-Joel would probably die of happiness if you ask him about them.
+Joel would probably die of happiness if you asked him about them.

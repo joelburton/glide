@@ -1,47 +1,68 @@
-{# Overall page structure for RevealJS theme: single HTML page for each section #}
-
+{# --suppress HtmlUnknownTarget -- #}
+{#  Overall page structure: single HTML page for each section #}
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+  <meta charset="utf-8"/>
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
-    <title>{{title}}</title>
+  {%  if html_favicon %}
+  <link rel="shortcut icon" href="">
+  {%  endif %}
 
-    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css"/>
-    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
+  <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}">
 
-    {% if theme_fonts %}
-    <link href='{{ theme_fonts }}'
-          rel='stylesheet' type='text/css'>
-    {% endif %}
+  {% if theme_fonts %}
+    <link href='{{ theme_fonts }}' rel='stylesheet'>
+  {% endif %}
+
+  <style>
+    :root {
+      --theme-bodyfont: {{ theme_bodyfont }};
+      --theme-headfont: {{ theme_headfont }};
+      --theme-codefont: {{ theme_codefont }};
+      --theme-sidebarcolor: {{ theme_sidebarcolor }};
+      --theme-backgroundcolor: {{ theme_backgroundcolor }};
+      --theme-clientcolor: {{  theme_clientcolor }};
+      {%- if logo %}
+        --theme-logo: url({{ pathto('_static/' + logo, 1) }})
+      {%- elif theme_logo %}
+        --theme-logo: url({{ pathto('_static/' + theme_logo, 1) }})
+      {%- endif %}
+  </style>
 </head>
+
 <body>
 <div id="page-wrapper">
-    <div id="page-sidebar">
-        <header>
-            <p class="project">{{ project }}</p>
+  <div id="page-sidebar">
+    <header>
+      <p class="project">{{ project }}</p>
+      <p class="title">{{ title }}</p>
+      {% if backurl %}
+        <p class="backlink"><a href="{{ backurl }}"> &laquo; Back</a>
+       {% endif %}
+      </p>
+    </header>
 
-            <p class="title">{{ title }}</p>
-
-            <p class="backlink"><a href="{{ backurl }}"> &laquo; Back to Homepage</a></p>
-
-        </header>
-        <div id="toc">
-            {{ toc }}
-        </div>
+    <div id="toc">
+      {{ toc }}
     </div>
-    <div id="page-content">
+  </div>
 
-        {%- block document %}
-        {% block body %} {% endblock %}
-        {%- endblock %}
-
-    </div>
+  <div id="page-content" class="page-content">
+    {%- block document %}
+      {% block body %} {% endblock %}
+    {%- endblock %}
+  </div>
 </div>
+
 {%- for scriptfile in script_files %}
-<script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+  <script src="{{ pathto(scriptfile, 1) }}"></script>
 {%- endfor %}
+
 {%- block footer %} {% endblock %}
+
 </body>
 </html>

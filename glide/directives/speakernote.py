@@ -17,22 +17,16 @@ from docutils import nodes
 from docutils.nodes import SkipNode
 from docutils.parsers.rst import Directive
 
-def ignore_visit_speaker(self, node):
-    raise SkipNode
+from glide import version
 
 
-def setup(app):
-    app.add_node(speakernote,
-                 latex=(ignore_visit_speaker, None))
-    app.add_directive('speaker', speakernoteDirective)
-
-
+# noinspection PyPep8Naming
 class speakernote(nodes.General, nodes.Element):
     """speaker note node."""
 
 
-class speakernoteDirective(Directive):
-    """The directive just adds a node"""
+class SpeakernoteDirective(Directive):
+    """The directive just adds a node for revealjs builder to find."""
 
     has_content = True
 
@@ -44,3 +38,36 @@ class speakernoteDirective(Directive):
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
+
+
+# noinspection PyUnusedLocal
+def ignore_visit_speakernote(self, node):
+    """All non-revealjs builders should use this."""
+    raise SkipNode
+
+
+# noinspection PyUnusedLocal
+def revealjs_visit_speakernote(revealjs_translator, node):
+    """Wrap contents in an aside element, which is used by revealjs JS."""
+    revealjs_translator.body.append("<aside class='notes'>")
+
+
+# noinspection PyUnusedLocal
+def revealjs_depart_speakernote(revealjs_translator, node):
+    """End the aside element we started."""
+    revealjs_translator.body.append("</aside>")
+
+
+def setup(app):
+    app.add_node(
+        speakernote,
+        # Ignore on any builder except revealjs --- if there are newer builders,
+        # these should be added here.
+        epub=(ignore_visit_speakernote, None),
+        html=(ignore_visit_speakernote, None),
+        latex=(ignore_visit_speakernote, None),
+        revealjs=(revealjs_visit_speakernote, revealjs_depart_speakernote),
+        text=(ignore_visit_speakernote, None),
+    )
+    app.add_directive('speaker', SpeakernoteDirective)
+    return {'version': version, 'parallel_read_safe': True}
