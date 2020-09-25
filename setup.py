@@ -29,7 +29,11 @@ setup(
         'sphinx.html_themes': [
             'revealjs = glide',
             'handouts = glide',
-        ]
+        ],
+        'pygments.lexers': [
+            'simpleconsole = glide.lexers.simpleconsole:SimpleConsoleLexer',
+            'commentablehttp = glide.lexers.commentablehttp:CommentableHttpLexer'
+        ],
     },
     package_data={'themes': ['*']}
 )

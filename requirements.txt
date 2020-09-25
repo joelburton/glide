@@ -7,3 +7,5 @@ matplotlib~=3.3.2
 toolz~=0.10.0
 scipy~=1.5.2
 jsx-lexer~=0.0.8
+
+Pygments~=2.7.1

@@ -464,12 +464,20 @@ pre.console,
   border-left: solid 0.20em $yellow;
 }
 
+// touch up pygments' default color scheme
+// make general-purpose comments gray, light, and thin
+.highlight .c1 { color: $silver; font-weight: 300 }
+// make docstrings & /** comments */ red so docs pop
+.highlight .sd, .highlight .cm { color: firebrick; }
+// make regular comments not dreary-blue-grey
+.highlight .c { color: $mid-gray; }
+
+
 // for code blocks, but also other captioned places
 .caption-text {
   font-style: italic;
   font-size: 0.8em;
   color: $dark-gray;
-  letter-spacing: 0.025em;
 }
 
 .code-block-caption {

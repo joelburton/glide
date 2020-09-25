@@ -22,6 +22,28 @@ Admonitions
 Shell
 -----
 
+
+.. code-block:: js
+
+   /** For x */
+
+   /** For
+     x */
+
+   function foo() { }
+
+   // foo foo
+
+.. code-block:: rst
+   :caption: a likely rst
+
+   For our own work, `x` becomes
+
+   .. code-block:: python
+
+      if x == 17
+
+
 .. code-block:: psql
    :caption: ``psql movies``
 
@@ -38,6 +60,7 @@ Shell
      code VARCHAR(2) PRIMARY KEY,
      country TEXT NOT NULL UNIQUE);
 
+   -- SQL Comment
    CREATE TABLE flights (
      id SERIAL PRIMARY KEY,
      airline_code VARCHAR(3) NOT NULL REFERENCES airlines,
@@ -49,7 +72,7 @@ Shell
 .. code-block:: html+jinja
 
    {% extends 'base.html' %}
-
+   <!-- hello -->   {# comment #}
    {% block title %} FlaskCafe {% endblock %}
 
    {% block content %}
@@ -75,18 +98,53 @@ Shell
 
    {% endblock %}
 
-.. code-block:: http
+.. code-block:: commentable-http
 
-  HTTP/1.1 200 OK
-  Date: Mon, 20 Apr 2018 07:09:16 GMT       # Ok?
+  HTTP/1.1 200 OK                          # Yay
+  Date: Mon, 20 Apr 2018 07:09:16 GMT      # Yay
   Server: Apache
   Content-Type: text/html
 
-.. code-block:: shell
+  <!doctype html>
+  <html>...</html>
 
-   $ echo "foo"
+.. code-block:: commentable-http
 
-   $ echo "foo"
+  HTTP/1.1 200 OK
+  Date: Mon, 20 Apr 2018 07:09:16 GMT      # Yay
+  Server: Apache
+  Content-Type: text/html
+
+  <!doctype html>
+  <html>...</html>
+
+.. code-block:: commentable-http
+
+  GET / HTTP/1.1
+  Date: Mon, 20 Apr 2018 07:09:16 GMT      # Yay
+  Server: Apache
+  Content-Type: text/html
+
+  let x == 7;
+
+
+.. code-block:: commentable-http
+
+  GET / HTTP/1.1                           # Yay
+  Date: Mon, 20 Apr 2018 07:09:16 GMT      # Yay
+  Server: Apache
+  Content-Type: text/html
+
+  let x == 7;
+
+
+.. code-block:: simple-console
+   :force:
+
+   # comment?
+   $ echo "foo"   # comment
+
+   (venv) $ echo "foo"
 
    $ ls
    hi
@@ -304,7 +362,7 @@ And more:
 
             self.hunger = self.hunger - calories
             db.session.execute(
-                self._UPDATE, {'hunger': self.hunger,'name': self.name})
+                self._UPDATE, {f'{hunger}': self.hunger,'name': self.name})
             db.session.commit()
 
         def feed(self, calories):
