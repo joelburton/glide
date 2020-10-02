@@ -55,6 +55,13 @@ class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
 
         return super().visit_title(node)
 
+    def visit_admonition(self, node, name=""):
+        """Subclass to add marker class to generic admonitions."""
+
+        if not name:
+            node.attributes['classes'] += ["admonition-generic"]
+        return super().visit_admonition(node, name)
+
     def unknown_visit(self, node: Node) -> None:
         """We should never get here, so warn user."""
 
@@ -79,9 +86,9 @@ class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
         self.body.append('\n</pre>\n</div>\n')
 
 # need to do this to make a wrapper for parsed-literal::
-# from docutils.writers.html4css1 import HTMLTranslator as Grandparent
-# Grandparent.visit_literal_block = HandoutsTranslator.grand_visit_literal_block
-# Grandparent.depart_literal_block = HandoutsTranslator.grand_depart_literal_block
+from docutils.writers.html4css1 import HTMLTranslator as Grandparent
+Grandparent.visit_literal_block = HandoutsTranslator.grand_visit_literal_block
+Grandparent.depart_literal_block = HandoutsTranslator.grand_depart_literal_block
 
 
 class HandoutsBuilder(StandaloneHTMLBuilder):

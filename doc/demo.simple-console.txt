@@ -1,0 +1,4 @@
+$ python -m venv venv
+(venv) $ pip install -r requirements.txt
+# Lots of output here ...
+Installed foo==1.0 bar==2.0

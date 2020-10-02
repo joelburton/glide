@@ -11,13 +11,20 @@
   <link rel="shortcut icon" href="">
   {%  endif %}
 
+<link
+  href="https://unpkg.com/sanitize.css"
+  rel="stylesheet"
+/>
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}">
 
   {% if theme_fonts %}
     <link href='{{ theme_fonts }}' rel='stylesheet'>
   {% endif %}
+<style>
 
+
+</style>
   <style>
     :root {
       --theme-bodyfont: {{ theme_bodyfont }};
@@ -34,27 +41,29 @@
   </style>
 </head>
 
-<body>
+<body class="glide">
 <div id="page-wrapper">
   <div id="page-sidebar">
     <header>
-      <p class="project">{{ project }}</p>
-      <p class="title">{{ title }}</p>
+      <img class="page-logo" alt="logo" src="{{  pathto('_static/' + theme_logo, 1 )}}">
+{#      <p class="project">{{ project }}</p>#}
+{#      <p class="title">{{ title }}</p>#}
       {% if backurl %}
         <p class="backlink"><a href="{{ backurl }}"> &laquo; Back</a>
        {% endif %}
       </p>
     </header>
 
-    <div id="toc">
+    <nav id="toc">
       {{ toc }}
-    </div>
+    </nav>
   </div>
 
   <div id="page-content" class="page-content">
     {%- block document %}
       {% block body %} {% endblock %}
     {%- endblock %}
+
   </div>
 </div>
 

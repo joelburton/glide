@@ -32,7 +32,9 @@ setup(
         ],
         'pygments.lexers': [
             'simpleconsole = glide.lexers.simpleconsole:SimpleConsoleLexer',
-            'commentablehttp = glide.lexers.commentablehttp:CommentableHttpLexer'
+            'commentablehttp = glide.lexers.commentablehttp:CommentableHttpLexer',
+            'rainbow-lines =   glide.lexers.rainbow:RainbowLinesLexer',
+            'rainbow-2-lines = glide.lexers.rainbow:RainbowTwoLinesLexer',
         ],
     },
     package_data={'themes': ['*']}

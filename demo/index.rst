@@ -2,22 +2,64 @@
 Demo Lecture
 ============
 
+.. todo
 
-:overall rating df dsflkj lkdfj dsjf sfl slsdjl sdf: 17
-:design of system: yes
+   - move deletion of dup titles to node processing, not html
+     writer
 
-.. general ideas for improving our build system
+     - bc latex
+     - bc tocs
 
-  FIXME: do we need compound support, so that things in a compound are closed together?
-     we don't use this now, but is it useful?
+   :overall rating df dsflkj lkdfj dsjf sfl slsdjl sdf: 17
+   :design of system: yes
 
-  FIXME: can we set latex title, etc in body, so we don't have to change conf for, say,
-    the employee handbook?
+   .. general ideas for improving our build system
 
-  FIXME: add docs for fail
+     FIXME: do we need compound support, so that things in a compound are closed together?
+        we don't use this now, but is it useful?
+
+     FIXME: can we set latex title, etc in body, so we don't have to change conf for, say,
+       the employee handbook?
+
+     FIXME: add docs for fail
+
+   |:cat:|
 
 Admonitions
 ===========
+
+Rainbow Lines
+-------------
+
+.. code-block:: rainbow-lines
+
+   one
+   two
+   three
+   four
+   five
+   six
+   seven
+   eight
+
+.. code-block:: rainbow-2-lines
+
+   one
+   one
+   two
+   two
+   three
+   three
+   four
+   four
+   five
+   five
+   six
+   six
+   seven
+   seven
+   eight
+   eight
 
 Shell
 -----
@@ -159,18 +201,19 @@ Shell
    case first: **the sum of an empty list of numbers is zero.**
    That's our *base case*.
 
-.. parsed-literal::
+.. code-block:: rainbow-2-lines
    :class: line-height-1 code-140  code-35c
 
-           `n: []  base    ⭣0`:green:
-           `──────────────────`:green:
-         `n: [1]     3 + ⭡[] ⭣3`:orange:
-         `──────────────────────`:orange:
-       `n: [2,3]      2 + ⭡[3] ⭣5`:blue:
-       `──────────────────────────`:blue:
-     `n: [1,2,3]     1 + ⭡[2,3] ⭣6`:cmd:
-     `──────────────────────────────`:cmd:
+           n: []  base    ⭣0
+           ──────────────────
+         n: [1]     3 + ⭡[] ⭣3
+         ──────────────────────
+       n: [2,3]      2 + ⭡[3] ⭣5
+       ──────────────────────────
+     n: [1,2,3]     1 + ⭡[2,3] ⭣6
+     ──────────────────────────────
    add([1,2,3])              ⭡[1,2,3]
+   ──────────────────────────────────
 
 .. parsed-literal::
    :class: line-height-1 code-140  code-30c
@@ -1019,7 +1062,7 @@ Symbols
 
 - |larr|    LEFTWARDS ARROW
 
-- |lrarr|   BOTH ARROW
+- |lrarr|  ↔  BOTH ARROW   ↩ ⇔  ⇄
 
 - |plus|    PLUS SIGN
 
@@ -2353,7 +2396,7 @@ And in a console:
 
     `cmd`:cmd: `red`:red: `green`:green: `orange`:orange: `tan`:tan: `blue`:blue: `gray`:gray: `gone`:gone: `inv-red`:inv-red:
 
-
+z
 
 Speaker Notes
 =============

@@ -1,0 +1,1222 @@
+// useful debugging
+//pre:after {
+//  content: "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+//}
+// compare > * { outline: solid 1px gold; }
+
+$black: #000;
+$near-black: #111;
+$dark-gray: #333;
+$mid-gray: #555;
+$gray: #777;
+$silver: #999;
+$light-silver: #aaa;
+$moon-gray: #ccc;
+$light-gray: #eee;
+$near-white: #f4f4f4;
+$white: #fff;
+
+$transparent: transparent;
+
+$black-90: rgba(0, 0, 0, .9);
+$black-80: rgba(0, 0, 0, .8);
+$black-70: rgba(0, 0, 0, .7);
+$black-60: rgba(0, 0, 0, .6);
+$black-50: rgba(0, 0, 0, .5);
+$black-40: rgba(0, 0, 0, .4);
+$black-30: rgba(0, 0, 0, .3);
+$black-20: rgba(0, 0, 0, .2);
+$black-10: rgba(0, 0, 0, .1);
+$black-05: rgba(0, 0, 0, .05);
+$black-025: rgba(0, 0, 0, .025);
+$black-0125: rgba(0, 0, 0, .0125);
+
+$white-90: rgba(255, 255, 255, .9);
+$white-80: rgba(255, 255, 255, .8);
+$white-70: rgba(255, 255, 255, .7);
+$white-60: rgba(255, 255, 255, .6);
+$white-50: rgba(255, 255, 255, .5);
+$white-40: rgba(255, 255, 255, .4);
+$white-30: rgba(255, 255, 255, .3);
+$white-20: rgba(255, 255, 255, .2);
+$white-10: rgba(255, 255, 255, .1);
+$white-05: rgba(255, 255, 255, .05);
+$white-025: rgba(255, 255, 255, .025);
+$white-0125: rgba(255, 255, 255, .0125);
+
+$dark-red: #e7040f;
+$red: #ff4136;
+$light-red: #ff725c;
+$orange: #ff6300;
+$gold: #ffb700;
+$yellow: #ffd700;
+$light-yellow: #fbf1a9;
+$purple: #5e2ca5;
+$light-purple: #a463f2;
+$dark-pink: #d5008f;
+$hot-pink: #ff41b4;
+$pink: #ff80cc;
+$light-pink: #ffa3d7;
+$dark-green: #137752;
+$green: #19a974;
+$light-green: #9eebcf;
+$navy: #001b44;
+$dark-blue: #00449e;
+$blue: #357edd;
+$light-blue: #96ccff;
+$lightest-blue: #cdecff;
+$washed-blue: #f6fffe;
+$washed-green: #e8fdf5;
+$washed-yellow: #fffceb;
+$washed-red: #ffdfdf;
+
+$firebrick: darkred;
+
+$weight-text: 300;
+$weight-quiet: 300;
+$weight-pop: 400;
+$weight-bold: 600;
+$weight-extra-bold: 700;
+$weight-code: 400;
+
+$print-weight-text: 400;
+$print-weight-quiet: 300;
+$print-weight-pop: 600;
+$print-weight-bold: 700;
+$print-weight-extra-bold: 900;
+$print-weight-code: 400;
+
+$code-font-size: 16px;
+
+$theme-logo: var(--theme-logo);
+$theme-bodyfont: var(--theme-bodyfont);
+$theme-codefont: var(--theme-codefont);
+$theme-headfont: var(--theme-headfont);
+$theme-clientcolor: var(--theme-clientcolor);
+$theme-sidebarcolor: var(--theme-sidebarcolor);
+$theme-backgroundcolor: var(--theme-backgroundcolor);
+
+$code-font-size: 12pt;
+$print-code-font-size: 8.5pt;
+
+// ============================================================ core typography
+
+html {
+  font-size: 20px;
+  line-height: 1.5;
+  @media print {
+    font-size: 10pt;
+    line-height: 1.3;
+  }
+}
+
+p {
+  margin: 0.8em 0;
+  @media print {
+    margin: 0.6em 0;
+  }
+}
+
+body {
+  font-family: $theme-bodyfont;
+  font-weight: $weight-text;
+  @media print {
+    font-weight: $print-weight-text;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, .rubric {
+  color: $near-black;
+  font-family: $theme-headfont;
+  font-weight: $weight-bold;
+  @media print {
+    font-weight: $print-weight-bold;
+  }
+}
+
+// headings get namespaced so they'll beat revealjs
+
+h1 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  @media print {
+    margin-top: 0;
+  }
+}
+
+h2 {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  @media print {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+  }
+}
+
+h3 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+
+h4, .rubric {
+  font-size: 1em;
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
+}
+
+h5 {
+  // should have very few of these
+  font-size: 0.9em;
+  margin-bottom: 0;
+}
+
+h6 {
+  // shouldn't ever use, but to be safe
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+dt {
+  font-weight: 400;
+  //margin-bottom: 0.25em;  todo maybe only for handouts we'd want this?
+}
+
+dd {
+  margin-bottom: 0.5em;
+  margin-left: 1.5em;
+
+  > p:first-child { margin-top: 0; }
+}
+
+// infrequently used, but: rst allows a "divider" by making a line like "----"
+hr {
+  margin: 2em auto 2em auto;
+  width: 50%
+}
+
+// ===================================================================== roles
+
+// Uses for `varName`, :title:`Book Title`
+cite {
+  color: $navy;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.command, .program {
+  font-weight: 400;
+  color: $firebrick;
+}
+
+.download {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.file {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.envvar { }
+.keyword { }
+.option { }
+
+abbr {
+  text-decoration: none;
+  // only draw line if we're providing the definition as part of the abbr
+  &[title] { border-bottom: dashed 0.5px $blue; }
+}
+
+.dfn { }
+
+// for sample output, add { } around placeholder parts so their meaning is
+// made more clear
+.samp > em, .file > em {
+  &:before { content: "{"; color: $moon-gray; @media print { color: $gray } }
+  &:after { content: "}"; color: $moon-gray; @media print { color: $gray } }
+}
+
+.ref { }
+.doc { }
+.guilabel { }
+.menuselection { }
+.mimetype { }
+.samp { }
+
+// command-line switches
+kbd {
+  font-family: $theme-codefont;
+  font-size: 0.95em;
+  font-weight: 400;
+
+  &:before { content: "«"; color: $silver; @media print { color: $gray } }
+  &:after { content: "»"; color: $silver; @media print { color: $gray } }
+}
+
+// sphinx uses kbd for options in an option-list, but we won't want { } there
+.option-list kbd {
+  &:before { content: none }
+  &:after { content: none }
+}
+
+// don't let sup/sub change line heights
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  font-size: 0.7em;
+}
+sup { top: -0.4em; }
+sub { top: 0.4em; }
+
+// =================== glide's added roles
+
+.small { font-size: 0.75em; }
+.small-muted { color: $mid-gray; font-size: 0.75em; }
+.muted { color: $gray; }
+
+// these overlap with names over admonitions, so namespacing with span
+span.danger { font-weight: $weight-pop;color: $dark-red; }
+span.warning { font-weight: $weight-pop;color: $orange; }
+span.success { font-weight: $weight-pop;color: $dark-green; }
+
+@media print {
+  span.danger, span.warning, span.success, span.ins, span.del {
+    font-weight: $print-weight-pop;
+  }
+}
+
+span.ins { font-weight: $weight-pop; color: $dark-green; }
+span.del { font-weight: $weight-pop; color: $red; }
+
+// use for marking something as "gone": struck out and less obvious
+.gone { text-decoration: line-through; color: $gray; }
+
+span.code-wrong, span.wrong { background: $washed-red }
+
+// a role can be added here directly, like `:-)`:emoji:, but for real emoji,
+// the class of emoji is automated injected onto 🐱
+img.emoji {
+  width: 1em;
+  margin: 0;
+}
+
+.emoji-1x > img.emoji { width: 1em; }
+.emoji-2x > img.emoji { width: 2em; }
+.emoji-3x > img.emoji { width: 2em; }
+.emoji-5x > img.emoji { width: 5em; }
+.emoji-10x > img.emoji { width: 10em; }
+
+.comment {
+  font-style: italic;
+  color: $silver;
+  font-weight: $weight-quiet;
+  @media print { color: $mid-gray; }
+}
+
+// ================================================================= line block
+// these are |-joined lines, like this:
+//
+//   | Hello
+//   | World
+//
+// They're useful to force line breaks for all systems.
+//
+// Many docs use a single one of these for the side-effect of providing a
+// break between two things that would otherwise jam together, like this::
+//
+//   <something>
+//
+//   |
+//
+//   <else>
+//
+// This works fine.
+
+// one meaning: like blockquote--a line-broken list for all builders
+.glide .line-block {
+  margin: 1em 0;
+  padding-left: 0.25em;
+  border-left: solid 1px $moon-gray;
+  //width: fit-content;
+
+  // not being real paragraphs, they don't have a natural line-height.
+  .line:nth-child(n+1) {
+    margin-top: 0.25em;
+  }
+
+  // "paragraphs" inside a line-block (an empty |) should be a bit tighter.
+  br {
+    display: block;
+    content: "";
+    margin-top: 1.2em;
+  }
+}
+
+// todo: could also be the new |reveal-br| if we wanted that, the syntax of
+//
+// - | here
+//   | here
+//
+// is fine for rst
+
+// ========================================================== ul, ol, and hlist
+//
+//
+// protect this by only doing it explicitly for the main parts of the page
+
+.page-content {
+  ul {
+    list-style-type: circle;
+  }
+
+  ol, ul {
+    margin: 1em 0;
+    padding-left: 1.5em;
+
+    // "simple" class added when a list are all non-paragraph items
+    &.simple {
+      @media print {
+        //page-break-inside: avoid;
+      }
+
+      li {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+
+  // In a simple list, child lists be tighter. Sphinx doesn't mark lists as simple
+  // if any child, no matter how deeply, are not simple, so this is safe.
+  // Providing selectors for four levels of nesting, which is plenty. Makes these
+  // slightly smaller for each level.
+
+  // not sure if smaller is good for handouts or latex-friendly. todo
+  .simple > li {
+    > ul, ol {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      font-size: 0.95em;
+
+      > li > ul, li > ol {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        font-size: 0.95em;
+
+        > li > ul, li > ol {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+          font-size: 0.95em;
+        }
+      }
+    }
+  }
+
+  li:first-child {
+    // the first list item should never have a margin; this is important because
+    // normal collapsing won't work if the list is inside of something else,
+    // like a container or an hlist.
+    margin-top: 0 !important;
+  }
+
+}
+
+// hlists use tables, so use table formatting to line up the columns
+//  (note for future: it wouldn't surprise me if these moved to flexbox one
+//  day, so this might break.)
+table.hlist > tbody > tr > td {
+  vertical-align: top;
+  padding-right: 1em;
+
+  & > ul {
+    // These shouldn't get margins because
+    // the table will already provide margins for them. todo not sure is true
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+// ===================================================================== tables
+//
+// For safety, namespacing all of these to .docutils, which is put on all
+// tables created by sphinx automatically.
+
+// non-docutils tables (sometime docutils emits, but not as a real "table")
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+td {
+  padding: 0;
+}
+
+table.docutils {
+  //border: none;
+  border: solid 0.5px $moon-gray;
+  @media print { border-color: $light-gray; }
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  font-size: 0.9em;
+
+  th {
+    background-color: $moon-gray;
+    @media print { background-color: $light-gray; }
+    font-weight: 400;
+  }
+
+  td, th {
+    padding: 0.25em;
+    margin: 0;
+    border: solid 0.5px $moon-gray;
+    @media print {
+      border: solid 0.5px $light-gray;
+    }
+  }
+
+   tr:nth-child(even) {
+    background-color: $near-white;
+  }
+
+  &.table-unstriped tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  // adding td-center or td-right to a *table* centers/rights cols after first
+  &.td-center th:not(:first-child),
+  &.td-center td:not(:first-child) {
+    text-align: center;
+  }
+
+  &.td-right th:not(:first-child),
+  &.td-right td:not(:first-child) {
+    text-align: right;
+  }
+
+  // td-center-all or td-right-all does same thing for all cols
+  &.td-center-all th,
+  &.td-center-all td {
+    text-align: center;
+  }
+
+  &.td-right-all th,
+  &.td-right-all td {
+    text-align: right;
+  }
+
+  @for $col from 1 through 10 {
+    &.td-right-#{$col} th:nth-child(#{$col}),
+    &.td-right-#{$col} td:nth-child(#{$col}) { text-align: right; }
+
+    &.td-left-#{$col} th:nth-child(#{$col}),
+    &.td-left-#{$col} td:nth-child(#{$col}) { text-align: left; }
+
+    &.td-center-#{$col} th:nth-child(#{$col}),
+    &.td-center-#{$col} td:nth-child(#{$col}) { text-align: center; }
+  }
+
+  &.td-padding-0 {
+    td, th { padding: 0 }
+  }
+  &.td-padding-1 {
+    td, th { padding: 0.25em }
+  }
+  &.td-padding-2 {
+    td, th { padding: 0.50em }
+  }
+  &.td-padding-3 {
+    td, th { padding: 0.75em }
+  }
+  &.td-padding-4 {
+    td, th { padding: 1em }
+  }
+  &.td-padding-5 {
+    td, th { padding: 1.25em }
+  }
+}
+
+// field list tables should override this --- these are the table that are meant
+// to have metadata about the document (or similar things) and are made like:
+//
+// :name: Elmo
+// :color: red
+
+table.field-list {
+  .field-name {
+    font-weight: 400;
+    text-align: left;
+    background-color: $light-gray;
+  }
+  .field-body {
+    background-color: white;
+  }
+}
+
+// ================================================================ code blocks
+//
+// These are use by .. code-block, .. literalinclude, and .. parsed-literal.
+//
+// The `width` in `pre` is very sensitive to font size (is there a way to
+// specify how many characters fit in a block?).
+
+
+// show inline code/tech (used by sphinx for ``x = 7``)
+code {
+  font-family: $theme-codefont;
+  font-size: 0.95em; // $code-font-size; todo
+  font-weight: 400;
+  color: $navy;
+  border: solid 1px $light-gray;
+  padding: 0 0.25em;
+
+  @media print {
+    //border: none;
+  }
+}
+
+.highlight pre,
+.parsed-literal-wrapper pre {
+  // code-block should have exact size based on # of characters needed ---
+  // therefore, using context-box (everything else is border-box) so that the
+  // width is precisely fixed to match # of characters, without worrying about
+  // borders/padding.
+  width: 80ch;
+  box-sizing: content-box;
+
+  font-family: $theme-codefont;
+  font-size: $code-font-size;
+  @media print {
+    font-size: $print-code-font-size;
+  }
+  font-weight: $weight-code;
+
+  border: solid 0.5px $moon-gray;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.highlight, .parsed-literal-wrapper {
+  // need this; otherwise, it defaults to green
+  background-color: transparent;
+  margin-bottom: 1em;
+}
+
+// first matches most consoles, second where it contains no markup
+pre.console,
+.console > .highlight > pre {
+  color: $mid-gray;
+  font-weight: $weight-code;
+  border-radius: 0.75em;
+  border-color: $light-silver;
+  box-shadow: 1px 1px 4px $moon-gray;
+  @media print {
+    border-color: $silver;
+    border-width: 1px;
+    box-shadow: none;
+  }
+}
+
+.highlight .hll {
+  background-color: #fefde1;
+  margin-left: -0.35em;
+  padding-left: 0.15em;
+  border-left: solid 0.20em $yellow;
+  @media print { border-left-color:  $gold }
+}
+
+// touch up pygments' default color scheme
+// make general-purpose comments gray, light, and thin
+.highlight .c1 {
+  font-style: italic;
+  color: $silver;
+  font-weight: $weight-quiet;
+  @media print { color: $mid-gray; }
+}
+@media print { .highlight .si { color: $blue; } }
+// make docstrings & /** comments */ red so docs pop
+.highlight .sd, .highlight .cm { color: firebrick; }
+// make regular comments not dreary-blue-grey
+.highlight .c {
+  color: $mid-gray;
+  @media print { color: $gray }
+}
+
+// "span." needed to override pygments
+span.linenos {
+  margin-right: 0.5em;
+  color: $silver;
+  @media print { color: $mid-gray }
+  background-color: $light-gray;
+}
+
+.code-wrong pre { background-color: $washed-red }
+
+// =========================================== admonitions (note, warning, etc)
+
+.admonition {
+  text-align: left;
+  border-left: solid 1px $light-silver;
+  overflow: hidden;
+  padding: 0 0 0 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-width: 40em !important; // todo why is this !important?
+  font-size: 0.9em;
+
+  pre { margin-top: 1em; font-size: 0.79em; }
+
+  // only notes are intended to be unimportant details, so reduce the size of
+  // the text for all the non-title parts. ("generic admonitions" are ones
+  // that are not warning/note/tip/etc --- they get treated differently bc
+  // their title is label, rather than the second paragraph
+  & > :nth-child(n+3),
+  &.admonition-generic > :nth-child(2) {
+    font-size: 0.95em;
+  }
+
+  @media print {
+    border-radius: 0;
+    border: none;
+    border-left: solid 1px $gray;
+    page-break-inside: avoid;
+  }
+
+  // pull the first real paragraph up to being aside the title of the
+  // admonition, so they appear side-by-side.
+
+  // the colored part that is labeled "WARNING" or "ERROR"
+  .admonition-title {
+    color: white;
+    background-color: $light-silver;
+    display: inline-block;
+    // finicky: get it to align with text in the admonition
+    margin: -1rem 0.25rem 0 -1rem !important;
+    padding: 0.5rem 0.75rem 0.2rem 1rem !important;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    line-height: 1 !important;
+
+    @media print {
+      font-weight: $print-weight-bold;
+      color: $gray;
+      background-color: transparent !important;
+    }
+  }
+
+  // The first real (second actual) paragraph: put this next to title
+  // see note above about how generic admonitions are different
+  &:not(.admonition-generic) > p:nth-child(2) {
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 400;
+    line-height: 1 !important;
+  }
+
+  //&[class^="admonition-"] > p:nth-child(2) {
+  //  margin: unset;
+  //  font-weight: unset;
+  //  line-height: unset
+  //}
+}
+
+.admonition.important,
+.admonition.attention {
+  border-color: $light-red;
+  .admonition-title { background-color: $washed-red; color: $dark-red; }
+}
+
+.admonition.caution,
+.admonition.warning {
+  border-color: $orange;
+  .admonition-title { background-color: $orange; }
+}
+
+.admonition.error,
+.admonition.danger {
+  border-color: $red;
+  .admonition-title { background-color: $red; }
+}
+
+.admonition.seealso,
+.admonition.hint,
+.admonition.tip {
+  border-color: $light-blue;
+  .admonition-title { background-color: $lightest-blue; color: $blue; }
+  @media print {
+    border-color: $blue;
+    .admonition-title { color: $dark-blue; }
+  }
+}
+
+// perhaps this should default smaller?
+.admonition.note {
+  border-color: $moon-gray;
+  .admonition-title { background-color: $light-gray; color: $gray; }
+}
+
+// ================================= topic: a bit of side-material with a title
+
+.topic {
+  background-color: $light-gray;
+  @media print {
+    background-color: $near-white;
+    border-top: solid 0.5px $light-gray;
+    border-bottom: solid 0.5px $light-gray;
+  }
+  padding: 1em;
+  margin-bottom: 1em;
+
+  .topic-title {
+    margin-top: 0;
+    font-weight: $weight-pop;
+    @media print { font-weight: $print-weight-pop }
+  }
+
+  // Given that the topic wants to provide background color via padding, make sure
+  // that things inside of this won't adding margins.
+  //
+  // do we still need this? or just on paras? todo
+  > *:last-child {
+    margin-bottom: 0;
+
+    > *:last-child {
+      margin-bottom: 0;
+
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// =================================== hover-reveal (hide solution until hover)
+//
+// Add to a topic like::
+//
+//   .. topic:: Our Model
+//      :class: hover-reveal
+//
+//      Here are the secrets of our model...
+//
+// Or to a generic container like::
+//
+//    .. container:: hover-reveal
+//
+//      Here are the secrets of our model...
+//
+// Or to a code block like:
+//
+//    .. code-block::
+//      :class: code-hover-reveal
+//
+
+// for code-hover-reveal, we want the actual hidden/hover thing to be the pre
+.code-hover-reveal pre,
+.hover-reveal {
+  position: relative;
+  border: dashed 1px #999;
+  background-color: $light-gray;
+}
+
+// Everything inside of this is hidden...
+.code-hover-reveal pre > *,
+.hover-reveal > * {
+  visibility: hidden;
+}
+
+// ... unless we are hovering over it
+.code-hover-reveal pre:hover,
+.hover-reveal:hover {
+  background-color: transparent;
+  > * { visibility: visible; }
+}
+
+// when a simple container becomes a hover-reveal, give it some L/R margins
+.hover-reveal.container > * {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+@media print {
+  .code-hover-reveal pre > *,
+  .hover-reveal > * {
+    visibility: visible;;
+  }
+
+  .code-hover-reveal pre,
+  .hover-reveal {
+    border: inherit;
+    background-color: inherit;
+  }
+}
+
+// ===================================================================== colors
+
+// todo: should we make our names tachyon names? how will will this work w/latex?
+
+@each $name, $color in (
+    dark-red: $dark-red,
+    red: $red,
+    light-red: $light-red,
+    orange: $orange,
+    gold: $gold,
+    yellow: $yellow,
+    light-yellow: $light-yellow,
+    purple: $purple,
+    light-purple: $light-purple,
+    dark-pink: $dark-pink,
+    hot-pink: $hot-pink,
+    pink: $pink,
+    light-pink: $light-pink,
+    dark-green: $dark-green,
+    green: $green,
+    light-green: $light-green,
+    navy: $navy,
+    dark-blue: $dark-blue,
+    light-blue: $light-blue,
+    lightest-blue: $lightest-blue,
+    blue: $blue,
+    washed-blue: $washed-blue,
+    washed-green: $washed-green,
+    washed-yellow: $washed-yellow,
+    washed-red: $washed-red,
+    black: #000,
+    near-black: $near-black,
+    dark-gray: $dark-gray,
+    mid-gray: $mid-gray,
+    gray: $gray,
+    silver: $silver,
+    light-silver: $light-silver,
+    moon-gray: $moon-gray,
+    light-gray: $light-gray,
+    near-white: $near-white,
+    white: $white,
+) {
+  #{"." + $name} { font-weight: 400; color: $color; }
+  .inv-#{"" + $name} {
+    font-weight: 400;
+    color: white;
+    background-color: $color;
+    padding: 0 .25em;
+  }
+  .bg-#{"" + $name} {
+    font-weight: 400;
+    background-color: $color;
+    padding: 0 .25em;
+  }
+}
+
+// ======================================== sidebar: aside comment on something
+//
+// This is not the page sidebar; this is a bit of side-commentary on something.
+
+.sidebar {
+  //margin-left: 1.5em;
+  float: right;
+  width: 30%;
+  font-size: 0.8em;
+  text-align: left;
+}
+p.sidebar-title {
+  font-weight: 400;
+  margin-top: 0.2em;
+  @media print { font-weight: $print-weight-pop }
+}
+
+@each $size in (20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80) {
+  .sidebar-#{$size} + * { width: #{100% - $size * 1% - 4%}; text-align: left; }
+  .sidebar-#{$size} { width: #{$size * 1%}; }
+}
+
+// ==================================================================== compare
+//
+// Side-by-side containers (code blocks ok, too)
+
+.compare > div > * { margin-top: 0; }
+
+.compare {
+  display: flex;
+  //justify-items: flex-start;
+}
+
+.compare > * {
+  //display: inline-block;
+  margin-left: 1em;
+  vertical-align: top;
+  &:first-child { margin-left: 0 }
+}
+
+.compare pre {
+  width: 40ch;
+}
+
+// ============================================================== rainbow-lines
+// rainbow-lines is a pygments lexer making it convenient to have text blocks
+// where each line is a different color (or for -2-, where every other line).
+// These are useful in making things like stack diagrams.
+
+.highlight-rainbow-lines,
+.highlight-rainbow-2-lines {
+  .sa, .sb, .sc, .sd, .se, .si, .ss {
+    background-color: transparent;
+    font-weight: unset;
+    font-style: normal;
+  }
+
+  .sa { color: $dark-pink }
+  .sb { color: $dark-red }
+  .sc { color: $orange }
+  .sd { color: $green }
+  .se { color: $blue }
+  .si { color: $light-purple }
+  .ss { color: $purple }
+}
+
+// =========================================== blockquote, pull-quote, epigraph
+
+blockquote {
+  text-align: left;
+  border-left: solid 1px firebrick;
+  margin-left: 0;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+  font-style: normal;
+
+  // epigraphs are for actual quotes, not just quoted text -- so italicize
+  &.epigraph {
+    font-size: 1.15em;
+    margin-left: 1em;
+    font-style: italic;
+  }
+
+  // same with pull-quotes, but they're bigger
+  &.pull-quote {
+    margin-left: 1em;
+    font-style: italic;
+    font-size: 1.5em;
+  }
+
+  p.attribution {
+    // need to override reveal here
+    display: block !important;
+    font-size: 0.85em;
+    margin-top: -0.6em;
+    text-align: right;
+    font-style: normal;
+    padding-right: 1em;
+  }
+
+  & > div p:first-child { margin-top: 0; }
+  & > div p:last-child { margin-bottom: 0; }
+}
+
+// ========================================================= generic utilities
+
+// .width-n where 5-100% by 5's
+@for $width from 1 through 20 {
+  .width-#{$width * 5} { width: #{$width * 5%} }
+}
+
+.float-right { margin-left: 1rem; float: right }
+.float-left { margin-right: 1rem; float: left }
+.float-clear {clear: both;}
+
+.text-align-left {text-align: left;}
+.text-align-right {text-align: right;}
+.text-align-justify {text-align: justify;}
+
+.text-align-center {text-align: center;}
+
+.align-left { margin-right: auto; }
+.align-center { margin-left: auto; margin-right: auto; }
+.align-right { margin-left: auto; }
+
+.border {border: solid 0.5px $dark-gray;}
+.border-none {border: none;}
+
+// line-height from 10-20 (1.0 to 2.0 by .1)
+@for $h from 10 through 20 {
+  .line-height-#{$h} { line-height: $h / 10; }
+  .code-line-height-#{$h} pre { line-height: $h / 10; }
+}
+
+// padding from 0-5
+.padding-0, .code-padding-0 pre { padding: 0.00em !important }
+.padding-1, .code-padding-1 pre { padding: 0.25em !important }
+.padding-2, .code-padding-2 pre { padding: 0.50em !important }
+.padding-3, .code-padding-3 pre { padding: 0.75em !important }
+.padding-4, .code-padding-4 pre { padding: 1.00em !important }
+.padding-5, .code-padding-5 pre { padding: 1.50em !important }
+
+// margin-left, margin-right, margin-top, margin-bottom 0-5
+@each $dir in (left, right, top, bottom) {
+  .margin-#{$dir}-0 { margin-#{$dir}: 0.00em !important }
+  .margin-#{$dir}-1 { margin-#{$dir}: 0.25em !important }
+  .margin-#{$dir}-2 { margin-#{$dir}: 0.50em !important }
+  .margin-#{$dir}-3 { margin-#{$dir}: 0.75em !important }
+  .margin-#{$dir}-4 { margin-#{$dir}: 1.00em !important }
+  .margin-#{$dir}-5 { margin-#{$dir}: 1.50em !important }
+}
+
+// font-size-n and code-font-size 50-200 by 5
+@for $size from 5 through 40 {
+  .glide .font-size-#{$size * 5} { font-size: #{$size * 5%} }
+  .code-font-size-#{$size * 5} pre { font-size: #{$size / 20 * $code-font-size} }
+}
+@media print {
+  @for $size from 5 through 40 {
+    //.glide .font-size-#{$size * 5} { font-size: #{$size * 5%} }
+    .code-font-size-#{$size * 5} pre { font-size: #{$size / 20 * $print-code-font-size} }
+  }
+}
+
+// code-n-cols 1-120 by 1
+@for $i from 1 through 120 {
+  .code-cols-#{$i} pre { width: $i * 1ch !important; }
+}
+
+.code-fit-content pre, .fit-content {
+  width: fit-content !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.font-cursive {
+  font-family: cursive;
+}
+
+.css-debug {
+  outline: solid 1px gold;
+}
+
+// =============================================================== deprecations
+// mark these as obnoxiously red so they're easy to see
+
+.unsized pre { background-color: red !important; }
+
+// deprecate img.image-border
+
+// deprecate, now just ".border"
+img.image-border {
+  border: solid 10px red !important;
+}
+
+// deprecated; use .float-right
+img.align-right {
+  border: solid 10px red !important;
+}
+
+// todo wrong name
+.line-height-1 pre {
+  background-color: red !important;
+}
+
+.reveal .console .cmd {
+  font-weight: bold;
+  // deprecated
+  background-color: red !important;
+}
+
+.console a {
+  color: inherit !important;
+  background-color: red;
+}
+
+// =================================================================== captions
+
+// for code blocks, but also other captioned places
+.caption-text {
+  //font-style: italic;
+  //font-size: 0.8em;
+  color: $dark-gray;
+}
+
+.code-block-caption {
+  // should other places get this? todo
+  margin-bottom: 0.25em;
+  font-size: 0.8em;
+}
+
+.figure .caption {
+  font-size: 0.8em;
+}
+
+table > caption {
+  //margin-bottom: 0.25em;
+}
+
+p.caption {
+  margin-top: 0;
+}
+
+.code-block-caption {
+  page-break-after: avoid;
+}
+
+// ==================================================================== sphinx
+
+//.rubric {
+//  font-size: 1.2em;
+//  font-weight: 400;
+//}
+
+div.math {
+  font-size: 1.2em;
+}
+
+.mermaid .grid .tick line {
+  opacity: 0.1 !important;
+  shape-rendering: crispEdges;
+}
+
+// ======================================================= active experimenting
+
+.container > table {
+  margin-top: 0;
+}
+
+.highlights .code {
+  color: unset;
+}
+
+.versionchanged, .versionadded, .deprecated {
+  font-size: 0.9em; color: $mid-gray;
+}
+
+.versionmodified {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+  color: $firebrick;
+}
+
+.container pre {
+  margin-top: 0;
+}
+
+.topic > ul:first-of-type {
+  margin-top: 0;
+}
+
+.compare > div.vertical-align-center { vertical-align: middle !important }
+
+table.docutils.footnote,
+table.docutils.footnote td {
+  border: none;
+}

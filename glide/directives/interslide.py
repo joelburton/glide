@@ -115,6 +115,7 @@ def setup(app):
         # these should be added here.
         epub=(ignore_visit_interslide, None),
         html=(ignore_visit_interslide, None),
+        handouts=(ignore_visit_interslide, None),
         latex=(ignore_visit_interslide, None),
         revealjs=(revealjs_visit_interslide, revealjs_depart_interslide),
         text=(ignore_visit_interslide, None),

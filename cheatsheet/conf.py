@@ -14,7 +14,7 @@ release = '(Demo Release)'
 
 # -- General configuration ---------------------------------------------------
 
-pygments_style = 'sphinx'
+# pygments_style = 'sphinx'
 
 # RST Prolog: this stuff is added to every RST file before it's processed
 _curric_name = f"""

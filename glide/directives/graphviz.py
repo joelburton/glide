@@ -35,6 +35,9 @@ class Sizeable:
     - size: "x,y"
     """
 
+    required_arguments = 0
+    optional_arguments = 1
+
     def add_builder_size_option_to_graphviz_node(self, node):
         """Add builder-specific sizes to graphviz node.
 
@@ -63,6 +66,8 @@ class Sizeable:
         # with names like 'search-tree', this will automatically make that named
         # '"search-tree"'.
         if self.name == "digraph" or self.name == "graph":
+            if len(self.arguments) == 0:
+                self.arguments = [""]
             if not self.arguments[0].startswith('"'):
                 self.arguments[0] = f'"{self.arguments[0]}"'
 
@@ -117,6 +122,8 @@ def setup(app):
         graphviz,
         override=True,
         html=(visit_jgraphviz(render_dot_html), None),
+        epub=(visit_jgraphviz(render_dot_html), None),
+        handouts=(visit_jgraphviz(render_dot_html), None),
         revealjs=(visit_jgraphviz(render_dot_html), None),
         latex=(visit_jgraphviz(render_dot_latex), None),
     )

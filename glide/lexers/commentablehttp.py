@@ -2,7 +2,6 @@ import re
 
 from pygments.token import *
 from pygments.lexer import bygroups, RegexLexer
-from pygments.util import ClassNotFound
 
 
 class CommentableHttpLexer(RegexLexer):

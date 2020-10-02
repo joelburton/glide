@@ -65,9 +65,11 @@ def setup(app):
         # these should be added here.
         epub=(ignore_visit_speakernote, None),
         html=(ignore_visit_speakernote, None),
+        handouts=(ignore_visit_speakernote, None),
         latex=(ignore_visit_speakernote, None),
         revealjs=(revealjs_visit_speakernote, revealjs_depart_speakernote),
         text=(ignore_visit_speakernote, None),
+        man=(ignore_visit_speakernote, None),
     )
     app.add_directive('speaker', SpeakernoteDirective)
     return {'version': version, 'parallel_read_safe': True}

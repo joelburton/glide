@@ -62,6 +62,17 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     things are handled in the themes/revealjs/layout.html document.
     """
 
+    def __init__(self, *args):
+        super().__init__(*args)
+        # The default value here is silly-low, and this is the only way to fix.
+        # These are used for "fields" used to describe documents (often, but
+        # not always at the top), like:
+        #
+        # :author: Elmo
+        # :color: red
+
+        self.settings.field_name_limit = 50
+
     def add_new_slide(self, node):
         """Add new grouping or content slide, allowing for revealjs options."""
 
@@ -155,10 +166,19 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     def visit_sidebar(self, node):
         """These should never appear in slides."""
 
+        if "revealjs" in node.attributes['classes']:
+            return super().visit_sidebar(node)
+
         raise SkipNode
 
     def visit_admonition(self, node, name=""):
         """These should never appear in slides."""
+
+        if "revealjs" in node.attributes['classes']:
+            # add marker class onto generic-type admonition
+            if not name:
+                node.attributes['classes'] += ["admonition-generic"]
+            return super().visit_admonition(node, name)
 
         raise SkipNode
 
@@ -170,7 +190,7 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     def unknown_visit(self, node: Node) -> None:
         """We should never get here, so warn user."""
 
-        logger.warning("Handouts hit unexpected node: %s", node)
+        logger.warning("Revealjs hit unexpected node: %s", node)
         raise SkipNode
 
 
