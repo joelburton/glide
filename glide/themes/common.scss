@@ -1,9 +1,7 @@
-// useful debugging
-//pre:after {
-//  content: "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-//}
-// compare > * { outline: solid 1px gold; }
+// Stuff that is common to both revealjs and handouts (which should be most
+// things, with minor fixes in the the other CSS files.)
 
+// These colors come from Tachyon's color choices:
 $black: #000;
 $near-black: #111;
 $dark-gray: #333;
@@ -72,15 +70,15 @@ $washed-red: #ffdfdf;
 
 $firebrick: darkred;
 
-$weight-text: 300;
 $weight-quiet: 300;
+$weight-text: 300;
 $weight-pop: 400;
 $weight-bold: 600;
 $weight-extra-bold: 700;
 $weight-code: 400;
 
-$print-weight-text: 400;
 $print-weight-quiet: 300;
+$print-weight-text: 400;
 $print-weight-pop: 600;
 $print-weight-bold: 700;
 $print-weight-extra-bold: 900;
@@ -110,13 +108,6 @@ html {
   }
 }
 
-p {
-  margin: 0.8em 0;
-  @media print {
-    margin: 0.6em 0;
-  }
-}
-
 body {
   font-family: $theme-bodyfont;
   font-weight: $weight-text;
@@ -124,6 +115,8 @@ body {
     font-weight: $print-weight-text;
   }
 }
+
+// ===================================== headings
 
 h1, h2, h3, h4, h5, h6, .rubric {
   color: $near-black;
@@ -134,11 +127,17 @@ h1, h2, h3, h4, h5, h6, .rubric {
   }
 }
 
-// headings get namespaced so they'll beat revealjs
-
+// It's uncommon, but possible for there to be
+// a second h1-level heading in handouts --- therefore,
+// it's only the first, top-of-doc one that should have
+// little margin above it.
 h1 {
-  margin-top: 1em;
+  margin-top: 2.5em;
   margin-bottom: 1em;
+}
+
+.section:first-of-type h1 {
+  margin-top: 1em;
   @media print {
     margin-top: 0;
   }
@@ -158,6 +157,10 @@ h3 {
   margin-bottom: 1em;
 }
 
+// Rubrics are used when we don't want a TOC heading to appear,
+// or to further divide up a section. They don't really have a
+// "level" like a heading, but they're often used around level 4,
+// so styling them the same.
 
 h4, .rubric {
   font-size: 1em;
@@ -177,13 +180,33 @@ h6 {
   margin-bottom: 0;
 }
 
+// ====================================== general
+
+// paragraphs are the central kind of text in both slides
+// and handouts, so the margin above/below paragraphs is
+// important to get right.
+//
+// NOTE: if you change this, change the height of line-blocks
+// as well, below.
+p {
+  margin: 0.8em 0;
+  @media print {
+    margin: 0.6em 0;
+  }
+}
+
 b, strong {
-  font-weight: 600;
+  font-weight: $weight-bold;
+  @media print {
+    font-weight: $print-weight-bold;
+  }
 }
 
 dt {
-  font-weight: 400;
-  //margin-bottom: 0.25em;  todo maybe only for handouts we'd want this?
+  font-weight: $weight-bold;
+  @media print {
+    font-weight: $print-weight-bold;
+  }
 }
 
 dd {
@@ -193,7 +216,8 @@ dd {
   > p:first-child { margin-top: 0; }
 }
 
-// infrequently used, but: rst allows a "divider" by making a line like "----"
+// infrequently used, but:
+// rst allows a "divider" by making a line like "----"
 hr {
   margin: 2em auto 2em auto;
   width: 50%
@@ -205,21 +229,33 @@ hr {
 cite {
   color: $navy;
   font-style: italic;
-  font-weight: 400;
+  font-weight: $weight-pop;
+  @media print {
+    font-weight: $print-weight-pop;
+  }
 }
 
 .command, .program {
-  font-weight: 400;
+  font-weight: $weight-pop;
+  @media print {
+    font-weight: $print-weight-pop;
+  }
   color: $firebrick;
 }
 
 .download {
-  font-weight: 400;
+  font-weight: $weight-pop;
+  @media print {
+    font-weight: $print-weight-pop;
+  }
   font-style: italic;
 }
 
 .file {
-  font-weight: 400;
+  font-weight: $weight-pop;
+  @media print {
+    font-weight: $print-weight-pop;
+  }
   font-style: italic;
 }
 
@@ -229,14 +265,16 @@ cite {
 
 abbr {
   text-decoration: none;
-  // only draw line if we're providing the definition as part of the abbr
+  // only draw line if abbr has definition
   &[title] { border-bottom: dashed 0.5px $blue; }
 }
 
 .dfn { }
 
-// for sample output, add { } around placeholder parts so their meaning is
-// made more clear
+// sample output and files can have embedded placeholders;
+// like :samp:`file_{x}`. Sphinx outputs `x` in `em`, but
+// doesn't show the curly braces. Add subtle ones to make
+// the placeholder-nature more obvious:
 .samp > em, .file > em {
   &:before { content: "{"; color: $moon-gray; @media print { color: $gray } }
   &:after { content: "}"; color: $moon-gray; @media print { color: $gray } }
@@ -249,17 +287,23 @@ abbr {
 .mimetype { }
 .samp { }
 
-// command-line switches
+// command-line switches: add subtle guillemots to help
+// readers understand that these are key combos.
 kbd {
   font-family: $theme-codefont;
   font-size: 0.95em;
-  font-weight: 400;
+  font-weight: $weight-pop;
+  @media print {
+    font-weight: $print-weight-pop;
+  }
 
   &:before { content: "«"; color: $silver; @media print { color: $gray } }
   &:after { content: "»"; color: $silver; @media print { color: $gray } }
 }
 
-// sphinx uses kbd for options in an option-list, but we won't want { } there
+// sphinx uses kbd for options in an option-list,
+// but we don't want to add guillemots, like for
+// other kbd elements.
 .option-list kbd {
   &:before { content: none }
   &:after { content: none }
@@ -274,33 +318,53 @@ sup, sub {
 sup { top: -0.4em; }
 sub { top: 0.4em; }
 
-// =================== glide's added roles
+.versionchanged,
+.versionadded,
+.deprecated {
+  font-size: 0.9em;
+  color: $mid-gray;
+}
+
+.versionmodified {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+  color: $firebrick;
+}
+
+// ========================== glide's added roles
 
 .small { font-size: 0.75em; }
 .small-muted { color: $mid-gray; font-size: 0.75em; }
 .muted { color: $gray; }
 
 // these overlap with names over admonitions, so namespacing with span
-span.danger { font-weight: $weight-pop;color: $dark-red; }
-span.warning { font-weight: $weight-pop;color: $orange; }
-span.success { font-weight: $weight-pop;color: $dark-green; }
-
-@media print {
-  span.danger, span.warning, span.success, span.ins, span.del {
+span.danger,
+span.warning,
+span.success,
+span.ins,
+span.del {
+  font-weight: $weight-pop;
+  @media print {
     font-weight: $print-weight-pop;
   }
 }
-
-span.ins { font-weight: $weight-pop; color: $dark-green; }
-span.del { font-weight: $weight-pop; color: $red; }
+span.danger { color: $orange; }
+span.warning { color: $orange; }
+span.success { color: $dark-green; }
+span.ins { color: $dark-green; }
+span.del { color: $red; }
 
 // use for marking something as "gone": struck out and less obvious
 .gone { text-decoration: line-through; color: $gray; }
 
-span.code-wrong, span.wrong { background: $washed-red }
+span.code-wrong,
+span.wrong { background: $washed-red }
 
-// a role can be added here directly, like `:-)`:emoji:, but for real emoji,
-// the class of emoji is automated injected onto 🐱
+// a role can be added here directly, like `:-)`:emoji:,
+// but for graphical emoji, the class of emoji is automated
+// injected onto 🐱
 img.emoji {
   width: 1em;
   margin: 0;
@@ -316,7 +380,10 @@ img.emoji {
   font-style: italic;
   color: $silver;
   font-weight: $weight-quiet;
-  @media print { color: $mid-gray; }
+  @media print {
+    color: $mid-gray;
+    font-weight: $print-weight-quiet;
+  }
 }
 
 // ================================================================= line block
@@ -338,14 +405,13 @@ img.emoji {
 //
 // This works fine.
 
-// one meaning: like blockquote--a line-broken list for all builders
 .glide .line-block {
   margin: 1em 0;
   padding-left: 0.25em;
   border-left: solid 1px $moon-gray;
-  //width: fit-content;
 
-  // not being real paragraphs, they don't have a natural line-height.
+  // not being real paragraphs, they don't have a natural line-height,
+  // so space them out like our paragraphs would be:
   .line:nth-child(n+1) {
     margin-top: 0.25em;
   }
@@ -358,74 +424,50 @@ img.emoji {
   }
 }
 
-// todo: could also be the new |reveal-br| if we wanted that, the syntax of
-//
-// - | here
-//   | here
-//
-// is fine for rst
-
 // ========================================================== ul, ol, and hlist
 //
-//
-// protect this by only doing it explicitly for the main parts of the page
 
-.page-content {
-  ul {
-    list-style-type: circle;
-  }
-
-  ol, ul {
-    margin: 1em 0;
-    padding-left: 1.5em;
-
-    // "simple" class added when a list are all non-paragraph items
-    &.simple {
-      @media print {
-        //page-break-inside: avoid;
-      }
-
-      li {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-      }
-    }
-  }
-
-  // In a simple list, child lists be tighter. Sphinx doesn't mark lists as simple
-  // if any child, no matter how deeply, are not simple, so this is safe.
-  // Providing selectors for four levels of nesting, which is plenty. Makes these
-  // slightly smaller for each level.
-
-  // not sure if smaller is good for handouts or latex-friendly. todo
-  .simple > li {
-    > ul, ol {
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-      font-size: 0.95em;
-
-      > li > ul, li > ol {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        font-size: 0.95em;
-
-        > li > ul, li > ol {
-          margin-top: 0.5em;
-          margin-bottom: 0.5em;
-          font-size: 0.95em;
-        }
-      }
-    }
-  }
-
-  li:first-child {
-    // the first list item should never have a margin; this is important because
-    // normal collapsing won't work if the list is inside of something else,
-    // like a container or an hlist.
-    margin-top: 0 !important;
-  }
-
+ul {
+  list-style-type: circle;
 }
+
+ul, ol {
+  margin: 1em 0;
+}
+
+// "simple" class added when a list are all non-paragraph items
+ul.simple li,
+ol.simple li {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+
+  // In a simple list, child lists be tighter. Sphinx doesn't mark lists
+  // as simple if any child, no matter how deeply, are not simple, so this
+  // is safe. Make these slightly-smaller for each level of indentation.
+  ul, ol {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    font-size: 0.95em;
+  }
+}
+
+// Fix margins when lists happen inside divs and such, and we get double-margin:
+// the first list item should have no margin (the specificity here is
+// important; edit this carefully):
+ul li:first-child,
+ol li:first-child {
+  // the first list item should never have a margin; this is important because
+  // normal collapsing won't work if the list is inside of something else,
+  // like a container or an hlist.
+  margin-top: 0; // !important;
+}
+
+// Following above: if this is a list-within-a-list, though, the top item
+// should get margin-top, as normal:
+li li:first-child {
+  margin-top: 0.4em;
+}
+
 
 // hlists use tables, so use table formatting to line up the columns
 //  (note for future: it wouldn't surprise me if these moved to flexbox one
@@ -434,9 +476,10 @@ table.hlist > tbody > tr > td {
   vertical-align: top;
   padding-right: 1em;
 
-  & > ul {
+  & > ul,
+  & > ol {
     // These shouldn't get margins because
-    // the table will already provide margins for them. todo not sure is true
+    // the table will already provide margins for them.
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -456,6 +499,11 @@ table {
   margin-bottom: 1em;
 }
 
+// Tables directly inside a div container should not add margin
+.container > table {
+  margin-top: 0;
+}
+
 td {
   padding: 0;
 }
@@ -471,8 +519,11 @@ table.docutils {
 
   th {
     background-color: $moon-gray;
-    @media print { background-color: $light-gray; }
-    font-weight: 400;
+    font-weight: $weight-pop;
+    @media print {
+      background-color: $light-gray;
+      font-weight: $print-weight-pop;
+    }
   }
 
   td, th {
@@ -484,7 +535,7 @@ table.docutils {
     }
   }
 
-   tr:nth-child(even) {
+  tr:nth-child(even) {
     background-color: $near-white;
   }
 
@@ -553,7 +604,10 @@ table.docutils {
 
 table.field-list {
   .field-name {
-    font-weight: 400;
+    font-weight: $weight-pop;
+    @media print {
+      font-weight: $print-weight-pop;
+    }
     text-align: left;
     background-color: $light-gray;
   }
@@ -573,15 +627,14 @@ table.field-list {
 // show inline code/tech (used by sphinx for ``x = 7``)
 code {
   font-family: $theme-codefont;
-  font-size: 0.95em; // $code-font-size; todo
-  font-weight: 400;
+  font-size: 0.95em;
+  font-weight: $weight-code;
+  @media print {
+    font-weight: $print-weight-code;
+  }
   color: $navy;
   border: solid 1px $light-gray;
   padding: 0 0.25em;
-
-  @media print {
-    //border: none;
-  }
 }
 
 .highlight pre,
@@ -595,13 +648,14 @@ code {
 
   font-family: $theme-codefont;
   font-size: $code-font-size;
+  font-weight: $weight-code;
   @media print {
     font-size: $print-code-font-size;
+    font-weight: $print-weight-code;
   }
-  font-weight: $weight-code;
-
   border: solid 0.5px $moon-gray;
   padding: 0.5em;
+  margin-top: 0;
   margin-bottom: 1em;
 }
 
@@ -611,11 +665,14 @@ code {
   margin-bottom: 1em;
 }
 
-// first matches most consoles, second where it contains no markup
+// Second matches most consoles, first where it contains no markup
 pre.console,
 .console > .highlight > pre {
   color: $mid-gray;
   font-weight: $weight-code;
+  @media print {
+    font-weight: $print-weight-code;
+  }
   border-radius: 0.75em;
   border-color: $light-silver;
   box-shadow: 1px 1px 4px $moon-gray;
@@ -626,29 +683,13 @@ pre.console,
   }
 }
 
+// Emphasized lines in code blocks
 .highlight .hll {
-  background-color: #fefde1;
+  background-color: #fefde1; // very light yellow, not in our color scheme
   margin-left: -0.35em;
   padding-left: 0.15em;
   border-left: solid 0.20em $yellow;
-  @media print { border-left-color:  $gold }
-}
-
-// touch up pygments' default color scheme
-// make general-purpose comments gray, light, and thin
-.highlight .c1 {
-  font-style: italic;
-  color: $silver;
-  font-weight: $weight-quiet;
-  @media print { color: $mid-gray; }
-}
-@media print { .highlight .si { color: $blue; } }
-// make docstrings & /** comments */ red so docs pop
-.highlight .sd, .highlight .cm { color: firebrick; }
-// make regular comments not dreary-blue-grey
-.highlight .c {
-  color: $mid-gray;
-  @media print { color: $gray }
+  @media print { border-left-color: $gold }
 }
 
 // "span." needed to override pygments
@@ -661,6 +702,34 @@ span.linenos {
 
 .code-wrong pre { background-color: $washed-red }
 
+//============== touch up pygments' default color scheme
+
+// make general-purpose comments gray, light, and thin
+.highlight .c1 {
+  font-style: italic;
+  color: $silver;
+  font-weight: $weight-quiet;
+  @media print {
+    color: $mid-gray;
+    font-weight: $print-weight-quiet;
+  }
+}
+
+@media print {
+  .highlight .si { color: $blue; }
+}
+
+// make docstrings & /** comments */ red so docs pop
+.highlight .sd,
+.highlight .cm { color: firebrick; }
+
+// make regular comments not dreary-blue-grey
+.highlight .c {
+  color: $mid-gray;
+  @media print { color: $gray }
+}
+
+
 // =========================================== admonitions (note, warning, etc)
 
 .admonition {
@@ -670,25 +739,25 @@ span.linenos {
   padding: 0 0 0 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  max-width: 40em !important; // todo why is this !important?
+  max-width: 40em;
   font-size: 0.9em;
+  @media print {
+    border-left: solid 1px $gray;
+    page-break-inside: avoid;
+  }
 
-  pre { margin-top: 1em; font-size: 0.79em; }
+  pre {
+    margin-top: 1em;
+    font-size: 0.79em;
+  }
 
-  // only notes are intended to be unimportant details, so reduce the size of
-  // the text for all the non-title parts. ("generic admonitions" are ones
-  // that are not warning/note/tip/etc --- they get treated differently bc
-  // their title is label, rather than the second paragraph
+  // Reduce the size of the text for all the non-title parts. ("generic
+  // admonitions" are ones that are not warning/note/tip/etc --- they get
+  // treated differently bc their title is label, rather than the second
+  // paragraph
   & > :nth-child(n+3),
   &.admonition-generic > :nth-child(2) {
     font-size: 0.95em;
-  }
-
-  @media print {
-    border-radius: 0;
-    border: none;
-    border-left: solid 1px $gray;
-    page-break-inside: avoid;
   }
 
   // pull the first real paragraph up to being aside the title of the
@@ -704,13 +773,13 @@ span.linenos {
     padding: 0.5rem 0.75rem 0.2rem 1rem !important;
     text-transform: uppercase;
     font-size: 0.75em;
-    font-weight: 400;
+    font-weight: $weight-pop;
     letter-spacing: 0.1em;
     line-height: 1 !important;
 
     @media print {
+      // make these more bold than just popping
       font-weight: $print-weight-bold;
-      color: $gray;
       background-color: transparent !important;
     }
   }
@@ -721,15 +790,12 @@ span.linenos {
     display: inline-block;
     margin: 0 !important;
     padding: 0 !important;
-    font-weight: 400;
+    font-weight: $weight-pop;
+    @media print {
+      font-weight: $print-weight-pop;
+    }
     line-height: 1 !important;
   }
-
-  //&[class^="admonition-"] > p:nth-child(2) {
-  //  margin: unset;
-  //  font-weight: unset;
-  //  line-height: unset
-  //}
 }
 
 .admonition.important,
@@ -761,13 +827,14 @@ span.linenos {
   }
 }
 
-// perhaps this should default smaller?
 .admonition.note {
   border-color: $moon-gray;
   .admonition-title { background-color: $light-gray; color: $gray; }
 }
 
 // ================================= topic: a bit of side-material with a title
+//
+// This class is also used for contents directive
 
 .topic {
   background-color: $light-gray;
@@ -787,8 +854,6 @@ span.linenos {
 
   // Given that the topic wants to provide background color via padding, make sure
   // that things inside of this won't adding margins.
-  //
-  // do we still need this? or just on paras? todo
   > *:last-child {
     margin-bottom: 0;
 
@@ -799,6 +864,14 @@ span.linenos {
         margin-bottom: 0;
       }
     }
+  }
+
+  // Detailed concern: while a "side-material" kind of topic is unlikely to
+  // start with a list (and therefore will rarely need protection from extra
+  // margin), the ".. contents::" directive does produce lists, and we do
+  // want extra margin protection:
+  > ul:first-child {
+    margin-top: 0;
   }
 }
 
@@ -844,28 +917,29 @@ span.linenos {
   > * { visibility: visible; }
 }
 
-// when a simple container becomes a hover-reveal, give it some L/R margins
+// When a simple container becomes a hover-reveal, give it some L/R margins
 .hover-reveal.container > * {
   margin-left: 1em;
   margin-right: 1em;
 }
 
+// For print, always show the answer
 @media print {
   .code-hover-reveal pre > *,
   .hover-reveal > * {
-    visibility: visible;;
+    visibility: visible;
   }
 
   .code-hover-reveal pre,
   .hover-reveal {
     border: inherit;
     background-color: inherit;
+    // To discourage people from reading at first glance, rotate upside-down
+    transform: rotate(180deg);
   }
 }
 
 // ===================================================================== colors
-
-// todo: should we make our names tachyon names? how will will this work w/latex?
 
 @each $name, $color in (
     dark-red: $dark-red,
@@ -907,13 +981,15 @@ span.linenos {
 ) {
   #{"." + $name} { font-weight: 400; color: $color; }
   .inv-#{"" + $name} {
-    font-weight: 400;
+    font-weight: $weight-pop;
+    @media print { font-weight: $print-weight-pop; }
     color: white;
     background-color: $color;
     padding: 0 .25em;
   }
   .bg-#{"" + $name} {
-    font-weight: 400;
+    font-weight: $weight-pop;
+    @media print { font-weight: $print-weight-pop; }
     background-color: $color;
     padding: 0 .25em;
   }
@@ -924,16 +1000,15 @@ span.linenos {
 // This is not the page sidebar; this is a bit of side-commentary on something.
 
 .sidebar {
-  //margin-left: 1.5em;
   float: right;
   width: 30%;
   font-size: 0.8em;
   text-align: left;
 }
 p.sidebar-title {
-  font-weight: 400;
-  margin-top: 0.2em;
+  font-weight: $weight-pop;
   @media print { font-weight: $print-weight-pop }
+  margin-top: 0.2em;
 }
 
 @each $size in (20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80) {
@@ -949,16 +1024,15 @@ p.sidebar-title {
 
 .compare {
   display: flex;
-  //justify-items: flex-start;
 }
 
 .compare > * {
-  //display: inline-block;
   margin-left: 1em;
   vertical-align: top;
   &:first-child { margin-left: 0 }
 }
 
+// By default, code boxes side by side are 40 cols wide
 .compare pre {
   width: 40ch;
 }
@@ -991,12 +1065,13 @@ blockquote {
   text-align: left;
   border-left: solid 1px firebrick;
   margin-left: 0;
-  padding-left: 1em !important;
-  padding-right: 1em !important;
+  padding-left: 1em;
+  padding-right: 1em;
   font-style: normal;
 
-  // epigraphs are for actual quotes, not just quoted text -- so italicize
-  &.epigraph {
+  // epigraphs & pull-quotes are actual quotes, not just quoted text: italicize
+  &.epigraph,
+  &.pull-quote {
     font-size: 1.15em;
     margin-left: 1em;
     font-style: italic;
@@ -1004,14 +1079,10 @@ blockquote {
 
   // same with pull-quotes, but they're bigger
   &.pull-quote {
-    margin-left: 1em;
-    font-style: italic;
     font-size: 1.5em;
   }
 
   p.attribution {
-    // need to override reveal here
-    display: block !important;
     font-size: 0.85em;
     margin-top: -0.6em;
     text-align: right;
@@ -1019,6 +1090,7 @@ blockquote {
     padding-right: 1em;
   }
 
+  // Don't let paragraphs add extra margin
   & > div p:first-child { margin-top: 0; }
   & > div p:last-child { margin-bottom: 0; }
 }
@@ -1043,6 +1115,10 @@ blockquote {
 .align-left { margin-right: auto; }
 .align-center { margin-left: auto; margin-right: auto; }
 .align-right { margin-left: auto; }
+
+.vertical-align-center {
+  vertical-align: middle !important
+}
 
 .border {border: solid 0.5px $dark-gray;}
 .border-none {border: none;}
@@ -1105,13 +1181,13 @@ blockquote {
 }
 
 // =============================================================== deprecations
-// mark these as obnoxiously red so they're easy to see
+// Mark these as obnoxiously red so they're easy to see
+//
+// In 2021, these can be removed if desired.
 
 .unsized pre { background-color: red !important; }
 
-// deprecate img.image-border
-
-// deprecate, now just ".border"
+// now just ".border"
 img.image-border {
   border: solid 10px red !important;
 }
@@ -1121,59 +1197,40 @@ img.align-right {
   border: solid 10px red !important;
 }
 
-// todo wrong name
 .line-height-1 pre {
   background-color: red !important;
 }
 
 .reveal .console .cmd {
   font-weight: bold;
-  // deprecated
   background-color: red !important;
 }
 
-.console a {
-  color: inherit !important;
-  background-color: red;
-}
-
 // =================================================================== captions
-
 // for code blocks, but also other captioned places
+
 .caption-text {
-  //font-style: italic;
-  //font-size: 0.8em;
+  font-style: italic;
   color: $dark-gray;
 }
 
 .code-block-caption {
-  // should other places get this? todo
   margin-bottom: 0.25em;
   font-size: 0.8em;
 }
 
+// Image and diagram captions
 .figure .caption {
   font-size: 0.8em;
-}
-
-table > caption {
-  //margin-bottom: 0.25em;
-}
-
-p.caption {
   margin-top: 0;
-}
 
-.code-block-caption {
-  page-break-after: avoid;
+  &:before {
+    content: "△ ";
+    font-size: 70%;
+  }
 }
 
 // ==================================================================== sphinx
-
-//.rubric {
-//  font-size: 1.2em;
-//  font-weight: 400;
-//}
 
 div.math {
   font-size: 1.2em;
@@ -1184,39 +1241,11 @@ div.math {
   shape-rendering: crispEdges;
 }
 
-// ======================================================= active experimenting
-
-.container > table {
-  margin-top: 0;
-}
-
-.highlights .code {
-  color: unset;
-}
-
-.versionchanged, .versionadded, .deprecated {
-  font-size: 0.9em; color: $mid-gray;
-}
-
-.versionmodified {
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.9em;
-  color: $firebrick;
-}
-
-.container pre {
-  margin-top: 0;
-}
-
-.topic > ul:first-of-type {
-  margin-top: 0;
-}
-
-.compare > div.vertical-align-center { vertical-align: middle !important }
-
 table.docutils.footnote,
 table.docutils.footnote td {
   border: none;
 }
+
+// ======================================================= active experimenting
+
+

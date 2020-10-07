@@ -10,15 +10,6 @@ html {
   }
 }
 
-p {
-  margin: 0.8em 0;
-}
-@media print {
-  p {
-    margin: 0.6em 0;
-  }
-}
-
 body {
   font-family: var(--theme-bodyfont);
   font-weight: 300;
@@ -41,11 +32,15 @@ h1, h2, h3, h4, h5, h6, .rubric {
 }
 
 h1 {
-  margin-top: 1em;
+  margin-top: 2.5em;
   margin-bottom: 1em;
 }
+
+.section:first-of-type h1 {
+  margin-top: 1em;
+}
 @media print {
-  h1 {
+  .section:first-of-type h1 {
     margin-top: 0;
   }
 }
@@ -82,12 +77,31 @@ h6 {
   margin-bottom: 0;
 }
 
+p {
+  margin: 0.8em 0;
+}
+@media print {
+  p {
+    margin: 0.6em 0;
+  }
+}
+
 b, strong {
   font-weight: 600;
 }
+@media print {
+  b, strong {
+    font-weight: 700;
+  }
+}
 
 dt {
-  font-weight: 400;
+  font-weight: 600;
+}
+@media print {
+  dt {
+    font-weight: 700;
+  }
 }
 
 dd {
@@ -108,20 +122,40 @@ cite {
   font-style: italic;
   font-weight: 400;
 }
+@media print {
+  cite {
+    font-weight: 600;
+  }
+}
 
 .command, .program {
   font-weight: 400;
   color: darkred;
+}
+@media print {
+  .command, .program {
+    font-weight: 600;
+  }
 }
 
 .download {
   font-weight: 400;
   font-style: italic;
 }
+@media print {
+  .download {
+    font-weight: 600;
+  }
+}
 
 .file {
   font-weight: 400;
   font-style: italic;
+}
+@media print {
+  .file {
+    font-weight: 600;
+  }
 }
 
 abbr {
@@ -154,6 +188,11 @@ kbd {
   font-family: var(--theme-codefont);
   font-size: 0.95em;
   font-weight: 400;
+}
+@media print {
+  kbd {
+    font-weight: 600;
+  }
 }
 kbd:before {
   content: "«";
@@ -195,6 +234,21 @@ sub {
   top: 0.4em;
 }
 
+.versionchanged,
+.versionadded,
+.deprecated {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.versionmodified {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+  color: darkred;
+}
+
 .small {
   font-size: 0.75em;
 }
@@ -208,33 +262,40 @@ sub {
   color: #777;
 }
 
-span.danger {
+span.danger,
+span.warning,
+span.success,
+span.ins,
+span.del {
   font-weight: 400;
-  color: #e7040f;
+}
+@media print {
+  span.danger,
+span.warning,
+span.success,
+span.ins,
+span.del {
+    font-weight: 600;
+  }
+}
+
+span.danger {
+  color: #ff6300;
 }
 
 span.warning {
-  font-weight: 400;
   color: #ff6300;
 }
 
 span.success {
-  font-weight: 400;
   color: #137752;
 }
 
-@media print {
-  span.danger, span.warning, span.success, span.ins, span.del {
-    font-weight: 600;
-  }
-}
 span.ins {
-  font-weight: 400;
   color: #137752;
 }
 
 span.del {
-  font-weight: 400;
   color: #ff4136;
 }
 
@@ -243,7 +304,8 @@ span.del {
   color: #777;
 }
 
-span.code-wrong, span.wrong {
+span.code-wrong,
+span.wrong {
   background: #ffdfdf;
 }
 
@@ -280,6 +342,7 @@ img.emoji {
 @media print {
   .comment {
     color: #555;
+    font-weight: 300;
   }
 }
 
@@ -297,41 +360,41 @@ img.emoji {
   margin-top: 1.2em;
 }
 
-.page-content ul {
+ul {
   list-style-type: circle;
 }
-.page-content ol, .page-content ul {
+
+ul, ol {
   margin: 1em 0;
-  padding-left: 1.5em;
 }
-.page-content ol.simple li, .page-content ul.simple li {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+
+ul.simple li,
+ol.simple li {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
 }
-.page-content .simple > li > ul, .page-content .simple > li ol {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+ul.simple li ul, ul.simple li ol,
+ol.simple li ul,
+ol.simple li ol {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
   font-size: 0.95em;
 }
-.page-content .simple > li > ul > li > ul, .page-content .simple > li > ul li > ol, .page-content .simple > li ol > li > ul, .page-content .simple > li ol li > ol {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  font-size: 0.95em;
+
+ul li:first-child,
+ol li:first-child {
+  margin-top: 0;
 }
-.page-content .simple > li > ul > li > ul > li > ul, .page-content .simple > li > ul > li > ul li > ol, .page-content .simple > li > ul li > ol > li > ul, .page-content .simple > li > ul li > ol li > ol, .page-content .simple > li ol > li > ul > li > ul, .page-content .simple > li ol > li > ul li > ol, .page-content .simple > li ol li > ol > li > ul, .page-content .simple > li ol li > ol li > ol {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  font-size: 0.95em;
-}
-.page-content li:first-child {
-  margin-top: 0 !important;
+
+li li:first-child {
+  margin-top: 0.4em;
 }
 
 table.hlist > tbody > tr > td {
   vertical-align: top;
   padding-right: 1em;
 }
-table.hlist > tbody > tr > td > ul {
+table.hlist > tbody > tr > td > ul, table.hlist > tbody > tr > td > ol {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -342,6 +405,10 @@ table {
   border: none;
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.container > table {
+  margin-top: 0;
 }
 
 td {
@@ -367,6 +434,7 @@ table.docutils th {
 @media print {
   table.docutils th {
     background-color: #eee;
+    font-weight: 600;
   }
 }
 table.docutils td, table.docutils th {
@@ -511,6 +579,11 @@ table.field-list .field-name {
   text-align: left;
   background-color: #eee;
 }
+@media print {
+  table.field-list .field-name {
+    font-weight: 600;
+  }
+}
 table.field-list .field-body {
   background-color: white;
 }
@@ -523,6 +596,12 @@ code {
   border: solid 1px #eee;
   padding: 0 0.25em;
 }
+@media print {
+  code {
+    font-weight: 400;
+  }
+}
+
 .highlight pre,
 .parsed-literal-wrapper pre {
   width: 80ch;
@@ -532,12 +611,14 @@ code {
   font-weight: 400;
   border: solid 0.5px #ccc;
   padding: 0.5em;
+  margin-top: 0;
   margin-bottom: 1em;
 }
 @media print {
   .highlight pre,
 .parsed-literal-wrapper pre {
     font-size: 8.5pt;
+    font-weight: 400;
   }
 }
 
@@ -553,6 +634,12 @@ pre.console,
   border-radius: 0.75em;
   border-color: #aaa;
   box-shadow: 1px 1px 4px #ccc;
+}
+@media print {
+  pre.console,
+.console > .highlight > pre {
+    font-weight: 400;
+  }
 }
 @media print {
   pre.console,
@@ -575,35 +662,6 @@ pre.console,
   }
 }
 
-.highlight .c1 {
-  font-style: italic;
-  color: #999;
-  font-weight: 300;
-}
-@media print {
-  .highlight .c1 {
-    color: #555;
-  }
-}
-
-@media print {
-  .highlight .si {
-    color: #357edd;
-  }
-}
-.highlight .sd, .highlight .cm {
-  color: firebrick;
-}
-
-.highlight .c {
-  color: #555;
-}
-@media print {
-  .highlight .c {
-    color: #777;
-  }
-}
-
 span.linenos {
   margin-right: 0.5em;
   color: #999;
@@ -619,6 +677,37 @@ span.linenos {
   background-color: #ffdfdf;
 }
 
+.highlight .c1 {
+  font-style: italic;
+  color: #999;
+  font-weight: 300;
+}
+@media print {
+  .highlight .c1 {
+    color: #555;
+    font-weight: 300;
+  }
+}
+
+@media print {
+  .highlight .si {
+    color: #357edd;
+  }
+}
+.highlight .sd,
+.highlight .cm {
+  color: firebrick;
+}
+
+.highlight .c {
+  color: #555;
+}
+@media print {
+  .highlight .c {
+    color: #777;
+  }
+}
+
 .admonition {
   text-align: left;
   border-left: solid 1px #aaa;
@@ -626,8 +715,14 @@ span.linenos {
   padding: 0 0 0 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  max-width: 40em !important;
+  max-width: 40em;
   font-size: 0.9em;
+}
+@media print {
+  .admonition {
+    border-left: solid 1px #777;
+    page-break-inside: avoid;
+  }
 }
 .admonition pre {
   margin-top: 1em;
@@ -635,14 +730,6 @@ span.linenos {
 }
 .admonition > :nth-child(n+3), .admonition.admonition-generic > :nth-child(2) {
   font-size: 0.95em;
-}
-@media print {
-  .admonition {
-    border-radius: 0;
-    border: none;
-    border-left: solid 1px #777;
-    page-break-inside: avoid;
-  }
 }
 .admonition .admonition-title {
   color: white;
@@ -659,7 +746,6 @@ span.linenos {
 @media print {
   .admonition .admonition-title {
     font-weight: 700;
-    color: #777;
     background-color: transparent !important;
   }
 }
@@ -669,6 +755,11 @@ span.linenos {
   padding: 0 !important;
   font-weight: 400;
   line-height: 1 !important;
+}
+@media print {
+  .admonition:not(.admonition-generic) > p:nth-child(2) {
+    font-weight: 600;
+  }
 }
 
 .admonition.important,
@@ -761,6 +852,9 @@ span.linenos {
 .topic > *:last-child > *:last-child > *:last-child {
   margin-bottom: 0;
 }
+.topic > ul:first-child {
+  margin-top: 0;
+}
 
 .code-hover-reveal pre,
 .hover-reveal {
@@ -798,6 +892,7 @@ span.linenos {
 .hover-reveal {
     border: inherit;
     background-color: inherit;
+    transform: rotate(180deg);
   }
 }
 .dark-red {
@@ -811,11 +906,21 @@ span.linenos {
   background-color: #e7040f;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-dark-red {
+    font-weight: 600;
+  }
+}
 
 .bg-dark-red {
   font-weight: 400;
   background-color: #e7040f;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-dark-red {
+    font-weight: 600;
+  }
 }
 
 .red {
@@ -829,11 +934,21 @@ span.linenos {
   background-color: #ff4136;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-red {
+    font-weight: 600;
+  }
+}
 
 .bg-red {
   font-weight: 400;
   background-color: #ff4136;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-red {
+    font-weight: 600;
+  }
 }
 
 .light-red {
@@ -847,11 +962,21 @@ span.linenos {
   background-color: #ff725c;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-red {
+    font-weight: 600;
+  }
+}
 
 .bg-light-red {
   font-weight: 400;
   background-color: #ff725c;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-red {
+    font-weight: 600;
+  }
 }
 
 .orange {
@@ -865,11 +990,21 @@ span.linenos {
   background-color: #ff6300;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-orange {
+    font-weight: 600;
+  }
+}
 
 .bg-orange {
   font-weight: 400;
   background-color: #ff6300;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-orange {
+    font-weight: 600;
+  }
 }
 
 .gold {
@@ -883,11 +1018,21 @@ span.linenos {
   background-color: #ffb700;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-gold {
+    font-weight: 600;
+  }
+}
 
 .bg-gold {
   font-weight: 400;
   background-color: #ffb700;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-gold {
+    font-weight: 600;
+  }
 }
 
 .yellow {
@@ -901,11 +1046,21 @@ span.linenos {
   background-color: #ffd700;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-yellow {
+    font-weight: 600;
+  }
+}
 
 .bg-yellow {
   font-weight: 400;
   background-color: #ffd700;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-yellow {
+    font-weight: 600;
+  }
 }
 
 .light-yellow {
@@ -919,11 +1074,21 @@ span.linenos {
   background-color: #fbf1a9;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-yellow {
+    font-weight: 600;
+  }
+}
 
 .bg-light-yellow {
   font-weight: 400;
   background-color: #fbf1a9;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-yellow {
+    font-weight: 600;
+  }
 }
 
 .purple {
@@ -937,11 +1102,21 @@ span.linenos {
   background-color: #5e2ca5;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-purple {
+    font-weight: 600;
+  }
+}
 
 .bg-purple {
   font-weight: 400;
   background-color: #5e2ca5;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-purple {
+    font-weight: 600;
+  }
 }
 
 .light-purple {
@@ -955,11 +1130,21 @@ span.linenos {
   background-color: #a463f2;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-purple {
+    font-weight: 600;
+  }
+}
 
 .bg-light-purple {
   font-weight: 400;
   background-color: #a463f2;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-purple {
+    font-weight: 600;
+  }
 }
 
 .dark-pink {
@@ -973,11 +1158,21 @@ span.linenos {
   background-color: #d5008f;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-dark-pink {
+    font-weight: 600;
+  }
+}
 
 .bg-dark-pink {
   font-weight: 400;
   background-color: #d5008f;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-dark-pink {
+    font-weight: 600;
+  }
 }
 
 .hot-pink {
@@ -991,11 +1186,21 @@ span.linenos {
   background-color: #ff41b4;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-hot-pink {
+    font-weight: 600;
+  }
+}
 
 .bg-hot-pink {
   font-weight: 400;
   background-color: #ff41b4;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-hot-pink {
+    font-weight: 600;
+  }
 }
 
 .pink {
@@ -1009,11 +1214,21 @@ span.linenos {
   background-color: #ff80cc;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-pink {
+    font-weight: 600;
+  }
+}
 
 .bg-pink {
   font-weight: 400;
   background-color: #ff80cc;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-pink {
+    font-weight: 600;
+  }
 }
 
 .light-pink {
@@ -1027,11 +1242,21 @@ span.linenos {
   background-color: #ffa3d7;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-pink {
+    font-weight: 600;
+  }
+}
 
 .bg-light-pink {
   font-weight: 400;
   background-color: #ffa3d7;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-pink {
+    font-weight: 600;
+  }
 }
 
 .dark-green {
@@ -1045,11 +1270,21 @@ span.linenos {
   background-color: #137752;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-dark-green {
+    font-weight: 600;
+  }
+}
 
 .bg-dark-green {
   font-weight: 400;
   background-color: #137752;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-dark-green {
+    font-weight: 600;
+  }
 }
 
 .green {
@@ -1063,11 +1298,21 @@ span.linenos {
   background-color: #19a974;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-green {
+    font-weight: 600;
+  }
+}
 
 .bg-green {
   font-weight: 400;
   background-color: #19a974;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-green {
+    font-weight: 600;
+  }
 }
 
 .light-green {
@@ -1081,11 +1326,21 @@ span.linenos {
   background-color: #9eebcf;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-green {
+    font-weight: 600;
+  }
+}
 
 .bg-light-green {
   font-weight: 400;
   background-color: #9eebcf;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-green {
+    font-weight: 600;
+  }
 }
 
 .navy {
@@ -1099,11 +1354,21 @@ span.linenos {
   background-color: #001b44;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-navy {
+    font-weight: 600;
+  }
+}
 
 .bg-navy {
   font-weight: 400;
   background-color: #001b44;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-navy {
+    font-weight: 600;
+  }
 }
 
 .dark-blue {
@@ -1117,11 +1382,21 @@ span.linenos {
   background-color: #00449e;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-dark-blue {
+    font-weight: 600;
+  }
+}
 
 .bg-dark-blue {
   font-weight: 400;
   background-color: #00449e;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-dark-blue {
+    font-weight: 600;
+  }
 }
 
 .light-blue {
@@ -1135,11 +1410,21 @@ span.linenos {
   background-color: #96ccff;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-blue {
+    font-weight: 600;
+  }
+}
 
 .bg-light-blue {
   font-weight: 400;
   background-color: #96ccff;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-blue {
+    font-weight: 600;
+  }
 }
 
 .lightest-blue {
@@ -1153,11 +1438,21 @@ span.linenos {
   background-color: #cdecff;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-lightest-blue {
+    font-weight: 600;
+  }
+}
 
 .bg-lightest-blue {
   font-weight: 400;
   background-color: #cdecff;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-lightest-blue {
+    font-weight: 600;
+  }
 }
 
 .blue {
@@ -1171,11 +1466,21 @@ span.linenos {
   background-color: #357edd;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-blue {
+    font-weight: 600;
+  }
+}
 
 .bg-blue {
   font-weight: 400;
   background-color: #357edd;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-blue {
+    font-weight: 600;
+  }
 }
 
 .washed-blue {
@@ -1189,11 +1494,21 @@ span.linenos {
   background-color: #f6fffe;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-washed-blue {
+    font-weight: 600;
+  }
+}
 
 .bg-washed-blue {
   font-weight: 400;
   background-color: #f6fffe;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-washed-blue {
+    font-weight: 600;
+  }
 }
 
 .washed-green {
@@ -1207,11 +1522,21 @@ span.linenos {
   background-color: #e8fdf5;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-washed-green {
+    font-weight: 600;
+  }
+}
 
 .bg-washed-green {
   font-weight: 400;
   background-color: #e8fdf5;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-washed-green {
+    font-weight: 600;
+  }
 }
 
 .washed-yellow {
@@ -1225,11 +1550,21 @@ span.linenos {
   background-color: #fffceb;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-washed-yellow {
+    font-weight: 600;
+  }
+}
 
 .bg-washed-yellow {
   font-weight: 400;
   background-color: #fffceb;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-washed-yellow {
+    font-weight: 600;
+  }
 }
 
 .washed-red {
@@ -1243,11 +1578,21 @@ span.linenos {
   background-color: #ffdfdf;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-washed-red {
+    font-weight: 600;
+  }
+}
 
 .bg-washed-red {
   font-weight: 400;
   background-color: #ffdfdf;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-washed-red {
+    font-weight: 600;
+  }
 }
 
 .black {
@@ -1261,11 +1606,21 @@ span.linenos {
   background-color: #000;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-black {
+    font-weight: 600;
+  }
+}
 
 .bg-black {
   font-weight: 400;
   background-color: #000;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-black {
+    font-weight: 600;
+  }
 }
 
 .near-black {
@@ -1279,11 +1634,21 @@ span.linenos {
   background-color: #111;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-near-black {
+    font-weight: 600;
+  }
+}
 
 .bg-near-black {
   font-weight: 400;
   background-color: #111;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-near-black {
+    font-weight: 600;
+  }
 }
 
 .dark-gray {
@@ -1297,11 +1662,21 @@ span.linenos {
   background-color: #333;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-dark-gray {
+    font-weight: 600;
+  }
+}
 
 .bg-dark-gray {
   font-weight: 400;
   background-color: #333;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-dark-gray {
+    font-weight: 600;
+  }
 }
 
 .mid-gray {
@@ -1315,11 +1690,21 @@ span.linenos {
   background-color: #555;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-mid-gray {
+    font-weight: 600;
+  }
+}
 
 .bg-mid-gray {
   font-weight: 400;
   background-color: #555;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-mid-gray {
+    font-weight: 600;
+  }
 }
 
 .gray {
@@ -1333,11 +1718,21 @@ span.linenos {
   background-color: #777;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-gray {
+    font-weight: 600;
+  }
+}
 
 .bg-gray {
   font-weight: 400;
   background-color: #777;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-gray {
+    font-weight: 600;
+  }
 }
 
 .silver {
@@ -1351,11 +1746,21 @@ span.linenos {
   background-color: #999;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-silver {
+    font-weight: 600;
+  }
+}
 
 .bg-silver {
   font-weight: 400;
   background-color: #999;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-silver {
+    font-weight: 600;
+  }
 }
 
 .light-silver {
@@ -1369,11 +1774,21 @@ span.linenos {
   background-color: #aaa;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-silver {
+    font-weight: 600;
+  }
+}
 
 .bg-light-silver {
   font-weight: 400;
   background-color: #aaa;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-silver {
+    font-weight: 600;
+  }
 }
 
 .moon-gray {
@@ -1387,11 +1802,21 @@ span.linenos {
   background-color: #ccc;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-moon-gray {
+    font-weight: 600;
+  }
+}
 
 .bg-moon-gray {
   font-weight: 400;
   background-color: #ccc;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-moon-gray {
+    font-weight: 600;
+  }
 }
 
 .light-gray {
@@ -1405,11 +1830,21 @@ span.linenos {
   background-color: #eee;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-light-gray {
+    font-weight: 600;
+  }
+}
 
 .bg-light-gray {
   font-weight: 400;
   background-color: #eee;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-light-gray {
+    font-weight: 600;
+  }
 }
 
 .near-white {
@@ -1423,11 +1858,21 @@ span.linenos {
   background-color: #f4f4f4;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-near-white {
+    font-weight: 600;
+  }
+}
 
 .bg-near-white {
   font-weight: 400;
   background-color: #f4f4f4;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-near-white {
+    font-weight: 600;
+  }
 }
 
 .white {
@@ -1441,11 +1886,21 @@ span.linenos {
   background-color: #fff;
   padding: 0 0.25em;
 }
+@media print {
+  .inv-white {
+    font-weight: 600;
+  }
+}
 
 .bg-white {
   font-weight: 400;
   background-color: #fff;
   padding: 0 0.25em;
+}
+@media print {
+  .bg-white {
+    font-weight: 600;
+  }
 }
 
 .sidebar {
@@ -1647,22 +2102,19 @@ blockquote {
   text-align: left;
   border-left: solid 1px firebrick;
   margin-left: 0;
-  padding-left: 1em !important;
-  padding-right: 1em !important;
+  padding-left: 1em;
+  padding-right: 1em;
   font-style: normal;
 }
-blockquote.epigraph {
+blockquote.epigraph, blockquote.pull-quote {
   font-size: 1.15em;
   margin-left: 1em;
   font-style: italic;
 }
 blockquote.pull-quote {
-  margin-left: 1em;
-  font-style: italic;
   font-size: 1.5em;
 }
 blockquote p.attribution {
-  display: block !important;
   font-size: 0.85em;
   margin-top: -0.6em;
   text-align: right;
@@ -1797,6 +2249,10 @@ blockquote > div p:last-child {
 
 .align-right {
   margin-left: auto;
+}
+
+.vertical-align-center {
+  vertical-align: middle !important;
 }
 
 .border {
@@ -2965,12 +3421,8 @@ img.align-right {
   background-color: red !important;
 }
 
-.console a {
-  color: inherit !important;
-  background-color: red;
-}
-
 .caption-text {
+  font-style: italic;
   color: #333;
 }
 
@@ -2981,14 +3433,11 @@ img.align-right {
 
 .figure .caption {
   font-size: 0.8em;
-}
-
-p.caption {
   margin-top: 0;
 }
-
-.code-block-caption {
-  page-break-after: avoid;
+.figure .caption:before {
+  content: "△ ";
+  font-size: 70%;
 }
 
 div.math {
@@ -2998,39 +3447,6 @@ div.math {
 .mermaid .grid .tick line {
   opacity: 0.1 !important;
   shape-rendering: crispEdges;
-}
-
-.container > table {
-  margin-top: 0;
-}
-
-.highlights .code {
-  color: unset;
-}
-
-.versionchanged, .versionadded, .deprecated {
-  font-size: 0.9em;
-  color: #555;
-}
-
-.versionmodified {
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.9em;
-  color: darkred;
-}
-
-.container pre {
-  margin-top: 0;
-}
-
-.topic > ul:first-of-type {
-  margin-top: 0;
-}
-
-.compare > div.vertical-align-center {
-  vertical-align: middle !important;
 }
 
 table.docutils.footnote,
@@ -3222,6 +3638,21 @@ h2 + div.section > h3:first-child {
   margin-left: -1.25in;
   margin-right: -0.75in;
   width: 135%;
+}
+
+.figure {
+  margin-bottom: 1.5em;
+}
+
+.page-content ul {
+  padding-left: 1em;
+}
+.page-content ol {
+  padding-left: 1.25em;
+}
+
+.code-block-caption {
+  page-break-after: avoid;
 }
 
 /*# sourceMappingURL=handouts.css.map */
