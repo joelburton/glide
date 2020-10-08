@@ -124,7 +124,7 @@ cite {
 }
 @media print {
   cite {
-    font-weight: 600;
+    font-weight: 400;
   }
 }
 
@@ -261,6 +261,11 @@ sub {
 .muted {
   color: #777;
 }
+@media print {
+  .muted {
+    color: #555;
+  }
+}
 
 span.danger,
 span.warning,
@@ -303,6 +308,11 @@ span.del {
   text-decoration: line-through;
   color: #777;
 }
+@media print {
+  .gone {
+    color: #555;
+  }
+}
 
 span.code-wrong,
 span.wrong {
@@ -323,20 +333,20 @@ img.emoji {
 }
 
 .emoji-3x > img.emoji {
-  width: 2em;
+  width: 3em;
 }
 
 .emoji-5x > img.emoji {
   width: 5em;
 }
 
-.emoji-10x > img.emoji {
-  width: 10em;
+.emoji-7x > img.emoji {
+  width: 7em;
 }
 
 .comment {
   font-style: italic;
-  color: #999;
+  color: #777;
   font-weight: 300;
 }
 @media print {
@@ -392,7 +402,7 @@ li li:first-child {
 
 table.hlist > tbody > tr > td {
   vertical-align: top;
-  padding-right: 1em;
+  padding-right: 2em;
 }
 table.hlist > tbody > tr > td > ul, table.hlist > tbody > tr > td > ol {
   margin-top: 0;
@@ -604,10 +614,10 @@ code {
 
 .highlight pre,
 .parsed-literal-wrapper pre {
-  width: 80ch;
+  width: 48em;
   box-sizing: content-box;
   font-family: var(--theme-codefont);
-  font-size: 12pt;
+  font-size: 10.56pt;
   font-weight: 400;
   border: solid 0.5px #ccc;
   padding: 0.5em;
@@ -716,7 +726,7 @@ span.linenos {
   margin-top: 1rem;
   margin-bottom: 1rem;
   max-width: 40em;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 @media print {
   .admonition {
@@ -745,6 +755,7 @@ span.linenos {
 }
 @media print {
   .admonition .admonition-title {
+    color: #555;
     font-weight: 700;
     background-color: transparent !important;
   }
@@ -780,6 +791,12 @@ span.linenos {
 .admonition.warning .admonition-title {
   background-color: #ff6300;
 }
+@media print {
+  .admonition.caution .admonition-title,
+.admonition.warning .admonition-title {
+    color: #ff6300;
+  }
+}
 
 .admonition.error,
 .admonition.danger {
@@ -788,6 +805,12 @@ span.linenos {
 .admonition.error .admonition-title,
 .admonition.danger .admonition-title {
   background-color: #ff4136;
+}
+@media print {
+  .admonition.error .admonition-title,
+.admonition.danger .admonition-title {
+    color: #ff4136;
+  }
 }
 
 .admonition.seealso,
@@ -820,6 +843,11 @@ span.linenos {
 .admonition.note .admonition-title {
   background-color: #eee;
   color: #777;
+}
+@media print {
+  .admonition.note .admonition-title {
+    color: #555;
+  }
 }
 
 .topic {
@@ -2054,7 +2082,7 @@ p.sidebar-title {
 }
 
 .compare pre {
-  width: 40ch;
+  width: 25em;
 }
 
 .highlight-rainbow-lines .sa, .highlight-rainbow-lines .sb, .highlight-rainbow-lines .sc, .highlight-rainbow-lines .sd, .highlight-rainbow-lines .se, .highlight-rainbow-lines .si, .highlight-rainbow-lines .ss,
@@ -2476,7 +2504,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-25 pre {
-  font-size: 3pt;
+  font-size: 2.64pt;
 }
 
 .glide .font-size-30 {
@@ -2484,7 +2512,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-30 pre {
-  font-size: 3.6pt;
+  font-size: 3.168pt;
 }
 
 .glide .font-size-35 {
@@ -2492,7 +2520,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-35 pre {
-  font-size: 4.2pt;
+  font-size: 3.696pt;
 }
 
 .glide .font-size-40 {
@@ -2500,7 +2528,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-40 pre {
-  font-size: 4.8pt;
+  font-size: 4.224pt;
 }
 
 .glide .font-size-45 {
@@ -2508,7 +2536,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-45 pre {
-  font-size: 5.4pt;
+  font-size: 4.752pt;
 }
 
 .glide .font-size-50 {
@@ -2516,7 +2544,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-50 pre {
-  font-size: 6pt;
+  font-size: 5.28pt;
 }
 
 .glide .font-size-55 {
@@ -2524,7 +2552,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-55 pre {
-  font-size: 6.6pt;
+  font-size: 5.808pt;
 }
 
 .glide .font-size-60 {
@@ -2532,7 +2560,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-60 pre {
-  font-size: 7.2pt;
+  font-size: 6.336pt;
 }
 
 .glide .font-size-65 {
@@ -2540,7 +2568,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-65 pre {
-  font-size: 7.8pt;
+  font-size: 6.864pt;
 }
 
 .glide .font-size-70 {
@@ -2548,7 +2576,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-70 pre {
-  font-size: 8.4pt;
+  font-size: 7.392pt;
 }
 
 .glide .font-size-75 {
@@ -2556,7 +2584,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-75 pre {
-  font-size: 9pt;
+  font-size: 7.92pt;
 }
 
 .glide .font-size-80 {
@@ -2564,7 +2592,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-80 pre {
-  font-size: 9.6pt;
+  font-size: 8.448pt;
 }
 
 .glide .font-size-85 {
@@ -2572,7 +2600,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-85 pre {
-  font-size: 10.2pt;
+  font-size: 8.976pt;
 }
 
 .glide .font-size-90 {
@@ -2580,7 +2608,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-90 pre {
-  font-size: 10.8pt;
+  font-size: 9.504pt;
 }
 
 .glide .font-size-95 {
@@ -2588,7 +2616,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-95 pre {
-  font-size: 11.4pt;
+  font-size: 10.032pt;
 }
 
 .glide .font-size-100 {
@@ -2596,7 +2624,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-100 pre {
-  font-size: 12pt;
+  font-size: 10.56pt;
 }
 
 .glide .font-size-105 {
@@ -2604,7 +2632,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-105 pre {
-  font-size: 12.6pt;
+  font-size: 11.088pt;
 }
 
 .glide .font-size-110 {
@@ -2612,7 +2640,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-110 pre {
-  font-size: 13.2pt;
+  font-size: 11.616pt;
 }
 
 .glide .font-size-115 {
@@ -2620,7 +2648,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-115 pre {
-  font-size: 13.8pt;
+  font-size: 12.144pt;
 }
 
 .glide .font-size-120 {
@@ -2628,7 +2656,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-120 pre {
-  font-size: 14.4pt;
+  font-size: 12.672pt;
 }
 
 .glide .font-size-125 {
@@ -2636,7 +2664,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-125 pre {
-  font-size: 15pt;
+  font-size: 13.2pt;
 }
 
 .glide .font-size-130 {
@@ -2644,7 +2672,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-130 pre {
-  font-size: 15.6pt;
+  font-size: 13.728pt;
 }
 
 .glide .font-size-135 {
@@ -2652,7 +2680,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-135 pre {
-  font-size: 16.2pt;
+  font-size: 14.256pt;
 }
 
 .glide .font-size-140 {
@@ -2660,7 +2688,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-140 pre {
-  font-size: 16.8pt;
+  font-size: 14.784pt;
 }
 
 .glide .font-size-145 {
@@ -2668,7 +2696,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-145 pre {
-  font-size: 17.4pt;
+  font-size: 15.312pt;
 }
 
 .glide .font-size-150 {
@@ -2676,7 +2704,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-150 pre {
-  font-size: 18pt;
+  font-size: 15.84pt;
 }
 
 .glide .font-size-155 {
@@ -2684,7 +2712,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-155 pre {
-  font-size: 18.6pt;
+  font-size: 16.368pt;
 }
 
 .glide .font-size-160 {
@@ -2692,7 +2720,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-160 pre {
-  font-size: 19.2pt;
+  font-size: 16.896pt;
 }
 
 .glide .font-size-165 {
@@ -2700,7 +2728,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-165 pre {
-  font-size: 19.8pt;
+  font-size: 17.424pt;
 }
 
 .glide .font-size-170 {
@@ -2708,7 +2736,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-170 pre {
-  font-size: 20.4pt;
+  font-size: 17.952pt;
 }
 
 .glide .font-size-175 {
@@ -2716,7 +2744,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-175 pre {
-  font-size: 21pt;
+  font-size: 18.48pt;
 }
 
 .glide .font-size-180 {
@@ -2724,7 +2752,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-180 pre {
-  font-size: 21.6pt;
+  font-size: 19.008pt;
 }
 
 .glide .font-size-185 {
@@ -2732,7 +2760,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-185 pre {
-  font-size: 22.2pt;
+  font-size: 19.536pt;
 }
 
 .glide .font-size-190 {
@@ -2740,7 +2768,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-190 pre {
-  font-size: 22.8pt;
+  font-size: 20.064pt;
 }
 
 .glide .font-size-195 {
@@ -2748,7 +2776,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-195 pre {
-  font-size: 23.4pt;
+  font-size: 20.592pt;
 }
 
 .glide .font-size-200 {
@@ -2756,7 +2784,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-200 pre {
-  font-size: 24pt;
+  font-size: 21.12pt;
 }
 
 @media print {
@@ -2905,483 +2933,483 @@ blockquote > div p:last-child {
   }
 }
 .code-cols-1 pre {
-  width: 1ch !important;
+  width: 0.6em !important;
 }
 
 .code-cols-2 pre {
-  width: 2ch !important;
+  width: 1.2em !important;
 }
 
 .code-cols-3 pre {
-  width: 3ch !important;
+  width: 1.8em !important;
 }
 
 .code-cols-4 pre {
-  width: 4ch !important;
+  width: 2.4em !important;
 }
 
 .code-cols-5 pre {
-  width: 5ch !important;
+  width: 3em !important;
 }
 
 .code-cols-6 pre {
-  width: 6ch !important;
+  width: 3.6em !important;
 }
 
 .code-cols-7 pre {
-  width: 7ch !important;
+  width: 4.2em !important;
 }
 
 .code-cols-8 pre {
-  width: 8ch !important;
+  width: 4.8em !important;
 }
 
 .code-cols-9 pre {
-  width: 9ch !important;
+  width: 5.4em !important;
 }
 
 .code-cols-10 pre {
-  width: 10ch !important;
+  width: 6em !important;
 }
 
 .code-cols-11 pre {
-  width: 11ch !important;
+  width: 6.6em !important;
 }
 
 .code-cols-12 pre {
-  width: 12ch !important;
+  width: 7.2em !important;
 }
 
 .code-cols-13 pre {
-  width: 13ch !important;
+  width: 7.8em !important;
 }
 
 .code-cols-14 pre {
-  width: 14ch !important;
+  width: 8.4em !important;
 }
 
 .code-cols-15 pre {
-  width: 15ch !important;
+  width: 9em !important;
 }
 
 .code-cols-16 pre {
-  width: 16ch !important;
+  width: 9.6em !important;
 }
 
 .code-cols-17 pre {
-  width: 17ch !important;
+  width: 10.2em !important;
 }
 
 .code-cols-18 pre {
-  width: 18ch !important;
+  width: 10.8em !important;
 }
 
 .code-cols-19 pre {
-  width: 19ch !important;
+  width: 11.4em !important;
 }
 
 .code-cols-20 pre {
-  width: 20ch !important;
+  width: 12em !important;
 }
 
 .code-cols-21 pre {
-  width: 21ch !important;
+  width: 12.6em !important;
 }
 
 .code-cols-22 pre {
-  width: 22ch !important;
+  width: 13.2em !important;
 }
 
 .code-cols-23 pre {
-  width: 23ch !important;
+  width: 13.8em !important;
 }
 
 .code-cols-24 pre {
-  width: 24ch !important;
+  width: 14.4em !important;
 }
 
 .code-cols-25 pre {
-  width: 25ch !important;
+  width: 15em !important;
 }
 
 .code-cols-26 pre {
-  width: 26ch !important;
+  width: 15.6em !important;
 }
 
 .code-cols-27 pre {
-  width: 27ch !important;
+  width: 16.2em !important;
 }
 
 .code-cols-28 pre {
-  width: 28ch !important;
+  width: 16.8em !important;
 }
 
 .code-cols-29 pre {
-  width: 29ch !important;
+  width: 17.4em !important;
 }
 
 .code-cols-30 pre {
-  width: 30ch !important;
+  width: 18em !important;
 }
 
 .code-cols-31 pre {
-  width: 31ch !important;
+  width: 18.6em !important;
 }
 
 .code-cols-32 pre {
-  width: 32ch !important;
+  width: 19.2em !important;
 }
 
 .code-cols-33 pre {
-  width: 33ch !important;
+  width: 19.8em !important;
 }
 
 .code-cols-34 pre {
-  width: 34ch !important;
+  width: 20.4em !important;
 }
 
 .code-cols-35 pre {
-  width: 35ch !important;
+  width: 21em !important;
 }
 
 .code-cols-36 pre {
-  width: 36ch !important;
+  width: 21.6em !important;
 }
 
 .code-cols-37 pre {
-  width: 37ch !important;
+  width: 22.2em !important;
 }
 
 .code-cols-38 pre {
-  width: 38ch !important;
+  width: 22.8em !important;
 }
 
 .code-cols-39 pre {
-  width: 39ch !important;
+  width: 23.4em !important;
 }
 
 .code-cols-40 pre {
-  width: 40ch !important;
+  width: 24em !important;
 }
 
 .code-cols-41 pre {
-  width: 41ch !important;
+  width: 24.6em !important;
 }
 
 .code-cols-42 pre {
-  width: 42ch !important;
+  width: 25.2em !important;
 }
 
 .code-cols-43 pre {
-  width: 43ch !important;
+  width: 25.8em !important;
 }
 
 .code-cols-44 pre {
-  width: 44ch !important;
+  width: 26.4em !important;
 }
 
 .code-cols-45 pre {
-  width: 45ch !important;
+  width: 27em !important;
 }
 
 .code-cols-46 pre {
-  width: 46ch !important;
+  width: 27.6em !important;
 }
 
 .code-cols-47 pre {
-  width: 47ch !important;
+  width: 28.2em !important;
 }
 
 .code-cols-48 pre {
-  width: 48ch !important;
+  width: 28.8em !important;
 }
 
 .code-cols-49 pre {
-  width: 49ch !important;
+  width: 29.4em !important;
 }
 
 .code-cols-50 pre {
-  width: 50ch !important;
+  width: 30em !important;
 }
 
 .code-cols-51 pre {
-  width: 51ch !important;
+  width: 30.6em !important;
 }
 
 .code-cols-52 pre {
-  width: 52ch !important;
+  width: 31.2em !important;
 }
 
 .code-cols-53 pre {
-  width: 53ch !important;
+  width: 31.8em !important;
 }
 
 .code-cols-54 pre {
-  width: 54ch !important;
+  width: 32.4em !important;
 }
 
 .code-cols-55 pre {
-  width: 55ch !important;
+  width: 33em !important;
 }
 
 .code-cols-56 pre {
-  width: 56ch !important;
+  width: 33.6em !important;
 }
 
 .code-cols-57 pre {
-  width: 57ch !important;
+  width: 34.2em !important;
 }
 
 .code-cols-58 pre {
-  width: 58ch !important;
+  width: 34.8em !important;
 }
 
 .code-cols-59 pre {
-  width: 59ch !important;
+  width: 35.4em !important;
 }
 
 .code-cols-60 pre {
-  width: 60ch !important;
+  width: 36em !important;
 }
 
 .code-cols-61 pre {
-  width: 61ch !important;
+  width: 36.6em !important;
 }
 
 .code-cols-62 pre {
-  width: 62ch !important;
+  width: 37.2em !important;
 }
 
 .code-cols-63 pre {
-  width: 63ch !important;
+  width: 37.8em !important;
 }
 
 .code-cols-64 pre {
-  width: 64ch !important;
+  width: 38.4em !important;
 }
 
 .code-cols-65 pre {
-  width: 65ch !important;
+  width: 39em !important;
 }
 
 .code-cols-66 pre {
-  width: 66ch !important;
+  width: 39.6em !important;
 }
 
 .code-cols-67 pre {
-  width: 67ch !important;
+  width: 40.2em !important;
 }
 
 .code-cols-68 pre {
-  width: 68ch !important;
+  width: 40.8em !important;
 }
 
 .code-cols-69 pre {
-  width: 69ch !important;
+  width: 41.4em !important;
 }
 
 .code-cols-70 pre {
-  width: 70ch !important;
+  width: 42em !important;
 }
 
 .code-cols-71 pre {
-  width: 71ch !important;
+  width: 42.6em !important;
 }
 
 .code-cols-72 pre {
-  width: 72ch !important;
+  width: 43.2em !important;
 }
 
 .code-cols-73 pre {
-  width: 73ch !important;
+  width: 43.8em !important;
 }
 
 .code-cols-74 pre {
-  width: 74ch !important;
+  width: 44.4em !important;
 }
 
 .code-cols-75 pre {
-  width: 75ch !important;
+  width: 45em !important;
 }
 
 .code-cols-76 pre {
-  width: 76ch !important;
+  width: 45.6em !important;
 }
 
 .code-cols-77 pre {
-  width: 77ch !important;
+  width: 46.2em !important;
 }
 
 .code-cols-78 pre {
-  width: 78ch !important;
+  width: 46.8em !important;
 }
 
 .code-cols-79 pre {
-  width: 79ch !important;
+  width: 47.4em !important;
 }
 
 .code-cols-80 pre {
-  width: 80ch !important;
+  width: 48em !important;
 }
 
 .code-cols-81 pre {
-  width: 81ch !important;
+  width: 48.6em !important;
 }
 
 .code-cols-82 pre {
-  width: 82ch !important;
+  width: 49.2em !important;
 }
 
 .code-cols-83 pre {
-  width: 83ch !important;
+  width: 49.8em !important;
 }
 
 .code-cols-84 pre {
-  width: 84ch !important;
+  width: 50.4em !important;
 }
 
 .code-cols-85 pre {
-  width: 85ch !important;
+  width: 51em !important;
 }
 
 .code-cols-86 pre {
-  width: 86ch !important;
+  width: 51.6em !important;
 }
 
 .code-cols-87 pre {
-  width: 87ch !important;
+  width: 52.2em !important;
 }
 
 .code-cols-88 pre {
-  width: 88ch !important;
+  width: 52.8em !important;
 }
 
 .code-cols-89 pre {
-  width: 89ch !important;
+  width: 53.4em !important;
 }
 
 .code-cols-90 pre {
-  width: 90ch !important;
+  width: 54em !important;
 }
 
 .code-cols-91 pre {
-  width: 91ch !important;
+  width: 54.6em !important;
 }
 
 .code-cols-92 pre {
-  width: 92ch !important;
+  width: 55.2em !important;
 }
 
 .code-cols-93 pre {
-  width: 93ch !important;
+  width: 55.8em !important;
 }
 
 .code-cols-94 pre {
-  width: 94ch !important;
+  width: 56.4em !important;
 }
 
 .code-cols-95 pre {
-  width: 95ch !important;
+  width: 57em !important;
 }
 
 .code-cols-96 pre {
-  width: 96ch !important;
+  width: 57.6em !important;
 }
 
 .code-cols-97 pre {
-  width: 97ch !important;
+  width: 58.2em !important;
 }
 
 .code-cols-98 pre {
-  width: 98ch !important;
+  width: 58.8em !important;
 }
 
 .code-cols-99 pre {
-  width: 99ch !important;
+  width: 59.4em !important;
 }
 
 .code-cols-100 pre {
-  width: 100ch !important;
+  width: 60em !important;
 }
 
 .code-cols-101 pre {
-  width: 101ch !important;
+  width: 60.6em !important;
 }
 
 .code-cols-102 pre {
-  width: 102ch !important;
+  width: 61.2em !important;
 }
 
 .code-cols-103 pre {
-  width: 103ch !important;
+  width: 61.8em !important;
 }
 
 .code-cols-104 pre {
-  width: 104ch !important;
+  width: 62.4em !important;
 }
 
 .code-cols-105 pre {
-  width: 105ch !important;
+  width: 63em !important;
 }
 
 .code-cols-106 pre {
-  width: 106ch !important;
+  width: 63.6em !important;
 }
 
 .code-cols-107 pre {
-  width: 107ch !important;
+  width: 64.2em !important;
 }
 
 .code-cols-108 pre {
-  width: 108ch !important;
+  width: 64.8em !important;
 }
 
 .code-cols-109 pre {
-  width: 109ch !important;
+  width: 65.4em !important;
 }
 
 .code-cols-110 pre {
-  width: 110ch !important;
+  width: 66em !important;
 }
 
 .code-cols-111 pre {
-  width: 111ch !important;
+  width: 66.6em !important;
 }
 
 .code-cols-112 pre {
-  width: 112ch !important;
+  width: 67.2em !important;
 }
 
 .code-cols-113 pre {
-  width: 113ch !important;
+  width: 67.8em !important;
 }
 
 .code-cols-114 pre {
-  width: 114ch !important;
+  width: 68.4em !important;
 }
 
 .code-cols-115 pre {
-  width: 115ch !important;
+  width: 69em !important;
 }
 
 .code-cols-116 pre {
-  width: 116ch !important;
+  width: 69.6em !important;
 }
 
 .code-cols-117 pre {
-  width: 117ch !important;
+  width: 70.2em !important;
 }
 
 .code-cols-118 pre {
-  width: 118ch !important;
+  width: 70.8em !important;
 }
 
 .code-cols-119 pre {
-  width: 119ch !important;
+  width: 71.4em !important;
 }
 
 .code-cols-120 pre {
-  width: 120ch !important;
+  width: 72em !important;
 }
 
 .code-fit-content pre, .fit-content {
@@ -3431,6 +3459,10 @@ img.align-right {
   font-size: 0.8em;
 }
 
+.figure {
+  margin-bottom: 1.5em;
+}
+
 .figure .caption {
   font-size: 0.8em;
   margin-top: 0;
@@ -3454,11 +3486,10 @@ table.docutils.footnote td {
   border: none;
 }
 
-/* =============== PAGE STRUCTURE =============== */
 body {
   margin: 0;
-  border-top: solid 1.5rem var(--theme-clientcolor);
   background-color: var(--theme-backgroundcolor);
+  border-top: solid 1.5rem var(--theme-clientcolor);
   -webkit-text-size-adjust: none;
 }
 @media print {
@@ -3467,37 +3498,38 @@ body {
   }
 }
 
-.page-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-bottom: 4em;
-  /* fit nicely on ipad portrait */
-  max-width: 800px;
-  margin: 2em 2em 0 5%;
-  min-height: 100vh;
-}
-@media (min-width: 768px) {
-  .page-content {
-    margin-left: 5%;
-    margin-right: 5%;
+@media print {
+  h1 {
+    string-set: chapter content();
+  }
+
+  @page {
+    margin-inside: 1.5in;
+    @bottom-left {
+      content: string(chapter);
+    }
+    @bottom-right {
+      content: counter(page);
+    }
   }
 }
-@media (min-width: 1150px) {
+.page-content {
+  width: 728px;
+  margin: 2em auto 4em auto;
+  min-height: 100vh;
+}
+@media (min-width: 1100px) {
   .page-content {
+    position: absolute;
+    top: 0;
     left: 325px;
-    margin-left: 0;
-    margin-right: auto;
-    width: 1150px;
   }
 }
 @media print {
   .page-content {
     position: static;
-    left: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-bottom: 0;
+    margin: 0;
+    width: auto;
   }
 }
 
@@ -3505,7 +3537,7 @@ body {
   display: none;
 }
 
-@media (min-width: 1150px) {
+@media (min-width: 1100px) {
   #page-sidebar {
     font-size: 0.8rem;
     display: block;
@@ -3520,6 +3552,10 @@ body {
   }
   #page-sidebar > header {
     text-align: center;
+  }
+  #page-sidebar .page-logo {
+    max-width: 50%;
+    margin-top: 1em;
   }
   #page-sidebar a {
     color: inherit;
@@ -3562,27 +3598,41 @@ body {
   }
 }
 @media print {
-  @page {
-    margin-left: 1.5in;
-    @bottom {
-      content: counter(page);
-    }
-  }
   #page-sidebar {
     display: none;
   }
 }
-.page-content > .section > .section:first-of-type h2 {
+h1 + .section h2:first-child {
   margin-top: 1em;
 }
 
-.page-logo {
-  max-width: 50%;
+h2 + div.section > h3:first-child {
   margin-top: 1em;
 }
 
-.raw-reveal {
-  display: none;
+.page-content a {
+  color: #00449e;
+  font-weight: 400;
+  text-decoration: none;
+}
+.page-content a:hover {
+  text-decoration: underline;
+}
+.page-content a.toc-backref {
+  color: inherit;
+  font-weight: inherit;
+}
+@media print {
+  .page-content a {
+    font-weight: 400;
+  }
+  .page-content a.external::after {
+    content: " <" attr(href) ">";
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  page-break-after: avoid;
 }
 
 p, div, pre {
@@ -3595,7 +3645,10 @@ div.admonition {
   orphans: 5;
 }
 
-p + ul, p + ol {
+p + ul,
+p + ol,
+p + dl,
+p + div.compare {
   page-break-before: avoid;
 }
 
@@ -3604,44 +3657,11 @@ table {
 }
 
 pre {
-  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
-.page-content a {
-  color: #00449e;
-  font-weight: 400;
-  text-decoration: none;
-}
-.page-content a:hover {
-  text-decoration: underline;
-}
-@media print {
-  .page-content a.external::after {
-    content: " <" attr(href) ">";
-  }
-}
-
-.page-content .raw-reveal {
-  display: none;
-}
-
-@media print {
-  .noprint {
-    display: none !important;
-  }
-}
-h2 + div.section > h3:first-child {
-  margin-top: 1em;
-}
-
-.width-120 {
-  margin-left: -1.25in;
-  margin-right: -0.75in;
-  width: 135%;
-}
-
-.figure {
-  margin-bottom: 1.5em;
+.code-block-caption {
+  page-break-after: avoid;
 }
 
 .page-content ul {
@@ -3651,8 +3671,21 @@ h2 + div.section > h3:first-child {
   padding-left: 1.25em;
 }
 
-.code-block-caption {
-  page-break-after: avoid;
+.raw-reveal {
+  display: none;
+}
+
+@media print {
+  .noprint {
+    display: none !important;
+  }
+}
+@media print {
+  .print-width-120 {
+    width: 135%;
+    margin-left: -1.25in;
+    margin-right: -0.5in;
+  }
 }
 
 /*# sourceMappingURL=handouts.css.map */

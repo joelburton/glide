@@ -38,7 +38,7 @@ It can take options for:
 - background: an image ("lemur.jpg") or CSS Color ("red" or "#f00")
 - class: a CSS class that gets added onto the slide section tag
 """
-
+from sphinx import addnodes
 from toolz import first
 from docutils import nodes
 from docutils.parsers.rst import Directive
@@ -149,8 +149,88 @@ def process_newslides(app, doctree, fromdocname):
         current_slide.remove(node)
 
 
+# noinspection PyUnusedLocal,SpellCheckingInspection
+def add_intro_slides(app, doctree, fromdocname):
+    """Process sections, adding initial slides where needed.
+
+    Often, the first slide for a group has the same name as the group, like::
+
+        Redux
+        =====
+
+        Redux
+        -----
+
+        Blah blah.
+
+    This is ok, but mildly annoying for handouts, since its TOC gets cluttered
+    with needless "intro" sections.
+
+    As of Glide 2.0, we don't need the second heading there---this processor
+    will find raw content inside of a group section and wrap it in a new
+    section.
+    """
+
+    # We only need to add these sections for slides, so bail out if not slides.
+    if app.builder.name != 'revealjs':
+        return
+
+    # Find each "group level" section and walk through its children: as soon
+    # as we find an actual section stop. If we encounter content-generating
+    # stuff before that, create a section for it.
+
+    for top_sect in doctree.children:
+        if not isinstance(top_sect, nodes.section):
+            continue
+
+        for group_sect in top_sect.children:
+            if not isinstance(group_sect, nodes.section):
+                continue
+
+            found_title = ""
+            # This will become true when content is found before section
+            found_content = False
+
+            for node in list(group_sect.children):
+                if isinstance(node, nodes.section):
+                    # May or may not have already found content-before-section,
+                    # but in either case, we stop looking now.
+                    break
+
+                if isinstance(node, nodes.title):
+                    found_title = node.astext()
+                    continue
+
+                if isinstance(
+                        node,
+                        (nodes.target, nodes.topic, addnodes.index)):
+                    # Ignore things that don't produce content --- it is
+                    # possible that this list is incomplete, so you can add
+                    # things to it
+                    continue
+
+                if not found_content:
+                    # Found content before first section, so add a section
+                    # for this content, using the title we found on the group
+                    new_intro_section = nodes.section()
+                    doctree.set_id(new_intro_section)
+                    assert found_title != "", \
+                        "Shouldn't happen: found content before title"
+                    new_intro_section.append(nodes.title(text=found_title))
+                    group_sect.insert(1, new_intro_section)
+                    found_content = True
+
+                # For all content found, remove from directly in group, and add
+                # to the new section being created,
+                group_sect.remove(node)
+                # noinspection PyUnboundLocalVariable
+                new_intro_section.append(node)
+
+
 def setup(app):
     app.add_node(newslide)
     app.add_directive('newslide', NewslideDirective)
+    # Ensure before process_newslides --- there needs to be a slide to newslide!
+    app.connect('doctree-resolved', add_intro_slides)
     app.connect('doctree-resolved', process_newslides)
     return {'version': version, 'parallel_read_safe': True}

@@ -8,8 +8,10 @@ Glide Reference
 
   :version: |version|
 
-  You may find it useful to review the source of this document while reading it:
-  `index.rst`:download:.
+  .. container:: noprint
+
+    You may find it useful to review the source of this document while reading it:
+    `index.rst`:download:.
 
 Overall document format
 =======================
@@ -22,7 +24,7 @@ RST files should always use an :index:`indent` of **2 spaces.**
 .. container:: compare
 
   .. code-block:: rst
-    :class: code-fit-content
+    :class: code-cols-20
 
     .. image::
       :class: border
@@ -33,7 +35,7 @@ RST files should always use an :index:`indent` of **2 spaces.**
     not
 
   .. code-block:: rst
-    :class: code-wrong code-fit-content
+    :class: code-wrong code-cols-20
 
     .. image::
        :class: border
@@ -44,7 +46,7 @@ RST files should always use an :index:`indent` of **2 spaces.**
     or
 
   .. code-block:: rst
-    :class: code-wrong code-fit-content
+    :class: code-wrong code-cols-20
 
     .. image::
         :class: border
@@ -123,6 +125,8 @@ At the top of a section, can introduce the "`highlights`:index:" of that section
 
       - CSS
 
+.. newslide::
+
 Can also introduce a menu of subheadings below this level:
 
 .. index:: contents
@@ -137,7 +141,7 @@ Can also introduce a menu of subheadings below this level:
 
   (that will show links to the subsection heads)
 
-Neither of these appear in slides.
+The contents menu does not appear in slides.
 
 .. index::
   single: slides
@@ -186,17 +190,14 @@ Can take a background or color, like ``newslide``.
 
 .. attention:: Notice the content of interslide is inside the interslide.
 
-Typography
-==========
-
-Typography
-----------
 
 .. index::
   single: divider
   pair: dash; em
   pair: dash; en
 
+Typography
+==========
 
 .. container:: compare
 
@@ -242,13 +243,11 @@ Links
     `Google <http://google.com>`_ is a
     search engine.
 
-Roles
-=====
 
 .. index:: roles
 
 Roles
------
+=====
 
 .. code-block:: rst
 
@@ -352,7 +351,7 @@ Roles
   ``:ins:``            `New thing`:ins:      Insertion/added-in diff
   ``:del:``            `Deleted`:del:        Removed/gone-in-diff
   ``:gone:``           `Gone`:gone:          Mark as moved
-  ``:comment:``        `// see...`:comment:  Make as code-like comment
+  ``:comment:``        `// see...`:comment:  Mark as code-like comment
   ``:wrong:``          `var x=7`:wrong:      Wrong way to do it
   ==================== ===================== ==================================
 
@@ -362,13 +361,11 @@ Roles
 
 .. todo wrong and code-wrong?
 
-Substitutions
-=============
 
 .. index:: substitutions
 
 Substitutions
--------------
+=============
 
 .. hlist::
   :columns: 3
@@ -451,41 +448,38 @@ Variable interpolation
 
 At Rithm, `version` becomes the code for our cohorts, eg ``"r15"``.
 
-Emoji
-=====
 
 .. index:: emoji
 
 Emoji
------
+=====
 
 Paste in actual emoji symbol (we use `Twemoji <https://twemoji.twitter.com/>`_)
 
 To size:
 
-Size with role :samp:`:emoji-{1,2,3,5,10}x:` |br|
-:emoji-1x:`🌮` :emoji-2x:`🌮` :emoji-3x:`🌮` :emoji-5x:`🌮` :emoji-10x:`🌮`
+Size with role :samp:`:emoji-{1,2,3,5,7}x:` |br|
+:emoji-1x:`🌮` :emoji-2x:`🌮` :emoji-3x:`🌮` :emoji-5x:`🌮` :emoji-7x:`🌮`
 
 .. versionadded:: 2.0
 
   Handle emoji in all output formats. Added SVG images for emoji and
   resizing ability.
 
+
+
+.. index:: colors
+
 .. _colors:
 
 Colors
 ======
 
-.. index:: colors
-
-Colors
-------
-
 .. raw:: html
 
   <style>
     .color-table span { color: transparent;  }
-    .color-table ul { list-style-type: none; margin: 0; padding: 0; font-size: 90% }
+    .color-table ul { list-style-type: none; margin: 0; padding: 0; font-size: 80% }
   </style>
 
 .. container:: color-table
@@ -540,11 +534,11 @@ Using colors
 
 Inline as role:
 
-- ``:pink:`` :pink:`pink`
+- ``:pink:`` |rarr| :pink:`pink`
 
-- ``:bg-pink:`` :bg-pink:`bg-pink`
+- ``:bg-pink:`` |rarr| :bg-pink:`bg-pink`
 
-- ``:inv-pink:``: :inv-pink:`inv-pink`
+- ``:inv-pink:`` |rarr| :inv-pink:`inv-pink`
 
 Can use where classes are allowed:
 
@@ -846,7 +840,7 @@ Complex tables, where there are spanning rows or columns, can be made like so:
 .. container:: compare
 
   .. code-block:: rst
-    :class: code-font-size-85 code-fit-content
+    :class: code-font-size-75 code-fit-content width-45
 
     +-----------------+-------+-------+-------+
     | Header, col 1   | Head2 | Head3 | Head4 |
@@ -862,7 +856,7 @@ Complex tables, where there are spanning rows or columns, can be made like so:
     +-----------------+-------+---------------+
 
   .. table::
-    :class: font-size-85
+    :class: font-size-85 width-50
 
     +-----------------+-------+-------+-------+
     | Header, col 1   | Head2 | Head3 | Head4 |
@@ -905,6 +899,7 @@ Can also make tables from lists:
   .. list-table::
     :header-rows: 1
     :class: font-size-85
+    :width: 60%
 
     * - Heading row 1, column 1
       - Heading row 1, column 2
@@ -1228,9 +1223,6 @@ Marking wrong code
 Console displays
 ================
 
-Console displays
-----------------
-
 .. index::
   single: console
   pair: languages; console
@@ -1272,11 +1264,9 @@ Then add a `console` class to make it look like a console:
         # Lots of output here ...
         Installed foo==1.0 bar==2.0
 
-Parsed literals
-===============
 
 Parsed literals
----------------
+===============
 
 .. index:: parsed-literal, line art
 
@@ -1314,11 +1304,9 @@ To make line art or markup monospaced text, use ``parsed-literal``.
      **add([1,2,3])**              ⭡[1,2,3]
      ──────────────────────────────────
 
-Compare side-by-side blocks
-===========================
 
 Compare side-by-side blocks
----------------------------
+===========================
 
 .. index:: side-by-side; compare
 
@@ -1352,15 +1340,15 @@ will create:
       print("hi");
     }
 
-See `utility_classes`:ref: for useful classes to control width of blocks.
+.. seealso:: Other side-by-side effects
 
-For only-on-slides side-by-side of lists, see `putting_lists_side_by_side`:ref:
+  See `utility_classes`:ref: for useful classes to control width of blocks.
+
+  For only-on-slides side-by-side of lists, see `putting_lists_side_by_side`:ref:
+
 
 Admonitions
 ===========
-
-Admonitions
------------
 
 .. index::
   triple: directive; admonitions; important
@@ -1449,19 +1437,18 @@ None of these appear in slides, unless you add a `class` of :samp:`revealjs`:
   .. container::
 
     .. note:: This appears on slides, too
+      :class: revealjs
 
       Along with details.
 
 .. versionadded:: 2.0 Almost all admonitions are new.
+
 
 Topics
 ======
 
 .. index::
   pair: topic; directive
-
-Topics
-------
 
 These are for handout notes where there is a side-story:
 
@@ -1486,15 +1473,13 @@ These are for handout notes where there is a side-story:
   .. need this to clear that float (couldn't use compare blocks because
     you can't put a topic in a container!
 
+
 Sidebars
 ========
 
 .. index::
   pair: sidebar; directive
   pair: side-by-side; sidebar
-
-Sidebars
---------
 
 For handouts side material or discussion of code to the right:
 
@@ -1529,15 +1514,13 @@ For handouts side material or discussion of code to the right:
 By default, sidebars are 30% wide --- |br|
 can change with :samp:`.sidebar-{n}`, where *n* is 20-80.
 
+
 Hover reveal
 ============
 
 .. index::
   single: hover-reveal
   single: hint, hover-reveal
-
-Hover reveal
-------------
 
 .. container:: compare
 
@@ -1586,9 +1569,6 @@ Quotes
 ======
 
 .. index:: quote, blockquote
-
-Quotes
-------
 
 .. container:: compare
 
@@ -1665,9 +1645,6 @@ For more dramatic presentation, useful for running an inspirational quote:
 
 Fragments
 =========
-
-Fragments
----------
 
 (most of these have no effect except on slides)
 
@@ -1791,9 +1768,6 @@ Individual incremental elements
 Images
 ======
 
-Images
-------
-
 .. container:: compare
 
   .. code-block::
@@ -1904,7 +1878,6 @@ The ``graphviz`` directive  can take a file:
 <https://graphviz.readthedocs.io/en/stable/examples.html>`_
 
 .. versionchanged:: 2.0 Moved to standard Sphinx `graph`, `digraph`, `graphviz`
-
 
 AAFig (line drawing)
 --------------------
@@ -2032,9 +2005,9 @@ Mermaid diagrams
 
       *(see source for full text)*
 
-.. .. only:: not epub
+.. newslide::
 
-.. container:: width-120
+.. container:: print-width-120
 
   .. mermaid::
     :alt: timeline
@@ -2071,7 +2044,6 @@ Mermaid diagrams
 |
 
 .. newslide::
-
 
 .. container:: compare
 
@@ -2127,11 +2099,9 @@ Draw.io
 
 .. versionadded:: 2.0 Added `draw.io`:program: diagrams.
 
-Footnotes
-=========
 
 Footnotes
----------
+=========
 
 .. container:: compare
 
@@ -2174,9 +2144,6 @@ Citations
 
 Controlling styling
 ===================
-
-Controlling styling
--------------------
 
 .. _utility_classes:
 
@@ -2242,11 +2209,9 @@ ifconfig
 
     You can refer to variables in the `conf.py`:file:.
 
-Force building to fail
-======================
 
 Force building to fail
-----------------------
+======================
 
 .. code-block:: rst
 
@@ -2254,15 +2219,14 @@ Force building to fail
 
     This exercise is hopelessly borked. Don't use.
 
-This prevents the document from being built until that directive is removed.
+This prevents the document from being built |br|
+until that directive is removed.
 
 .. versionadded:: 2.0 Add `fail` directive.
 
-Speaker Notes
-=============
 
 Speaker Notes
--------------
+=============
 
 Add speaker notes; can find these with :kbd:`s` in slides.
 

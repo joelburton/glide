@@ -209,7 +209,7 @@ _colors = """
 .. role:: emoji-2x
 .. role:: emoji-3x
 .. role:: emoji-5x
-.. role:: emoji-10x
+.. role:: emoji-7x
 """
 
 # Additional symbols to include

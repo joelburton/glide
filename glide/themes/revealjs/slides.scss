@@ -128,6 +128,15 @@ $codeFont: var(--theme-codefont);
   ul,
   ol,
   dl { vertical-align: top }
+
+  // In RevealJS, two lists in direct order are placed side-by-side: this will
+  // put some margin between the L and R
+  ul + ul,
+  ul + ol,
+  ol + ul,
+  ol + ol {
+    margin-left: 2em;
+  }
 }
 
 // ===================================================================== tables

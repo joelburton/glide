@@ -1,64 +1,57 @@
 @import "../common";
 
-/* =============== PAGE STRUCTURE =============== */
+// ================================================================ page layout
+
+// useful for checking everything fits within strict bounds:
+// * { outline: solid 1px gold }
 
 body {
   margin: 0;
-  border-top: solid 1.5rem $theme-clientcolor;
-
-  // you can change this, but check things carefully if you do
   background-color: $theme-backgroundcolor;
+  border-top: solid 1.5rem $theme-clientcolor;
+  @media print { border-top: none; }
 
   // this makes sure that the browser doesn't try to change font sizes itself in
-  // a way that causes text to overflow boxes rather than growing them
+  // a way that causes text to overflow boxes rather than growing them. Do not
+  // remove this unless you understand clearly what it is for.
   -webkit-text-size-adjust: none;
-
-  @media print { border-top: none; }
 }
 
-
-h1, h2, h3, h4, h5, h6 {
-  //page-break-after: avoid;
+@media print {
+  h1 { string-set: chapter content() }
+  @page {
+    margin-inside: 1.5in;
+    @bottom-left { content: string(chapter) }
+    @bottom-right {  content: counter(page)  }
+  }
 }
+
 
 .page-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-bottom: 4em;
-
-  /* fit nicely on ipad portrait */
-  max-width: 800px;
-  margin: 2em 2em 0 5%;
+  // fit nicely on ipad portrait without scrolling
+  width: 728px;
+  margin: 2em auto 4em auto;
   min-height: 100vh;
 
-  @media (min-width: 768px) {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-  @media (min-width: 1150px) {
+  // larger-than-tablet sizes: it should get a sidebar, so make room
+  @media (min-width: 1100px) {
+    position: absolute;
+    top: 0;
     left: 325px;
-    margin-left: 0;
-    margin-right: auto;
-    width: 1150px;
   }
 
   @media print {
+    // don't waste space at top or bottom, and let @page decide L/R margins
     position: static;
-    left: 0;
-    margin-left: 0;
-    margin-right: 0;
-    //width: 7in;
-    //width: 1000px;
-    padding-bottom: 0;
+    margin: 0;
+    width: auto;
   }
 }
 
-
+// don't show sidebar except for wide screens
 #page-sidebar { display: none; }
 
-@media (min-width: 1150px) {
+@media (min-width: 1100px) {
   #page-sidebar {
     font-size: 0.8rem;
     display: block;
@@ -73,6 +66,11 @@ h1, h2, h3, h4, h5, h6 {
 
     > header {
       text-align: center;
+    }
+
+    .page-logo {
+      max-width: 50%;
+      margin-top: 1em;
     }
 
     a {
@@ -121,40 +119,68 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media print {
-  @page {
-    margin-left: 1.5in;
-    @bottom {
-      content: counter(page)
-    }
-  }
   #page-sidebar { display: none; }
 }
 
-// don't need as much space for the first group-level heading below title
-.page-content > .section > .section:first-of-type h2 {
+// ======================================================= typography and roles
+
+// If the first grouping sections come right after doc title, don't put as
+// much space between them.
+h1 + .section h2:first-child {
   margin-top: 1em;
 }
 
-.page-logo {
-  max-width: 50%;
+// Same idea: don't add to much space when section heading comes right after
+// grouping heading.
+h2 + div.section > h3:first-child {
   margin-top: 1em;
 }
 
-.raw-reveal {
-  display: none;
+.page-content a {
+  color: $dark-blue;
+  font-weight: $weight-pop;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  // Internal navigation of headers back to TOC shouldn't be styled
+  &.toc-backref {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  @media print {
+    font-weight: $print-weight-text;
+    &.external::after { content: " <" attr(href) ">"; }
+  }
 }
 
+// =============================================================== print breaks
+
+h1, h2, h3, h4, h5, h6 {
+  // This doesn't seem to help in browsers, and Prince does the right thing
+  // even without this. Keeping it here out of safety.
+  page-break-after: avoid;
+}
+
+// Keep most things from having needless widows/orphans
 p, div, pre {
   widows: 2;
   orphans: 2;
 }
 
+// Keep admonitions on a single page unless they're really long
 div.admonition {
   widows: 5;
   orphans: 5;
 }
 
-p + ul, p + ol {
+p + ul,
+p + ol,
+p + dl,
+p + div.compare {
   page-break-before: avoid;
 }
 
@@ -163,72 +189,17 @@ table {
 }
 
 pre {
-  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
-.page-content a {
-  color: $dark-blue;
-  font-weight: 400;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @media print {
-    &.external::after { content: " <" attr(href) ">"; }
-  }
+.code-block-caption {
+  page-break-after: avoid;
 }
 
-
-
-
-// todo: we need a better api here
+// ========================================================== ul, ol, and hlist
 //
-// .print-hide (hide from print)
-// .print-show (show, even if normally wouldn't)
-// .print-only (only only on print)
-//
-// same for .handouts, .slides (and should plan for .epub, too
-//
-// this kind of stuff isn't perfect -- it's better to use .. only, so the
-// assets are purely skipped. when would we need this? is this just for
-// printing?
-
-.page-content .raw-reveal {
-  display: none;
-}
-
-
-@media print {
-  .noprint {
-    display: none !important;
-  }
-}
-
-h2 + div.section > h3:first-child {
-  margin-top: 1em;
-}
-
-  img.drawio {
-    //width: 50%;
-  }
-
-@media print {
-}
-
-.width-120 {
-  margin-left: -1.25in;
-  margin-right: -0.75in;
-  width: 135%;
- }
-
-.figure {
-  //border-top: solid 1px $moon-gray;
-  //border-bottom: solid 1px $moon-gray;
-  //padding-top: 0.25em;
-  margin-bottom: 1.5em;
-}
+// Reveal and handouts take different approaches to lists: here, we use
+// padding for levels of indentation:
 
 .page-content {
   ul { padding-left: 1em; }
@@ -236,6 +207,22 @@ h2 + div.section > h3:first-child {
 
 }
 
-.code-block-caption {
-  page-break-after: avoid;
+// ==================================================================== sphinx
+
+.raw-reveal {
+  display: none;
+}
+
+@media print {
+  .noprint {
+    display: none !important;
+  }
+}
+
+@media print {
+  .print-width-120 {
+    width: 135%;
+    margin-left: -1.25in;
+    margin-right: -0.5in;
+  }
 }

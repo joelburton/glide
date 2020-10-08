@@ -94,7 +94,9 @@ $theme-clientcolor: var(--theme-clientcolor);
 $theme-sidebarcolor: var(--theme-sidebarcolor);
 $theme-backgroundcolor: var(--theme-backgroundcolor);
 
-$code-font-size: 12pt;
+// ridiculously precise and tied to codefont, probably: get two 40col compare
+// code blocks side-by-side
+$code-font-size: 10.56pt;
 $print-code-font-size: 8.5pt;
 
 // ============================================================ core typography
@@ -231,7 +233,7 @@ cite {
   font-style: italic;
   font-weight: $weight-pop;
   @media print {
-    font-weight: $print-weight-pop;
+    font-weight: $print-weight-text;
   }
 }
 
@@ -337,7 +339,10 @@ sub { top: 0.4em; }
 
 .small { font-size: 0.75em; }
 .small-muted { color: $mid-gray; font-size: 0.75em; }
-.muted { color: $gray; }
+.muted {
+  color: $gray;
+  @media print { color: $mid-gray; }
+}
 
 // these overlap with names over admonitions, so namespacing with span
 span.danger,
@@ -357,7 +362,11 @@ span.ins { color: $dark-green; }
 span.del { color: $red; }
 
 // use for marking something as "gone": struck out and less obvious
-.gone { text-decoration: line-through; color: $gray; }
+.gone {
+  text-decoration: line-through;
+  color: $gray;
+  @media print { color: $mid-gray; }
+}
 
 span.code-wrong,
 span.wrong { background: $washed-red }
@@ -372,13 +381,13 @@ img.emoji {
 
 .emoji-1x > img.emoji { width: 1em; }
 .emoji-2x > img.emoji { width: 2em; }
-.emoji-3x > img.emoji { width: 2em; }
+.emoji-3x > img.emoji { width: 3em; }
 .emoji-5x > img.emoji { width: 5em; }
-.emoji-10x > img.emoji { width: 10em; }
+.emoji-7x > img.emoji { width: 7em; }
 
 .comment {
   font-style: italic;
-  color: $silver;
+  color: $gray;
   font-weight: $weight-quiet;
   @media print {
     color: $mid-gray;
@@ -473,7 +482,7 @@ li li:first-child {
 //  day, so this might break.)
 table.hlist > tbody > tr > td {
   vertical-align: top;
-  padding-right: 1em;
+  padding-right: 2em;
 
   & > ul,
   & > ol {
@@ -642,7 +651,9 @@ code {
   // therefore, using context-box (everything else is border-box) so that the
   // width is precisely fixed to match # of characters, without worrying about
   // borders/padding.
-  width: 80ch;
+  // width: 80ch;
+  // 10/6em == 1ch, but prince PDF cannot handle ch as of 10/2020
+  width: #{80 * 6em / 10};
   box-sizing: content-box;
 
   font-family: $theme-codefont;
@@ -739,7 +750,7 @@ span.linenos {
   margin-top: 1rem;
   margin-bottom: 1rem;
   max-width: 40em;
-  font-size: 0.9em;
+  font-size: 0.95em;
   @media print {
     border-left: solid 1px $gray;
     page-break-inside: avoid;
@@ -778,6 +789,7 @@ span.linenos {
 
     @media print {
       // make these more bold than just popping
+      color: $mid-gray;
       font-weight: $print-weight-bold;
       background-color: transparent !important;
     }
@@ -807,12 +819,18 @@ span.linenos {
 .admonition.warning {
   border-color: $orange;
   .admonition-title { background-color: $orange; }
+  @media print {
+    .admonition-title { color: $orange; }
+  }
 }
 
 .admonition.error,
 .admonition.danger {
   border-color: $red;
   .admonition-title { background-color: $red; }
+  @media print {
+    .admonition-title { color: $red; }
+  }
 }
 
 .admonition.seealso,
@@ -829,6 +847,9 @@ span.linenos {
 .admonition.note {
   border-color: $moon-gray;
   .admonition-title { background-color: $light-gray; color: $gray; }
+  @media print {
+    .admonition-title { color: $mid-gray; }
+  }
 }
 
 // ================================= topic: a bit of side-material with a title
@@ -1033,7 +1054,7 @@ p.sidebar-title {
 
 // By default, code boxes side by side are 40 cols wide
 .compare pre {
-  width: 40ch;
+  width: 25em;
 }
 
 // ============================================================== rainbow-lines
@@ -1160,7 +1181,8 @@ blockquote {
 
 // code-n-cols 1-120 by 1
 @for $i from 1 through 120 {
-  .code-cols-#{$i} pre { width: $i * 1ch !important; }
+  // 6em/10 == 1ch, but prince PDF converter can't handle ch unit (10/2020)
+  .code-cols-#{$i} pre { width: $i * 6em / 10 !important; }
 }
 
 .code-fit-content pre, .fit-content {
@@ -1219,6 +1241,10 @@ img.align-right {
 }
 
 // Image and diagram captions
+.figure {
+  margin-bottom: 1.5em;
+}
+
 .figure .caption {
   font-size: 0.8em;
   margin-top: 0;
