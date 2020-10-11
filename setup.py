@@ -29,7 +29,6 @@ setup(
         "sphinxcontrib-drawio",
         "sphinxcontrib-mermaid",
         "sphinxemoji",
-        "git+https://github.com/nikeee/pygments-lexer-graphviz",
     ],
     include_package_data=True,
     entry_points={
