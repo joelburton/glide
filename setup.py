@@ -25,10 +25,10 @@ setup(
         "toolz",
         "aafigure",
         "diagrams",
-        "graphviz",
         "aafigure",
         "sphinxcontrib-drawio",
-        "sphinxcontrib-mermaid"
+        "sphinxcontrib-mermaid",
+        "sphinxemoji",
     ],
     include_package_data=True,
     entry_points={
