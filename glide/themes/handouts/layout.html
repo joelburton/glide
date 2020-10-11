@@ -46,10 +46,10 @@
   <div id="page-sidebar">
     <header>
       {%- if logo %}
-        x<img class="page-logo" alt="logo"
+        <img class="page-logo" alt="logo"
               src="{{ pathto('_static/' + logo, 1 ) }}">
       {%- elif theme_logo %}
-        y<img class="page-logo" alt="logo"
+        <img class="page-logo" alt="logo"
               src="{{ pathto('_static/' + theme_logo, 1 ) }}">
       {%- endif %}
       <p class="page-project">{{ project }}</p>
