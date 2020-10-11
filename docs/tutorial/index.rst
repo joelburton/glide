@@ -1,5 +1,6 @@
 .. highlight:: rst
 
+
 =====================
 Introduction to Glide
 =====================
@@ -12,8 +13,8 @@ Introduction to Glide
       and common usage.
 
 :author: Joel Burton <joel@joelburton.com>
-:version: 1.5.0
-:updated: 2020/09/24
+:version: |version|
+:updated: |date|
 
 
 This document provides an introduction to the :title:`Glide Document System`
@@ -36,7 +37,7 @@ document-oriented and slide-oriented) from source material. It can produce:
 
 - HTML slides
 
-- PDFs generated via `LaTeX`:term:
+- PDFs generated via `LaTeX`:term: or `Prince`:term:
 
 The source materials can include:
 
@@ -46,9 +47,7 @@ The source materials can include:
 
 - Source code
 
-- Graphs made using `Graphviz <graphviz-overview>`:ref:
-
-- Charts made using `Matplotlib <matplotlib-overview>`:ref:
+- Charts and diagrams in several different formats
 
 - Other text documents
 
@@ -83,6 +82,8 @@ that bits of untested code don't creep into slide decks.
 Installation
 ============
 
+TODO aafigure npm i @mermaid-js/mermaid-cli
+
 To use Glide, you must first install it. Basic installation is typically
 straightforward.
 
@@ -105,7 +106,7 @@ Rithm School, we can install our theme product with:
    # Lots of output, ending with ...
    Successfully installed <list of products>
 
-.. warning:: These commands won't work yet!
+.. todo:: These commands won't work yet!
 
 Optional Components
 -------------------
@@ -1663,8 +1664,11 @@ Glossary
 
 .. glossary::
 
-    LaTeX
-        LaTeX is a powerful typesetting system that is used by Glide to generate
-        our PDFs (LaTeX itself can be used to create many other kinds of documents;
-        this is just what we use from it).
+  LaTeX
+    LaTeX is a powerful typesetting system that is used by Glide to generate
+    our PDFs (LaTeX itself can be used to create many other kinds of documents;
+    this is just what we use from it).
+
+  Prince
+    A commercial HTML to PDF converter.
 

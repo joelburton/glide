@@ -335,6 +335,16 @@ sub { top: 0.4em; }
   color: $firebrick;
 }
 
+img.math {
+  vertical-align: baseline;
+}
+
+// Internal navigation of headers back to TOC shouldn't be styled
+body a.toc-backref {
+  color: inherit;
+  font-weight: inherit;
+}
+
 // ========================== glide's added roles
 
 .small { font-size: 0.75em; }
@@ -355,7 +365,7 @@ span.del {
     font-weight: $print-weight-pop;
   }
 }
-span.danger { color: $orange; }
+span.danger { color: $dark-red; }
 span.warning { color: $orange; }
 span.success { color: $dark-green; }
 span.ins { color: $dark-green; }
@@ -747,8 +757,8 @@ span.linenos {
   border-left: solid 1px $light-silver;
   overflow: hidden;
   padding: 0 0 0 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   max-width: 40em;
   font-size: 0.95em;
   @media print {
@@ -810,7 +820,8 @@ span.linenos {
 }
 
 .admonition.important,
-.admonition.attention {
+.admonition.attention,
+.admonition-todo {
   border-color: $light-red;
   .admonition-title { background-color: $washed-red; color: $dark-red; }
 }
@@ -1247,10 +1258,11 @@ img.align-right {
 
 .figure .caption {
   font-size: 0.8em;
-  margin-top: 0;
+  margin-top: 0.5em;
 
   &:before {
-    content: "△ ";
+    content: "△";
+    margin-right: 0.3em;
     font-size: 70%;
   }
 }
@@ -1269,6 +1281,13 @@ div.math {
 table.docutils.footnote,
 table.docutils.footnote td {
   border: none;
+}
+
+.headerlink {
+  margin-left: 0.5rem;
+  color: $moon-gray !important;
+  font-size: 0.75rem;
+  @media print { display: none }
 }
 
 // ======================================================= active experimenting

@@ -30,7 +30,8 @@ body {
 .page-content {
   // fit nicely on ipad portrait without scrolling
   width: 728px;
-  margin: 2em auto 4em auto;
+  margin: 2em auto 0 auto;
+  padding-bottom: 4em;
   min-height: 100vh;
 
   // larger-than-tablet sizes: it should get a sidebar, so make room
@@ -43,6 +44,7 @@ body {
   @media print {
     // don't waste space at top or bottom, and let @page decide L/R margins
     position: static;
+    padding-bottom: 0;
     margin: 0;
     width: auto;
   }
@@ -118,6 +120,22 @@ body {
   }
 }
 
+.page-project {
+  font-size: 1.4em;
+  font-weight: $weight-pop;
+  margin-bottom: 0.25em;
+}
+
+.page-event {
+  margin-top: 0.25em;
+}
+
+.page-footer {
+  margin-top: 2em;
+  font-size: 0.8em;
+  color: $gray;
+}
+
 @media print {
   #page-sidebar { display: none; }
 }
@@ -143,12 +161,6 @@ h2 + div.section > h3:first-child {
 
   &:hover {
     text-decoration: underline;
-  }
-
-  // Internal navigation of headers back to TOC shouldn't be styled
-  &.toc-backref {
-    color: inherit;
-    font-weight: inherit;
   }
 
   @media print {
@@ -221,8 +233,8 @@ pre {
 
 @media print {
   .print-width-120 {
-    width: 135%;
-    margin-left: -1.25in;
+    width: 120%;
+    margin-left: -0.5in;
     margin-right: -0.5in;
   }
 }

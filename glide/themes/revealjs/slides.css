@@ -5,7 +5,7 @@
 :root {
   --background-color: #fff;
   --main-font: var(--theme-bodyfont);
-  --main-font-size: 38px;
+  --main-font-size: 36px;
   --main-color: #222;
   --block-margin: 20px;
   --heading-margin: 0 0 20px 0;
@@ -35,7 +35,7 @@
 
 .reveal {
   font-family: var(--theme-bodyfont);
-  font-size: 38px;
+  font-size: 36px;
   font-weight: normal;
   color: #222;
 }
@@ -576,6 +576,15 @@ sub {
   color: darkred;
 }
 
+img.math {
+  vertical-align: baseline;
+}
+
+body a.toc-backref {
+  color: inherit;
+  font-weight: inherit;
+}
+
 .small {
   font-size: 0.75em;
 }
@@ -612,7 +621,7 @@ span.del {
 }
 
 span.danger {
-  color: #ff6300;
+  color: #e7040f;
 }
 
 span.warning {
@@ -1050,8 +1059,8 @@ span.linenos {
   border-left: solid 1px #aaa;
   overflow: hidden;
   padding: 0 0 0 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   max-width: 40em;
   font-size: 0.95em;
 }
@@ -1101,11 +1110,13 @@ span.linenos {
 }
 
 .admonition.important,
-.admonition.attention {
+.admonition.attention,
+.admonition-todo {
   border-color: #ff725c;
 }
 .admonition.important .admonition-title,
-.admonition.attention .admonition-title {
+.admonition.attention .admonition-title,
+.admonition-todo .admonition-title {
   background-color: #ffdfdf;
   color: #e7040f;
 }
@@ -3792,10 +3803,11 @@ img.align-right {
 
 .figure .caption {
   font-size: 0.8em;
-  margin-top: 0;
+  margin-top: 0.5em;
 }
 .figure .caption:before {
-  content: "△ ";
+  content: "△";
+  margin-right: 0.3em;
   font-size: 70%;
 }
 
@@ -3811,6 +3823,17 @@ div.math {
 table.docutils.footnote,
 table.docutils.footnote td {
   border: none;
+}
+
+.headerlink {
+  margin-left: 0.5rem;
+  color: #ccc !important;
+  font-size: 0.75rem;
+}
+@media print {
+  .headerlink {
+    display: none;
+  }
 }
 
 .reveal {
@@ -3860,6 +3883,13 @@ table.docutils.footnote td {
 .reveal hr {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+.reveal img {
+  margin: 0;
+}
+.reveal sub, .reveal sup {
+  vertical-align: baseline;
+  font-size: 0.7em;
 }
 
 .reveal ul,
@@ -3920,9 +3950,13 @@ table.docutils.footnote td {
 .reveal blockquote.pull-quote {
   font-style: italic;
 }
-.reveal blockquote p.attribution {
+.reveal blockquote blockquote p.attribution {
   display: block;
   color: #555;
+}
+.reveal blockquote.epigraph {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .reveal .mermaid {

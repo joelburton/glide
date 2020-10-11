@@ -4,14 +4,23 @@ Glide Reference
 
 .. sectionauthor:: joel
 
+.. meta::
+    :description: Reference to Glide document system.
+
+
 .. only:: not revealjs
 
+  :author: Joel Burton <joel@joelburton.com>
   :version: |version|
+  :updated: |date|
 
   .. container:: noprint
 
     You may find it useful to review the source of this document while reading it:
     `index.rst`:download:.
+
+.. todo:: Finish indexing and include index page.
+
 
 Overall document format
 =======================
@@ -196,6 +205,7 @@ Can take a background or color, like ``newslide``.
   pair: dash; em
   pair: dash; en
 
+
 Typography
 ==========
 
@@ -245,6 +255,7 @@ Links
 
 
 .. index:: roles
+
 
 Roles
 =====
@@ -359,13 +370,14 @@ Roles
 
   Added semantic names to discourage direct colors.
 
-.. todo wrong and code-wrong?
-
 
 .. index:: substitutions
 
 Substitutions
 =============
+
+Symbols
+-------
 
 .. hlist::
   :columns: 3
@@ -394,6 +406,9 @@ Glide Functional Substitutions
 
   .. code-block:: rst
 
+    Today: |date|
+    Version: |version|, Release: |release|
+
     Force HTML directly only on slides:
     :raw-reveal:`<input type=checkbox>`
 
@@ -407,6 +422,9 @@ Glide Functional Substitutions
     New line
 
   .. container::
+
+    Today: |date|
+    Version: |version|, Release: |release|
 
     Force HTML directly only on slides:
     :raw-reveal:`<input type=checkbox>`
@@ -451,6 +469,7 @@ At Rithm, `version` becomes the code for our cohorts, eg ``"r15"``.
 
 .. index:: emoji
 
+
 Emoji
 =====
 
@@ -467,10 +486,10 @@ Size with role :samp:`:emoji-{1,2,3,5,7}x:` |br|
   resizing ability.
 
 
-
 .. index:: colors
 
 .. _colors:
+
 
 Colors
 ======
@@ -570,6 +589,7 @@ Line blocks
     | at specific places
     |
     | This affects all builders.
+
 
 Lists
 =====
@@ -740,6 +760,7 @@ Simple list that should always be in columns can use `hlist`:
     - f
 
 .. index:: tables
+
 
 Tables
 ======
@@ -1362,6 +1383,7 @@ Admonitions
   triple: directive; admonitions; tip
   triple: directive; admonitions; note
   triple: directive; admonitions; admonition
+  triple: directive; admonitions; todo
 
 .. container:: compare
 
@@ -1442,6 +1464,22 @@ None of these appear in slides, unless you add a `class` of :samp:`revealjs`:
       Along with details.
 
 .. versionadded:: 2.0 Almost all admonitions are new.
+
+Todo
+----
+
+.. container:: compare
+
+  .. code-block:: rst
+    :class: code-fit-content
+
+    .. todo:: Fix complex example
+
+  .. container::
+
+    .. todo:: Fix complex example
+
+These only appear if ``todo_include_todos`` is set to true in :file:`conf.py`.
 
 
 Topics
@@ -1966,7 +2004,7 @@ Math
 .. container:: compare
 
   .. code-block:: rst
-    :class: code-font-size-70 code-fit-content
+    :class: code-font-size-70 code-cols-50
 
     .. math::
 
@@ -2012,7 +2050,7 @@ Mermaid diagrams
   .. mermaid::
     :alt: timeline
 
-      gantt
+    gantt
       title The Rithm of your life
       dateFormat  YYYY-MM-DD
       axisFormat %b %e
@@ -2075,6 +2113,42 @@ Mermaid diagrams
         Flask-->>Browser: <html>...</html>
 
 .. versionadded:: 2.0 Added Mermaid diagrams.
+
+Diagrams
+--------
+
+.. container:: compare
+
+  .. code-block:: rst
+    :class:  code-cols-52 code-font-size-85
+
+    .. diagram::
+      :width: 10em
+
+      from diagrams.onprem.client import User
+      from diagrams.onprem.database import PostgreSQL
+      from diagrams.programming.framework import Flask
+
+      with Diagram(direction="LR"):
+          User() >> [
+              Flask(),
+              Flask(),
+              Flask(),
+          ] >> PostgreSQL()
+
+  .. diagram::
+    :width: 10em
+
+    from diagrams.onprem.client import User
+    from diagrams.onprem.database import PostgreSQL
+    from diagrams.programming.framework import Flask
+
+    with Diagram(direction="LR"):
+        User() >> [
+            Flask(),
+            Flask(),
+            Flask(),
+        ] >> PostgreSQL()
 
 Draw.io
 -------
@@ -2314,7 +2388,6 @@ Running Glide
   `soln`             For assessment, makes solution `zip`:file:
   `upload`           Upload everything needed to server
   `prince`           Make print-ready PDF *(requires Prince)*
-  `test`             Run any tests found in code *(todo)*
   ================== =====================================================
 
 Link checking

@@ -249,6 +249,15 @@ sub {
   color: darkred;
 }
 
+img.math {
+  vertical-align: baseline;
+}
+
+body a.toc-backref {
+  color: inherit;
+  font-weight: inherit;
+}
+
 .small {
   font-size: 0.75em;
 }
@@ -285,7 +294,7 @@ span.del {
 }
 
 span.danger {
-  color: #ff6300;
+  color: #e7040f;
 }
 
 span.warning {
@@ -723,8 +732,8 @@ span.linenos {
   border-left: solid 1px #aaa;
   overflow: hidden;
   padding: 0 0 0 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   max-width: 40em;
   font-size: 0.95em;
 }
@@ -774,11 +783,13 @@ span.linenos {
 }
 
 .admonition.important,
-.admonition.attention {
+.admonition.attention,
+.admonition-todo {
   border-color: #ff725c;
 }
 .admonition.important .admonition-title,
-.admonition.attention .admonition-title {
+.admonition.attention .admonition-title,
+.admonition-todo .admonition-title {
   background-color: #ffdfdf;
   color: #e7040f;
 }
@@ -3465,10 +3476,11 @@ img.align-right {
 
 .figure .caption {
   font-size: 0.8em;
-  margin-top: 0;
+  margin-top: 0.5em;
 }
 .figure .caption:before {
-  content: "△ ";
+  content: "△";
+  margin-right: 0.3em;
   font-size: 70%;
 }
 
@@ -3484,6 +3496,17 @@ div.math {
 table.docutils.footnote,
 table.docutils.footnote td {
   border: none;
+}
+
+.headerlink {
+  margin-left: 0.5rem;
+  color: #ccc !important;
+  font-size: 0.75rem;
+}
+@media print {
+  .headerlink {
+    display: none;
+  }
 }
 
 body {
@@ -3515,7 +3538,8 @@ body {
 }
 .page-content {
   width: 728px;
-  margin: 2em auto 4em auto;
+  margin: 2em auto 0 auto;
+  padding-bottom: 4em;
   min-height: 100vh;
 }
 @media (min-width: 1100px) {
@@ -3528,6 +3552,7 @@ body {
 @media print {
   .page-content {
     position: static;
+    padding-bottom: 0;
     margin: 0;
     width: auto;
   }
@@ -3597,6 +3622,22 @@ body {
     display: none;
   }
 }
+.page-project {
+  font-size: 1.4em;
+  font-weight: 400;
+  margin-bottom: 0.25em;
+}
+
+.page-event {
+  margin-top: 0.25em;
+}
+
+.page-footer {
+  margin-top: 2em;
+  font-size: 0.8em;
+  color: #777;
+}
+
 @media print {
   #page-sidebar {
     display: none;
@@ -3617,10 +3658,6 @@ h2 + div.section > h3:first-child {
 }
 .page-content a:hover {
   text-decoration: underline;
-}
-.page-content a.toc-backref {
-  color: inherit;
-  font-weight: inherit;
 }
 @media print {
   .page-content a {
@@ -3682,8 +3719,8 @@ pre {
 }
 @media print {
   .print-width-120 {
-    width: 135%;
-    margin-left: -1.25in;
+    width: 120%;
+    margin-left: -0.5in;
     margin-right: -0.5in;
   }
 }

@@ -1,6 +1,9 @@
 import subprocess
 import os
 
+from sphinx.ext.todo import todo_node, visit_todo_node, depart_todo_node, \
+    latex_visit_todo_node, latex_depart_todo_node
+
 from glide import version, logger
 
 # -- Project information -----------------------------------------------------
@@ -22,12 +25,14 @@ needs_sphinx = '3.2.1'
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.ifconfig',
-    # 'sphinx.ext.mathjax',
+    'sphinx.ext.mathjax',
     'sphinx.ext.imgmath',
     'sphinxcontrib.drawio',
     'sphinxcontrib.mermaid',
     'sphinxemoji.sphinxemoji',
-    'sphinxcontrib.aafig',
+    # 'sphinxcontrib.aafig',
+    'aafigure.sphinxext',
+    'glide.directives.diagram',
 
     'glide.writers.handouts',
     'glide.writers.revealjs',
@@ -64,7 +69,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv']
 
 # The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'sphinx'
+pygments_style = 'sphinx'
 
 linkcheck_ignore = [r'http://localhost:\d+/']
 
@@ -230,6 +235,8 @@ _symbols = """
 .. |check|     unicode:: U+02713 .. CHECK MARK
 .. |wrong|     unicode:: U+02717 .. BALLOT X 
 .. |approx|    unicode:: U+02248 .. ALMOST EQUAL TO
+
+.. |date| date::
 """
 
 # A new role for raw output that should only appear in HTML, and a
@@ -249,7 +256,7 @@ _reveal_br = """
 .. |sp| replace:: :raw-handouts:`&nbsp;`
 """
 
-# Glide 1.5 added |br| as a shorter synonym for this.
+# Glide 2.0 added |br| as a shorter synonym for this.
 
 # Can use like |demo-link| to show a URL from env var
 _demolink = f"""
@@ -265,8 +272,9 @@ html_copy_source = False
 html_use_index = False
 revealjs_theme = "revealjs"
 html_theme = "handouts"
-html_add_permalinks = ""
 html_codeblock_linenos_style = "inline"
+show_copyright = True
+html_last_updated_fmt = '%b %d, %Y'
 
 # These are annoying
 html_scaled_image_link = False
@@ -308,16 +316,56 @@ except ImportError:
 todo_include_todos = True
 
 graphviz_output_format = 'svg'
+graphviz_dot_args = [
+    "-Gfontname=Helvetica",
+    "-Efontname=Helvetica",
+    '-Nfontname=Helvetica'
+]
+
+# MathJAX is generally used, but for PDF building, img math can be specified,
+# so make sure we have both installed & set imgmath to make SVGs
+html_math_renderer = "mathjax"
+imgmath_image_format = 'svg'
+
+aafig_default_options = dict(
+    scale=450,
+    aspect=0.5,
+    proportional=True,
+    foreground="#666666",
+    line_width=1,
+)
+
+drawio_binary_path = "/Applications/draw.io.app/Contents/MacOS/draw.io"
+drawio_builder_export_format = {
+    "html": "svg",
+    "latex": "pdf",
+    "handouts": "png",
+    "revealjs": "svg",
+}
+# Make drawings large, then scale in document by controlling width
+drawio_default_export_scale = 400
+
+sphinxemoji_style = 'twemoji'
+
+mermaid_output_format = "svg"
+# Must define this in your conf
+mermaid_cmd = "/Users/joel/src/glide/test/node_modules/.bin/mmdc"
+mermaid_verbose = False
+mermaid_params = [
+    '--theme', 'neutral',
+    # for now, mmdc doesn't allow custom stylesheets
+    # '-C', '/Users/joel/src/glide/cheatsheet/mermaid.css',
+]
 
 
 def setup(app):
     # In order to use this in config, it must be declared
-    app.add_config_value('revealjs_theme', 'alabaster', 'html')
+    app.add_config_value('revealjs_theme', 'revealjs', 'html')
 
     demo_path = os.environ.get("DEMO_PATH")
     app.add_config_value('demo_path', demo_path, 'env')
 
-    # fixme: move to a product? the glide setup?
+    # We need to add mermaid support to our custom builders
     from sphinxcontrib.mermaid import mermaid, html_visit_mermaid, \
         latex_visit_mermaid, texinfo_visit_mermaid, text_visit_mermaid, \
         man_visit_mermaid
@@ -332,31 +380,23 @@ def setup(app):
         man=(man_visit_mermaid, None),
         override=True
     )
+    app.add_node(
+        todo_node,
+        handouts=(visit_todo_node, depart_todo_node),
+        revealjs=(visit_todo_node, depart_todo_node),
+        html=(visit_todo_node, depart_todo_node),
+        latex=(latex_visit_todo_node, latex_depart_todo_node),
+        text=(visit_todo_node, depart_todo_node),
+        man=(visit_todo_node, depart_todo_node),
+        texinfo=(visit_todo_node, depart_todo_node),
+        override=True,
+    )
 
     return {'version': version, 'parallel_read_safe': True}
 
-
-drawio_binary_path = "/Applications/draw.io.app/Contents/MacOS/draw.io"
-drawio_builder_export_format = {"html": "svg", "latex": "pdf",
-                                "handouts": "png", "revealjs": "svg"}
-drawio_default_export_scale = 400
-
-mermaid_params = ['--theme', 'neutral', '-C', '/Users/joel/src/glide/cheatsheet/mermaid.css']
-
-imgmath_image_format = 'svg'
-
-sphinxemoji_style = 'twemoji'
-
-aafig_default_options = dict(scale=0.5, aspect=0.5, proportional=True,
-                             foreground="#888888", line_width=1)
-
-mermaid_output_format = "svg"
-mermaid_cmd = "/Users/joel/src/glide/test/node_modules/.bin/mmdc"
-mermaid_verbose = False
-pygments_style = 'sphinx'
-
-# aafigs need to be 2x on slides
-# if we use imgmath, need 2x on slides
-# (maybe even more!)
-
-graphviz_dot_args = ["-Gfontname=Helvetica", "-Efontname=Helvetica", '-Nfontname=Helvetica']
+# todo:
+# - finish guide
+# - finish test
+# - update demo? or kill it?
+# - fix makefiles
+# - add prince support

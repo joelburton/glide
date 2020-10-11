@@ -7,24 +7,24 @@
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {%  if html_favicon %}
-  <link rel="shortcut icon" href="">
-  {%  endif %}
+  {% if html_favicon %}
+    <link rel="shortcut icon" href="">
+  {% endif %}
 
-<link
-  href="https://unpkg.com/sanitize.css"
-  rel="stylesheet"
-/>
+  <link
+      href="https://unpkg.com/sanitize.css"
+      rel="stylesheet"
+  />
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}">
 
   {% if theme_fonts %}
     <link href='{{ theme_fonts }}' rel='stylesheet'>
   {% endif %}
-<style>
+  <style>
 
 
-</style>
+  </style>
   <style>
     :root {
       --theme-bodyfont: {{ theme_bodyfont }};
@@ -33,11 +33,11 @@
       --theme-sidebarcolor: {{ theme_sidebarcolor }};
       --theme-backgroundcolor: {{ theme_backgroundcolor }};
       --theme-clientcolor: {{  theme_clientcolor }};
-      {%- if logo %}
-        --theme-logo: url({{ pathto('_static/' + logo, 1) }})
-      {%- elif theme_logo %}
-        --theme-logo: url({{ pathto('_static/' + theme_logo, 1) }})
-      {%- endif %}
+    {%- if logo %}
+      --theme-logo: url({{ pathto('_static/' + logo, 1) }})
+    {%- elif theme_logo %}
+      --theme-logo: url({{ pathto('_static/' + theme_logo, 1) }})
+    {%- endif %}
   </style>
 </head>
 
@@ -45,12 +45,18 @@
 <div id="page-wrapper">
   <div id="page-sidebar">
     <header>
-      <img class="page-logo" alt="logo" src="{{  pathto('_static/' + theme_logo, 1 )}}">
-{#      <p class="project">{{ project }}</p>#}
-{#      <p class="title">{{ title }}</p>#}
+      {%- if logo %}
+        x<img class="page-logo" alt="logo"
+              src="{{ pathto('_static/' + logo, 1 ) }}">
+      {%- elif theme_logo %}
+        y<img class="page-logo" alt="logo"
+              src="{{ pathto('_static/' + theme_logo, 1 ) }}">
+      {%- endif %}
+      <p class="page-project">{{ project }}</p>
+      <p class="page-event">{{ release }}</p>
       {% if backurl %}
         <p class="backlink"><a href="{{ backurl }}"> &laquo; Back</a>
-       {% endif %}
+      {% endif %}
       </p>
     </header>
 
@@ -64,6 +70,14 @@
       {% block body %} {% endblock %}
     {%- endblock %}
 
+    <footer class="page-footer">
+      {%- if show_copyright %}
+        &#169; Copyright {{ copyright }}.
+      {%- endif %}
+      {%- if last_updated %}
+        Last updated on {{ last_updated }}.
+      {%- endif %}
+    </footer>
   </div>
 </div>
 

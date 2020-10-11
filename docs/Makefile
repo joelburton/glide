@@ -1,14 +1,19 @@
 # You can set these variables from the command line.
-SPHINXOPTS    = -T -W --keep-going -D revealjs_theme=revealjs-rithm -a -D html_use_index=True -D html_copy_source=True
+SPHINXOPTS    = -c .. -T -W --keep-going
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = Demo
 SOURCEDIR     = .
 BUILDDIR      = _build
 
 prince:
-	make handouts
-	/tmp/prince/bin/prince _build/handouts/index.html
+	make clean && make handouts SPHINXOPTS="-D html_math_renderer=imgmath"
+	prince -j _build/handouts/index.html
 	open _build/handouts/index.pdf
+
+handouts-open: handouts
+	open _build/handouts/index.html
+
+revealjs-open: handouts
+	open _build/handouts/index.html
 
 # Put it first so that "make" without argument is like "make help".
 help:

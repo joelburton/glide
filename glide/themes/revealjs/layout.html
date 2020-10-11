@@ -20,7 +20,6 @@
       --theme-headfont: {{ theme_headfont }};
       --theme-codefont: {{ theme_codefont }};
       --theme-clientcolor: {{ theme_clientcolor }};
-      --theme-clientlightcolor: {{  theme_clientlightcolor }};
     }
   </style>
 
@@ -31,13 +30,17 @@
   <div class="reveal">
 
     <footer id="slide-footer">
-      <img alt="" src="{{ pathto('_static/footer-logo.png', 1) }}">
+      {%- if logo %}
+        <img alt="" src="{{ pathto('_static/' + logo, 1) }}">
+      {%- elif theme_logo %}
+        <img alt="" src="{{ pathto('_static/' + theme_logo, 1) }}">
+      {%- endif %}
     </footer>
 
     <div class="slides">
       <section>
         <h2>{{ title }}</h2>
-        <div class="event">{{ version }}</div>
+        <div class="event">{{ release }}</div>
       </section>
 
       {% block body %} {% endblock %}

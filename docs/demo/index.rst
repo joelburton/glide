@@ -4,15 +4,6 @@ Demo Lecture
 
 .. todo
 
-   - move deletion of dup titles to node processing, not html
-     writer
-
-     - bc latex
-     - bc tocs
-
-   :overall rating df dsflkj lkdfj dsjf sfl slsdjl sdf: 17
-   :design of system: yes
-
    .. general ideas for improving our build system
 
      FIXME: do we need compound support, so that things in a compound are closed together?

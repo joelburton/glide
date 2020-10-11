@@ -6,23 +6,29 @@
 #
 # Changelog of Sphinx versions:
 # v1.4.0           : tested on Sphinx 2.2
-# v1.5.0 (sep 2020): tested on Sphinx 3.2.1
+# v2.0.0 (sep 2020): tested on Sphinx 3.2.1
 
 from setuptools import setup
 
 setup(
     name='Glide',
-    version='1.5.0',
+    version='2.0.0',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
     url='https://github.com/joelburton/glide',
     packages=['glide', 'glide/directives', 'glide/writers'],
-    python_requires=">= 3.6.9",
+    python_requires=">= 3.8.6",
     install_requires=[
         "Sphinx (>=3.2.1,<4)",
         "jsx-lexer",
         "toolz",
+        "aafigure",
+        "diagrams",
+        "graphviz",
+        "aafigure",
+        "sphinxcontrib-drawio",
+        "sphinxcontrib-mermaid"
     ],
     include_package_data=True,
     entry_points={

@@ -1,8 +1,0 @@
-      sequenceDiagram
-        participant Browser
-        participant Flask
-        participant Postgres
-        Browser->>Flask: GET / HTTP/1.1
-        Flask->>Postgres: SELECT * FROM cats
-        Postgres-->>Flask: [cat1, cat2]
-        Flask-->>Browser: <html>...</html>

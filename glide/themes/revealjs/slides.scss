@@ -7,7 +7,7 @@ $backgroundColor: #fff;
 $mainColor: #222;
 $headingColor: var(--theme-clientcolor);
 
-$mainFontSize: 38px;
+$mainFontSize: 36px;
 $mainFont: var(--theme-bodyfont);
 $headingFont: var(--theme-headfont);
 $headingTextShadow: none;
@@ -104,6 +104,16 @@ $codeFont: var(--theme-codefont);
     margin-top: 1em;
     margin-bottom: 1em;
   }
+
+  img {
+    // less than the 1em reveal wants
+    margin: 0;
+  }
+
+  sub, sup {
+    vertical-align: baseline;
+    font-size: 0.7em;
+  }
 }
 
 // ========================================================== ul, ol, and hlist
@@ -196,12 +206,17 @@ $codeFont: var(--theme-codefont);
     box-shadow: none;
     &.epigraph { font-style: italic }
     &.pull-quote { font-style: italic }
-  }
 
-  blockquote p.attribution {
-    // Override RevealJS styling
-    display: block;
-    color: $mid-gray;
+    blockquote p.attribution {
+      // Override RevealJS styling
+      display: block;
+      color: $mid-gray;
+    }
+
+    &.epigraph {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
