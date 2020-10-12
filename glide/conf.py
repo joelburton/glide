@@ -395,8 +395,7 @@ def setup(app):
     return {'version': version, 'parallel_read_safe': True}
 
 # todo:
-# - finish guide
+# - finish tutorial
 # - finish test
 # - update demo? or kill it?
 # - fix makefiles
-# - add prince support

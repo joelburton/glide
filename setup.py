@@ -17,7 +17,7 @@ setup(
     author='Joel Burton',
     author_email='joel@joelburton.com',
     url='https://github.com/joelburton/glide',
-    packages=['glide', 'glide/directives', 'glide/writers'],
+    packages=['glide', 'glide/directives', 'glide/writers', 'glide/lexers'],
     python_requires=">= 3.8.6",
     install_requires=[
         "Sphinx (>=3.2.1,<4)",
