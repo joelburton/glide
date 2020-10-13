@@ -21,6 +21,12 @@ Glide Reference
 
 .. todo:: Finish indexing and include index page.
 
+.. todo:: Add new styles
+
+  - code-highlight-wrong/good/pop
+
+  - code-comments-wrong/good/pop
+
 
 Overall document format
 =======================
