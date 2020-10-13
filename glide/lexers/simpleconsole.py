@@ -13,6 +13,6 @@ class SimpleConsoleLexer(RegexLexer):
             (r'#.*$', Comment),
             (r'(.*\$ )([^#\n]*)', bygroups(Generic.Prompt, Generic.Strong)),
             (r'(> )([^#\n]*)', bygroups(Generic.Prompt, Generic.Strong)),
-            (r'.+', Text),
+            (r'[^#]+', Text),
         ],
     }

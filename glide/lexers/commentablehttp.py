@@ -9,7 +9,7 @@ class CommentableHttpLexer(RegexLexer):
     aliases = ['commentable-http']
     filenames = ['*.commentable-http']
 
-    flags = re.DOTALL
+    # flags = re.DOTALL
 
     tokens = {
         'root': [
@@ -34,6 +34,8 @@ class CommentableHttpLexer(RegexLexer):
             (r'\n', Text, 'content')
         ],
         'content': [
-            (r'.+', Text)
+            (r'\n', Text),
+            (r'#.*\n', Comment),
+            (r'[^#]+', Text)
         ]
     }

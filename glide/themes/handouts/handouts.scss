@@ -137,6 +137,7 @@ body {
 }
 
 @media print {
+  .page-footer { display: none }
   #page-sidebar { display: none; }
 }
 

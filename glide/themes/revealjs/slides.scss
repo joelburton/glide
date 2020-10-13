@@ -231,6 +231,10 @@ $codeFont: var(--theme-codefont);
   .reveal .raw-handouts {
     display: none;
   }
+
+  .headerlink {
+    display: none;
+  }
 }
 
 // todo: we need a better api here

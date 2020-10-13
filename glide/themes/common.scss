@@ -271,7 +271,11 @@ abbr {
   &[title] { border-bottom: dashed 0.5px $blue; }
 }
 
-.dfn { }
+.dfn {
+  font-style: italic;
+  font-weight: $weight-pop;
+  @media print { font-weight: $print-weight-pop; }
+}
 
 // sample output and files can have embedded placeholders;
 // like :samp:`file_{x}`. Sphinx outputs `x` in `em`, but
@@ -284,8 +288,14 @@ abbr {
 
 .ref { }
 .doc { }
-.guilabel { }
-.menuselection { }
+.guilabel {
+  font-weight: $weight-pop;
+  @media print { font-weight: $print-weight-pop }
+}
+.menuselection {
+  font-weight: $weight-pop;
+  @media print { font-weight: $print-weight-pop }
+}
 .mimetype { }
 .samp { }
 
@@ -711,6 +721,18 @@ pre.console,
   border-left: solid 0.20em $yellow;
   @media print { border-left-color: $gold }
 }
+.code-highlight-wrong .highlight .hll {
+  background-color: $washed-red;
+  border-left: solid 0.20em $light-red;
+}
+.code-highlight-good .highlight .hll {
+  background-color: $washed-green;
+  border-left: solid 0.20em $light-green;
+}
+.code-highlight-pop .highlight .hll {
+  background-color: $washed-blue;
+  border-left: solid 0.20em $light-blue;
+}
 
 // "span." needed to override pygments
 span.linenos {
@@ -720,14 +742,21 @@ span.linenos {
   background-color: $light-gray;
 }
 
-.code-wrong pre { background-color: $washed-red }
+.code-wrong pre {
+  background-color: lighten($washed-red, 4%)
+}
+
+.code-good pre {
+  background-color: lighten($washed-green, 2%)
+}
 
 //============== touch up pygments' default color scheme
 
-// make general-purpose comments gray, light, and thin
-.highlight .c1 {
+// make non-docstring comments gray, light, and thin
+.highlight .c1,
+.highlight .c {
   font-style: italic;
-  color: $silver;
+  color: $gray;
   font-weight: $weight-quiet;
   @media print {
     color: $mid-gray;
@@ -735,18 +764,40 @@ span.linenos {
   }
 }
 
-@media print {
-  .highlight .si { color: $blue; }
+// ... unless comments should be more prominent
+.code-comments-wrong .highlight .c1,
+.code-comments-wrong .highlight .c,
+.code-comments-good .highlight .c1,
+.code-comments-good .highlight .c,
+.code-comments-pop .highlight .c1,
+.code-comments-pop .highlight .c {
+  font-weight: $weight-bold;
+  @media print {
+    font-weight: $print-weight-bold;
+  }
+}
+
+.code-comments-wrong .highlight .c1,
+.code-comments-wrong .highlight .c {
+  color: $dark-red;
+}
+
+.code-comments-good .highlight .c1,
+.code-comments-good .highlight .c {
+  color: $dark-green;
+}
+
+.code-comments-pop .highlight .c1,
+.code-comments-pop .highlight .c {
+  color: $dark-blue;
 }
 
 // make docstrings & /** comments */ red so docs pop
 .highlight .sd,
 .highlight .cm { color: firebrick; }
 
-// make regular comments not dreary-blue-grey
-.highlight .c {
-  color: $mid-gray;
-  @media print { color: $gray }
+@media print {
+  .highlight .si { color: $blue; }
 }
 
 
@@ -875,7 +926,9 @@ span.linenos {
     border-bottom: solid 0.5px $light-gray;
   }
   padding: 1em;
-  margin-bottom: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  font-size: 0.9em;
 
   .topic-title {
     margin-top: 0;
