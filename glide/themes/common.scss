@@ -779,17 +779,17 @@ span.linenos {
 
 .code-comments-wrong .highlight .c1,
 .code-comments-wrong .highlight .c {
-  color: $dark-red;
+  color: $dark-red !important;
 }
 
 .code-comments-good .highlight .c1,
 .code-comments-good .highlight .c {
-  color: $dark-green;
+  color: $dark-green !important;
 }
 
 .code-comments-pop .highlight .c1,
 .code-comments-pop .highlight .c {
-  color: $dark-blue;
+  color: $dark-blue !important;
 }
 
 // make docstrings & /** comments */ red so docs pop

@@ -778,17 +778,17 @@ span.linenos {
 
 .code-comments-wrong .highlight .c1,
 .code-comments-wrong .highlight .c {
-  color: #e7040f;
+  color: #e7040f !important;
 }
 
 .code-comments-good .highlight .c1,
 .code-comments-good .highlight .c {
-  color: #137752;
+  color: #137752 !important;
 }
 
 .code-comments-pop .highlight .c1,
 .code-comments-pop .highlight .c {
-  color: #00449e;
+  color: #00449e !important;
 }
 
 .highlight .sd,
