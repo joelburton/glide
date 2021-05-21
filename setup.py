@@ -24,7 +24,7 @@ setup(
         "jsx-lexer",
         "toolz",
         "aafigure",
-        "diagrams",
+        "diagrams==0.19",
         "aafigure",
         "sphinxcontrib-drawio",
         "sphinxcontrib-mermaid",
