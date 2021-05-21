@@ -1,3 +1,16 @@
+# FIXME: monkeypatching because current version of sphinxcontrib.mermaid relies
+# on sphinx.util.osutil API which changed in sphinx 4.0. Reporting this to
+# mermaid maintainer, so in the future, we can hopefully remove this monkeypatch.
+#
+# DO NOT DELETE THIS OR MOVE THIS FURTHER DOWN IN THE CODE UNLESS YOU UNDERSTAND
+# HOW THIS WORKS. - Joel
+
+import sphinx.util.osutil
+import errno
+sphinx.util.osutil.ENOENT = getattr(errno, 'ENOENT', 0)
+
+############
+
 import subprocess
 import os
 
