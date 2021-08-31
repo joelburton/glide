@@ -288,7 +288,7 @@ html_theme = "handouts"
 html_codeblock_linenos_style = "inline"
 show_copyright = True
 html_last_updated_fmt = '%b %d, %Y'
-html_add_permalinks = "»"
+html_permalinks_icon = "»"
 
 # These are annoying
 html_scaled_image_link = False
