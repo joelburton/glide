@@ -1,7 +1,8 @@
 """Sphinx translator and builder for handouts."""
 
 from docutils.nodes import SkipNode, section, Node, Element
-from sphinx.builders.html import StandaloneHTMLBuilder, SingleFileHTMLBuilder
+from sphinx.builders.html import StandaloneHTMLBuilder
+from sphinx.builders.singlehtml import SingleFileHTMLBuilder
 from sphinx.writers.html import HTMLTranslator
 
 from glide import version, logger
