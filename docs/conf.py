@@ -1,3 +1,4 @@
+from glide import version as glide_version
 from glide.conf import *
 
 # -- Project information -----------------------------------------------------
@@ -7,7 +8,7 @@ project = 'Documentation'
 copyright = '2020, Joel Burton'
 author = 'Joel Burton'
 
-version = "2.0"
+version = glide_version
 release = f"Glide {version}"
 
 # -- General configuration ---------------------------------------------------

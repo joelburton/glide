@@ -82,7 +82,7 @@ that bits of untested code don't creep into slide decks.
 Installation
 ============
 
-TODO aafigure npm i @mermaid-js/mermaid-cli
+TODO aafigure
 
 To use Glide, you must first install it. Basic installation is typically
 straightforward.

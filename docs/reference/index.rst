@@ -2030,95 +2030,14 @@ Math
 Or ``:math:`` like `n = {x}^2`:math: for inline.
 
 
-Mermaid diagrams
-----------------
-
-.. code-block:: rst
-  :class: code-fit-content code-font-size-90
-
-  .. mermaid::
-    :alt: timeline
-
-    gantt
-      title The Rithm of your life
-      dateFormat  YYYY-MM-DD
-
-      section Core
-      Web tech     :2020-11-02, 2w
-      Python & dbs :3w
-
-      *(see source for full text)*
-
-.. newslide::
-
-.. container:: print-width-120
-
-  .. mermaid::
-    :alt: timeline
-
-    gantt
-      title The Rithm of your life
-      dateFormat  YYYY-MM-DD
-      axisFormat %b %e
-
-      section Core Curriculum
-      Web tech                   :2020-11-02, 2w
-      Python & databases         :3w
-      Node/Express               :2w
-      React                      :3w
-
-      section DS/Algs
-      DSA                        :dsa, 2021-01-01, 1w
-
-      section Company Projs
-      Company Projects           :3w
-
-      section Outcomes
-      Intro                      :active, after dsa, 3w
-      Tech                       :1w
-      Search                     :1w
-
-      section Advising
-      Advising                   :active, 2020-11-02,2021-02-14
-
-      section Breaks
-      Thanksgiving Break         :done, 2020-11-20, 1w
-      Holiday                    :done, 2020-12-20, 2w
-
-|
-
-.. newslide::
-
-.. container:: compare
-
-  .. code-block:: rst
-    :class: code-fit-content code-font-size-80 width-40
-
-    .. mermaid::
-
-      sequenceDiagram
-        participant Browser
-        participant Flask
-        participant Postgres
-        Browser->>Flask: GET / HTTP/1.1
-        Flask->>Postgres: SELECT * FROM cats
-        Postgres-->>Flask: [cat1, cat2]
-        Flask-->>Browser: <html>...</html>
-
-  .. container::  width-60
-
-    .. mermaid::
-
-      sequenceDiagram
-        participant Browser
-        participant Flask
-        participant Postgres
-        Browser->>Flask: GET / HTTP/1.1
-        Flask->>Postgres: SELECT * FROM cats
-        Postgres-->>Flask: [cat1, cat2]
-        Flask-->>Browser: <html>...</html>
+Mermaid
+-------
 
 .. versionadded:: 2.0 Added Mermaid diagrams.
+
+.. versionchanged:: 2.2 Removed Mermaid diagrams.
+
+  (They were a pain to keep working as the upstream is a mess)
 
 Diagrams
 --------
