@@ -1,7 +1,7 @@
 from os import path
 from sphinx.util.logging import getLogger
 
-version = "2.2.0"
+version = "2.3.0"
 
 logger = getLogger("glide")
 

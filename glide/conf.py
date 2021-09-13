@@ -1,16 +1,3 @@
-# FIXME: monkeypatching because current version of sphinxcontrib.mermaid relies
-# on sphinx.util.osutil API which changed in sphinx 4.0. Reporting this to
-# mermaid maintainer, so in the future, we can hopefully remove this monkeypatch.
-#
-# DO NOT DELETE THIS OR MOVE THIS FURTHER DOWN IN THE CODE UNLESS YOU UNDERSTAND
-# HOW THIS WORKS. - Joel
-
-import sphinx.util.osutil
-import errno
-sphinx.util.osutil.ENOENT = getattr(errno, 'ENOENT', 0)
-
-############
-
 import subprocess
 import os
 
@@ -41,7 +28,6 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.imgmath',
     'sphinxcontrib.drawio',
-    'sphinxcontrib.mermaid',
     'sphinxemoji.sphinxemoji',
     # 'sphinxcontrib.aafig',
     'aafigure.sphinxext',
@@ -361,16 +347,6 @@ drawio_default_export_scale = 400
 
 sphinxemoji_style = 'twemoji'
 
-mermaid_output_format = "svg"
-# Must define this in your conf
-mermaid_cmd = "/Users/joel/src/glide/test/node_modules/.bin/mmdc"
-mermaid_verbose = False
-mermaid_params = [
-    '--theme', 'neutral',
-    # for now, mmdc doesn't allow custom stylesheets
-    # '-C', '/Users/joel/src/glide/cheatsheet/mermaid.css',
-]
-
 
 def setup(app):
     # In order to use this in config, it must be declared
@@ -379,21 +355,6 @@ def setup(app):
     demo_path = os.environ.get("DEMO_PATH")
     app.add_config_value('demo_path', demo_path, 'env')
 
-    # We need to add mermaid support to our custom builders
-    from sphinxcontrib.mermaid import mermaid, html_visit_mermaid, \
-        latex_visit_mermaid, texinfo_visit_mermaid, text_visit_mermaid, \
-        man_visit_mermaid
-    app.add_node(
-        mermaid,
-        handouts=(html_visit_mermaid, None),
-        revealjs=(html_visit_mermaid, None),
-        html=(html_visit_mermaid, None),
-        latex=(latex_visit_mermaid, None),
-        texinfo=(texinfo_visit_mermaid, None),
-        text=(text_visit_mermaid, None),
-        man=(man_visit_mermaid, None),
-        override=True
-    )
     app.add_node(
         todo_node,
         handouts=(visit_todo_node, depart_todo_node),
