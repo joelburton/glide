@@ -1,7 +1,7 @@
 """Sphinx translator and builder for handouts."""
 
 from docutils.nodes import SkipNode, section, Node, Element
-from sphinx.builders.html import StandaloneHTMLBuilder
+from sphinx.builders.html import StandaloneHTMLBuilder, SingleFileHTMLBuilder
 from sphinx.writers.html import HTMLTranslator
 
 from glide import version, logger
@@ -118,7 +118,36 @@ class HandoutsBuilder(StandaloneHTMLBuilder):
             self.add_js_file('translations.js')
 
 
+class SingleFileHandoutsBuilder(SingleFileHTMLBuilder):
+    """Builder for making HTML handouts using Sphinx."""
+
+    name = 'singlehandouts'
+
+    # Do not generate any support for search
+    search = None
+
+    def init_js_files(self) -> None:
+        """Override to remove not-needed JS files."""
+
+        # This is what we're overriding to remove
+        # self.add_js_file('jquery.js')
+        # self.add_js_file('underscore.js')
+        # self.add_js_file('doctools.js')
+        # self.add_js_file('language_data.js')
+
+        for filename, attrs in self.app.registry.js_files:
+            self.add_js_file(filename, **attrs)
+
+        for filename, attrs in self.get_builder_config('js_files', 'html'):
+            self.add_js_file(filename, **attrs)
+
+        if self.config.language and self._get_translations_js():
+            self.add_js_file('translations.js')
+
+
 def setup(app):
     app.add_builder(HandoutsBuilder)
+    app.add_builder(SingleFileHandoutsBuilder)
     app.set_translator('handouts', HandoutsTranslator)
+    app.set_translator('singlehandouts', HandoutsTranslator)
     return {'version': version, 'parallel_read_safe': True}
