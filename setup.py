@@ -27,7 +27,6 @@ setup(
         # "diagrams",
         "aafigure",
         "sphinxcontrib-drawio",
-        "sphinxcontrib-mermaid",
         "sphinxemoji",
     ],
     include_package_data=True,
