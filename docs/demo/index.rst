@@ -19,6 +19,8 @@ Demo Lecture
 Shell
 =====
 
+Hey this is an :err:`error message`.
+
 .. code-block:: simple-console
    :class: console
 

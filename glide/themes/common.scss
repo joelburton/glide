@@ -349,6 +349,10 @@ img.math {
   vertical-align: baseline;
 }
 
+.err {
+  border-bottom: solid 1px $red;
+}
+
 // Internal navigation of headers back to TOC shouldn't be styled
 body a.toc-backref {
   color: inherit;

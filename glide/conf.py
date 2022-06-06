@@ -203,6 +203,7 @@ _colors = """
 .. role:: danger
 .. role:: warning
 .. role:: success
+.. role:: err
 
 .. role:: gp
 .. role:: c
@@ -210,9 +211,12 @@ _colors = """
 
 .. role:: emoji
 .. role:: emoji-1x
+.. role:: emoji-15x
 .. role:: emoji-2x
 .. role:: emoji-3x
+.. role:: emoji-4x
 .. role:: emoji-5x
+.. role:: emoji-6x
 .. role:: emoji-7x
 """
 

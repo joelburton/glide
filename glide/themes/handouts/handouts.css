@@ -281,6 +281,10 @@ img.math {
   vertical-align: baseline;
 }
 
+.err {
+  border-bottom: solid 1px #ff4136;
+}
+
 body a.toc-backref {
   color: inherit;
   font-weight: inherit;
@@ -365,6 +369,10 @@ img.emoji {
   width: 1em;
 }
 
+.emoji-15x > img.emoji {
+  width: 1.5em;
+}
+
 .emoji-2x > img.emoji {
   width: 2em;
 }
@@ -373,8 +381,16 @@ img.emoji {
   width: 3em;
 }
 
+.emoji-4x > img.emoji {
+  width: 4em;
+}
+
 .emoji-5x > img.emoji {
   width: 5em;
+}
+
+.emoji-6x > img.emoji {
+  width: 6em;
 }
 
 .emoji-7x > img.emoji {
