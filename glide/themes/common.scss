@@ -400,9 +400,12 @@ img.emoji {
 }
 
 .emoji-1x > img.emoji { width: 1em; }
+.emoji-15x > img.emoji { width: 1.5em; }
 .emoji-2x > img.emoji { width: 2em; }
 .emoji-3x > img.emoji { width: 3em; }
+.emoji-4x > img.emoji { width: 4em; }
 .emoji-5x > img.emoji { width: 5em; }
+.emoji-6x > img.emoji { width: 6em; }
 .emoji-7x > img.emoji { width: 7em; }
 
 .comment {
@@ -1344,5 +1347,3 @@ table.docutils.footnote td {
 }
 
 // ======================================================= active experimenting
-
-

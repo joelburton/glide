@@ -16,6 +16,33 @@ Demo Lecture
 
    |:cat:|
 
+Shell
+=====
+
+.. code-block:: simple-console
+   :class: console
+
+   $ ls
+   a b c
+   $ ls
+   a b c
+   /Path/to/here $ ls
+   (venv) here $ ls
+   a b c
+   $ ls
+   > also
+   (venv) here % ls
+   # this is a comment
+   $ ls
+   a b c  # this is a comment
+   a b c#not a comment
+   a b c  #! this is an error
+   % ls
+   a b c
+   $ ls   # <-- notice!
+   $ ls#not-comment x
+   #! this gets their attention
+
 Admonitions
 ===========
 
