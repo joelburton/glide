@@ -1085,6 +1085,9 @@ span.linenos {
     background-color: $color;
     padding: 0 .25em;
   }
+  .background-#{"" + $name} {
+    background-color: $color;
+  }
 }
 
 // ======================================== sidebar: aside comment on something

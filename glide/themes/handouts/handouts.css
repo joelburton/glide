@@ -1055,6 +1055,10 @@ span.linenos {
   }
 }
 
+.background-dark-red {
+  background-color: #e7040f;
+}
+
 .red {
   font-weight: 400;
   color: #ff4136;
@@ -1081,6 +1085,10 @@ span.linenos {
   .bg-red {
     font-weight: 600;
   }
+}
+
+.background-red {
+  background-color: #ff4136;
 }
 
 .light-red {
@@ -1111,6 +1119,10 @@ span.linenos {
   }
 }
 
+.background-light-red {
+  background-color: #ff725c;
+}
+
 .orange {
   font-weight: 400;
   color: #ff6300;
@@ -1137,6 +1149,10 @@ span.linenos {
   .bg-orange {
     font-weight: 600;
   }
+}
+
+.background-orange {
+  background-color: #ff6300;
 }
 
 .gold {
@@ -1167,6 +1183,10 @@ span.linenos {
   }
 }
 
+.background-gold {
+  background-color: #ffb700;
+}
+
 .yellow {
   font-weight: 400;
   color: #ffd700;
@@ -1193,6 +1213,10 @@ span.linenos {
   .bg-yellow {
     font-weight: 600;
   }
+}
+
+.background-yellow {
+  background-color: #ffd700;
 }
 
 .light-yellow {
@@ -1223,6 +1247,10 @@ span.linenos {
   }
 }
 
+.background-light-yellow {
+  background-color: #fbf1a9;
+}
+
 .purple {
   font-weight: 400;
   color: #5e2ca5;
@@ -1249,6 +1277,10 @@ span.linenos {
   .bg-purple {
     font-weight: 600;
   }
+}
+
+.background-purple {
+  background-color: #5e2ca5;
 }
 
 .light-purple {
@@ -1279,6 +1311,10 @@ span.linenos {
   }
 }
 
+.background-light-purple {
+  background-color: #a463f2;
+}
+
 .dark-pink {
   font-weight: 400;
   color: #d5008f;
@@ -1305,6 +1341,10 @@ span.linenos {
   .bg-dark-pink {
     font-weight: 600;
   }
+}
+
+.background-dark-pink {
+  background-color: #d5008f;
 }
 
 .hot-pink {
@@ -1335,6 +1375,10 @@ span.linenos {
   }
 }
 
+.background-hot-pink {
+  background-color: #ff41b4;
+}
+
 .pink {
   font-weight: 400;
   color: #ff80cc;
@@ -1361,6 +1405,10 @@ span.linenos {
   .bg-pink {
     font-weight: 600;
   }
+}
+
+.background-pink {
+  background-color: #ff80cc;
 }
 
 .light-pink {
@@ -1391,6 +1439,10 @@ span.linenos {
   }
 }
 
+.background-light-pink {
+  background-color: #ffa3d7;
+}
+
 .dark-green {
   font-weight: 400;
   color: #137752;
@@ -1417,6 +1469,10 @@ span.linenos {
   .bg-dark-green {
     font-weight: 600;
   }
+}
+
+.background-dark-green {
+  background-color: #137752;
 }
 
 .green {
@@ -1447,6 +1503,10 @@ span.linenos {
   }
 }
 
+.background-green {
+  background-color: #19a974;
+}
+
 .light-green {
   font-weight: 400;
   color: #9eebcf;
@@ -1473,6 +1533,10 @@ span.linenos {
   .bg-light-green {
     font-weight: 600;
   }
+}
+
+.background-light-green {
+  background-color: #9eebcf;
 }
 
 .navy {
@@ -1503,6 +1567,10 @@ span.linenos {
   }
 }
 
+.background-navy {
+  background-color: #001b44;
+}
+
 .dark-blue {
   font-weight: 400;
   color: #00449e;
@@ -1529,6 +1597,10 @@ span.linenos {
   .bg-dark-blue {
     font-weight: 600;
   }
+}
+
+.background-dark-blue {
+  background-color: #00449e;
 }
 
 .light-blue {
@@ -1559,6 +1631,10 @@ span.linenos {
   }
 }
 
+.background-light-blue {
+  background-color: #96ccff;
+}
+
 .lightest-blue {
   font-weight: 400;
   color: #cdecff;
@@ -1585,6 +1661,10 @@ span.linenos {
   .bg-lightest-blue {
     font-weight: 600;
   }
+}
+
+.background-lightest-blue {
+  background-color: #cdecff;
 }
 
 .blue {
@@ -1615,6 +1695,10 @@ span.linenos {
   }
 }
 
+.background-blue {
+  background-color: #357edd;
+}
+
 .washed-blue {
   font-weight: 400;
   color: #f6fffe;
@@ -1641,6 +1725,10 @@ span.linenos {
   .bg-washed-blue {
     font-weight: 600;
   }
+}
+
+.background-washed-blue {
+  background-color: #f6fffe;
 }
 
 .washed-green {
@@ -1671,6 +1759,10 @@ span.linenos {
   }
 }
 
+.background-washed-green {
+  background-color: #e8fdf5;
+}
+
 .washed-yellow {
   font-weight: 400;
   color: #fffceb;
@@ -1697,6 +1789,10 @@ span.linenos {
   .bg-washed-yellow {
     font-weight: 600;
   }
+}
+
+.background-washed-yellow {
+  background-color: #fffceb;
 }
 
 .washed-red {
@@ -1727,6 +1823,10 @@ span.linenos {
   }
 }
 
+.background-washed-red {
+  background-color: #ffdfdf;
+}
+
 .black {
   font-weight: 400;
   color: #000;
@@ -1753,6 +1853,10 @@ span.linenos {
   .bg-black {
     font-weight: 600;
   }
+}
+
+.background-black {
+  background-color: #000;
 }
 
 .near-black {
@@ -1783,6 +1887,10 @@ span.linenos {
   }
 }
 
+.background-near-black {
+  background-color: #111;
+}
+
 .dark-gray {
   font-weight: 400;
   color: #333;
@@ -1809,6 +1917,10 @@ span.linenos {
   .bg-dark-gray {
     font-weight: 600;
   }
+}
+
+.background-dark-gray {
+  background-color: #333;
 }
 
 .mid-gray {
@@ -1839,6 +1951,10 @@ span.linenos {
   }
 }
 
+.background-mid-gray {
+  background-color: #555;
+}
+
 .gray {
   font-weight: 400;
   color: #777;
@@ -1865,6 +1981,10 @@ span.linenos {
   .bg-gray {
     font-weight: 600;
   }
+}
+
+.background-gray {
+  background-color: #777;
 }
 
 .silver {
@@ -1895,6 +2015,10 @@ span.linenos {
   }
 }
 
+.background-silver {
+  background-color: #999;
+}
+
 .light-silver {
   font-weight: 400;
   color: #aaa;
@@ -1921,6 +2045,10 @@ span.linenos {
   .bg-light-silver {
     font-weight: 600;
   }
+}
+
+.background-light-silver {
+  background-color: #aaa;
 }
 
 .moon-gray {
@@ -1951,6 +2079,10 @@ span.linenos {
   }
 }
 
+.background-moon-gray {
+  background-color: #ccc;
+}
+
 .light-gray {
   font-weight: 400;
   color: #eee;
@@ -1977,6 +2109,10 @@ span.linenos {
   .bg-light-gray {
     font-weight: 600;
   }
+}
+
+.background-light-gray {
+  background-color: #eee;
 }
 
 .near-white {
@@ -2007,6 +2143,10 @@ span.linenos {
   }
 }
 
+.background-near-white {
+  background-color: #f4f4f4;
+}
+
 .white {
   font-weight: 400;
   color: #fff;
@@ -2033,6 +2173,10 @@ span.linenos {
   .bg-white {
     font-weight: 600;
   }
+}
+
+.background-white {
+  background-color: #fff;
 }
 
 .sidebar {
