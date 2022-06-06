@@ -350,7 +350,8 @@ img.math {
 }
 
 .err {
-  border-bottom: solid 1px $red;
+  font-family: $theme-codefont;
+  color: $red;
 }
 
 // Internal navigation of headers back to TOC shouldn't be styled

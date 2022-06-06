@@ -282,7 +282,8 @@ img.math {
 }
 
 .err {
-  border-bottom: solid 1px #ff4136;
+  font-family: var(--theme-codefont);
+  color: #ff4136;
 }
 
 body a.toc-backref {
