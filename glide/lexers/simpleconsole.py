@@ -31,6 +31,7 @@ class SimpleConsoleLexer(RegexLexer):
             (r'^# .*$', Comment),
             # a " # blah" is a comment
             (r'(.*?)( # .*)$', bygroups(Text, Comment)),
+            # everything is just continuing text
             (r'.+', Text),
         ],
     }
