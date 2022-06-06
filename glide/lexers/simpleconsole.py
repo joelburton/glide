@@ -14,11 +14,11 @@ class SimpleConsoleLexer(RegexLexer):
             # a prompt --- starts the line, with a comment
             (r'^([$%] )(.*?)( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
             # a prompt anywhere else --- with a comment
-            (r'^([-\w() /~:@]* [$%] )( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
+            (r'^([-\w() /~:@*]* [$%] )( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
             # a prompt --- starts the line
             (r'^([$%] )(.*)$', bygroups(Generic.Prompt, Generic.Strong)),
             # a prompt anywhere else
-            (r'^([-\w() /~:@]* [$%] )(.*)$', bygroups(Generic.Prompt, Generic.Strong)),
+            (r'^([-\w() /~:@*]* [$%] )(.*)$', bygroups(Generic.Prompt, Generic.Strong)),
             # continuation lines must start with "> ", with a comment
             (r'^(> )(.*)( $ .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
             # continuation lines must start with "> "
