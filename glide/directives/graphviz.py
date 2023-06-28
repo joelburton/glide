@@ -53,6 +53,7 @@ class Sizeable:
             node['options']['revealjs'] = "-Gsize=%s,%s" % (x, y)
             node['options']['latex'] = "-Gsize=%s,%s" % (x / 2.4, y / 2.4)
             node['options']['handouts'] = "-Gsize=%s,%s" % (x / 2, y / 2)
+            node['options']['singlehandouts'] = "-Gsize=%s,%s" % (x / 2, y / 2)
 
     # noinspection PyAttributeOutsideInit
     def run(self):
