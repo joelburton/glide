@@ -12,7 +12,7 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.3.12',
+    version='2.3.13',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
@@ -20,7 +20,7 @@ setup(
     packages=['glide', 'glide/directives', 'glide/writers', 'glide/lexers'],
     python_requires=">= 3.8.6",
     install_requires=[
-        "Sphinx (>=3.2.1,<8)",
+        "Sphinx (>=3.2.1,<7)",
         "jsx-lexer",
         "toolz",
         "aafigure",
