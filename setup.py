@@ -21,7 +21,7 @@ setup(
     python_requires=">= 3.8.6",
     install_requires=[
         "Sphinx (>=3.2.1,<8)",
-        "jsx-lexer",∆
+        "jsx-lexer",
         "toolz",
         "aafigure",
         # "diagrams",
