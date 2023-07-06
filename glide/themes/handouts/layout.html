@@ -7,9 +7,7 @@
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% if html_favicon %}
-    <link rel="shortcut icon" href="">
-  {% endif %}
+  <link rel="shortcut icon" href="{{ pathto('_static/favicon.ico', 1) }}">
 
   <link
       href="https://unpkg.com/sanitize.css"
