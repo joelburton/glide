@@ -608,6 +608,11 @@ img.math {
   vertical-align: baseline;
 }
 
+.err {
+  font-family: var(--theme-codefont);
+  color: #ff4136;
+}
+
 body a.toc-backref {
   color: inherit;
   font-weight: inherit;
@@ -640,10 +645,10 @@ span.del {
 }
 @media print {
   span.danger,
-span.warning,
-span.success,
-span.ins,
-span.del {
+  span.warning,
+  span.success,
+  span.ins,
+  span.del {
     font-weight: 600;
   }
 }
@@ -692,6 +697,10 @@ img.emoji {
   width: 1em;
 }
 
+.emoji-15x > img.emoji {
+  width: 1.5em;
+}
+
 .emoji-2x > img.emoji {
   width: 2em;
 }
@@ -700,8 +709,16 @@ img.emoji {
   width: 3em;
 }
 
+.emoji-4x > img.emoji {
+  width: 4em;
+}
+
 .emoji-5x > img.emoji {
   width: 5em;
+}
+
+.emoji-6x > img.emoji {
+  width: 6em;
 }
 
 .emoji-7x > img.emoji {
@@ -990,7 +1007,7 @@ code {
 }
 @media print {
   .highlight pre,
-.parsed-literal-wrapper pre {
+  .parsed-literal-wrapper pre {
     font-size: 8.5pt;
     font-weight: 400;
   }
@@ -1011,13 +1028,13 @@ pre.console,
 }
 @media print {
   pre.console,
-.console > .highlight > pre {
+  .console > .highlight > pre {
     font-weight: 400;
   }
 }
 @media print {
   pre.console,
-.console > .highlight > pre {
+  .console > .highlight > pre {
     border-color: #999;
     border-width: 1px;
     box-shadow: none;
@@ -1078,7 +1095,7 @@ span.linenos {
 }
 @media print {
   .highlight .c1,
-.highlight .c {
+  .highlight .c {
     color: #555;
     font-weight: 300;
   }
@@ -1094,11 +1111,11 @@ span.linenos {
 }
 @media print {
   .code-comments-wrong .highlight .c1,
-.code-comments-wrong .highlight .c,
-.code-comments-good .highlight .c1,
-.code-comments-good .highlight .c,
-.code-comments-pop .highlight .c1,
-.code-comments-pop .highlight .c {
+  .code-comments-wrong .highlight .c,
+  .code-comments-good .highlight .c1,
+  .code-comments-good .highlight .c,
+  .code-comments-pop .highlight .c1,
+  .code-comments-pop .highlight .c {
     font-weight: 700;
   }
 }
@@ -1205,7 +1222,7 @@ span.linenos {
 }
 @media print {
   .admonition.caution .admonition-title,
-.admonition.warning .admonition-title {
+  .admonition.warning .admonition-title {
     color: #ff6300;
   }
 }
@@ -1220,7 +1237,7 @@ span.linenos {
 }
 @media print {
   .admonition.error .admonition-title,
-.admonition.danger .admonition-title {
+  .admonition.danger .admonition-title {
     color: #ff4136;
   }
 }
@@ -1238,13 +1255,13 @@ span.linenos {
 }
 @media print {
   .admonition.seealso,
-.admonition.hint,
-.admonition.tip {
+  .admonition.hint,
+  .admonition.tip {
     border-color: #357edd;
   }
   .admonition.seealso .admonition-title,
-.admonition.hint .admonition-title,
-.admonition.tip .admonition-title {
+  .admonition.hint .admonition-title,
+  .admonition.tip .admonition-title {
     color: #00449e;
   }
 }
@@ -1326,12 +1343,11 @@ span.linenos {
 
 @media print {
   .code-hover-reveal pre > *,
-.hover-reveal > * {
+  .hover-reveal > * {
     visibility: visible;
   }
-
   .code-hover-reveal pre,
-.hover-reveal {
+  .hover-reveal {
     border: inherit;
     background-color: inherit;
     transform: rotate(180deg);
@@ -1365,6 +1381,10 @@ span.linenos {
   }
 }
 
+.background-dark-red {
+  background-color: #e7040f;
+}
+
 .red {
   font-weight: 400;
   color: #ff4136;
@@ -1391,6 +1411,10 @@ span.linenos {
   .bg-red {
     font-weight: 600;
   }
+}
+
+.background-red {
+  background-color: #ff4136;
 }
 
 .light-red {
@@ -1421,6 +1445,10 @@ span.linenos {
   }
 }
 
+.background-light-red {
+  background-color: #ff725c;
+}
+
 .orange {
   font-weight: 400;
   color: #ff6300;
@@ -1447,6 +1475,10 @@ span.linenos {
   .bg-orange {
     font-weight: 600;
   }
+}
+
+.background-orange {
+  background-color: #ff6300;
 }
 
 .gold {
@@ -1477,6 +1509,10 @@ span.linenos {
   }
 }
 
+.background-gold {
+  background-color: #ffb700;
+}
+
 .yellow {
   font-weight: 400;
   color: #ffd700;
@@ -1503,6 +1539,10 @@ span.linenos {
   .bg-yellow {
     font-weight: 600;
   }
+}
+
+.background-yellow {
+  background-color: #ffd700;
 }
 
 .light-yellow {
@@ -1533,6 +1573,10 @@ span.linenos {
   }
 }
 
+.background-light-yellow {
+  background-color: #fbf1a9;
+}
+
 .purple {
   font-weight: 400;
   color: #5e2ca5;
@@ -1559,6 +1603,10 @@ span.linenos {
   .bg-purple {
     font-weight: 600;
   }
+}
+
+.background-purple {
+  background-color: #5e2ca5;
 }
 
 .light-purple {
@@ -1589,6 +1637,10 @@ span.linenos {
   }
 }
 
+.background-light-purple {
+  background-color: #a463f2;
+}
+
 .dark-pink {
   font-weight: 400;
   color: #d5008f;
@@ -1615,6 +1667,10 @@ span.linenos {
   .bg-dark-pink {
     font-weight: 600;
   }
+}
+
+.background-dark-pink {
+  background-color: #d5008f;
 }
 
 .hot-pink {
@@ -1645,6 +1701,10 @@ span.linenos {
   }
 }
 
+.background-hot-pink {
+  background-color: #ff41b4;
+}
+
 .pink {
   font-weight: 400;
   color: #ff80cc;
@@ -1671,6 +1731,10 @@ span.linenos {
   .bg-pink {
     font-weight: 600;
   }
+}
+
+.background-pink {
+  background-color: #ff80cc;
 }
 
 .light-pink {
@@ -1701,6 +1765,10 @@ span.linenos {
   }
 }
 
+.background-light-pink {
+  background-color: #ffa3d7;
+}
+
 .dark-green {
   font-weight: 400;
   color: #137752;
@@ -1727,6 +1795,10 @@ span.linenos {
   .bg-dark-green {
     font-weight: 600;
   }
+}
+
+.background-dark-green {
+  background-color: #137752;
 }
 
 .green {
@@ -1757,6 +1829,10 @@ span.linenos {
   }
 }
 
+.background-green {
+  background-color: #19a974;
+}
+
 .light-green {
   font-weight: 400;
   color: #9eebcf;
@@ -1783,6 +1859,10 @@ span.linenos {
   .bg-light-green {
     font-weight: 600;
   }
+}
+
+.background-light-green {
+  background-color: #9eebcf;
 }
 
 .navy {
@@ -1813,6 +1893,10 @@ span.linenos {
   }
 }
 
+.background-navy {
+  background-color: #001b44;
+}
+
 .dark-blue {
   font-weight: 400;
   color: #00449e;
@@ -1839,6 +1923,10 @@ span.linenos {
   .bg-dark-blue {
     font-weight: 600;
   }
+}
+
+.background-dark-blue {
+  background-color: #00449e;
 }
 
 .light-blue {
@@ -1869,6 +1957,10 @@ span.linenos {
   }
 }
 
+.background-light-blue {
+  background-color: #96ccff;
+}
+
 .lightest-blue {
   font-weight: 400;
   color: #cdecff;
@@ -1895,6 +1987,10 @@ span.linenos {
   .bg-lightest-blue {
     font-weight: 600;
   }
+}
+
+.background-lightest-blue {
+  background-color: #cdecff;
 }
 
 .blue {
@@ -1925,6 +2021,10 @@ span.linenos {
   }
 }
 
+.background-blue {
+  background-color: #357edd;
+}
+
 .washed-blue {
   font-weight: 400;
   color: #f6fffe;
@@ -1951,6 +2051,10 @@ span.linenos {
   .bg-washed-blue {
     font-weight: 600;
   }
+}
+
+.background-washed-blue {
+  background-color: #f6fffe;
 }
 
 .washed-green {
@@ -1981,6 +2085,10 @@ span.linenos {
   }
 }
 
+.background-washed-green {
+  background-color: #e8fdf5;
+}
+
 .washed-yellow {
   font-weight: 400;
   color: #fffceb;
@@ -2007,6 +2115,10 @@ span.linenos {
   .bg-washed-yellow {
     font-weight: 600;
   }
+}
+
+.background-washed-yellow {
+  background-color: #fffceb;
 }
 
 .washed-red {
@@ -2037,6 +2149,10 @@ span.linenos {
   }
 }
 
+.background-washed-red {
+  background-color: #ffdfdf;
+}
+
 .black {
   font-weight: 400;
   color: #000;
@@ -2063,6 +2179,10 @@ span.linenos {
   .bg-black {
     font-weight: 600;
   }
+}
+
+.background-black {
+  background-color: #000;
 }
 
 .near-black {
@@ -2093,6 +2213,10 @@ span.linenos {
   }
 }
 
+.background-near-black {
+  background-color: #111;
+}
+
 .dark-gray {
   font-weight: 400;
   color: #333;
@@ -2119,6 +2243,10 @@ span.linenos {
   .bg-dark-gray {
     font-weight: 600;
   }
+}
+
+.background-dark-gray {
+  background-color: #333;
 }
 
 .mid-gray {
@@ -2149,6 +2277,10 @@ span.linenos {
   }
 }
 
+.background-mid-gray {
+  background-color: #555;
+}
+
 .gray {
   font-weight: 400;
   color: #777;
@@ -2175,6 +2307,10 @@ span.linenos {
   .bg-gray {
     font-weight: 600;
   }
+}
+
+.background-gray {
+  background-color: #777;
 }
 
 .silver {
@@ -2205,6 +2341,10 @@ span.linenos {
   }
 }
 
+.background-silver {
+  background-color: #999;
+}
+
 .light-silver {
   font-weight: 400;
   color: #aaa;
@@ -2231,6 +2371,10 @@ span.linenos {
   .bg-light-silver {
     font-weight: 600;
   }
+}
+
+.background-light-silver {
+  background-color: #aaa;
 }
 
 .moon-gray {
@@ -2261,6 +2405,10 @@ span.linenos {
   }
 }
 
+.background-moon-gray {
+  background-color: #ccc;
+}
+
 .light-gray {
   font-weight: 400;
   color: #eee;
@@ -2287,6 +2435,10 @@ span.linenos {
   .bg-light-gray {
     font-weight: 600;
   }
+}
+
+.background-light-gray {
+  background-color: #eee;
 }
 
 .near-white {
@@ -2317,6 +2469,10 @@ span.linenos {
   }
 }
 
+.background-near-white {
+  background-color: #f4f4f4;
+}
+
 .white {
   font-weight: 400;
   color: #fff;
@@ -2343,6 +2499,10 @@ span.linenos {
   .bg-white {
     font-weight: 600;
   }
+}
+
+.background-white {
+  background-color: #fff;
 }
 
 .sidebar {
@@ -2918,7 +3078,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-25 pre {
-  font-size: 2.64pt;
+  font-size: 2.64pt !important;
 }
 
 .glide .font-size-30 {
@@ -2926,7 +3086,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-30 pre {
-  font-size: 3.168pt;
+  font-size: 3.168pt !important;
 }
 
 .glide .font-size-35 {
@@ -2934,7 +3094,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-35 pre {
-  font-size: 3.696pt;
+  font-size: 3.696pt !important;
 }
 
 .glide .font-size-40 {
@@ -2942,7 +3102,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-40 pre {
-  font-size: 4.224pt;
+  font-size: 4.224pt !important;
 }
 
 .glide .font-size-45 {
@@ -2950,7 +3110,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-45 pre {
-  font-size: 4.752pt;
+  font-size: 4.752pt !important;
 }
 
 .glide .font-size-50 {
@@ -2958,7 +3118,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-50 pre {
-  font-size: 5.28pt;
+  font-size: 5.28pt !important;
 }
 
 .glide .font-size-55 {
@@ -2966,7 +3126,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-55 pre {
-  font-size: 5.808pt;
+  font-size: 5.808pt !important;
 }
 
 .glide .font-size-60 {
@@ -2974,7 +3134,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-60 pre {
-  font-size: 6.336pt;
+  font-size: 6.336pt !important;
 }
 
 .glide .font-size-65 {
@@ -2982,7 +3142,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-65 pre {
-  font-size: 6.864pt;
+  font-size: 6.864pt !important;
 }
 
 .glide .font-size-70 {
@@ -2990,7 +3150,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-70 pre {
-  font-size: 7.392pt;
+  font-size: 7.392pt !important;
 }
 
 .glide .font-size-75 {
@@ -2998,7 +3158,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-75 pre {
-  font-size: 7.92pt;
+  font-size: 7.92pt !important;
 }
 
 .glide .font-size-80 {
@@ -3006,7 +3166,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-80 pre {
-  font-size: 8.448pt;
+  font-size: 8.448pt !important;
 }
 
 .glide .font-size-85 {
@@ -3014,7 +3174,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-85 pre {
-  font-size: 8.976pt;
+  font-size: 8.976pt !important;
 }
 
 .glide .font-size-90 {
@@ -3022,7 +3182,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-90 pre {
-  font-size: 9.504pt;
+  font-size: 9.504pt !important;
 }
 
 .glide .font-size-95 {
@@ -3030,7 +3190,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-95 pre {
-  font-size: 10.032pt;
+  font-size: 10.032pt !important;
 }
 
 .glide .font-size-100 {
@@ -3038,7 +3198,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-100 pre {
-  font-size: 10.56pt;
+  font-size: 10.56pt !important;
 }
 
 .glide .font-size-105 {
@@ -3046,7 +3206,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-105 pre {
-  font-size: 11.088pt;
+  font-size: 11.088pt !important;
 }
 
 .glide .font-size-110 {
@@ -3054,7 +3214,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-110 pre {
-  font-size: 11.616pt;
+  font-size: 11.616pt !important;
 }
 
 .glide .font-size-115 {
@@ -3062,7 +3222,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-115 pre {
-  font-size: 12.144pt;
+  font-size: 12.144pt !important;
 }
 
 .glide .font-size-120 {
@@ -3070,7 +3230,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-120 pre {
-  font-size: 12.672pt;
+  font-size: 12.672pt !important;
 }
 
 .glide .font-size-125 {
@@ -3078,7 +3238,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-125 pre {
-  font-size: 13.2pt;
+  font-size: 13.2pt !important;
 }
 
 .glide .font-size-130 {
@@ -3086,7 +3246,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-130 pre {
-  font-size: 13.728pt;
+  font-size: 13.728pt !important;
 }
 
 .glide .font-size-135 {
@@ -3094,7 +3254,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-135 pre {
-  font-size: 14.256pt;
+  font-size: 14.256pt !important;
 }
 
 .glide .font-size-140 {
@@ -3102,7 +3262,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-140 pre {
-  font-size: 14.784pt;
+  font-size: 14.784pt !important;
 }
 
 .glide .font-size-145 {
@@ -3110,7 +3270,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-145 pre {
-  font-size: 15.312pt;
+  font-size: 15.312pt !important;
 }
 
 .glide .font-size-150 {
@@ -3118,7 +3278,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-150 pre {
-  font-size: 15.84pt;
+  font-size: 15.84pt !important;
 }
 
 .glide .font-size-155 {
@@ -3126,7 +3286,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-155 pre {
-  font-size: 16.368pt;
+  font-size: 16.368pt !important;
 }
 
 .glide .font-size-160 {
@@ -3134,7 +3294,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-160 pre {
-  font-size: 16.896pt;
+  font-size: 16.896pt !important;
 }
 
 .glide .font-size-165 {
@@ -3142,7 +3302,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-165 pre {
-  font-size: 17.424pt;
+  font-size: 17.424pt !important;
 }
 
 .glide .font-size-170 {
@@ -3150,7 +3310,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-170 pre {
-  font-size: 17.952pt;
+  font-size: 17.952pt !important;
 }
 
 .glide .font-size-175 {
@@ -3158,7 +3318,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-175 pre {
-  font-size: 18.48pt;
+  font-size: 18.48pt !important;
 }
 
 .glide .font-size-180 {
@@ -3166,7 +3326,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-180 pre {
-  font-size: 19.008pt;
+  font-size: 19.008pt !important;
 }
 
 .glide .font-size-185 {
@@ -3174,7 +3334,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-185 pre {
-  font-size: 19.536pt;
+  font-size: 19.536pt !important;
 }
 
 .glide .font-size-190 {
@@ -3182,7 +3342,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-190 pre {
-  font-size: 20.064pt;
+  font-size: 20.064pt !important;
 }
 
 .glide .font-size-195 {
@@ -3190,7 +3350,7 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-195 pre {
-  font-size: 20.592pt;
+  font-size: 20.592pt !important;
 }
 
 .glide .font-size-200 {
@@ -3198,152 +3358,117 @@ blockquote > div p:last-child {
 }
 
 .code-font-size-200 pre {
-  font-size: 21.12pt;
+  font-size: 21.12pt !important;
 }
 
 @media print {
   .code-font-size-25 pre {
-    font-size: 2.125pt;
+    font-size: 2.125pt !important;
   }
-
   .code-font-size-30 pre {
-    font-size: 2.55pt;
+    font-size: 2.55pt !important;
   }
-
   .code-font-size-35 pre {
-    font-size: 2.975pt;
+    font-size: 2.975pt !important;
   }
-
   .code-font-size-40 pre {
-    font-size: 3.4pt;
+    font-size: 3.4pt !important;
   }
-
   .code-font-size-45 pre {
-    font-size: 3.825pt;
+    font-size: 3.825pt !important;
   }
-
   .code-font-size-50 pre {
-    font-size: 4.25pt;
+    font-size: 4.25pt !important;
   }
-
   .code-font-size-55 pre {
-    font-size: 4.675pt;
+    font-size: 4.675pt !important;
   }
-
   .code-font-size-60 pre {
-    font-size: 5.1pt;
+    font-size: 5.1pt !important;
   }
-
   .code-font-size-65 pre {
-    font-size: 5.525pt;
+    font-size: 5.525pt !important;
   }
-
   .code-font-size-70 pre {
-    font-size: 5.95pt;
+    font-size: 5.95pt !important;
   }
-
   .code-font-size-75 pre {
-    font-size: 6.375pt;
+    font-size: 6.375pt !important;
   }
-
   .code-font-size-80 pre {
-    font-size: 6.8pt;
+    font-size: 6.8pt !important;
   }
-
   .code-font-size-85 pre {
-    font-size: 7.225pt;
+    font-size: 7.225pt !important;
   }
-
   .code-font-size-90 pre {
-    font-size: 7.65pt;
+    font-size: 7.65pt !important;
   }
-
   .code-font-size-95 pre {
-    font-size: 8.075pt;
+    font-size: 8.075pt !important;
   }
-
   .code-font-size-100 pre {
-    font-size: 8.5pt;
+    font-size: 8.5pt !important;
   }
-
   .code-font-size-105 pre {
-    font-size: 8.925pt;
+    font-size: 8.925pt !important;
   }
-
   .code-font-size-110 pre {
-    font-size: 9.35pt;
+    font-size: 9.35pt !important;
   }
-
   .code-font-size-115 pre {
-    font-size: 9.775pt;
+    font-size: 9.775pt !important;
   }
-
   .code-font-size-120 pre {
-    font-size: 10.2pt;
+    font-size: 10.2pt !important;
   }
-
   .code-font-size-125 pre {
-    font-size: 10.625pt;
+    font-size: 10.625pt !important;
   }
-
   .code-font-size-130 pre {
-    font-size: 11.05pt;
+    font-size: 11.05pt !important;
   }
-
   .code-font-size-135 pre {
-    font-size: 11.475pt;
+    font-size: 11.475pt !important;
   }
-
   .code-font-size-140 pre {
-    font-size: 11.9pt;
+    font-size: 11.9pt !important;
   }
-
   .code-font-size-145 pre {
-    font-size: 12.325pt;
+    font-size: 12.325pt !important;
   }
-
   .code-font-size-150 pre {
-    font-size: 12.75pt;
+    font-size: 12.75pt !important;
   }
-
   .code-font-size-155 pre {
-    font-size: 13.175pt;
+    font-size: 13.175pt !important;
   }
-
   .code-font-size-160 pre {
-    font-size: 13.6pt;
+    font-size: 13.6pt !important;
   }
-
   .code-font-size-165 pre {
-    font-size: 14.025pt;
+    font-size: 14.025pt !important;
   }
-
   .code-font-size-170 pre {
-    font-size: 14.45pt;
+    font-size: 14.45pt !important;
   }
-
   .code-font-size-175 pre {
-    font-size: 14.875pt;
+    font-size: 14.875pt !important;
   }
-
   .code-font-size-180 pre {
-    font-size: 15.3pt;
+    font-size: 15.3pt !important;
   }
-
   .code-font-size-185 pre {
-    font-size: 15.725pt;
+    font-size: 15.725pt !important;
   }
-
   .code-font-size-190 pre {
-    font-size: 16.15pt;
+    font-size: 16.15pt !important;
   }
-
   .code-font-size-195 pre {
-    font-size: 16.575pt;
+    font-size: 16.575pt !important;
   }
-
   .code-font-size-200 pre {
-    font-size: 17pt;
+    font-size: 17pt !important;
   }
 }
 .code-cols-1 pre {

@@ -12,7 +12,7 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.3.13',
+    version='2.4',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
