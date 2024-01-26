@@ -4172,6 +4172,10 @@ table.docutils.footnote td {
   vertical-align: baseline;
   font-size: 0.7em;
 }
+.reveal ::selection {
+  background-color: #ffeecc;
+  color: inherit;
+}
 
 .reveal ul,
 .reveal ul ul,

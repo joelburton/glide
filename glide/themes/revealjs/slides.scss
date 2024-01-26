@@ -114,6 +114,11 @@ $codeFont: var(--theme-codefont);
     vertical-align: baseline;
     font-size: 0.7em;
   }
+
+  ::selection {
+    background-color: #ffeecc;
+    color: inherit;
+  }
 }
 
 // ========================================================== ul, ol, and hlist
