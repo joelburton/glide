@@ -56,6 +56,7 @@ class InterslideDirective(Directive):
         'transition': unchanged,
         'transition-speed': unchanged,
         'class': unchanged,
+        'iframe': unchanged,
     }
 
     def run(self):
@@ -66,6 +67,9 @@ class InterslideDirective(Directive):
         node['background'] = self.options.get('background')
         node['transition'] = self.options.get('transition')
         node['transition_speed'] = self.options.get('transition-speed')
+        if iframe := self.options.get("iframe"):
+            node['background_iframe'] = iframe
+            node['background_interactive'] = True
         node['class'] = self.options.get('class')
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)

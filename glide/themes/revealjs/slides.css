@@ -4254,4 +4254,16 @@ table.docutils.footnote td {
   display: none;
 }
 
+.iframe-popup-light {
+  position: absolute;
+  width: 40%;
+  top: -350px;
+  right: -150px;
+  border: solid 1px black;
+  box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  text-align: left;
+}
+
 /*# sourceMappingURL=slides.css.map */

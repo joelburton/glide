@@ -142,7 +142,9 @@ $codeFont: var(--theme-codefont);
   // Override Reveal, which wants to vertically center these
   ul,
   ol,
-  dl { vertical-align: top }
+  dl {
+    vertical-align: top
+  }
 
   // In RevealJS, two lists in direct order are placed side-by-side: this will
   // put some margin between the L and R
@@ -209,8 +211,14 @@ $codeFont: var(--theme-codefont);
     padding-right: 1em;
     font-style: unset;
     box-shadow: none;
-    &.epigraph { font-style: italic }
-    &.pull-quote { font-style: italic }
+
+    &.epigraph {
+      font-style: italic
+    }
+
+    &.pull-quote {
+      font-style: italic
+    }
 
     blockquote p.attribution {
       // Override RevealJS styling
@@ -253,3 +261,17 @@ $codeFont: var(--theme-codefont);
 // this kind of stuff isn't perfect -- it's better to use .. only, so the
 // assets are purely skipped. when would we need this? is this just for
 // printing?
+
+// ================================================================= iframes
+
+.iframe-popup-light {
+  position: absolute;
+  width: 40%;
+  top: -350px;
+  right: -150px;
+  border: solid 1px black;
+  box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  text-align: left;
+}

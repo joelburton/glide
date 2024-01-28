@@ -81,8 +81,10 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
         # Get revealjs options so we can add them to section element
         attr_to_html_attr = {
             'transition': 'data-transition',
-            'transition-speed': 'data-transition-speed',
+            'transition_speed': 'data-transition-speed',
             'class': 'class',
+            'background_iframe': 'data-background-iframe',
+            'background_interactive': 'data-background-interactive',
         }
 
         attrs = {
