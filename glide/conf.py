@@ -65,7 +65,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv', 'meta', 'retired']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -262,8 +262,11 @@ _reveal_br = """
 # Glide 2.0 added |br| as a shorter synonym for this.
 
 # Can use like |demo-link| to show a URL from env var
+# if there is no demo link, just return a pointless localhost,
+# since the linkchecker ignores localhost links
+demo_link = os.environ.get('DEMO_PATH', 'http://localhost:1234/')
 _demolink = f"""
-.. |demo-link|  replace:: `demo <{os.environ.get('DEMO_PATH')}>`__
+.. |demo-link|  replace:: `demo <{demo_link}>`__
 """
 
 rst_prolog = _colors + _reveal_br + _demolink

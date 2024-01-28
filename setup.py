@@ -12,15 +12,15 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.4.3',
+    version='2.5',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
     url='https://github.com/joelburton/glide',
     packages=['glide', 'glide/directives', 'glide/writers', 'glide/lexers'],
-    python_requires=">= 3.8.6",
+    python_requires=">= 3.9",
     install_requires=[
-        "Sphinx (>=3.2.1,<7)",
+        "Sphinx (>=3.2.1,<8)",
         "jsx-lexer",
         "toolz",
         "aafigure",
