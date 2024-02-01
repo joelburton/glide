@@ -204,6 +204,7 @@ _colors = """
 .. role:: warning
 .. role:: success
 .. role:: err
+.. role:: tstype
 
 .. role:: gp
 .. role:: c

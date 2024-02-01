@@ -423,6 +423,15 @@ img.emoji {
   }
 }
 
+.tstype {
+  font-family: $theme-codefont;
+  color: navy;
+  border: solid 0.5px navy;
+  font-size: 90%;
+  padding: 0.05em 0.2em;
+  margin: 0 0.2em;
+}
+
 // ================================================================= line block
 // these are |-joined lines, like this:
 //
