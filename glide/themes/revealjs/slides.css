@@ -739,11 +739,17 @@ img.emoji {
 
 .tstype {
   font-family: var(--theme-codefont);
-  color: navy;
-  border: solid 0.5px navy;
+  color: #00449e;
+  border: solid 0.5px #00449e;
   font-size: 90%;
   padding: 0.05em 0.2em;
   margin: 0 0.2em;
+  font-weight: 400;
+}
+@media print {
+  .tstype {
+    font-weight: 400;
+  }
 }
 
 .glide .line-block {
@@ -4080,6 +4086,11 @@ img.align-right {
 .caption-text {
   font-style: italic;
   color: #333;
+}
+
+.topic .caption-text {
+  color: black;
+  font-weight: 400;
 }
 
 .code-block-caption {

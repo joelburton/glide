@@ -425,12 +425,17 @@ img.emoji {
 
 .tstype {
   font-family: $theme-codefont;
-  color: navy;
-  border: solid 0.5px navy;
+  color: $dark-blue;
+  border: solid 0.5px $dark-blue;
   font-size: 90%;
   padding: 0.05em 0.2em;
   margin: 0 0.2em;
+  font-weight: $weight-code;
+  @media print {
+    font-weight: $print-weight-code;
+  }
 }
+
 
 // ================================================================= line block
 // these are |-joined lines, like this:
@@ -1322,6 +1327,11 @@ img.align-right {
 .caption-text {
   font-style: italic;
   color: $dark-gray;
+}
+
+.topic .caption-text {
+  color: black;
+  font-weight: $weight-pop;
 }
 
 .code-block-caption {

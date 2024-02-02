@@ -219,6 +219,58 @@ _colors = """
 .. role:: emoji-5x
 .. role:: emoji-6x
 .. role:: emoji-7x
+
+.. role:: py(code)
+   :language: python
+
+.. role:: ts(code)
+   :language: ts
+
+.. role:: js(code)
+   :language: js
+
+.. role:: sql(code)
+  :language: postgresql
+
+.. role:: sh(code)
+  :language: sh
+
+.. role:: css(code)
+  :language: css
+
+.. role:: html(code)
+  :language: html
+
+.. role:: jsx(code)
+  :language: jsx
+
+.. role:: html+jinja(code)
+  :language: html+jinja
+
+.. role:: json(code)
+  :language: json
+
+.. role:: rb(code)
+  :language: rb
+
+.. role:: erb(code)
+  :language: erb
+
+.. role:: graphql(code)
+  :language: graphql
+
+.. role:: psql(code)
+  :language: psql
+
+.. role:: pycon(code)
+  :language: pycon
+
+.. role:: rst(code)
+  :language: rst
+
+.. role:: sass(code)
+  :language: sass
+
 """
 
 # Additional symbols to include
