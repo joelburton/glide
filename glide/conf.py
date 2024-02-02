@@ -57,6 +57,9 @@ extensions = [
 
     # Give doctest-related directives extra functionality
     'glide.directives.doctest',
+
+    # Allow external links
+    'sphinx.ext.extlinks',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
