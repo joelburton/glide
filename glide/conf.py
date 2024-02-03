@@ -3,6 +3,8 @@ import os
 
 from sphinx.ext.todo import todo_node, visit_todo_node, depart_todo_node, \
     latex_visit_todo_node, latex_depart_todo_node
+from sphinxcontrib.mermaid import html_visit_mermaid, latex_visit_mermaid, texinfo_visit_mermaid, text_visit_mermaid, \
+    man_visit_mermaid, mermaid
 
 from glide import version, logger
 
@@ -20,7 +22,7 @@ from glide import version, logger
 
 # -- General configuration ---------------------------------------------------
 
-needs_sphinx = '3.2.1'
+needs_sphinx = '7'
 
 extensions = [
     'sphinx.ext.todo',
@@ -60,6 +62,9 @@ extensions = [
 
     # Allow external links
     'sphinx.ext.extlinks',
+
+    # Allow mermaid
+    "sphinxcontrib.mermaid",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -207,7 +212,7 @@ _colors = """
 .. role:: warning
 .. role:: success
 .. role:: err
-.. role:: tstype
+.. role:: type
 
 .. role:: gp
 .. role:: c
@@ -235,8 +240,11 @@ _colors = """
 .. role:: sql(code)
   :language: postgresql
 
-.. role:: sh(code)
-  :language: sh
+.. role:: postgresql(code)
+  :language: postgresql
+
+.. role:: zsh(code)
+  :language: zsh
 
 .. role:: css(code)
   :language: css
@@ -271,8 +279,8 @@ _colors = """
 .. role:: rst(code)
   :language: rst
 
-.. role:: sass(code)
-  :language: sass
+.. role:: scss(code)
+  :language: scss
 
 """
 
@@ -429,11 +437,26 @@ def setup(app):
         texinfo=(visit_todo_node, depart_todo_node),
         override=True,
     )
-
+    app.add_node(
+        mermaid,
+        override=True,
+        handouts=(html_visit_mermaid, None),
+        revealjs=(html_visit_mermaid, None),
+        html=(html_visit_mermaid, None),
+        latex=(latex_visit_mermaid, None),
+        texinfo=(texinfo_visit_mermaid, None),
+        text=(text_visit_mermaid, None),
+        man=(man_visit_mermaid, None),
+    )
     return {'version': version, 'parallel_read_safe': True}
+
 
 # todo:
 # - finish tutorial
 # - finish test
 # - update demo? or kill it?
 # - fix makefiles
+
+mermaid_verbose = True
+mermaid_output_format = "svg"
+mermaid_params = ['--theme', 'default', '--width', '2200', '--backgroundColor', 'transparent']

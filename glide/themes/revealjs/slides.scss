@@ -161,6 +161,14 @@ $codeFont: var(--theme-codefont);
 .reveal {
   table.docutils {
     font-size: 0.6em;
+
+    // in reveal.js, but needs more specificity
+    td, th {
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      & > p {
+        margin: 0;
+      }
+    }
   }
 }
 

@@ -17,16 +17,31 @@ Glide Reference
   .. container:: noprint
 
     You may find it useful to review the source of this document while reading it:
-    `index.rst`:download:.
+    :download:`index.rst`.
 
-.. todo:: Finish indexing and include index page.
+.. topic:: :emoji-2x:`‼️` New/Changed in v2.6
 
-.. todo:: Add new styles
+  - Added :ref:`Iframes in interslides <interslide>`
 
-  - code-highlight-wrong/good/pop
+  - While it's not a new feature, added :ref:`no-target-created <no-target-links>` links to these docs
 
-  - code-comments-wrong/good/pop
+  - Added ``:err:`` and ``:type:`` :ref:`Glide roles <glide-roles>`
 
+  - Add :ref:`inline code highlighting <inline-code>`
+
+  - Added :ref:`nonbreaking spaces <glide-func>`: ``|sp|``
+
+  - Add ``:emoji:`` :ref:`1.5, 4, 6, and 7 sizes <emoji>`
+
+  - Added `.table-paras` to :ref:`add paragraph margins in tables <table-options>`
+
+  - Lots of :ref:`code languages <languages>` added.
+
+  - Added :ref:`styling highlights <styling-highlights>`
+
+  - Added :ref:`styling comments <styling-comments>`
+
+  - Restored :ref:`Mermaid diagrams <mermaid>`
 
 Overall document format
 =======================
@@ -69,10 +84,6 @@ RST files should always use an :index:`indent` of **2 spaces.**
 
 .. attention:: Please be consistent on this.
 
-.. versionadded:: 2.0
-
-  Added specific requirement of 2-space indenting.
-
 .. index:: comments
 
 Comments
@@ -113,34 +124,9 @@ Document structure
 A `rubric` makes a heading-style title, |br|
 but it doesn't add it to the table of contents.
 
-.. versionchanged:: 2.0
-
-  Added specific advice on the the heading characters.
 
 Introducing sections
 --------------------
-
-At the top of a section, can introduce the "`highlights`:index:" of that section:
-
-.. container:: compare
-
-  .. code-block:: rst
-
-    .. highlights:: Interesting stuff ahead
-
-      - React
-
-      - CSS
-
-  .. container::
-
-    .. highlights:: Interesting stuff ahead
-
-      - React
-
-      - CSS
-
-.. newslide::
 
 Can also introduce a menu of subheadings below this level:
 
@@ -191,7 +177,10 @@ Slide-specific structure
 
   Or images
 
-.. newslide:: Interslide
+.. _interslide:
+
+Interslide
+----------
 
 .. code-block:: rst
 
@@ -203,8 +192,25 @@ Interslides never appear on the handouts and don't have a title. |br|
 They're useful for fun, silly things, like large images and text. |br|
 Can take a background or color, like ``newslide``.
 
+You can also have a navigable web page as an iframe for your background.
+The class `iframe-popup-light` shows a short message floating on top of
+the iframe (black text on white box, in this case, but there's also
+`iframe-popup-dark`).
+
+.. code-block:: rst
+
+  .. interslide::
+    :iframe: https://www.typescriptlang.org/
+
+    .. container:: iframe-popup-light
+
+      😻 It has awesome docs!
+
 .. attention:: Notice the content of interslide is inside the interslide.
 
+.. versionadded: 2.6
+
+  Added iframe interslides.
 
 .. index::
   single: divider
@@ -238,10 +244,6 @@ Typography
 
 ----
 
-.. versionadded:: 2.0
-
-  Add divider with ``----``
-
 .. index:: links
 
 Links
@@ -259,6 +261,35 @@ Links
     `Google <http://google.com>`_ is a
     search engine.
 
+.. _no-target-links:
+
+.. tip:: No-target links
+
+  The example above creates a reference, `Google`, which can be used elsewhere in the document
+  to jump to the same link, by using :py:`_Google` in running text.
+
+  This does mean if you use the same link text for two different links,
+  you'll get an error:
+
+  .. code-block:: rst
+    :class: code-wrong
+
+    `here <http://google.com>`_ or `here <http://bing.com>`_
+
+  If you don't need/want internal links or often use casual link-captions
+  (like "here" in this example), just end your link with two underscores,
+  and it won't create an internal target or care about duplication:
+
+  .. code-block:: rst
+    :class: code-good
+
+    `here <http://google.com>`__ or `here <http://bing.com>`__
+
+  .. versionadded:: 2.6
+
+    While it's not a new feature, added no-target-created links to these docs.
+
+
 
 .. index:: roles
 
@@ -268,11 +299,21 @@ Roles
 
 .. code-block:: rst
 
-  Roles can be used as :role:`Text` or `Text`:role:
+  Roles can be used as :role:`Text` or :role:`Text`
 
   :code:`Code` can use shortcut ``Code``
 
   :title:`Title` can use shortcut `Title`
+
+.. _role-as-prefix:
+
+.. important:: Please use role as prefix, not suffix
+
+  While it's valid to put the role name at the end, like
+  :rst:`\:rolename:`text\``, many editors won't highlight that.
+  :rst:`\`text\`:rolename:rolename:`, many editors won't highlight that.
+  To help others, please always use the prefix form:
+  :rst:`\`text\``.
 
 .. newslide::
 
@@ -296,31 +337,26 @@ Roles
 
 .. table:: Standard sphinx roles
 
-  ==================== ===================== ==================================
-  Name                 Example               Meaning
-  ==================== ===================== ==================================
-  ``:abbr:``           `XY (x and y)`:abbr:  Abbreviation, put definition in ()
-  ``:code:``           `x = 1`:code:         Code *snippets*
-  ``:command:``        `rm -rf`:command:     Executable command
-  ``:dfn:``            is a `closure`:dfn:   Mark when term first defined
-  ``:envvar:``         `FLASK_ENV`:envvar:   Environmental variable
-  ``:file:``           `python-{x}`:file:    Filename, can have ``{var}`` in it
-  ``:guilabel:``       `Save`:guilabel:      GUI button/window
-  ``:kbd:``            `⌘-s`:kbd: `⇧S`:kbd:  Keyboard sequence
-  ``:math:``           `n = {x}^2`:math:     Inlined MathTex
-  ``:menuselection:``  `File -->             Menu choice
-                       Open`:menuselection:
-  ``:mimetype:``       `text/html`:mimetype: MIME type
-  ``:program:``        `Insomnia`:program:   Program
-  ``:samp:``           `text {x}`:samp:      Output/sample (can have ``{var}``)
-  ``:sub:``            n log\ `2`:sub:\ n    Subscript
-  ``:sup:``            x\ `2`:sup:           Superscript
-  ``:title:``          `var` or `func()`     General title, code *names*
-  ==================== ===================== ==================================
-
-.. versionchanged:: 2.0
-
-  More focus on semantic roles.
+  ==================== =============================== ==================================
+  Name                 Example                         Meaning
+  ==================== =============================== ==================================
+  ``:abbr:``           :abbr:`XY (x and y)`            Abbreviation, put definition in ()
+  ``:code:``           :code:`x = 1`                   Code *snippets*
+  ``:command:``        :command:`rm -rf`               Executable command
+  ``:dfn:``            is a :dfn:`closure`             Mark when term first defined
+  ``:envvar:``         :envvar:`FLASK_ENV`             Environmental variable
+  ``:file:``           :file:`python-{x}`              Filename, can have ``{var}`` in it
+  ``:guilabel:``       :guilabel:`Save`                GUI button/window
+  ``:kbd:``            :kbd:`⌘-s` :kbd:`⇧S`            Keyboard sequence
+  ``:math:``           :math:`n = {x}^2`               Inlined MathTex
+  ``:menuselection:``  :menuselection:`File --> Open`  Menu choice
+  ``:mimetype:``       :mimetype:`text/html`           MIME type
+  ``:program:``        :program:`Insomnia`             Program
+  ``:samp:``           :samp:`text {x}`                Output/sample (can have ``{var}``)
+  ``:sub:``            n log\ :sub:`2`\ n              Subscript
+  ``:sup:``            x\ :sup:`2`                     Superscript
+  ``:title:``          `var` or `func()`               General title, code *names*
+  ==================== =============================== ==================================
 
 .. newslide::
 
@@ -334,9 +370,9 @@ Roles
   ==================== ===================== ==================================
   Name                 Example               Meaning
   ==================== ===================== ==================================
-  ``:doc:``            `index`:doc:          Link to RST document
-  ``:download:``       `file <f>`:download:  Puts file in build, links to it
-  ``:ref:``            `colors`:ref:         Internal link in document
+  ``:doc:``            :doc:`index`          Link to RST document
+  ``:download:``       :download:`file <f>`  Puts file in build, links to it
+  ``:ref:``            :ref:`colors`         Internal link in document
   ==================== ===================== ==================================
 
 .. newslide::
@@ -354,27 +390,67 @@ Roles
   pair: role; comment
   pair: role; wrong
 
+
+.. _glide-roles:
+
 .. table:: Glide roles
 
   ==================== ===================== ==================================
   Name                 Example               Meaning
   ==================== ===================== ==================================
-  ``:small:``          `Legal text`:small:   Make smaller
-  ``:small-muted:``    `Shhhh`:small-muted:  Smaller *and* muted
-  ``:muted:``          `Quiet`:muted:        Muted (lighter colored)
-  ``:danger:``         `Oh no`:danger:       Danger semantic color
-  ``:warning:``        `Achtung!`:warning:   Warning semantic color
-  ``:success:``        `Yay`:success:        Success semantic color
-  ``:ins:``            `New thing`:ins:      Insertion/added-in diff
-  ``:del:``            `Deleted`:del:        Removed/gone-in-diff
-  ``:gone:``           `Gone`:gone:          Mark as moved
-  ``:comment:``        `// see...`:comment:  Mark as code-like comment
-  ``:wrong:``          `var x=7`:wrong:      Wrong way to do it
+  ``:small:``          :small:`Legal text`   Make smaller
+  ``:small-muted:``    :small-muted:`Shhhh`  Smaller *and* muted
+  ``:muted:``          :muted:`Quiet`        Muted (lighter colored)
+  ``:danger:``         :danger:`Oh no`       Danger semantic color
+  ``:warning:``        :warning:`Achtung!`   Warning semantic color
+  ``:success:``        :success:`Yay`        Success semantic color
+  ``:ins:``            :ins:`New thing`      Insertion/added-in diff
+  ``:del:``            :del:`Deleted`        Removed/gone-in-diff
+  ``:gone:``           :gone:`Gone`          Mark as moved
+  ``:comment:``        :comment:`// see...`  Mark as code-like comment
+  ``:wrong:``          :comment:`var x=7`    Wrong way to do it
+  ``:err:``            :err:`Crashed!`       Report an error
+  ``:type:``           :type:`string[]`      Show as TS or Python type
   ==================== ===================== ==================================
 
-.. versionadded:: 2.0
+.. versionadded:: 2.6
 
-  Added semantic names to discourage direct colors.
+  Added ``:err:`` and ``:type:``.
+
+For a block of code, use code-blocks_, but for short inline highlighting,
+these are useful:
+
+.. _inline-code:
+
+.. table:: Glide roles for code highlights
+
+  ==================== ===================== =====================================
+  Name                 Language              Example
+  ==================== ===================== =====================================
+  ``:py:``             Python                :py:`def x(a): return "hello"`
+  ``:js:``             JavaScript            :js:`function x(a) { return "hi" }`
+  ``:ts:``             TypeScript            :ts:`let nums: numbers[] = [];`
+  ``:sql:``            SQL (generic)         :sql:`SELECT f FROM table`
+  ``:postgresql:``     PostgreSQL            :postgresql:`TRUNCATE`
+  ``:zsh:``            ZShell                :zsh:`export $MSG="hi"`
+  ``:css:``            CSS                   :css:`b { color: rebeccapurple; }`
+  ``:html:``           HTML                  :html:`<div id="a">hi</div>`
+  ``:jsx:``            JSX                   :jsx:`<Todo id={id} />`
+  ``:html+jinja:``     HTML + Jinja          :html+jinja:`<b> {{ name }}</b>`
+  ``:json:``           JSON                  :json:`{"a": 1, "b": 2}`
+  ``:rb:``             Ruby                  :rb:`print "a = #{a}\n";`
+  ``:erb:``            ERB (Ruby)            :erb:`<% if @keys_enable -%>`
+  ``:graphql:``        GraphQL               :graphql:`query foo { }`
+  ``:psql:``           Postgres console      :psql:`mydb=# SELECT "foo";`
+  ``:pycon:``          Python console        :pycon:`>>> def f(): ...`
+  ``:rst::``           RST                   :rst:`\`oh so meta\``
+  ``:scss:``           SASS                  :scss:`b { i { color: red; } }`
+  ==================== ===================== =====================================
+
+
+.. versionadded:: 2.6
+
+  Add inline code highlighting.
 
 
 .. index:: substitutions
@@ -405,6 +481,8 @@ Symbols
 
   Deprecated card suits, which are now handled by emoji.
 
+.. _glide-func:
+
 Glide Functional Substitutions
 ------------------------------
 
@@ -427,6 +505,8 @@ Glide Functional Substitutions
     Linebreak only on handouts: |handouts-br|
     New line
 
+    Forced |sp| non-breaking-space
+
   .. container::
 
     Today: |date|
@@ -444,11 +524,14 @@ Glide Functional Substitutions
     Linebreak only on handouts: |handouts-br|
     New line
 
+    Forced |sp| non-breaking-space
+
 .. container:: small
 
   (``|reveal-br|`` is an alias for ``|br|``.)
 
-.. versionadded:: 2.0 Added ``|br|`` and  ``|handouts-br|``.
+.. versionadded:: 2.6 Added ``|sp|``
+
 
 Variable interpolation
 ----------------------
@@ -459,15 +542,15 @@ Variable interpolation
     :class: code-font-size-90 code-fit-content
 
     - |demo-link| = demo zip file for this
-    - |version| = `version` in `conf.py`:file:
-    - |release| = `release` in `conf.py`:file:
+    - |version| = `version` in :file:`conf.py`
+    - |release| = `release` in :file:`conf.py`
     - |today| shows day of build
 
   .. container::
 
     - |demo-link| shows link to demo for project
-    - |version| shows version number in `conf.py`:file:
-    - |release| shows release number in `conf.py`:file:
+    - |version| shows version number in :file:`conf.py`
+    - |release| shows release number in :file:`conf.py`
     - |today| shows day of build
 
 At Rithm, `version` becomes the code for our cohorts, eg ``"r15"``.
@@ -475,6 +558,7 @@ At Rithm, `version` becomes the code for our cohorts, eg ``"r15"``.
 
 .. index:: emoji
 
+.. _emoji:
 
 Emoji
 =====
@@ -483,14 +567,20 @@ Paste in actual emoji symbol (we use `Twemoji <https://twemoji.twitter.com/>`_)
 
 To size:
 
-Size with role :samp:`:emoji-{1,2,3,5,7}x:` |br|
-:emoji-1x:`🌮` :emoji-2x:`🌮` :emoji-3x:`🌮` :emoji-5x:`🌮` :emoji-7x:`🌮`
+Size with role :samp:`:emoji-{1,15,2,3,4,5,6,7}:`
 
-.. versionadded:: 2.0
+- ``:emoji-1x:``: :emoji-1x:`🌮`
+- ``:emoji-15x:``: :emoji-15x:`🌮`
+- ``:emoji-2x:``: :emoji-2x:`🌮`
+- ``:emoji-3x:``: :emoji-3x:`🌮`
+- ``:emoji-4x:``: :emoji-4x:`🌮`
+- ``:emoji-5x:``: :emoji-5x:`🌮`
+- ``:emoji-6x:``: :emoji-6x:`🌮`
+- ``:emoji-7x:``: :emoji-7x:`🌮`
 
-  Handle emoji in all output formats. Added SVG images for emoji and
-  resizing ability.
+.. versionadded:: 2.6
 
+  Add 1.5, 4, 6, and 7 sizes.
 
 .. index:: colors
 
@@ -512,42 +602,42 @@ Colors
   .. hlist::
     :columns: 4
 
-    - `╳`:bg-black:  black
-    - `╳`:bg-near-black:  near-black
-    - `╳`:bg-dark-gray:  dark-gray
-    - `╳`:bg-mid-gray:  mid-gray
-    - `╳`:bg-gray:  gray
-    - `╳`:bg-silver:  silver
-    - `╳`:bg-light-silver:  light-silver
-    - `╳`:bg-moon-gray:  moon-gray
-    - `╳`:bg-light-gray:  light-gray
-    - `╳`:bg-near-white:  near-white
-    - `╳`:bg-white:  white
-    - `╳`:bg-dark-red:  dark-red
-    - `╳`:bg-red:  red
-    - `╳`:bg-light-red:  light-red
-    - `╳`:bg-orange:  orange
-    - `╳`:bg-gold:  gold
-    - `╳`:bg-yellow:  yellow
-    - `╳`:bg-light-yellow:  light-yellow
-    - `╳`:bg-purple:  purple
-    - `╳`:bg-light-purple:  light-purple
-    - `╳`:bg-dark-pink:  dark-pink
-    - `╳`:bg-hot-pink:  hot-pink
-    - `╳`:bg-pink:  pink
-    - `╳`:bg-light-pink:  light-pink
-    - `╳`:bg-dark-green:  dark-green
-    - `╳`:bg-green:  green
-    - `╳`:bg-light-green:  light-green
-    - `╳`:bg-navy:  navy
-    - `╳`:bg-dark-blue:  dark-blue
-    - `╳`:bg-blue:  blue
-    - `╳`:bg-light-blue:  light-blue
-    - `╳`:bg-lightest-blue:  lightest-blue
-    - `╳`:bg-washed-blue:  washed-blue
-    - `╳`:bg-washed-green:  washed-green
-    - `╳`:bg-washed-yellow:  washed-yellow
-    - `╳`:bg-washed-red:  washed-red
+    - :bg-black:`╳`  black
+    - :bg-near-black:`╳`  near-black
+    - :bg-dark-gray:`╳`  dark-gray
+    - :bg-mid-gray:`╳`  mid-gray
+    - :bg-gray:`╳`  gray
+    - :bg-silver:`╳`  silver
+    - :bg-light-silver:`╳`  light-silver
+    - :bg-moon-gray:`╳`  moon-gray
+    - :bg-light-gray:`╳`  light-gray
+    - :bg-near-white:`╳`  near-white
+    - :bg-white:`╳`  white
+    - :bg-dark-red:`╳`  dark-red
+    - :bg-red:`╳`  red
+    - :bg-light-red:`╳`  light-red
+    - :bg-orange:`╳`  orange
+    - :bg-gold:`╳`  gold
+    - :bg-yellow:`╳`  yellow
+    - :bg-light-yellow:`╳`  light-yellow
+    - :bg-purple:`╳`  purple
+    - :bg-light-purple:`╳`  light-purple
+    - :bg-dark-pink:`╳`  dark-pink
+    - :bg-hot-pink:`╳`  hot-pink
+    - :bg-pink:`╳`  pink
+    - :bg-light-pink:`╳`  light-pink
+    - :bg-dark-green:`╳`  dark-green
+    - :bg-green:`╳`  green
+    - :bg-light-green:`╳`  light-green
+    - :bg-navy:`╳`  navy
+    - :bg-dark-blue:`╳`  dark-blue
+    - :bg-blue:`╳`  blue
+    - :bg-light-blue:`╳`  light-blue
+    - :bg-lightest-blue:`╳`  lightest-blue
+    - :bg-washed-blue:`╳`  washed-blue
+    - :bg-washed-green:`╳`  washed-green
+    - :bg-washed-yellow:`╳`  washed-yellow
+    - :bg-washed-red:`╳`  washed-red
 
 .. container:: small
 
@@ -573,9 +663,6 @@ Can use where classes are allowed:
 
     Blue stuff here.
 
-.. versionadded:: 2.0
-
-  All colors can now be used inline using roles.
 
 Line blocks
 -----------
@@ -726,11 +813,6 @@ empty comment to trigger the parser to see these as separate lists.
     - Another list
     - Second item
 
-.. versionadded:: 2.0
-
-  New technique for slides-only side-by-side lists.
-
-
 .. index::
   single: lists; side-by-side
   single: hlist
@@ -779,7 +861,7 @@ Tables
 Field lists
 -----------
 
-Key/value mappings should be a `field list` table:
+Key/value mappings should be a `field list:file:` table:
 
 .. container:: compare
 
@@ -967,9 +1049,10 @@ Can also make tables from CSV:
 
 .. container:: small
 
-  CSV tables can also take a :samp:`:file:` option to read data from file.
+  CSV tables can also take a :samp:`` option to read data from file.
 
 .. index:: tables; options
+.. _table-options:
 
 Table options
 -------------
@@ -977,13 +1060,20 @@ Table options
 ========================================== ====================================
 Class                                      Meaning
 ========================================== ====================================
-:samp:`.table-not-striped`                 Turn off striping
+:samp:`.table-unstriped`                   Turn off striping
 :samp:`.td-{center,left,right}`            Justify columns (1st stays left)
 :samp:`.td-{center,left,right}-all`        Justify all columns
 :samp:`.td-center-{center,left,right}-{n}` Justify column #\ *n*
                                            :small-muted:`(can use many times)`
 :samp:`.td-padding-{0,1,2,3,4,5}`          0.00, 0.25, 0.50, 0.75, 1.00, 1.25em
+:samp:`.table-paras`                       Put para w/margins around tds
 ========================================== ====================================
+
+.. versionadded:: 2.6
+
+  Added `.table-paras`, since now :program:`docutils`
+  adds paragraphs inside `td`\ s.
+
 
 .. newslide::
 
@@ -1013,6 +1103,8 @@ For example, combining options to make a grid:
     == == ==
 
 
+.. _code-blocks:
+
 Code blocks
 ===========
 
@@ -1038,39 +1130,67 @@ Code blocks
   pair: languages; yaml
   pair: languages; zsh
 
+.. _languages:
+
 Languages we use
 ----------------
 
 .. hlist::
-  :columns: 5
+  :columns: 3
 
+  - `awk`
+  - `c`
   - `css`
+  - `django` :small-muted:`(templates)`
   - `docker`
+  - `doscon` :small-muted:`(cmd.com)`
+  - `erb` :small-muted:`(ruby)`
+  - `graphql`
   - `html+jinja`
   - `html`
   - `http`
   - `ini`
-  - `js`
+  - `irb` :small-muted:`(Ruby)`
+  - `js` :muted:`|` `javascript`
   - `json`
   - `jsx`
   - `markdown`
+  - `nginx` :small:`(config)`
   - `postgresql`
-  - `python`
+  - `postgres-explain`
+  - `psql` :small-muted:`(console)`
+  - `py` :muted:`|` `python`
+  - `pycon` :small-muted:`(console)`
+  - `pytb` :small-muted:`(traceback)`
+  - `rst`
+  - `ruby`
+  - `scss`
+  - `sql` :small-muted:`(generic)`
   - `text`
-  - `toml` `(markup)`:small-muted:
-  - `ts` `(TypeScript)`:small-muted:
-  - `yaml`
-  - `zsh`
+  - `toml` :small-muted:`(markup)`
+  - `ts` :muted:`|` `typescript`
+  - `xml`
+  - `yaml` :small-muted:`(markup)`
+  - `zsh` :muted:`|` `sh` :muted:`|` `bash` :small-muted:`(all same)`
+
+Lexers I'd really like
+++++++++++++++++++++++
+
+In case anyone wants to pair and learn how to write a lexer :emoji-1x:`😀`.
+
+.. hlist::
+  :columns: 3
+
+  - `jscon` :small-muted:`(JS console)`
+  - `tsx` :small-muted:`(ts + jsx)`
 
 .. container:: small
 
   Full list at `Pygments Lexers <https://pygments.org/docs/lexers/>`_
 
-.. versionchanged:: 2.0
+.. versionchanged:: 2.6
 
-  Added preference for `html+jina`, `json`, and `postgresql` over
-  `html` (for Jinja2), `js`, and `sql` for those types, as they get more of the
-  syntax properly highlighted.
+  Lots of languages added.
 
 Basic blocks
 ------------
@@ -1220,8 +1340,6 @@ Can fix indentation:
       :start-after: //>
       :end-before: //<
 
-  .. versionchanged:: Add specific recommendation for start/end markers:
-    ``<`` and ``>``.
 
 .. index:: code-block; code-wrong
 
@@ -1244,7 +1362,114 @@ Marking wrong code
     const x = 1;
     x = x + 10;
 
-.. versionadded:: 2.0 Add marking wrong code.
+.. _styling-highlights:
+
+Styling highlights
+------------------
+
+You can add classes to style emphasized lines:
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-highlight-pop
+    :emphasize-lines: 2
+
+    const x = 1;
+    x = x + 10;
+
+.. code-block:: js
+  :class: code-highlight-pop
+  :emphasize-lines: 2
+
+  const x = 1;
+  x = x + 10;
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-highlight-good
+    :emphasize-lines: 2
+
+    const x = 1;
+    x = x + 10;
+
+.. code-block:: js
+  :class: code-highlight-good
+  :emphasize-lines: 2
+
+  const x = 1;
+  x = x + 10;
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-highlight-wrong
+    :emphasize-lines: 2
+
+    const x = 1;
+    x = x + 10;
+
+.. code-block:: js
+  :class: code-highlight-wrong
+  :emphasize-lines: 2
+
+  const x = 1;
+  x = x + 10;
+
+.. versionadded:: 2.6 Added styling highlights
+
+.. _styling-comments:
+
+Styling Comments
+----------------
+
+You can add classes to style comments:
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-comments-pop
+
+    const x = 1;
+    // x = x + 10;
+
+.. code-block:: js
+  :class: code-comments-pop
+
+  const x = 1;
+  // x = x + 10;
+
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-comments-good
+
+    const x = 1;
+    // x = x + 10;
+
+.. code-block:: js
+  :class: code-comments-good
+
+  const x = 1;
+  // x = x + 10;
+
+.. code-block:: rst
+
+  .. code-block:: js
+    :class: code-comments-wrong
+
+    const x = 1;
+    // x = x + 10;
+
+.. code-block:: js
+  :class: code-comments-wrong
+
+  const x = 1;
+  // x = x + 10;
+
+.. versionadded:: 2.6 Added styling comments
 
 
 Console displays
@@ -1266,10 +1491,13 @@ Use ``code-block`` with a "console" language:
   - `simple-console`: shell
   - `pycon`: Python console
   - `pytb`: Python tracebacks
-  - `psql`: PostgreSQL prompt
-  - `node`: NodeJS :small-muted:`(planned in the works!)`
+  - `psql`: PostgreSQL console
+  - `doscon`: Windows console
+  - `irb`: Ruby console
+  - `jscon`: Javascript console :small-muted:`(planned in the works!)`
 
-Then add a `console` class to make it look like a console:
+
+Then add a `console` class to make it look like a console (rounded borders, etc):
 
 .. container:: compare
 
@@ -1301,19 +1529,19 @@ To make line art or markup monospaced text, use ``parsed-literal``.
 
 .. container:: compare
 
-  .. code-block:: rst
+  .. code-block:: text
     :class: code-fit-content code-font-size-80
 
     .. parsed-literal::
 
                **n: []**  *base*    ⭣0
-               `──────────────────`:red:
+               :red:`──────────────────`
              **n: [1]**     3 + ⭡[] ⭣3
-             `──────────────────────`:green:
+             :green:`──────────────────────`
            **n: [2,3]**      2 + ⭡[3] ⭣5
-           `──────────────────────────`:blue:
+           :blue:`──────────────────────────`
          **n: [1,2,3]**     1 + ⭡[2,3] ⭣6
-         `──────────────────────────────`:pink:
+         :pink:`──────────────────────────────`
        **add([1,2,3])**              ⭡[1,2,3]
        ──────────────────────────────────
 
@@ -1321,13 +1549,13 @@ To make line art or markup monospaced text, use ``parsed-literal``.
      :class: code-fit-content code-font-size-80
 
              **n: []**  *base*    ⭣0
-             `──────────────────`:red:
+             :red:`──────────────────`
            **n: [1]**     3 + ⭡[] ⭣3
-           `──────────────────────`:green:
+           :green:`──────────────────────`
          **n: [2,3]**      2 + ⭡[3] ⭣5
-         `──────────────────────────`:blue:
+         :blue:`──────────────────────────`
        **n: [1,2,3]**     1 + ⭡[2,3] ⭣6
-       `──────────────────────────────`:pink:
+       :pink:`──────────────────────────────`
      **add([1,2,3])**              ⭡[1,2,3]
      ──────────────────────────────────
 
@@ -1369,9 +1597,9 @@ will create:
 
 .. seealso:: Other side-by-side effects
 
-  See `utility_classes`:ref: for useful classes to control width of blocks.
+  See :ref:`utility_classes` for useful classes to control width of blocks.
 
-  For only-on-slides side-by-side of lists, see `putting_lists_side_by_side`:ref:
+  For only-on-slides side-by-side of lists, see :ref:`putting_lists_side_by_side`
 
 
 Admonitions
@@ -1469,8 +1697,6 @@ None of these appear in slides, unless you add a `class` of :samp:`revealjs`:
 
       Along with details.
 
-.. versionadded:: 2.0 Almost all admonitions are new.
-
 Todo
 ----
 
@@ -1515,7 +1741,7 @@ These are for handout notes where there is a side-story:
 .. container:: float-clear
 
   .. need this to clear that float (couldn't use compare blocks because
-    you can't put a topic in a container!
+     you can't put a topic in a container!
 
 
 Sidebars
@@ -1606,7 +1832,6 @@ To use with code, use `code-hover-reveal`:
 
       if (x === 7) { }
 
-.. versionchanged:: 2.0 `hover-reveal` class can be added to almost anything.
 
 
 Quotes
@@ -1921,7 +2146,6 @@ The ``graphviz`` directive  can take a file:
 `See examples of Graphviz
 <https://graphviz.readthedocs.io/en/stable/examples.html>`_
 
-.. versionchanged:: 2.0 Moved to standard Sphinx `graph`, `digraph`, `graphviz`
 
 AAFig (line drawing)
 --------------------
@@ -1964,8 +2188,6 @@ AAFig (line drawing)
     |  |  |     |
     |  |  |     |
     +-----------+
-
-.. versionadded:: 2.0 Added `aafigure`:program: diagrams.
 
 Matplotlib
 ----------
@@ -2027,17 +2249,44 @@ Math
       (y_i - \bar{y})^2}}
 
 
-Or ``:math:`` like `n = {x}^2`:math: for inline.
+Or :rst:`:math:\`n = {x}^2\`` for inline: :math:`n = {x}^2`
 
+.. _mermaid:
 
 Mermaid
 -------
 
-.. versionadded:: 2.0 Added Mermaid diagrams.
+Can make diagrams using `Mermaid JS <https://mermaid.js.org/>`__.
 
-.. versionchanged:: 2.2 Removed Mermaid diagrams.
+.. tip:: Prefer Graphviz
 
-  (They were a pain to keep working as the upstream is a mess)
+  These are a bit more finicky, particularly for printing, where they need to
+  be turned into PNGs rather than rendered as crisply. They're useful because
+  of all the different diagram types that Mermaid makes but, if it's easy to do
+  this with Graphviz, you should.
+
+.. code-block:: rst
+
+  .. container:: with-50 mermaid-wrapper  # `mermaid-wrapper is required
+
+    .. mermaid::
+
+      timeline
+          w1-2   <br> 1/1-1/14  : JS : Comp Sci Intro : HoS
+          w3     <br> 1-15-1/30 : Python : Databases : Auth : 🏃 Warbler
+          w6     <br> 2/1-2/14  : Node : Express
+
+.. container:: width-50 mermaid-wrapper
+
+  .. mermaid::
+
+    timeline
+        w1-2   <br> 1/1-1/14  : JS : Comp Sci Intro : HoS
+        w3     <br> 1-15-1/30 : Python : Databases : Auth : 🏃 Warbler
+        w6     <br> 2/1-2/14  : Node : Express
+
+
+.. versionchanged:: 2.6 Restored.
 
 Diagrams
 --------
@@ -2096,8 +2345,6 @@ Draw.io
     .. drawio-image:: sql.drawio
       :width: 100%
 
-.. versionadded:: 2.0 Added `draw.io`:program: diagrams.
-
 
 Footnotes
 =========
@@ -2151,24 +2398,24 @@ Controlling styling
   =================================== ======================================================
   Class                               Description
   =================================== ======================================================
-  `.width-{percent}`:samp:            Block width ``5-100 by 5s``
-  `.float-{side}`:samp:               Float block: `left` or `right`
-  `.float-clear`:samp:                Clear above float
-  `.text-align-{just}`:samp:          Align text `left`, `right`, `center`, `justify`
-  `.align-{just}`:samp:               Align box `left`, `right`, `center`
-  `.border`:samp:                     Add border
-  `.border-none`:samp:                Remove default border
-  `.line-height-{height}`:samp:       Text line height: ``10..20``
-  `.code-line-height-{height}`:samp:  Code block text line height: ``10..20``
-  `.padding-{n}`:samp:                Padding from ``0..5``
-  `.code-padding-{n}`:samp:           Code block padding from ``0..5``
-  `.margin-{dir}-{n}`:samp:           Margin `top`, `left`, `right`, `bottom` from ``0..5``
-  `.font-size-{n}`:samp:              Font size as percentage: ``25..200 by 5s``
-  `.code-font-size-{n}`:samp:         Code block font size as percentage: ``25..200 by 5s``
-  `.code-cols-{n}`:samp:              Number of columns in code block, ``1..120``
-  `.code-fit-content`:samp:           Auto-size number of columns in code block
-  `.display-none`:samp:               Do not display element
-  `.font-cursive`:samp:               Cursive font
+  :samp:`.width-{percent}`            Block width ``5-100 by 5s``
+  :samp:`.float-{side}`               Float block: `left` or `right`
+  :samp:`.float-clear`                Clear above float
+  :samp:`.text-align-{just}`          Align text `left`, `right`, `center`, `justify`
+  :samp:`.align-{just}`               Align box `left`, `right`, `center`
+  :samp:`.border`                     Add border
+  :samp:`.border-none`                Remove default border
+  :samp:`.line-height-{height}`       Text line height: ``10..20``
+  :samp:`.code-line-height-{height}`  Code block text line height: ``10..20``
+  :samp:`.padding-{n}`                Padding from ``0..5``
+  :samp:`.code-padding-{n}`           Code block padding from ``0..5``
+  :samp:`.margin-{dir}-{n}`           Margin `top`, `left`, `right`, `bottom` from ``0..5``
+  :samp:`.font-size-{n}`              Font size as percentage: ``25..200 by 5s``
+  :samp:`.code-font-size-{n}`         Code block font size as percentage: ``25..200 by 5s``
+  :samp:`.code-cols-{n}`              Number of columns in code block, ``1..120``
+  :samp:`.code-fit-content`           Auto-size number of columns in code block
+  :samp:`.display-none`               Do not display element
+  :samp:`.font-cursive`               Cursive font
   =================================== ======================================================
 
 
@@ -2188,8 +2435,8 @@ Only
 
     This does not appear on slides.
 
-Don't use `only:: handouts`:samp: --- since we have other possible
-non-slide formats (LaTeX, epub, et al). Always say `only:: not revealjs`:samp:.
+Don't use :samp:`only:: handouts` --- since we have other possible
+non-slide formats (LaTeX, epub, et al). Always say :samp:`only:: not revealjs`.
 
 ifconfig
 --------
@@ -2206,7 +2453,7 @@ ifconfig
 
   .. ifconfig:: version == "2.0"
 
-    You can refer to variables in the `conf.py`:file:.
+    You can refer to variables in the :file:`conf.py`.
 
 
 Force building to fail
@@ -2221,7 +2468,6 @@ Force building to fail
 This prevents the document from being built |br|
 until that directive is removed.
 
-.. versionadded:: 2.0 Add `fail` directive.
 
 
 Speaker Notes
@@ -2296,7 +2542,6 @@ Running Glide
   `changes`        Makes page showing version changes
   ================ =====================================================
 
-.. versionadded:: 2.0 Add `text` and `changes` builders
 
 .. newslide::
 
@@ -2309,8 +2554,8 @@ Running Glide
   `revealjs-open`    Makes slides and opens in browser
   `watch-revealjs`   Makes slides and continually refreshes in browser
   `watch-handouts`   Makes handouts and continually refreshes in browser
-  `zip`              Makes `zip`:file: file of code or demo
-  `soln`             For assessment, makes solution `zip`:file:
+  `zip`              Makes :file:`zip` file of code or demo
+  `soln`             For assessment, makes solution :file:`zip`
   `upload`           Upload everything needed to server
   `prince`           Make print-ready PDF *(requires Prince)*
   ================== =====================================================

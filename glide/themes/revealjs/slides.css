@@ -695,34 +695,42 @@ img.emoji {
 
 .emoji-1x > img.emoji {
   width: 1em;
+  height: 1em;
 }
 
 .emoji-15x > img.emoji {
   width: 1.5em;
+  height: 1.5em;
 }
 
 .emoji-2x > img.emoji {
   width: 2em;
+  height: 2em;
 }
 
 .emoji-3x > img.emoji {
   width: 3em;
+  height: 3em;
 }
 
 .emoji-4x > img.emoji {
   width: 4em;
+  height: 4em;
 }
 
 .emoji-5x > img.emoji {
   width: 5em;
+  height: 5em;
 }
 
 .emoji-6x > img.emoji {
   width: 6em;
+  height: 6em;
 }
 
 .emoji-7x > img.emoji {
   width: 7em;
+  height: 7em;
 }
 
 .comment {
@@ -737,7 +745,7 @@ img.emoji {
   }
 }
 
-.tstype {
+.type {
   font-family: var(--theme-codefont);
   color: #00449e;
   border: solid 0.5px #00449e;
@@ -747,7 +755,7 @@ img.emoji {
   font-weight: 400;
 }
 @media print {
-  .tstype {
+  .type {
     font-weight: 400;
   }
 }
@@ -819,6 +827,15 @@ table {
 
 td {
   padding: 0;
+}
+
+.table-paras td > p,
+.table-paras th > p {
+  margin: inherit;
+}
+
+td > p, th > p {
+  margin: 0;
 }
 
 table.docutils {
@@ -1009,7 +1026,7 @@ code {
 }
 
 .highlight pre,
-.parsed-literal-wrapper pre {
+pre.literal-block {
   width: 48em;
   box-sizing: content-box;
   font-family: var(--theme-codefont);
@@ -1022,13 +1039,13 @@ code {
 }
 @media print {
   .highlight pre,
-  .parsed-literal-wrapper pre {
+  pre.literal-block {
     font-size: 8.5pt;
     font-weight: 400;
   }
 }
 
-.highlight, .parsed-literal-wrapper {
+.highlight {
   background-color: transparent;
   margin-bottom: 1em;
 }
@@ -1079,7 +1096,7 @@ pre.console,
 }
 
 .code-highlight-pop .highlight .hll {
-  background-color: #f6fffe;
+  background-color: #cdecff;
   border-left: solid 0.2em #96ccff;
 }
 
@@ -2825,6 +2842,126 @@ blockquote > div p:last-child {
   width: 100%;
 }
 
+.width-1em {
+  width: 1em;
+}
+
+.width-2em {
+  width: 2em;
+}
+
+.width-3em {
+  width: 3em;
+}
+
+.width-4em {
+  width: 4em;
+}
+
+.width-5em {
+  width: 5em;
+}
+
+.width-6em {
+  width: 6em;
+}
+
+.width-7em {
+  width: 7em;
+}
+
+.width-8em {
+  width: 8em;
+}
+
+.width-9em {
+  width: 9em;
+}
+
+.width-10em {
+  width: 10em;
+}
+
+.width-11em {
+  width: 11em;
+}
+
+.width-12em {
+  width: 12em;
+}
+
+.width-13em {
+  width: 13em;
+}
+
+.width-14em {
+  width: 14em;
+}
+
+.width-15em {
+  width: 15em;
+}
+
+.width-16em {
+  width: 16em;
+}
+
+.width-17em {
+  width: 17em;
+}
+
+.width-18em {
+  width: 18em;
+}
+
+.width-19em {
+  width: 19em;
+}
+
+.width-20em {
+  width: 20em;
+}
+
+.width-21em {
+  width: 21em;
+}
+
+.width-22em {
+  width: 22em;
+}
+
+.width-23em {
+  width: 23em;
+}
+
+.width-24em {
+  width: 24em;
+}
+
+.width-25em {
+  width: 25em;
+}
+
+.width-26em {
+  width: 26em;
+}
+
+.width-27em {
+  width: 27em;
+}
+
+.width-28em {
+  width: 28em;
+}
+
+.width-29em {
+  width: 29em;
+}
+
+.width-30em {
+  width: 30em;
+}
+
 .float-right {
   margin-left: 1rem;
   float: right;
@@ -4137,6 +4274,10 @@ table.docutils.footnote td {
   }
 }
 
+.mermaid-wrapper img {
+  width: 100%;
+}
+
 .reveal {
   /* Theme logo at the bottom left of every slide. */
 }
@@ -4221,6 +4362,12 @@ table.docutils.footnote td {
 
 .reveal table.docutils {
   font-size: 0.6em;
+}
+.reveal table.docutils td, .reveal table.docutils th {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+.reveal table.docutils td > p, .reveal table.docutils th > p {
+  margin: 0;
 }
 
 .reveal .highlight pre,

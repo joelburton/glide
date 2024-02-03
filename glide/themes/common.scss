@@ -404,14 +404,14 @@ img.emoji {
   margin: 0;
 }
 
-.emoji-1x > img.emoji { width: 1em; }
-.emoji-15x > img.emoji { width: 1.5em; }
-.emoji-2x > img.emoji { width: 2em; }
-.emoji-3x > img.emoji { width: 3em; }
-.emoji-4x > img.emoji { width: 4em; }
-.emoji-5x > img.emoji { width: 5em; }
-.emoji-6x > img.emoji { width: 6em; }
-.emoji-7x > img.emoji { width: 7em; }
+.emoji-1x > img.emoji { width: 1em; height: 1em; }
+.emoji-15x > img.emoji { width: 1.5em; height: 1.5em; }
+.emoji-2x > img.emoji { width: 2em; height: 2em; }
+.emoji-3x > img.emoji { width: 3em; height: 3em; }
+.emoji-4x > img.emoji { width: 4em; height: 4em; }
+.emoji-5x > img.emoji { width: 5em; height: 5em; }
+.emoji-6x > img.emoji { width: 6em; height: 6em; }
+.emoji-7x > img.emoji { width: 7em; height: 7em; }
 
 .comment {
   font-style: italic;
@@ -423,7 +423,7 @@ img.emoji {
   }
 }
 
-.tstype {
+.type {
   font-family: $theme-codefont;
   color: $dark-blue;
   border: solid 0.5px $dark-blue;
@@ -558,6 +558,16 @@ td {
   padding: 0;
 }
 
+.table-paras td > p,
+.table-paras th > p
+{
+  margin: inherit;
+}
+
+td > p, th > p {
+  margin: 0;
+}
+
 table.docutils {
   //border: none;
   border: solid 0.5px $moon-gray;
@@ -688,7 +698,7 @@ code {
 }
 
 .highlight pre,
-.parsed-literal-wrapper pre {
+pre.literal-block {
   // code-block should have exact size based on # of characters needed ---
   // therefore, using context-box (everything else is border-box) so that the
   // width is precisely fixed to match # of characters, without worrying about
@@ -711,7 +721,7 @@ code {
   margin-bottom: 1em;
 }
 
-.highlight, .parsed-literal-wrapper {
+.highlight {
   // need this; otherwise, it defaults to green
   background-color: transparent;
   margin-bottom: 1em;
@@ -752,7 +762,7 @@ pre.console,
   border-left: solid 0.20em $light-green;
 }
 .code-highlight-pop .highlight .hll {
-  background-color: $washed-blue;
+  background-color: $lightest-blue;
   border-left: solid 0.20em $light-blue;
 }
 
@@ -1211,6 +1221,11 @@ blockquote {
   .width-#{$width * 5} { width: #{$width * 5%} }
 }
 
+// .width-n where 5-100% by 5's
+@for $width from 1 through 30 {
+  .width-#{$width}em { width: #{$width}em }
+}
+
 .float-right { margin-left: 1rem; float: right }
 .float-left { margin-right: 1rem; float: left }
 .float-clear {clear: both;}
@@ -1379,3 +1394,5 @@ table.docutils.footnote td {
 }
 
 // ======================================================= active experimenting
+
+.mermaid-wrapper img { width: 100%; }

@@ -1,0 +1,6 @@
+flowchart LR
+    A[Start] --> B{Is it?}
+    B -->|Yes| C[OK]
+    C --> D[Retink]
+    D --> B
+    B ---->|No| E[End]

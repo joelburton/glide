@@ -1,8 +1,10 @@
 """Sphinx translator and builder for handouts."""
 
 from docutils.nodes import SkipNode, section, Node, Element
+from sphinx.application import Sphinx
 from sphinx.builders.html import StandaloneHTMLBuilder
 from sphinx.builders.singlehtml import SingleFileHTMLBuilder
+from sphinx.environment import BuildEnvironment
 from sphinx.writers.html import HTMLTranslator
 
 from glide import version, logger
@@ -12,7 +14,7 @@ from .common import FixCompactParagraphsTranslatorMixin
 class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     """Translator for Sphinx structure -> HTML handouts."""
 
-    # Keep track of previous title so we don't repeat ourselves
+    # Keep track of previous title so that we don't repeat ourselves
     _previous_title = ""
 
     def __init__(self, *args):
@@ -23,7 +25,6 @@ class HandoutsTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
         #
         # :author: Elmo
         # :color: red
-
         self.settings.field_name_limit = 50
 
     def visit_title(self, node: Element) -> None:
@@ -126,6 +127,10 @@ class SingleFileHandoutsBuilder(SingleFileHTMLBuilder):
 
     # Do not generate any support for search
     search = None
+
+    def __init__(self, app: Sphinx, env: BuildEnvironment) -> None:
+        super().__init__(app, env)
+        self.config.mermaid_output_format = "png"
 
     def init_js_files(self) -> None:
         """Override to remove not-needed JS files."""

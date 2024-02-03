@@ -2,8 +2,9 @@
 {#  Overall page structure: single HTML page for each section #}
 <!doctype html>
 <html lang="en">
+{% set logo_url = pathto('_static/' + logo, 1) if logo else pathto('_static/' + theme_logo, 1)  %}
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8">
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,20 +16,17 @@
   />
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
 
-{%- for css in css_files %}
-      {%- if css|attr("filename") %}
-    {{ css_tag(css) }}
-      {%- else %}
-    <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
-      {%- endif %}
-    {%- endfor %}
+  {%- for css in css_files %}
+    {%- if css|attr("filename") %}
+      {{ css_tag(css) }}
+    {%- else %}
+      <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css"/>
+    {%- endif %}
+  {%- endfor %}
   {% if theme_fonts %}
     <link href='{{ theme_fonts }}' rel='stylesheet'>
   {% endif %}
-  <style>
 
-
-  </style>
   <style>
     :root {
       --theme-bodyfont: {{ theme_bodyfont }};
@@ -37,11 +35,7 @@
       --theme-sidebarcolor: {{ theme_sidebarcolor }};
       --theme-backgroundcolor: {{ theme_backgroundcolor }};
       --theme-clientcolor: {{  theme_clientcolor }};
-    {%- if logo %}
-      --theme-logo: url({{ pathto('_static/' + logo, 1) }})
-    {%- elif theme_logo %}
-      --theme-logo: url({{ pathto('_static/' + theme_logo, 1) }})
-    {%- endif %}
+      --theme-logo: url("{{ logo_url }}");
   </style>
 </head>
 
@@ -50,18 +44,21 @@
   <div id="page-sidebar">
     <header>
       {%- if logo %}
-        <img class="page-logo" alt="logo"
-              src="{{ pathto('_static/' + logo, 1 ) }}">
+        <img
+            class="page-logo"
+            alt="logo"
+            src="{{ pathto('_static/' + logo, 1 ) }}">
       {%- elif theme_logo %}
-        <img class="page-logo" alt="logo"
-              src="{{ pathto('_static/' + theme_logo, 1 ) }}">
+        <img
+            class="page-logo"
+            alt="logo"
+            src="{{ pathto('_static/' + theme_logo, 1 ) }}">
       {%- endif %}
       <p class="page-project">{{ project }}</p>
       <p class="page-event">{{ release }}</p>
       {% if backurl %}
-        <p class="backlink"><a href="{{ backurl }}"> &laquo; Back</a>
+        <p class="backlink"><a href="{{ backurl }}"> &laquo; Back</a></p>
       {% endif %}
-      </p>
     </header>
 
     <nav id="toc">
@@ -85,9 +82,9 @@
   </div>
 </div>
 
-{%- for scriptfile in script_files %}
-  <script src="{{ pathto(scriptfile, 1) }}"></script>
-{%- endfor %}
+  {%- for js in script_files %}
+    {{ js_tag(js) }}
+  {%- endfor %}
 
 {%- block footer %} {% endblock %}
 
