@@ -304,7 +304,7 @@ _symbols = """
 .. |approx|    unicode:: U+02248 .. ALMOST EQUAL TO
 
 .. |date| date::
-.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``Ⓕ`` Fn |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter
+.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``Ⓕ`` Fn |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter |sp| |sp| ``⌥⌫`` Backspace 
 """
 
 # A new role for raw output that should only appear in HTML, and a
@@ -317,11 +317,25 @@ _reveal_br = """
    :format: html
 .. role:: raw-handouts(raw)
    :format: html 
+.. role:: raw-html(raw)
+    :format: html
 .. |reveal-br| replace:: :raw-reveal:`<br/>`
 .. |br| replace:: :raw-reveal:`<br/>`
 .. |handouts-br| replace:: :raw-handouts:`<br/>`
 .. |all-br| replace:: :raw-reveal:`<br/>`\\ :raw-handouts:`<br/>`
 .. |sp| replace:: :raw-handouts:`&nbsp;`
+
+.. |i-macos|    replace:: :raw-html:`<i class="dark-gray bi bi-apple" alt="MacOS" title="MacOS"></i>`
+.. |i-windows|  replace:: :raw-html:`<i class="blue bi bi-windows" alt="Windows" title="Windows"></i>`
+.. |i-linux|    replace:: :raw-html:`<i class="orange bi bi-ubuntu" alt="Ubuntu Linux" title="Ubuntu Linux"></i>`
+.. |i-chrome|   replace:: :raw-html:`<i class="dark-blue bi bi-browser-chrome" alt="Google Chrome" title="Google Chrome"></i>`
+.. |i-git|      replace:: :raw-html:`<i class="orange bi bi-git" alt="Git" title="Git"></i>`
+.. |i-github|   replace:: :raw-html:`<i class="bi bi-github" alt="GitHub" title="GitHub"></i>`
+.. |i-advanced| replace:: :raw-html:`<i class="bi bi-rocket-launch" alt="Advanced" title="Advanced"></i>`
+.. |i-detail|   replace:: :raw-html:`<i class="bi bi-detail" alt="Detail" title="Detail"></i>`
+.. |i-terminal| replace:: :raw-html:`<i class="bi bi-terminal" alt="Terminal/Shell" title="Terminal/Shell"></i>`
+.. |i-youtube|  replace:: :raw-html:`<i class="red bi bi-youtube" alt="YouTube" title="YouTube"></i>`
+.. |i-star|     replace:: :emoji:`⭐`
 """
 
 # Glide 2.0 added |br| as a shorter synonym for this.

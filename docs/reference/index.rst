@@ -2,6 +2,14 @@
 Glide Reference
 ===============
 
+.. todo:: nodejsrepl
+
+.. todo:: list-tight
+
+.. todo:: nodejsrepl
+
+
+
 .. sectionauthor:: joel
 
 .. meta::
@@ -204,7 +212,7 @@ the iframe (black text on white box, in this case, but there's also
 
     .. container:: iframe-popup-light
 
-      😻 It has awesome docs!
+      :emoji:`😻` It has awesome docs!
 
 .. attention:: Notice the content of interslide is inside the interslide.
 
@@ -564,6 +572,8 @@ Emoji
 =====
 
 Paste in actual emoji symbol (we use `Twemoji <https://twemoji.twitter.com/>`_)
+
+- ``:emoji:``: :emoji:`🌮`
 
 To size:
 
@@ -1065,6 +1075,7 @@ Class                                      Meaning
 :samp:`.td-{center,left,right}-all`        Justify all columns
 :samp:`.td-center-{center,left,right}-{n}` Justify column #\ *n*
                                            :small-muted:`(can use many times)`
+:samp:`.td-bold-{n}`                       Bold column
 :samp:`.td-padding-{0,1,2,3,4,5}`          0.00, 0.25, 0.50, 0.75, 1.00, 1.25em
 :samp:`.table-paras`                       Put para w/margins around tds
 ========================================== ====================================

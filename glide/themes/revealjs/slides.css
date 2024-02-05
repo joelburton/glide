@@ -2,6 +2,7 @@
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 :root {
   --background-color: #fff;
   --main-font: var(--theme-bodyfont);
@@ -897,6 +898,9 @@ table.docutils.td-left-1 th:nth-child(1), table.docutils.td-left-1 td:nth-child(
 table.docutils.td-center-1 th:nth-child(1), table.docutils.td-center-1 td:nth-child(1) {
   text-align: center;
 }
+table.docutils.td-bold-1 th:nth-child(1), table.docutils.td-bold-1 td:nth-child(1) {
+  font-weight: 600;
+}
 table.docutils.td-right-2 th:nth-child(2), table.docutils.td-right-2 td:nth-child(2) {
   text-align: right;
 }
@@ -905,6 +909,9 @@ table.docutils.td-left-2 th:nth-child(2), table.docutils.td-left-2 td:nth-child(
 }
 table.docutils.td-center-2 th:nth-child(2), table.docutils.td-center-2 td:nth-child(2) {
   text-align: center;
+}
+table.docutils.td-bold-2 th:nth-child(2), table.docutils.td-bold-2 td:nth-child(2) {
+  font-weight: 600;
 }
 table.docutils.td-right-3 th:nth-child(3), table.docutils.td-right-3 td:nth-child(3) {
   text-align: right;
@@ -915,6 +922,9 @@ table.docutils.td-left-3 th:nth-child(3), table.docutils.td-left-3 td:nth-child(
 table.docutils.td-center-3 th:nth-child(3), table.docutils.td-center-3 td:nth-child(3) {
   text-align: center;
 }
+table.docutils.td-bold-3 th:nth-child(3), table.docutils.td-bold-3 td:nth-child(3) {
+  font-weight: 600;
+}
 table.docutils.td-right-4 th:nth-child(4), table.docutils.td-right-4 td:nth-child(4) {
   text-align: right;
 }
@@ -923,6 +933,9 @@ table.docutils.td-left-4 th:nth-child(4), table.docutils.td-left-4 td:nth-child(
 }
 table.docutils.td-center-4 th:nth-child(4), table.docutils.td-center-4 td:nth-child(4) {
   text-align: center;
+}
+table.docutils.td-bold-4 th:nth-child(4), table.docutils.td-bold-4 td:nth-child(4) {
+  font-weight: 600;
 }
 table.docutils.td-right-5 th:nth-child(5), table.docutils.td-right-5 td:nth-child(5) {
   text-align: right;
@@ -933,6 +946,9 @@ table.docutils.td-left-5 th:nth-child(5), table.docutils.td-left-5 td:nth-child(
 table.docutils.td-center-5 th:nth-child(5), table.docutils.td-center-5 td:nth-child(5) {
   text-align: center;
 }
+table.docutils.td-bold-5 th:nth-child(5), table.docutils.td-bold-5 td:nth-child(5) {
+  font-weight: 600;
+}
 table.docutils.td-right-6 th:nth-child(6), table.docutils.td-right-6 td:nth-child(6) {
   text-align: right;
 }
@@ -941,6 +957,9 @@ table.docutils.td-left-6 th:nth-child(6), table.docutils.td-left-6 td:nth-child(
 }
 table.docutils.td-center-6 th:nth-child(6), table.docutils.td-center-6 td:nth-child(6) {
   text-align: center;
+}
+table.docutils.td-bold-6 th:nth-child(6), table.docutils.td-bold-6 td:nth-child(6) {
+  font-weight: 600;
 }
 table.docutils.td-right-7 th:nth-child(7), table.docutils.td-right-7 td:nth-child(7) {
   text-align: right;
@@ -951,6 +970,9 @@ table.docutils.td-left-7 th:nth-child(7), table.docutils.td-left-7 td:nth-child(
 table.docutils.td-center-7 th:nth-child(7), table.docutils.td-center-7 td:nth-child(7) {
   text-align: center;
 }
+table.docutils.td-bold-7 th:nth-child(7), table.docutils.td-bold-7 td:nth-child(7) {
+  font-weight: 600;
+}
 table.docutils.td-right-8 th:nth-child(8), table.docutils.td-right-8 td:nth-child(8) {
   text-align: right;
 }
@@ -959,6 +981,9 @@ table.docutils.td-left-8 th:nth-child(8), table.docutils.td-left-8 td:nth-child(
 }
 table.docutils.td-center-8 th:nth-child(8), table.docutils.td-center-8 td:nth-child(8) {
   text-align: center;
+}
+table.docutils.td-bold-8 th:nth-child(8), table.docutils.td-bold-8 td:nth-child(8) {
+  font-weight: 600;
 }
 table.docutils.td-right-9 th:nth-child(9), table.docutils.td-right-9 td:nth-child(9) {
   text-align: right;
@@ -969,6 +994,9 @@ table.docutils.td-left-9 th:nth-child(9), table.docutils.td-left-9 td:nth-child(
 table.docutils.td-center-9 th:nth-child(9), table.docutils.td-center-9 td:nth-child(9) {
   text-align: center;
 }
+table.docutils.td-bold-9 th:nth-child(9), table.docutils.td-bold-9 td:nth-child(9) {
+  font-weight: 600;
+}
 table.docutils.td-right-10 th:nth-child(10), table.docutils.td-right-10 td:nth-child(10) {
   text-align: right;
 }
@@ -977,6 +1005,9 @@ table.docutils.td-left-10 th:nth-child(10), table.docutils.td-left-10 td:nth-chi
 }
 table.docutils.td-center-10 th:nth-child(10), table.docutils.td-center-10 td:nth-child(10) {
   text-align: center;
+}
+table.docutils.td-bold-10 th:nth-child(10), table.docutils.td-bold-10 td:nth-child(10) {
+  font-weight: 600;
 }
 table.docutils.td-padding-0 td, table.docutils.td-padding-0 th {
   padding: 0;
@@ -4276,6 +4307,11 @@ table.docutils.footnote td {
 
 .mermaid-wrapper img {
   width: 100%;
+}
+
+.list-tight > ul > li > p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .reveal {

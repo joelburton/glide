@@ -1,6 +1,8 @@
 // Stuff that is common to both revealjs and handouts (which should be most
 // things, with minor fixes in the the other CSS files.)
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 // These colors come from Tachyon's color choices:
 $black: #000;
 $near-black: #111;
@@ -634,6 +636,9 @@ table.docutils {
 
     &.td-center-#{$col} th:nth-child(#{$col}),
     &.td-center-#{$col} td:nth-child(#{$col}) { text-align: center; }
+
+    &.td-bold-#{$col} th:nth-child(#{$col}),
+    &.td-bold-#{$col} td:nth-child(#{$col}) { font-weight: $weight-bold; }
   }
 
   &.td-padding-0 {
@@ -1396,3 +1401,4 @@ table.docutils.footnote td {
 // ======================================================= active experimenting
 
 .mermaid-wrapper img { width: 100%; }
+.list-tight > ul > li > p { margin-top: 0; margin-bottom:0 }
