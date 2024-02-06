@@ -305,7 +305,7 @@ _symbols = """
 .. |approx|    unicode:: U+02248 .. ALMOST EQUAL TO
 
 .. |date| date::
-.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``Ⓕ`` Fn |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter |sp| |sp| ``⌥⌫`` Backspace 
+.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``fn`` Function |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter |sp| |sp| ``⌥⌫`` Backspace 
 """
 
 # A new role for raw output that should only appear in HTML, and a
