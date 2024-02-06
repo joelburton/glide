@@ -176,7 +176,7 @@ $codeFont: var(--theme-codefont);
 
 .reveal {
   .highlight pre,
-  .parsed-literal-wrapper pre {
+  pre.literal-block {
     // this isn't a magic number; it's just a good sense of what fits :)
     font-size: 0.52em;
   }

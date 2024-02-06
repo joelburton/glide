@@ -291,6 +291,7 @@ abbr {
 .ref { }
 .doc { }
 .guilabel {
+  color: $purple;
   font-weight: $weight-pop;
   @media print { font-weight: $print-weight-pop }
 }
@@ -895,7 +896,7 @@ span.linenos {
 
   // The first real (second actual) paragraph: put this next to title
   // see note above about how generic admonitions are different
-  &:not(.admonition-generic) > p:nth-child(2) {
+  &:not(.Xadmonition-generic) > p:nth-child(2) {
     display: inline-block;
     margin: 0 !important;
     padding: 0 !important;
@@ -1296,7 +1297,8 @@ blockquote {
 // code-n-cols 1-120 by 1
 @for $i from 1 through 120 {
   // 6em/10 == 1ch, but prince PDF converter can't handle ch unit (10/2020)
-  .code-cols-#{$i} pre { width: $i * 6em / 10 !important; }
+  .code-cols-#{$i} pre,
+  pre.code-cols-#{$i} { width: $i * 6em / 10 !important; }
 }
 
 .code-fit-content pre, .fit-content {
@@ -1402,3 +1404,8 @@ table.docutils.footnote td {
 
 .mermaid-wrapper img { width: 100%; }
 .list-tight > ul > li > p { margin-top: 0; margin-bottom:0 }
+.prompt {
+  font-weight: bold;
+  color: #c65d09;
+}
+.admonition.advanced .admonition-title { background-color: purple; color: white; }

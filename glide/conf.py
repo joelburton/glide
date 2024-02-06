@@ -217,6 +217,7 @@ _colors = """
 .. role:: gp
 .. role:: c
 .. role:: gs
+.. role:: prompt
 
 .. role:: emoji
 .. role:: emoji-1x
@@ -331,7 +332,7 @@ _reveal_br = """
 .. |i-chrome|   replace:: :raw-html:`<i class="dark-blue bi bi-browser-chrome" alt="Google Chrome" title="Google Chrome"></i>`
 .. |i-git|      replace:: :raw-html:`<i class="orange bi bi-git" alt="Git" title="Git"></i>`
 .. |i-github|   replace:: :raw-html:`<i class="bi bi-github" alt="GitHub" title="GitHub"></i>`
-.. |i-advanced| replace:: :raw-html:`<i class="bi bi-rocket-launch" alt="Advanced" title="Advanced"></i>`
+.. |i-advanced| replace:: :raw-html:`<i class="bi bi-rocket-takeoff" alt="Advanced" title="Advanced"></i>`
 .. |i-detail|   replace:: :raw-html:`<i class="bi bi-detail" alt="Detail" title="Detail"></i>`
 .. |i-terminal| replace:: :raw-html:`<i class="bi bi-terminal" alt="Terminal/Shell" title="Terminal/Shell"></i>`
 .. |i-youtube|  replace:: :raw-html:`<i class="red bi bi-youtube" alt="YouTube" title="YouTube"></i>`

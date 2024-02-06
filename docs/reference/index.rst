@@ -6,7 +6,6 @@ Glide Reference
 
 .. todo:: list-tight
 
-.. todo:: nodejsrepl
 
 
 

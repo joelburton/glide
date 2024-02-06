@@ -196,6 +196,7 @@ abbr[title] {
 }
 
 .guilabel {
+  color: #5e2ca5;
   font-weight: 400;
 }
 @media print {
@@ -923,7 +924,7 @@ span.linenos {
     background-color: transparent !important;
   }
 }
-.admonition:not(.admonition-generic) > p:nth-child(2) {
+.admonition:not(.Xadmonition-generic) > p:nth-child(2) {
   display: inline-block;
   margin: 0 !important;
   padding: 0 !important;
@@ -931,7 +932,7 @@ span.linenos {
   line-height: 1 !important;
 }
 @media print {
-  .admonition:not(.admonition-generic) > p:nth-child(2) {
+  .admonition:not(.Xadmonition-generic) > p:nth-child(2) {
     font-weight: 600;
   }
 }
@@ -3407,483 +3408,603 @@ blockquote > div p:last-child {
     font-size: 18.8888888889pt !important;
   }
 }
-.code-cols-1 pre {
+.code-cols-1 pre,
+pre.code-cols-1 {
   width: 0.6em !important;
 }
 
-.code-cols-2 pre {
+.code-cols-2 pre,
+pre.code-cols-2 {
   width: 1.2em !important;
 }
 
-.code-cols-3 pre {
+.code-cols-3 pre,
+pre.code-cols-3 {
   width: 1.8em !important;
 }
 
-.code-cols-4 pre {
+.code-cols-4 pre,
+pre.code-cols-4 {
   width: 2.4em !important;
 }
 
-.code-cols-5 pre {
+.code-cols-5 pre,
+pre.code-cols-5 {
   width: 3em !important;
 }
 
-.code-cols-6 pre {
+.code-cols-6 pre,
+pre.code-cols-6 {
   width: 3.6em !important;
 }
 
-.code-cols-7 pre {
+.code-cols-7 pre,
+pre.code-cols-7 {
   width: 4.2em !important;
 }
 
-.code-cols-8 pre {
+.code-cols-8 pre,
+pre.code-cols-8 {
   width: 4.8em !important;
 }
 
-.code-cols-9 pre {
+.code-cols-9 pre,
+pre.code-cols-9 {
   width: 5.4em !important;
 }
 
-.code-cols-10 pre {
+.code-cols-10 pre,
+pre.code-cols-10 {
   width: 6em !important;
 }
 
-.code-cols-11 pre {
+.code-cols-11 pre,
+pre.code-cols-11 {
   width: 6.6em !important;
 }
 
-.code-cols-12 pre {
+.code-cols-12 pre,
+pre.code-cols-12 {
   width: 7.2em !important;
 }
 
-.code-cols-13 pre {
+.code-cols-13 pre,
+pre.code-cols-13 {
   width: 7.8em !important;
 }
 
-.code-cols-14 pre {
+.code-cols-14 pre,
+pre.code-cols-14 {
   width: 8.4em !important;
 }
 
-.code-cols-15 pre {
+.code-cols-15 pre,
+pre.code-cols-15 {
   width: 9em !important;
 }
 
-.code-cols-16 pre {
+.code-cols-16 pre,
+pre.code-cols-16 {
   width: 9.6em !important;
 }
 
-.code-cols-17 pre {
+.code-cols-17 pre,
+pre.code-cols-17 {
   width: 10.2em !important;
 }
 
-.code-cols-18 pre {
+.code-cols-18 pre,
+pre.code-cols-18 {
   width: 10.8em !important;
 }
 
-.code-cols-19 pre {
+.code-cols-19 pre,
+pre.code-cols-19 {
   width: 11.4em !important;
 }
 
-.code-cols-20 pre {
+.code-cols-20 pre,
+pre.code-cols-20 {
   width: 12em !important;
 }
 
-.code-cols-21 pre {
+.code-cols-21 pre,
+pre.code-cols-21 {
   width: 12.6em !important;
 }
 
-.code-cols-22 pre {
+.code-cols-22 pre,
+pre.code-cols-22 {
   width: 13.2em !important;
 }
 
-.code-cols-23 pre {
+.code-cols-23 pre,
+pre.code-cols-23 {
   width: 13.8em !important;
 }
 
-.code-cols-24 pre {
+.code-cols-24 pre,
+pre.code-cols-24 {
   width: 14.4em !important;
 }
 
-.code-cols-25 pre {
+.code-cols-25 pre,
+pre.code-cols-25 {
   width: 15em !important;
 }
 
-.code-cols-26 pre {
+.code-cols-26 pre,
+pre.code-cols-26 {
   width: 15.6em !important;
 }
 
-.code-cols-27 pre {
+.code-cols-27 pre,
+pre.code-cols-27 {
   width: 16.2em !important;
 }
 
-.code-cols-28 pre {
+.code-cols-28 pre,
+pre.code-cols-28 {
   width: 16.8em !important;
 }
 
-.code-cols-29 pre {
+.code-cols-29 pre,
+pre.code-cols-29 {
   width: 17.4em !important;
 }
 
-.code-cols-30 pre {
+.code-cols-30 pre,
+pre.code-cols-30 {
   width: 18em !important;
 }
 
-.code-cols-31 pre {
+.code-cols-31 pre,
+pre.code-cols-31 {
   width: 18.6em !important;
 }
 
-.code-cols-32 pre {
+.code-cols-32 pre,
+pre.code-cols-32 {
   width: 19.2em !important;
 }
 
-.code-cols-33 pre {
+.code-cols-33 pre,
+pre.code-cols-33 {
   width: 19.8em !important;
 }
 
-.code-cols-34 pre {
+.code-cols-34 pre,
+pre.code-cols-34 {
   width: 20.4em !important;
 }
 
-.code-cols-35 pre {
+.code-cols-35 pre,
+pre.code-cols-35 {
   width: 21em !important;
 }
 
-.code-cols-36 pre {
+.code-cols-36 pre,
+pre.code-cols-36 {
   width: 21.6em !important;
 }
 
-.code-cols-37 pre {
+.code-cols-37 pre,
+pre.code-cols-37 {
   width: 22.2em !important;
 }
 
-.code-cols-38 pre {
+.code-cols-38 pre,
+pre.code-cols-38 {
   width: 22.8em !important;
 }
 
-.code-cols-39 pre {
+.code-cols-39 pre,
+pre.code-cols-39 {
   width: 23.4em !important;
 }
 
-.code-cols-40 pre {
+.code-cols-40 pre,
+pre.code-cols-40 {
   width: 24em !important;
 }
 
-.code-cols-41 pre {
+.code-cols-41 pre,
+pre.code-cols-41 {
   width: 24.6em !important;
 }
 
-.code-cols-42 pre {
+.code-cols-42 pre,
+pre.code-cols-42 {
   width: 25.2em !important;
 }
 
-.code-cols-43 pre {
+.code-cols-43 pre,
+pre.code-cols-43 {
   width: 25.8em !important;
 }
 
-.code-cols-44 pre {
+.code-cols-44 pre,
+pre.code-cols-44 {
   width: 26.4em !important;
 }
 
-.code-cols-45 pre {
+.code-cols-45 pre,
+pre.code-cols-45 {
   width: 27em !important;
 }
 
-.code-cols-46 pre {
+.code-cols-46 pre,
+pre.code-cols-46 {
   width: 27.6em !important;
 }
 
-.code-cols-47 pre {
+.code-cols-47 pre,
+pre.code-cols-47 {
   width: 28.2em !important;
 }
 
-.code-cols-48 pre {
+.code-cols-48 pre,
+pre.code-cols-48 {
   width: 28.8em !important;
 }
 
-.code-cols-49 pre {
+.code-cols-49 pre,
+pre.code-cols-49 {
   width: 29.4em !important;
 }
 
-.code-cols-50 pre {
+.code-cols-50 pre,
+pre.code-cols-50 {
   width: 30em !important;
 }
 
-.code-cols-51 pre {
+.code-cols-51 pre,
+pre.code-cols-51 {
   width: 30.6em !important;
 }
 
-.code-cols-52 pre {
+.code-cols-52 pre,
+pre.code-cols-52 {
   width: 31.2em !important;
 }
 
-.code-cols-53 pre {
+.code-cols-53 pre,
+pre.code-cols-53 {
   width: 31.8em !important;
 }
 
-.code-cols-54 pre {
+.code-cols-54 pre,
+pre.code-cols-54 {
   width: 32.4em !important;
 }
 
-.code-cols-55 pre {
+.code-cols-55 pre,
+pre.code-cols-55 {
   width: 33em !important;
 }
 
-.code-cols-56 pre {
+.code-cols-56 pre,
+pre.code-cols-56 {
   width: 33.6em !important;
 }
 
-.code-cols-57 pre {
+.code-cols-57 pre,
+pre.code-cols-57 {
   width: 34.2em !important;
 }
 
-.code-cols-58 pre {
+.code-cols-58 pre,
+pre.code-cols-58 {
   width: 34.8em !important;
 }
 
-.code-cols-59 pre {
+.code-cols-59 pre,
+pre.code-cols-59 {
   width: 35.4em !important;
 }
 
-.code-cols-60 pre {
+.code-cols-60 pre,
+pre.code-cols-60 {
   width: 36em !important;
 }
 
-.code-cols-61 pre {
+.code-cols-61 pre,
+pre.code-cols-61 {
   width: 36.6em !important;
 }
 
-.code-cols-62 pre {
+.code-cols-62 pre,
+pre.code-cols-62 {
   width: 37.2em !important;
 }
 
-.code-cols-63 pre {
+.code-cols-63 pre,
+pre.code-cols-63 {
   width: 37.8em !important;
 }
 
-.code-cols-64 pre {
+.code-cols-64 pre,
+pre.code-cols-64 {
   width: 38.4em !important;
 }
 
-.code-cols-65 pre {
+.code-cols-65 pre,
+pre.code-cols-65 {
   width: 39em !important;
 }
 
-.code-cols-66 pre {
+.code-cols-66 pre,
+pre.code-cols-66 {
   width: 39.6em !important;
 }
 
-.code-cols-67 pre {
+.code-cols-67 pre,
+pre.code-cols-67 {
   width: 40.2em !important;
 }
 
-.code-cols-68 pre {
+.code-cols-68 pre,
+pre.code-cols-68 {
   width: 40.8em !important;
 }
 
-.code-cols-69 pre {
+.code-cols-69 pre,
+pre.code-cols-69 {
   width: 41.4em !important;
 }
 
-.code-cols-70 pre {
+.code-cols-70 pre,
+pre.code-cols-70 {
   width: 42em !important;
 }
 
-.code-cols-71 pre {
+.code-cols-71 pre,
+pre.code-cols-71 {
   width: 42.6em !important;
 }
 
-.code-cols-72 pre {
+.code-cols-72 pre,
+pre.code-cols-72 {
   width: 43.2em !important;
 }
 
-.code-cols-73 pre {
+.code-cols-73 pre,
+pre.code-cols-73 {
   width: 43.8em !important;
 }
 
-.code-cols-74 pre {
+.code-cols-74 pre,
+pre.code-cols-74 {
   width: 44.4em !important;
 }
 
-.code-cols-75 pre {
+.code-cols-75 pre,
+pre.code-cols-75 {
   width: 45em !important;
 }
 
-.code-cols-76 pre {
+.code-cols-76 pre,
+pre.code-cols-76 {
   width: 45.6em !important;
 }
 
-.code-cols-77 pre {
+.code-cols-77 pre,
+pre.code-cols-77 {
   width: 46.2em !important;
 }
 
-.code-cols-78 pre {
+.code-cols-78 pre,
+pre.code-cols-78 {
   width: 46.8em !important;
 }
 
-.code-cols-79 pre {
+.code-cols-79 pre,
+pre.code-cols-79 {
   width: 47.4em !important;
 }
 
-.code-cols-80 pre {
+.code-cols-80 pre,
+pre.code-cols-80 {
   width: 48em !important;
 }
 
-.code-cols-81 pre {
+.code-cols-81 pre,
+pre.code-cols-81 {
   width: 48.6em !important;
 }
 
-.code-cols-82 pre {
+.code-cols-82 pre,
+pre.code-cols-82 {
   width: 49.2em !important;
 }
 
-.code-cols-83 pre {
+.code-cols-83 pre,
+pre.code-cols-83 {
   width: 49.8em !important;
 }
 
-.code-cols-84 pre {
+.code-cols-84 pre,
+pre.code-cols-84 {
   width: 50.4em !important;
 }
 
-.code-cols-85 pre {
+.code-cols-85 pre,
+pre.code-cols-85 {
   width: 51em !important;
 }
 
-.code-cols-86 pre {
+.code-cols-86 pre,
+pre.code-cols-86 {
   width: 51.6em !important;
 }
 
-.code-cols-87 pre {
+.code-cols-87 pre,
+pre.code-cols-87 {
   width: 52.2em !important;
 }
 
-.code-cols-88 pre {
+.code-cols-88 pre,
+pre.code-cols-88 {
   width: 52.8em !important;
 }
 
-.code-cols-89 pre {
+.code-cols-89 pre,
+pre.code-cols-89 {
   width: 53.4em !important;
 }
 
-.code-cols-90 pre {
+.code-cols-90 pre,
+pre.code-cols-90 {
   width: 54em !important;
 }
 
-.code-cols-91 pre {
+.code-cols-91 pre,
+pre.code-cols-91 {
   width: 54.6em !important;
 }
 
-.code-cols-92 pre {
+.code-cols-92 pre,
+pre.code-cols-92 {
   width: 55.2em !important;
 }
 
-.code-cols-93 pre {
+.code-cols-93 pre,
+pre.code-cols-93 {
   width: 55.8em !important;
 }
 
-.code-cols-94 pre {
+.code-cols-94 pre,
+pre.code-cols-94 {
   width: 56.4em !important;
 }
 
-.code-cols-95 pre {
+.code-cols-95 pre,
+pre.code-cols-95 {
   width: 57em !important;
 }
 
-.code-cols-96 pre {
+.code-cols-96 pre,
+pre.code-cols-96 {
   width: 57.6em !important;
 }
 
-.code-cols-97 pre {
+.code-cols-97 pre,
+pre.code-cols-97 {
   width: 58.2em !important;
 }
 
-.code-cols-98 pre {
+.code-cols-98 pre,
+pre.code-cols-98 {
   width: 58.8em !important;
 }
 
-.code-cols-99 pre {
+.code-cols-99 pre,
+pre.code-cols-99 {
   width: 59.4em !important;
 }
 
-.code-cols-100 pre {
+.code-cols-100 pre,
+pre.code-cols-100 {
   width: 60em !important;
 }
 
-.code-cols-101 pre {
+.code-cols-101 pre,
+pre.code-cols-101 {
   width: 60.6em !important;
 }
 
-.code-cols-102 pre {
+.code-cols-102 pre,
+pre.code-cols-102 {
   width: 61.2em !important;
 }
 
-.code-cols-103 pre {
+.code-cols-103 pre,
+pre.code-cols-103 {
   width: 61.8em !important;
 }
 
-.code-cols-104 pre {
+.code-cols-104 pre,
+pre.code-cols-104 {
   width: 62.4em !important;
 }
 
-.code-cols-105 pre {
+.code-cols-105 pre,
+pre.code-cols-105 {
   width: 63em !important;
 }
 
-.code-cols-106 pre {
+.code-cols-106 pre,
+pre.code-cols-106 {
   width: 63.6em !important;
 }
 
-.code-cols-107 pre {
+.code-cols-107 pre,
+pre.code-cols-107 {
   width: 64.2em !important;
 }
 
-.code-cols-108 pre {
+.code-cols-108 pre,
+pre.code-cols-108 {
   width: 64.8em !important;
 }
 
-.code-cols-109 pre {
+.code-cols-109 pre,
+pre.code-cols-109 {
   width: 65.4em !important;
 }
 
-.code-cols-110 pre {
+.code-cols-110 pre,
+pre.code-cols-110 {
   width: 66em !important;
 }
 
-.code-cols-111 pre {
+.code-cols-111 pre,
+pre.code-cols-111 {
   width: 66.6em !important;
 }
 
-.code-cols-112 pre {
+.code-cols-112 pre,
+pre.code-cols-112 {
   width: 67.2em !important;
 }
 
-.code-cols-113 pre {
+.code-cols-113 pre,
+pre.code-cols-113 {
   width: 67.8em !important;
 }
 
-.code-cols-114 pre {
+.code-cols-114 pre,
+pre.code-cols-114 {
   width: 68.4em !important;
 }
 
-.code-cols-115 pre {
+.code-cols-115 pre,
+pre.code-cols-115 {
   width: 69em !important;
 }
 
-.code-cols-116 pre {
+.code-cols-116 pre,
+pre.code-cols-116 {
   width: 69.6em !important;
 }
 
-.code-cols-117 pre {
+.code-cols-117 pre,
+pre.code-cols-117 {
   width: 70.2em !important;
 }
 
-.code-cols-118 pre {
+.code-cols-118 pre,
+pre.code-cols-118 {
   width: 70.8em !important;
 }
 
-.code-cols-119 pre {
+.code-cols-119 pre,
+pre.code-cols-119 {
   width: 71.4em !important;
 }
 
-.code-cols-120 pre {
+.code-cols-120 pre,
+pre.code-cols-120 {
   width: 72em !important;
 }
 
@@ -3985,6 +4106,16 @@ table.docutils.footnote td {
 .list-tight > ul > li > p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.prompt {
+  font-weight: bold;
+  color: #c65d09;
+}
+
+.admonition.advanced .admonition-title {
+  background-color: purple;
+  color: white;
 }
 
 body {
