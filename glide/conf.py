@@ -73,7 +73,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv', 'meta', 'retired']
+exclude_patterns = ['_*', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv', 'meta', 'retired']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -305,7 +305,7 @@ _symbols = """
 .. |approx|    unicode:: U+02248 .. ALMOST EQUAL TO
 
 .. |date| date::
-.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``fn`` Function |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter |sp| |sp| ``⌥⌫`` Backspace 
+.. |key-legend| replace:: ``⌘`` Command |sp| |sp| ``⌃`` Ctrl |sp| |sp| ``⌥`` Alt/Opt |sp| |sp| ``⇧`` Shift |sp| |sp| ``fn`` Function |sp| |sp| ``⦿`` Click |sp| |sp| ``␣`` Space |sp| |sp| ``↵`` Enter |sp| |sp| ``⌫`` Backspace 
 """
 
 # A new role for raw output that should only appear in HTML, and a

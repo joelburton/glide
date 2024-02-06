@@ -1344,7 +1344,10 @@ span.linenos {
 }
 
 .topic {
-  background-color: #eee;
+  background-color: #f4f4f4;
+  border-top: solid 1px #ccc;
+  border-top: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
   padding: 1em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
