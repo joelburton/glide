@@ -13,3 +13,4 @@ A moderate-sized wrapper around Sphinx that provides:
 
 - better LaTeX generation for making book-style PDFs
 
+
