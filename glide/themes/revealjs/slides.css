@@ -4448,6 +4448,12 @@ table.docutils.footnote td {
   color: white;
 }
 
+.reveal li > p + table.hlist,
+.glide li > p + table.hlist {
+  margin-top: -0.7em;
+  margin-bottom: -0.7em;
+}
+
 .reveal {
   /* Theme logo at the bottom left of every slide. */
 }

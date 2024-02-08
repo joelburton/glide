@@ -1412,3 +1412,9 @@ table.docutils.footnote td {
   color: #c65d09;
 }
 .admonition.advanced .admonition-title { background-color: purple; color: white; }
+
+.reveal li > p + table.hlist,
+.glide li > p + table.hlist {
+  margin-top: -0.7em;
+  margin-bottom: -0.7em;
+}

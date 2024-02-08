@@ -4121,6 +4121,12 @@ table.docutils.footnote td {
   color: white;
 }
 
+.reveal li > p + table.hlist,
+.glide li > p + table.hlist {
+  margin-top: -0.7em;
+  margin-bottom: -0.7em;
+}
+
 body {
   margin: 0;
   background-color: var(--theme-backgroundcolor);

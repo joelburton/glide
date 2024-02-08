@@ -11,12 +11,28 @@ class SimpleConsoleLexer(RegexLexer):
         'root': [
             # at the end of a line, reset it to text
             (r'\n', Text),
+            # a colored line
+            (r'^:ins:`(.+?)`$', bygroups(Generic.Inserted,)),
+            (r'^:del:`(.+?)`$', bygroups(Generic.Deleted,)),
+            (r'^:bold:`(.+?)`$', bygroups(Generic.Strong,)),
+            (r'^:ins:`(.+?)`(\s+# .*?)$', bygroups(Generic.Inserted, Comment)),
+            (r'^:del:`(.+?)`(\s+# .*?)$', bygroups(Generic.Deleted, Comment)),
+            (r'^:bold:`(.+?)`(\s++# .*?)$', bygroups(Generic.Strong, Comment)),
             # a prompt --- starts the line, with a comment
             (r'^([$%] )(.*?)( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
+            # a branch followed by prompt anywhere else --- with a comment
+            (r'^(main|[-\w]*branch[-\w]*)( [$%] )(.*?)( # .*?)$',
+             bygroups(Token.Literal.String, Generic.Prompt, Generic.Strong, Comment)),
             # a prompt anywhere else --- with a comment
             (r'^([-\w() /~:@*]* [$%] )(.*?)( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
             # a prompt --- starts the line
             (r'^([$%] )(.*)$', bygroups(Generic.Prompt, Generic.Strong)),
+            # a branch followed by prompt anywhere else
+            (r'^(main|[-\w]*branch[-\w]*)( [$%] )(.*?)$',
+             bygroups(Token.Literal.String, Generic.Prompt, Generic.Strong)),
+            # a merge-problem-branch followed by prompt anywhere else
+            (r'^(\(git\)\S*)( [$%] )(.*?)$',
+             bygroups(Token.Literal.String, Generic.Prompt, Generic.Strong)),
             # a prompt anywhere else
             (r'^([-\w() /~:@*]* [$%] )(.*)$', bygroups(Generic.Prompt, Generic.Strong)),
             # continuation lines must start with "> ", with a comment
