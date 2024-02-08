@@ -336,7 +336,18 @@ _reveal_br = """
 .. |i-detail|   replace:: :raw-html:`<i class="bi bi-detail" alt="Detail" title="Detail"></i>`
 .. |i-terminal| replace:: :raw-html:`<i class="bi bi-terminal" alt="Terminal/Shell" title="Terminal/Shell"></i>`
 .. |i-youtube|  replace:: :raw-html:`<i class="red bi bi-youtube" alt="YouTube" title="YouTube"></i>`
-.. |i-star|     replace:: :emoji:`⭐`
+.. |i-amazon|  replace:: :raw-html:`<i class="orange bi bi-amazon" alt="Amazon" title="Amazon"></i>`
+.. |i-linkedin|  replace:: :raw-html:`<i class="blue bi bi-linkedin" alt="Linkedin" title="Linkedin"></i>`
+.. |i-android|  replace:: :raw-html:`<i class="green bi bi-android2" alt="Android" title="Android"></i>`
+.. |i-facebook|  replace:: :raw-html:`<i class="green bi bi-facebook" alt="Facebook" title="Facebook"></i>`
+.. |i-google|  replace:: :raw-html:`<i class="red bi bi-google" alt="Google" title="Google"></i>`
+.. |i-slack|  replace:: :raw-html:`<i class="red bi bi-slack" alt="Slack" title="Slack"></i>`
+.. |i-stack-overflow|  replace:: :raw-html:`<i class="red bi bi-stack-overflow" alt="Stack Overflow" title="Stack Overflow"></i>`
+.. |i-twitter|  replace:: :raw-html:`<i class="blue bi bi-twitter" alt="Twitter" title="Twitter"></i>`
+.. |i-pair|  replace:: :raw-html:`<i class="purple bi bi-people-fill" alt="Pair" title="Pair"></i>`
+.. |i-security|  replace:: :raw-html:`<i class="red bi bi-lock-fill" alt="Security" title="Security"></i>`
+.. |i-bookmark|  replace:: :raw-html:`<i class="purple bi bookmark-star-fill" alt="Bookmark" title="Bookmark"></i>`
+.. |i-star|     replace:: :emoji:`⭐`    
 """
 
 # Glide 2.0 added |br| as a shorter synonym for this.
