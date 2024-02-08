@@ -347,6 +347,7 @@ _reveal_br = """
 .. |i-pair|  replace:: :raw-html:`<i class="purple bi bi-people-fill" alt="Pair" title="Pair"></i>`
 .. |i-security|  replace:: :raw-html:`<i class="red bi bi-lock-fill" alt="Security" title="Security"></i>`
 .. |i-bookmark|  replace:: :raw-html:`<i class="purple bi bookmark-star-fill" alt="Bookmark" title="Bookmark"></i>`
+.. |i-angellist|  replace:: :emoji:`🤞`
 .. |i-star|     replace:: :emoji:`⭐`    
 """
 
