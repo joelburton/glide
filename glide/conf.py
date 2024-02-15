@@ -72,11 +72,11 @@ extensions = [
     # Markdown support
     "myst_parser",
 
-    # Uncopyable prompts
-    "sphinx_prompt",
-
     # Copy button
     "sphinx_copybutton",
+
+    # Sphinx Cmd
+    "sphinxcontrib.runcmd"
 ]
 
 # Add any paths that contain templates here, relative to this directory.

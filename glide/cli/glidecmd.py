@@ -322,3 +322,11 @@ if __name__ == '__main__':
 
 # pyperclip  and --copy-url
 # https://github.com/sphinx-contrib/typer
+
+
+# useful for sphinx:
+# https://github.com/sphinx-contrib/icon/tree/main/sphinxcontrib/icon
+# https://sphinxcontrib-images.readthedocs.io/en/latest/
+# https://sphinxcontrib-youtube.readthedocs.io/en/latest/
+# https://github.com/sphinx-contrib/video
+# https://github.com/sphinx-contrib/sphinxcontrib-runcmd -- where would we use it?
