@@ -74,9 +74,6 @@ extensions = [
 
     # Copy button
     "sphinx_copybutton",
-
-    # Sphinx Cmd
-    "sphinxcontrib.runcmd"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
