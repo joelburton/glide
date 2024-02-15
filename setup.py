@@ -12,7 +12,7 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.6.8',
+    version='2.7',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
@@ -30,7 +30,9 @@ setup(
         "sphinxemoji",
         "sphinxcontrib-mermaid",
         "click",
+        "click-repl",
         "myst-parser",
+        "sphinx-copybutton",
     ],
     include_package_data=True,
     entry_points={

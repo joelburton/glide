@@ -521,5 +521,5 @@ mermaid_output_format = "svg"
 mermaid_params = ['--theme', 'default', '--width', '2200', '--backgroundColor', 'transparent']
 
 copybutton_exclude = '.linenos, .gp, .go, .c'
-copybutton_selector = ".foop pre"
+copybutton_selector = ".add-copybutton pre"
 
