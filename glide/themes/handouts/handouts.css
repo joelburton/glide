@@ -4117,8 +4117,8 @@ table.docutils.footnote td {
 }
 
 .admonition.advanced .admonition-title {
-  background-color: purple;
-  color: white;
+  background-color: #eee;
+  color: #000;
 }
 
 .reveal li > p + table.hlist,

@@ -48,6 +48,6 @@ class SimpleConsoleLexer(RegexLexer):
             # a " # blah" is a comment
             (r'(.*?)( # .*)$', bygroups(Text, Comment)),
             # everything is just continuing text
-            (r'.+', Text),
+            (r'.+', Generic.Output),
         ],
     }

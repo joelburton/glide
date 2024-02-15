@@ -29,6 +29,8 @@ setup(
         "sphinxcontrib-drawio",
         "sphinxemoji",
         "sphinxcontrib-mermaid",
+        "click",
+        "myst-parser",
     ],
     include_package_data=True,
     entry_points={
@@ -42,6 +44,9 @@ setup(
             'rainbow-lines =   glide.lexers.rainbow:RainbowLinesLexer',
             'rainbow-2-lines = glide.lexers.rainbow:RainbowTwoLinesLexer',
         ],
+        'console_scripts': [
+            "glide = glide.cli.glidecmd:cli"
+        ]
     },
     package_data={'themes': ['*']}
 )

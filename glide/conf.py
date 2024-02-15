@@ -60,11 +60,23 @@ extensions = [
     # Give doctest-related directives extra functionality
     'glide.directives.doctest',
 
+    # Add html disclosure arrows
+    'glide.directives.details',
+
     # Allow external links
     'sphinx.ext.extlinks',
 
     # Allow mermaid
     "sphinxcontrib.mermaid",
+
+    # Markdown support
+    "myst_parser",
+
+    # Uncopyable prompts
+    "sphinx_prompt",
+
+    # Copy button
+    "sphinx_copybutton",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -73,7 +85,15 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_*', 'Thumbs.db', '.DS_Store', 'node_modules', 'venv', 'meta', 'retired']
+exclude_patterns = [
+    '_*',
+    'Thumbs.db',
+    '.DS_Store',
+    'node_modules/*', '*/node_modules/*',
+    'venv/*', '*/venv/*',
+    'meta',
+    'retired',
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -349,6 +369,17 @@ _reveal_br = """
 .. |i-bookmark|  replace:: :raw-html:`<i class="purple bi bookmark-star-fill" alt="Bookmark" title="Bookmark"></i>`
 .. |i-angellist|  replace:: :emoji:`🤞`
 .. |i-star|     replace:: :emoji:`⭐`    
+
+.. |bigo-1|      replace:: :math:`O(1)`
+.. |bigo-logn|   replace:: :math:`O(\\log{}n)`
+.. |bigo-logn2|  replace:: :math:`O(\\log_2{}n)`
+.. |bigo-n|      replace:: :math:`O(n)`
+.. |bigo-nlogn|  replace:: :math:`O(n\\log{}n)`
+.. |bigo-ndlogn| replace:: :math:`O(n\\cdot\\log{}n)`
+.. |bigo-nlog2n| replace:: :math:`O(n\\log_2{}n)`
+.. |bigo-n2|     replace:: :math:`O(n^2)`
+.. |bigo-2n|     replace:: :math:`O(2^n)`
+.. |bigo-nfact|  replace:: :math:`O(n!)`
 """
 
 # Glide 2.0 added |br| as a shorter synonym for this.
@@ -488,3 +519,7 @@ def setup(app):
 mermaid_verbose = True
 mermaid_output_format = "svg"
 mermaid_params = ['--theme', 'default', '--width', '2200', '--backgroundColor', 'transparent']
+
+copybutton_exclude = '.linenos, .gp, .go, .c'
+copybutton_selector = ".foop pre"
+

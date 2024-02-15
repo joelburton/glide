@@ -1411,7 +1411,7 @@ table.docutils.footnote td {
   font-weight: bold;
   color: #c65d09;
 }
-.admonition.advanced .admonition-title { background-color: purple; color: white; }
+.admonition.advanced .admonition-title { background-color: $light-gray; color: $black; }
 
 .reveal li > p + table.hlist,
 .glide li > p + table.hlist {
