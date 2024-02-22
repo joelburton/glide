@@ -482,6 +482,10 @@ aafig_default_options = dict(
     line_width=1,
 )
 
+# Need this because else linkcheck issues warning about building aafig stuff
+# noinspection PyUnresolvedReferences
+aafig_format = {'': None, 'html': 'svg'}
+
 drawio_binary_path = "/Applications/draw.io.app/Contents/MacOS/draw.io"
 drawio_builder_export_format = {
     "html": "svg",
