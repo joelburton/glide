@@ -322,6 +322,7 @@ if __name__ == '__main__':
 
 # pyperclip  and --copy-url
 # https://github.com/sphinx-contrib/typer
+# kroki or dbml renderer?
 
 
 # useful for sphinx:

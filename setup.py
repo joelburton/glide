@@ -12,7 +12,7 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.7',
+    version='2.7.1',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
@@ -33,6 +33,8 @@ setup(
         "click-repl",
         "myst-parser",
         "sphinx-copybutton",
+        "pyyaml",
+        "sphinxcontrib-youtube",
     ],
     include_package_data=True,
     entry_points={

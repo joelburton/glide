@@ -5,8 +5,15 @@ from sphinx.ext.todo import todo_node, visit_todo_node, depart_todo_node, \
     latex_visit_todo_node, latex_depart_todo_node
 from sphinxcontrib.mermaid import html_visit_mermaid, latex_visit_mermaid, texinfo_visit_mermaid, text_visit_mermaid, \
     man_visit_mermaid, mermaid
-
+from sphinxcontrib.youtube import youtube
 from glide import version, logger
+from myst_parser import warnings_
+
+youtube._NODE_VISITORS["handouts"] = (
+    youtube.visit_youtube_node, youtube.utils.depart_video_node)
+youtube._NODE_VISITORS["html"] = (
+    youtube.utils.visit_video_node_epub, youtube.utils.depart_video_node)
+
 
 # -- Project information -----------------------------------------------------
 # Define these in actual usage conf.py files
@@ -63,6 +70,9 @@ extensions = [
     # Add html disclosure arrows
     'glide.directives.details',
 
+    # Add download links
+    'glide.directives.downloads',
+
     # Allow external links
     'sphinx.ext.extlinks',
 
@@ -74,6 +84,12 @@ extensions = [
 
     # Copy button
     "sphinx_copybutton",
+
+    # Editor
+    "glide.directives.editor",
+
+    # YouTube
+    "sphinxcontrib.youtube"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -90,6 +106,8 @@ exclude_patterns = [
     'venv/*', '*/venv/*',
     'meta',
     'retired',
+    'raw',
+    '**/_index.rst',
 ]
 
 # The name of the Pygments (syntax highlighting) style to use.
@@ -363,9 +381,11 @@ _reveal_br = """
 .. |i-twitter|  replace:: :raw-html:`<i class="blue bi bi-twitter" alt="Twitter" title="Twitter"></i>`
 .. |i-pair|  replace:: :raw-html:`<i class="purple bi bi-people-fill" alt="Pair" title="Pair"></i>`
 .. |i-security|  replace:: :raw-html:`<i class="red bi bi-lock-fill" alt="Security" title="Security"></i>`
-.. |i-bookmark|  replace:: :raw-html:`<i class="purple bi bookmark-star-fill" alt="Bookmark" title="Bookmark"></i>`
+.. |i-bookmark|  replace:: :raw-html:`<i class="purple bi bi-bookmark-star-fill" alt="Bookmark" title="Bookmark"></i>`
 .. |i-angellist|  replace:: :emoji:`🤞`
 .. |i-star|     replace:: :emoji:`⭐`    
+.. |i-file-code|  replace:: :raw-html:`<i class="bi bi-file-code" alt="Code" title="Code"></i>`    
+.. |i-file-solution|   replace:: :raw-html:`<i class="bi bi-file-check" alt="Solution" title="Solution"></i>`    
 
 .. |bigo-1|      replace:: :math:`O(1)`
 .. |bigo-logn|   replace:: :math:`O(\\log{}n)`
@@ -504,6 +524,17 @@ def setup(app):
         text=(text_visit_mermaid, None),
         man=(man_visit_mermaid, None),
     )
+    app.add_node(
+        mermaid,
+        override=True,
+        handouts=(html_visit_mermaid, None),
+        revealjs=(html_visit_mermaid, None),
+        html=(html_visit_mermaid, None),
+        latex=(latex_visit_mermaid, None),
+        texinfo=(texinfo_visit_mermaid, None),
+        text=(text_visit_mermaid, None),
+        man=(man_visit_mermaid, None),
+    )
     return {'version': version, 'parallel_read_safe': True}
 
 
@@ -520,3 +551,4 @@ mermaid_params = ['--theme', 'default', '--width', '2200', '--backgroundColor', 
 copybutton_exclude = '.linenos, .gp, .go, .c'
 copybutton_selector = ".add-copybutton pre"
 
+myst_suppress_warnings = ["myst.header"]
