@@ -10,7 +10,7 @@ class SimpleConsoleLexer(RegexLexer):
     tokens = {
         'root': [
             # at the end of a line, reset it to text
-            (r'\n', Text),
+            (r'\n', Generic.Output),
             # a colored line
             (r'^:ins:`(.+?)`$', bygroups(Generic.Inserted,)),
             (r'^:del:`(.+?)`$', bygroups(Generic.Deleted,)),
@@ -42,11 +42,11 @@ class SimpleConsoleLexer(RegexLexer):
             # a "#! " at the very start is a full-line error comment
             (r'^#! .*$', Comment.Multiline),
             # a " #! blah" is a comment
-            (r'(.*?)( #! .*)$', bygroups(Text, Comment.Multiline)),
+            (r'(.*?)( #! .*)$', bygroups(Generic.Output, Comment.Multiline)),
             # a "# " at the very start is a full-line comment
             (r'^# .*$', Comment),
             # a " # blah" is a comment
-            (r'(.*?)( # .*)$', bygroups(Text, Comment)),
+            (r'(.*?)( # .*)$', bygroups(Generic.Output, Comment)),
             # everything is just continuing text
             (r'.+', Generic.Output),
         ],

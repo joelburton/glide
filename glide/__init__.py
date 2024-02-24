@@ -7,7 +7,7 @@ from sphinx.util.logging import getLogger
 from pathlib import Path
 import sys
 
-version = "2.7.2"
+version = "2.7.3"
 
 logger = getLogger("glide")
 
