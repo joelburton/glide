@@ -1272,6 +1272,12 @@ blockquote {
 
 // margin-left, margin-right, margin-top, margin-bottom 0-5
 @each $dir in (left, right, top, bottom) {
+  .margin-#{$dir}-n0 { margin-#{$dir}: -0.15em !important }
+  .margin-#{$dir}-n1 { margin-#{$dir}: -0.25em !important }
+  .margin-#{$dir}-n2 { margin-#{$dir}: -0.50em !important }
+  .margin-#{$dir}-n3 { margin-#{$dir}: -0.75em !important }
+  .margin-#{$dir}-n4 { margin-#{$dir}: -1.00em !important }
+  .margin-#{$dir}-n5 { margin-#{$dir}: -1.50em !important }
   .margin-#{$dir}-0 { margin-#{$dir}: 0.00em !important }
   .margin-#{$dir}-1 { margin-#{$dir}: 0.25em !important }
   .margin-#{$dir}-2 { margin-#{$dir}: 0.50em !important }
@@ -1407,6 +1413,9 @@ table.docutils.footnote td {
 
 .mermaid-wrapper img { width: 100%; }
 .list-tight > ul > li > p { margin-top: 0; margin-bottom:0 }
+.list-intro + div > ul { margin-top: -.2em; }
+.list-intro + ul { margin-top: -.2em; }
+.list-no-bullet li { list-style-type: none }
 .prompt {
   font-weight: bold;
   color: #c65d09;

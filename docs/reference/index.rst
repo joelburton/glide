@@ -12,7 +12,7 @@ Glide Reference
 .. sectionauthor:: joel
 
 .. meta::
-    :description: Reference to Glide document system.
+  :description: Reference to Glide document system.
 
 
 .. only:: not revealjs

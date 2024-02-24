@@ -3164,6 +3164,30 @@ blockquote > div p:last-child {
   padding: 1.5em !important;
 }
 
+.margin-left-n0 {
+  margin-left: -0.15em !important;
+}
+
+.margin-left-n1 {
+  margin-left: -0.25em !important;
+}
+
+.margin-left-n2 {
+  margin-left: -0.5em !important;
+}
+
+.margin-left-n3 {
+  margin-left: -0.75em !important;
+}
+
+.margin-left-n4 {
+  margin-left: -1em !important;
+}
+
+.margin-left-n5 {
+  margin-left: -1.5em !important;
+}
+
 .margin-left-0 {
   margin-left: 0em !important;
 }
@@ -3206,6 +3230,30 @@ blockquote > div p:last-child {
 
 .margin-left-10 {
   margin-left: 6em !important;
+}
+
+.margin-right-n0 {
+  margin-right: -0.15em !important;
+}
+
+.margin-right-n1 {
+  margin-right: -0.25em !important;
+}
+
+.margin-right-n2 {
+  margin-right: -0.5em !important;
+}
+
+.margin-right-n3 {
+  margin-right: -0.75em !important;
+}
+
+.margin-right-n4 {
+  margin-right: -1em !important;
+}
+
+.margin-right-n5 {
+  margin-right: -1.5em !important;
 }
 
 .margin-right-0 {
@@ -3252,6 +3300,30 @@ blockquote > div p:last-child {
   margin-right: 6em !important;
 }
 
+.margin-top-n0 {
+  margin-top: -0.15em !important;
+}
+
+.margin-top-n1 {
+  margin-top: -0.25em !important;
+}
+
+.margin-top-n2 {
+  margin-top: -0.5em !important;
+}
+
+.margin-top-n3 {
+  margin-top: -0.75em !important;
+}
+
+.margin-top-n4 {
+  margin-top: -1em !important;
+}
+
+.margin-top-n5 {
+  margin-top: -1.5em !important;
+}
+
 .margin-top-0 {
   margin-top: 0em !important;
 }
@@ -3294,6 +3366,30 @@ blockquote > div p:last-child {
 
 .margin-top-10 {
   margin-top: 6em !important;
+}
+
+.margin-bottom-n0 {
+  margin-bottom: -0.15em !important;
+}
+
+.margin-bottom-n1 {
+  margin-bottom: -0.25em !important;
+}
+
+.margin-bottom-n2 {
+  margin-bottom: -0.5em !important;
+}
+
+.margin-bottom-n3 {
+  margin-bottom: -0.75em !important;
+}
+
+.margin-bottom-n4 {
+  margin-bottom: -1em !important;
+}
+
+.margin-bottom-n5 {
+  margin-bottom: -1.5em !important;
 }
 
 .margin-bottom-0 {
@@ -4436,6 +4532,18 @@ table.docutils.footnote td {
 .list-tight > ul > li > p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.list-intro + div > ul {
+  margin-top: -0.2em;
+}
+
+.list-intro + ul {
+  margin-top: -0.2em;
+}
+
+.list-no-bullet li {
+  list-style-type: none;
 }
 
 .prompt {

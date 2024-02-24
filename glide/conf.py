@@ -367,7 +367,7 @@ _reveal_br = """
 .. |i-chrome|   replace:: :raw-html:`<i class="dark-blue bi bi-browser-chrome" alt="Google Chrome" title="Google Chrome"></i>`
 .. |i-git|      replace:: :raw-html:`<i class="orange bi bi-git" alt="Git" title="Git"></i>`
 .. |i-github|   replace:: :raw-html:`<i class="bi bi-github" alt="GitHub" title="GitHub"></i>`
-.. |i-advanced| replace:: :raw-html:`<i class="bi bi-rocket-takeoff" alt="Advanced" title="Advanced"></i>`
+.. |i-advanced| replace:: :raw-html:`<i class="purple bi bi-rocket-takeoff" alt="Advanced" title="Advanced"></i>`
 .. |i-detail|   replace:: :raw-html:`<i class="bi bi-detail" alt="Detail" title="Detail"></i>`
 .. |i-terminal| replace:: :raw-html:`<i class="bi bi-terminal" alt="Terminal/Shell" title="Terminal/Shell"></i>`
 .. |i-youtube|  replace:: :raw-html:`<i class="red bi bi-youtube" alt="YouTube" title="YouTube"></i>`
@@ -386,17 +386,20 @@ _reveal_br = """
 .. |i-star|     replace:: :emoji:`⭐`    
 .. |i-file-code|  replace:: :raw-html:`<i class="bi bi-file-code" alt="Code" title="Code"></i>`    
 .. |i-file-solution|   replace:: :raw-html:`<i class="bi bi-file-check" alt="Solution" title="Solution"></i>`    
+.. |i-yes|   replace:: :raw-html:`<i class="dark-green bi bi-check-circle-fill" alt="Yes" title="Yes"></i>`    
+.. |i-no|   replace:: :raw-html:`<i class="dark-red bi bi-x-circle-fill" alt="No" title="No"></i>`    
+.. |i-meh|   replace:: :raw-html:`<i class="gold bi bi-question-circle-fill" alt="Meh" title="Meh"></i>`    
 
-.. |bigo-1|      replace:: :math:`O(1)`
-.. |bigo-logn|   replace:: :math:`O(\\log{}n)`
-.. |bigo-logn2|  replace:: :math:`O(\\log_2{}n)`
-.. |bigo-n|      replace:: :math:`O(n)`
-.. |bigo-nlogn|  replace:: :math:`O(n\\log{}n)`
-.. |bigo-ndlogn| replace:: :math:`O(n\\cdot\\log{}n)`
-.. |bigo-nlog2n| replace:: :math:`O(n\\log_2{}n)`
-.. |bigo-n2|     replace:: :math:`O(n^2)`
-.. |bigo-2n|     replace:: :math:`O(2^n)`
-.. |bigo-nfact|  replace:: :math:`O(n!)`
+.. |bigo-1|      replace:: `O(1)`
+.. |bigo-logn|   replace:: `O(log n)`
+.. |bigo-logn2|  replace:: `O(log`\\ :sub:`2` `n)`
+.. |bigo-n|      replace:: `O(n)`
+.. |bigo-nlogn|  replace:: `O(n log n)`
+.. |bigo-ndlogn| replace:: `O(n · log n)`
+.. |bigo-nlog2n| replace:: `O(n log`\\ :sub:`2` `n)`
+.. |bigo-n2|     replace:: `O(n`\\ :sup:`2`\\ `)`
+.. |bigo-2n|     replace:: `O(2`\\ :sup:`n`\\ `)`
+.. |bigo-nfact|  replace:: `O(n`\\ `!)`
 """
 
 # Glide 2.0 added |br| as a shorter synonym for this.
