@@ -8,6 +8,7 @@
 # v1.4.0           : tested on Sphinx 2.2
 # v2.0.0 (sep 2020): tested on Sphinx 3.2.1
 
+
 from setuptools import setup
 
 setup(
