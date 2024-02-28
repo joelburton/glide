@@ -319,6 +319,8 @@ if __name__ == '__main__':
 # this-week-on-sis
 # change "all" to go?
 
+# use compact in RST!
+
 
 # pyperclip  and --copy-url
 # https://github.com/sphinx-contrib/typer
@@ -335,3 +337,6 @@ if __name__ == '__main__':
 # work "build.py" in
 # render code-review-tips and downloader
 # mathjax and prince
+# output "meta" for exercise
+# prepare feedback template from an exercise as part of downloads, "julia.md", "nick.md", etc
+

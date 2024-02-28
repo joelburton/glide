@@ -300,10 +300,12 @@ body a.toc-backref {
 .small-muted {
   color: #555;
   font-size: 0.75em;
+  font-weight: normal;
 }
 
 .muted {
   color: #777;
+  font-weight: normal;
 }
 @media print {
   .muted {
@@ -4215,6 +4217,10 @@ table.docutils.footnote td {
   margin-top: -0.2em;
 }
 
+.compound > ul {
+  margin-top: -0.5em;
+}
+
 .list-no-bullet li {
   list-style-type: none;
 }
@@ -4226,7 +4232,7 @@ table.docutils.footnote td {
 
 .admonition.advanced .admonition-title {
   background-color: #eee;
-  color: #000;
+  color: #5e2ca5;
 }
 
 .reveal li > p + table.hlist,

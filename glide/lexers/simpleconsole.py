@@ -17,7 +17,7 @@ class SimpleConsoleLexer(RegexLexer):
             (r'^:bold:`(.+?)`$', bygroups(Generic.Strong,)),
             (r'^:ins:`(.+?)`(\s+# .*?)$', bygroups(Generic.Inserted, Comment)),
             (r'^:del:`(.+?)`(\s+# .*?)$', bygroups(Generic.Deleted, Comment)),
-            (r'^:bold:`(.+?)`(\s++# .*?)$', bygroups(Generic.Strong, Comment)),
+            (r'^:bold:`(.+?)`(\s+# .*?)$', bygroups(Generic.Strong, Comment)),
             # a prompt --- starts the line, with a comment
             (r'^([$%] )(.*?)( # .*)$', bygroups(Generic.Prompt, Generic.Strong, Comment)),
             # a branch followed by prompt anywhere else --- with a comment

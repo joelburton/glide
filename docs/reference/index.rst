@@ -7,8 +7,6 @@ Glide Reference
 .. todo:: list-tight
 
 
-
-
 .. sectionauthor:: joel
 
 .. meta::
@@ -1198,7 +1196,7 @@ In case anyone wants to pair and learn how to write a lexer :emoji-1x:`😀`.
 
   Full list at `Pygments Lexers <https://pygments.org/docs/lexers/>`_
 
-.. versionchanged:: 2.6
+.. versionchanged:: 2.7.3
 
   Lots of languages added.
 

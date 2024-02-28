@@ -389,6 +389,7 @@ _reveal_br = """
 .. |i-yes|   replace:: :raw-html:`<i class="dark-green bi bi-check-circle-fill" alt="Yes" title="Yes"></i>`    
 .. |i-no|   replace:: :raw-html:`<i class="dark-red bi bi-x-circle-fill" alt="No" title="No"></i>`    
 .. |i-meh|   replace:: :raw-html:`<i class="gold bi bi-question-circle-fill" alt="Meh" title="Meh"></i>`    
+.. |i-stop|  replace:: :raw-html:`<i class="red margin-right-1 bi bi-sign-stop-fill" alt="Stop" title="Stop"></i>`
 
 .. |bigo-1|      replace:: `O(1)`
 .. |bigo-logn|   replace:: `O(log n)`

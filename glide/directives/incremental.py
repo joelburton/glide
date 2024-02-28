@@ -140,9 +140,9 @@ You can add a fragment style class, too: :incremental-highlight-red:`Hello`.
 
 from docutils import nodes
 from docutils.parsers.rst import roles
+from sphinx.errors import ExtensionError
 
 from glide import version
-
 
 ###############################################################################
 # Incremental classes
@@ -202,12 +202,23 @@ def process_incremental(app, doctree, fromdocname):
             if not building_slides:
                 continue
 
+            lst = None
             # Figure out where list is: are we the list? or its parent?
             # (normally, we'll be the parent, but if the class was put
             # directly on the list rather than a container (as it would be
             # if we used .. rst-class), we could be the list:
-            lst = (node if isinstance(node, nodes.Sequential)
-                   else node.children[0])
+            if isinstance(node, nodes.compound):
+                for lst in node.traverse():
+                    if isinstance(lst, nodes.Sequential):
+                        break
+            else:
+                lst = (node if isinstance(node, nodes.Sequential)
+                       else node.children[0])
+
+            if not lst or not isinstance(lst, nodes.Sequential):
+                raise ExtensionError(
+                    message=f"{lst} is not a list",
+                    modname="glide.directives.incremental")
 
             # Add to children 1 deep
             for item in lst.traverse(

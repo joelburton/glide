@@ -84,8 +84,9 @@ def ignore_visit_dl_link(self, node):
 def handouts_visit_dl_link(translator, node):
     """Add link."""
 
+    prefix = "../" * translator.builder.current_docname.count("/")
     translator.body.append(
-        f"""<p class="dl-link"><a href="{node.path}"></p>""")
+        f"""<p class="dl-link"><a href="{prefix}{node.path}"></p>""")
 
 
 def handouts_visit_dl_label(translator, node: dl_label):
