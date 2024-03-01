@@ -1,19 +1,15 @@
 #!/usr/bin/env python
 
 # Since it dives deeply into the semi-public API of Sphinx, this product is very
-# sensitive to Sphinx versions. If you use a version outside of the accepted
+# sensitive to Sphinx versions. If you use a version outside the accepted
 # ranges, expect problems.
-#
-# Changelog of Sphinx versions:
-# v1.4.0           : tested on Sphinx 2.2
-# v2.0.0 (sep 2020): tested on Sphinx 3.2.1
 
 
 from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.7.5',
+    version='2.7.6',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',

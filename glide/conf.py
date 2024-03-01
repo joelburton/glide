@@ -7,7 +7,7 @@ from sphinxcontrib.mermaid import html_visit_mermaid, latex_visit_mermaid, texin
     man_visit_mermaid, mermaid
 from sphinxcontrib.youtube import youtube
 from glide import version, logger
-from myst_parser import warnings_
+
 
 youtube._NODE_VISITORS["handouts"] = (
     youtube.visit_youtube_node, youtube.utils.depart_video_node)
@@ -364,7 +364,7 @@ _reveal_br = """
 .. |i-macos|    replace:: :raw-html:`<i class="dark-gray bi bi-apple" alt="MacOS" title="MacOS"></i>`
 .. |i-windows|  replace:: :raw-html:`<i class="blue bi bi-windows" alt="Windows" title="Windows"></i>`
 .. |i-linux|    replace:: :raw-html:`<i class="orange bi bi-ubuntu" alt="Ubuntu Linux" title="Ubuntu Linux"></i>`
-.. |i-chrome|   replace:: :raw-html:`<i class="dark-blue bi bi-browser-chrome" alt="Google Chrome" title="Google Chrome"></i>`
+.. |i-chrome|   replace:: :raw-html:`<i class="dark-blue bi bi-browser-chrome" alt="Chrome" title="Chrome"></i>`
 .. |i-git|      replace:: :raw-html:`<i class="orange bi bi-git" alt="Git" title="Git"></i>`
 .. |i-github|   replace:: :raw-html:`<i class="bi bi-github" alt="GitHub" title="GitHub"></i>`
 .. |i-advanced| replace:: :raw-html:`<i class="purple bi bi-rocket-takeoff" alt="Advanced" title="Advanced"></i>`
@@ -377,7 +377,7 @@ _reveal_br = """
 .. |i-facebook|  replace:: :raw-html:`<i class="green bi bi-facebook" alt="Facebook" title="Facebook"></i>`
 .. |i-google|  replace:: :raw-html:`<i class="red bi bi-google" alt="Google" title="Google"></i>`
 .. |i-slack|  replace:: :raw-html:`<i class="red bi bi-slack" alt="Slack" title="Slack"></i>`
-.. |i-stack-overflow|  replace:: :raw-html:`<i class="red bi bi-stack-overflow" alt="Stack Overflow" title="Stack Overflow"></i>`
+.. |i-stack-overflow|  replace:: :raw-html:`<i class="red bi bi-stack-overflow" itle="Stack Overflow"></i>`
 .. |i-twitter|  replace:: :raw-html:`<i class="blue bi bi-twitter" alt="Twitter" title="Twitter"></i>`
 .. |i-pair|  replace:: :raw-html:`<i class="purple bi bi-people-fill" alt="Pair" title="Pair"></i>`
 .. |i-security|  replace:: :raw-html:`<i class="red bi bi-lock-fill" alt="Security" title="Security"></i>`
@@ -558,5 +558,6 @@ mermaid_params = ['--theme', 'default', '--width', '2200', '--backgroundColor', 
 
 copybutton_exclude = '.linenos, .gp, .go, .c'
 copybutton_selector = ".add-copybutton pre"
+copybutton_copy_empty_lines = False
 
 myst_suppress_warnings = ["myst.header"]

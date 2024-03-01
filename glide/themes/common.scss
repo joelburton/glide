@@ -1441,3 +1441,63 @@ table.docutils.footnote td {
   bottom: 0;
   right: 0;
 }
+
+
+@import "https://unpkg.com/@antonz/codapi/dist/snippet.css";
+
+codapi-toolbar a[href="#edit"] {
+  display: none;
+}
+
+codapi-output a[href="#close"] {
+  display: none;
+}
+
+codapi-toolbar {
+  margin-top: 0.5em;
+}
+
+codapi-toolbar button {
+  background-color: white;
+  border: solid 1px green;
+  color: green;
+  font-size: 100%;
+}
+
+codapi-status {
+  font-size: 90%;
+  color: $gray;
+}
+
+codapi-ref {
+  display: none;
+}
+
+#my-editor {
+  text-align: left;
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-family: "Source Code Pro", monospace;
+}
+
+codapi-output {
+  top: 0;
+  position: absolute;
+  padding: 0;
+}
+
+codapi-output pre {
+  margin-top: 0 !important;
+  font-size: 25px !important;
+  //max-width: 5em;
+  box-shadow: none !important;
+  width: 100% !important;
+}
+
+codapi-output pre code {
+  border: none;
+  font-size: inherit;
+  margin-left: 1em;
+  line-height: 1.3;
+}

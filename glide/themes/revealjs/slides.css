@@ -3,6 +3,7 @@
  * GLOBAL STYLES
  *********************************************/
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import "https://unpkg.com/@antonz/codapi/dist/snippet.css";
 :root {
   --background-color: #fff;
   --main-font: var(--theme-bodyfont);
@@ -4578,6 +4579,62 @@ table.docutils.footnote td {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+codapi-toolbar a[href="#edit"] {
+  display: none;
+}
+
+codapi-output a[href="#close"] {
+  display: none;
+}
+
+codapi-toolbar {
+  margin-top: 0.5em;
+}
+
+codapi-toolbar button {
+  background-color: white;
+  border: solid 1px green;
+  color: green;
+  font-size: 100%;
+}
+
+codapi-status {
+  font-size: 90%;
+  color: #777;
+}
+
+codapi-ref {
+  display: none;
+}
+
+#my-editor {
+  text-align: left;
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-family: "Source Code Pro", monospace;
+}
+
+codapi-output {
+  top: 0;
+  position: absolute;
+  padding: 0;
+}
+
+codapi-output pre {
+  margin-top: 0 !important;
+  font-size: 25px !important;
+  box-shadow: none !important;
+  width: 100% !important;
+}
+
+codapi-output pre code {
+  border: none;
+  font-size: inherit;
+  margin-left: 1em;
+  line-height: 1.3;
 }
 
 .reveal {

@@ -55,6 +55,7 @@ class EditorDirective(Directive):
         text = "\n".join(self.content)
         node = editor(text, height=self.options['height'], width=self.options['width'], font_size=self.options['font-size'])
         node.mode = self.arguments[0]
+        node.content = self.content
         self.add_name(node)
         # self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
@@ -67,29 +68,86 @@ def ignore_visit_editor(self, node):
 
 
 # noinspection PyUnusedLocal
+def xhtml_visit_editor(translator, node):
+    """Wrap contents in an editor."""
+
+    content = "\n".join(node.content).replace("`", r"\`")
+
+    translator.body.append(f"""
+<script type="module">
+import * as monaco from 'https://cdn.jsdelivr.net/npm/monaco-editor/+esm';
+monaco.editor.create(document.querySelector('#my-monaco'), {{
+    value: `{content}`,
+    language: '{node.mode}',
+    theme: 'vs-light',
+    minimap: {{ enabled: false }},
+    fontFamily: "Source Code Pro",
+    fontSize: "{node['font_size']}",
+    fontWeight: 500,
+    lineNumbers: "off",
+folding: false,
+}});
+</script>
+<div class="glide-editor" style="width: {node['width']}; margin-left: auto; margin-right: auto">
+<div 
+    id="my-monaco" 
+    class="monaco" 
+    style="min-height: {node['height']};">
+</div>
+<codapi-snippet
+    engine="browser"
+    sandbox="javascript"
+    editor="external">
+    </codapi-snippet>
+</div>
+<script src="https://unpkg.com/@antonz/codapi/dist/settings.js"></script>
+<script src="https://unpkg.com/@antonz/runno/dist/runno.js"></script>
+<script src="https://unpkg.com/@antonz/codapi/dist/engine/wasi.js"></script>
+<script src="https://unpkg.com/@antonz/codapi/dist/snippet.js"></script>
+""")
+
+# noinspection PyUnusedLocal
 def html_visit_editor(translator, node):
     """Wrap contents in an editor."""
-    breakpoint()
+
+    content = "\n".join(node.content).replace("`", r"\`")
+
     translator.body.append(f"""
-    <div styles="height: {node['height']}; width: {node['width']}">
-    <div class='editor-wrapper' styles="height: {node['height']}; width: {node['width']}">
-    <div id='editor' style="font-size: {node['font_size']}">""")
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" integrity="sha512-hasIneQUHlh06VNBe7f6ZcHmeRTLIaQWFd43YriJ0UND19bvYRauxthDg8E4eVNPm9bRUhr5JGeqH7FRFXQu5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       <style>
+       codapi-output {{ left: {node['width']} }}
+       </style>
+<div class="glide-editor" style="width: {node['width']}; font-size: {node['font_size']}; margin: 0 auto; padding-right: 30px; position: relative">
+<div id="my-editor" style="min-height: {node['height']}; padding: 0.5em">
+</div>
+<codapi-snippet
+    engine="browser"
+    sandbox="javascript"
+    editor="external">
+    </codapi-snippet>
+</div>
+    
+    <script type="module">
+        import * as CodeJar from "https://cdn.jsdelivr.net/npm/codejar@4.2.0/dist/codejar.min.js";
+        const editor = document.querySelector("#my-editor");
+        function highlight(editor) {{
+            editor.innerHTML = hljs.highlight(editor.textContent, {{ language: 'javascript' }}).value ; 
+        }}
+        const jar = new CodeJar.CodeJar(editor, highlight, {{ "tab": "  ", addClosing: false }});
+        jar.updateCode(`{ content }`);      
+    </script>
+<!-- <script src="https://unpkg.com/@antonz/codapi/dist/settings.js"></script> -->
+<script src="https://unpkg.com/@antonz/runno/dist/runno.js"></script>
+<!-- <script src="https://unpkg.com/@antonz/codapi/dist/engine/wasi.js"></script> -->
+<script src="https://unpkg.com/@antonz/codapi/dist/snippet.js"></script>
+""")
 
 
 # noinspection PyUnusedLocal
 def html_depart_editor(translator, node):
     """End the editor element we started."""
-    translator.body.append("</div></div></div>")
-    translator.body.append(f"""
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.6/ace.min.js" integrity="sha512-kiECX53fzPhY5cnGzxTUZUOefsjR7gY3SD2OOgcsxZ0nAMZ3e+lkqxhXzGAFm05KjIaQ49/OyNryGTcbLb2V9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/chrome");
-    editor.session.setMode("ace/mode/{node.mode}");
-</script>
-    
-    """)
 
 
 def setup(app):
