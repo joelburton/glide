@@ -563,8 +563,7 @@ td {
 }
 
 .table-paras td > p,
-.table-paras th > p
-{
+.table-paras th > p {
   margin: inherit;
 }
 
@@ -1413,7 +1412,7 @@ table.docutils.footnote td {
 // ======================================================= active experimenting
 
 .mermaid-wrapper img { width: 100%; }
-.list-tight > ul > li > p { margin-top: 0; margin-bottom:0 }
+.list-tight > ul > li > p { margin-top: 0; margin-bottom: 0 }
 .list-intro + div > ul { margin-top: -.2em; }
 .list-intro + ul { margin-top: -.2em; }
 
