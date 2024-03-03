@@ -229,6 +229,14 @@ hr {
 
 // ===================================================================== roles
 
+.bold {
+  font-weight: bold;
+}
+
+.ital {
+  font-style: italic;
+}
+
 // Uses for `varName`, :title:`Book Title`
 cite {
   color: $navy;
@@ -1499,4 +1507,8 @@ codapi-output pre code {
   font-size: inherit;
   margin-left: 1em;
   line-height: 1.3;
+}
+
+.center {
+  text-align: center;
 }

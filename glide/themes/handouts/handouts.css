@@ -119,6 +119,14 @@ hr {
   width: 50%;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.ital {
+  font-style: italic;
+}
+
 cite {
   color: #001b44;
   font-style: italic;
@@ -4308,6 +4316,10 @@ codapi-output pre code {
   font-size: inherit;
   margin-left: 1em;
   line-height: 1.3;
+}
+
+.center {
+  text-align: center;
 }
 
 body {

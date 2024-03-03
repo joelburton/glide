@@ -1,19 +1,20 @@
 import subprocess
 import os
+from os import path
 
+from sphinx.environment import BuildEnvironment
 from sphinx.ext.todo import todo_node, visit_todo_node, depart_todo_node, \
     latex_visit_todo_node, latex_depart_todo_node
 from sphinxcontrib.mermaid import html_visit_mermaid, latex_visit_mermaid, texinfo_visit_mermaid, text_visit_mermaid, \
     man_visit_mermaid, mermaid
 from sphinxcontrib.youtube import youtube
 from glide import version, logger
-
+from sphinx.util.osutil import canon_path, os_path
 
 youtube._NODE_VISITORS["handouts"] = (
     youtube.visit_youtube_node, youtube.utils.depart_video_node)
 youtube._NODE_VISITORS["html"] = (
     youtube.utils.visit_video_node_epub, youtube.utils.depart_video_node)
-
 
 # -- Project information -----------------------------------------------------
 # Define these in actual usage conf.py files
@@ -248,6 +249,8 @@ _colors = """
 .. role:: success
 .. role:: err
 .. role:: type
+.. role:: bold
+.. role:: ital
 
 .. role:: gp
 .. role:: c
@@ -561,3 +564,33 @@ copybutton_selector = ".add-copybutton pre"
 copybutton_copy_empty_lines = False
 
 myst_suppress_warnings = ["myst.header"]
+
+
+def relfn2path(self, filename: str, docname: str | None = None) -> tuple[str, str]:
+    """Return paths to a file referenced from a document, relative to
+    documentation root and absolute.
+
+    In the input "filename", absolute filenames are taken as relative to the
+    source dir, while relative filenames are relative to the dir of the
+    containing document.
+    """
+    filename = os_path(filename)
+
+    # Monkey-patched part to support //snippets/
+    if filename.startswith("//"):
+        rel_fn = filename[2:]
+        return (canon_path(path.normpath(rel_fn)),
+                path.normpath(path.join("/Users/joel/curric/", rel_fn)))
+
+    if filename.startswith(('/', os.sep)):
+        rel_fn = filename[1:]
+    else:
+        docdir = path.dirname(self.doc2path(docname or self.docname,
+                                            base=False))
+        rel_fn = path.join(docdir, filename)
+
+    return (canon_path(path.normpath(rel_fn)),
+            path.normpath(path.join(self.srcdir, rel_fn)))
+
+
+BuildEnvironment.relfn2path = relfn2path

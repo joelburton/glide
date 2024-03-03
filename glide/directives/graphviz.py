@@ -18,11 +18,17 @@ to use the "j" versions. In time, the "j" names will be deprecated.
 handouts versions of graphs)
 """
 
+import re
+
+from sphinx.util.i18n import search_image_for_language
 from toolz import curry, merge
 from docutils.parsers.rst.directives import unchanged
 from docutils import nodes
-from sphinx.ext.graphviz import graphviz, render_dot_latex, render_dot_html
+from sphinx.ext.graphviz import graphviz, render_dot_latex, render_dot_html, figure_wrapper
 from sphinx.ext.graphviz import Graphviz, GraphvizSimple
+from docutils.nodes import Node
+from sphinx.locale import _, __
+
 
 from glide import version
 
@@ -83,10 +89,84 @@ class Sizeable:
         return [node]
 
 
-class JGraphviz(Sizeable, Graphviz):
+def merge_graphs(graphs):
+    """Takes a list of graphs and merges them into a single graph.
+
+        >>> a = "  graph { a -- b }"
+        >>> b = "graph { b -- c }"
+        >>> c = "graph { node [color=green] }"
+        >>> print(merge_graphs([a, b, c]))
+        graph {
+        a -- b
+        b -- c
+        node [color=green]
+        }
+    """
+
+    ptn = re.compile(r"([^{]+){(.+)}", re.DOTALL)
+    graphs = [g.strip() for g in graphs]
+    graphs = [ptn.match(g).groups() for g in graphs]
+    opens = graphs[0][0]
+    assert all(g[0] == opens for g in graphs), f"All must start with: {opens}"
+    return "\n".join([opens + "{"] + [*(g[1].strip() for g in graphs)] + ["}"])
+
+
+class JGraphvizMergeable(Graphviz):
+    optional_arguments = 9
+
+    # this is copied directly from the orig graphviz module; it adds the
+    # ability for there to be multiple arguments PLUS content, and it merges
+    # it all together
+    def run(self) -> list[Node]:
+        dot_code = []
+        rel_filename = None
+        for path in self.arguments:
+            document = self.state.document
+            argument = search_image_for_language(path, self.env)
+            rel_filename, filename = self.env.relfn2path(argument)
+            self.env.note_dependency(rel_filename)
+            try:
+                with open(filename, encoding='utf-8') as fp:
+                    dot_code += [fp.read()]
+            except OSError:
+                return [document.reporter.warning(
+                    __('External Graphviz file %r not found or reading '
+                       'it failed') % filename, line=self.lineno)]
+        if self.content:
+            dot_code += ['\n'.join(self.content)]
+
+        node = graphviz()
+        node['code'] = merge_graphs(dot_code)
+        node['options'] = {'docname': self.env.docname}
+
+        if 'graphviz_dot' in self.options:
+            node['options']['graphviz_dot'] = self.options['graphviz_dot']
+        if 'layout' in self.options:
+            node['options']['graphviz_dot'] = self.options['layout']
+        if 'alt' in self.options:
+            node['alt'] = self.options['alt']
+        if 'align' in self.options:
+            node['align'] = self.options['align']
+        if 'class' in self.options:
+            node['classes'] = self.options['class']
+        if rel_filename:
+            node['filename'] = rel_filename
+
+        if 'caption' not in self.options:
+            self.add_name(node)
+            return [node]
+        else:
+            figure = figure_wrapper(self, node, self.options['caption'])
+            self.add_name(figure)
+            return [figure]
+
+
+class JGraphviz(Sizeable, JGraphvizMergeable):
     """Monkey-patchy subclass of the standard Sphinx graphviz directive."""
 
+    optional_arguments = 9
     option_spec = merge(Graphviz.option_spec, {'size': unchanged})
+
 
 
 class JGraphvizSimple(Sizeable, GraphvizSimple):

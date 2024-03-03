@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Glide',
-    version='2.7.6',
+    version='2.7.7',
     description='Curriculum presentation system.',
     author='Joel Burton',
     author_email='joel@joelburton.com',
@@ -21,7 +21,9 @@ setup(
         "jsx-lexer",
         "toolz",
         "aafigure",
-        # "diagrams",
+        "matplotlib",
+        "numpy",
+        "scipy",
         "aafigure",
         "sphinxcontrib-drawio",
         "sphinxemoji",
