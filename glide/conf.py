@@ -509,6 +509,7 @@ sphinxemoji_style = 'twemoji'
 def setup(app):
     # In order to use this in config, it must be declared
     app.add_config_value('revealjs_theme', 'revealjs', 'html')
+    app.add_config_value('glide_root', '', 'env')
 
     demo_path = os.environ.get("DEMO_PATH")
     app.add_config_value('demo_path', demo_path, 'env')
@@ -580,7 +581,7 @@ def relfn2path(self, filename: str, docname: str | None = None) -> tuple[str, st
     if filename.startswith("//"):
         rel_fn = filename[2:]
         return (canon_path(path.normpath(rel_fn)),
-                path.normpath(path.join("/Users/joel/curric/", rel_fn)))
+                path.normpath(path.join(self.config.glide_root, rel_fn)))
 
     if filename.startswith(('/', os.sep)):
         rel_fn = filename[1:]
