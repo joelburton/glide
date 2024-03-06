@@ -16,6 +16,8 @@ youtube._NODE_VISITORS["handouts"] = (
 youtube._NODE_VISITORS["html"] = (
     youtube.utils.visit_video_node_epub, youtube.utils.depart_video_node)
 
+PRINCE = bool(int(os.environ.get("PRINCE", "0")))
+
 # -- Project information -----------------------------------------------------
 # Define these in actual usage conf.py files
 
@@ -35,7 +37,7 @@ needs_sphinx = '7'
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.mathjax',
+    'sphinx.ext.imgmath' if PRINCE else 'sphinx.ext.mathjax',
     'sphinx.ext.imgmath',
     'sphinxcontrib.drawio',
     'sphinxemoji.sphinxemoji',
@@ -109,6 +111,7 @@ exclude_patterns = [
     'retired',
     'raw',
     '**/_index.rst',
+    '**/.pytest_cache',
 ]
 
 # The name of the Pygments (syntax highlighting) style to use.
@@ -478,7 +481,7 @@ graphviz_dot_args = [
 
 # MathJAX is generally used, but for PDF building, img math can be specified,
 # so make sure we have both installed & set imgmath to make SVGs
-html_math_renderer = "mathjax"
+html_math_renderer = "imgmath" if PRINCE else "mathjax"
 imgmath_image_format = 'svg'
 
 aafig_default_options = dict(

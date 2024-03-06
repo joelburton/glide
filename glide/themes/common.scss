@@ -1512,3 +1512,12 @@ codapi-output pre code {
 .center {
   text-align: center;
 }
+
+.border-padded {
+  padding: 12px;
+  border: solid 1px black;
+}
+
+.dl-link {
+  margin-bottom: 1.5em;
+}

@@ -11,12 +11,12 @@
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
 
   {%- for css in css_files %}
-      {%- if css|attr("filename") %}
-    {{ css_tag(css) }}
-      {%- else %}
-    <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
-      {%- endif %}
-    {%- endfor %}
+    {%- if css|attr("filename") %}
+      {{ css_tag(css) }}
+    {%- else %}
+      <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css"/>
+    {%- endif %}
+  {%- endfor %}
 
   {% if theme_fonts %}
     <link href='{{ theme_fonts }}' rel='stylesheet'>
@@ -24,12 +24,12 @@
   <link rel="shortcut icon" type="image/png" href="{{ pathto('_static/favicon.png', 1) }}">
 
   <style>
-    :root {
-      --theme-bodyfont: {{ theme_bodyfont }};
-      --theme-headfont: {{ theme_headfont }};
-      --theme-codefont: {{ theme_codefont }};
-      --theme-clientcolor: {{ theme_clientcolor }};
-    }
+      :root {
+          --theme-bodyfont: {{ theme_bodyfont }};
+          --theme-headfont: {{ theme_headfont }};
+          --theme-codefont: {{ theme_codefont }};
+          --theme-clientcolor: {{ theme_clientcolor }};
+      }
   </style>
 
 </head>
@@ -79,10 +79,13 @@
         link.setAttribute('target', '_blank');
     }
 </script>
+<script>
+    DOCUMENTATION_OPTIONS = {URL_ROOT: "#"}
+</script>
 
-  {%- for js in script_files %}
-    {{ js_tag(js) }}
-  {%- endfor %}
+{%- for js in script_files %}
+  {{ js_tag(js) }}
+{%- endfor %}
 
 </body>
 </html>

@@ -4649,6 +4649,15 @@ codapi-output pre code {
   text-align: center;
 }
 
+.border-padded {
+  padding: 12px;
+  border: solid 1px black;
+}
+
+.dl-link {
+  margin-bottom: 1.5em;
+}
+
 .reveal {
   /* Theme logo at the bottom left of every slide. */
 }

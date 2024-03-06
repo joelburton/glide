@@ -86,7 +86,7 @@ def handouts_visit_dl_link(translator, node):
 
     prefix = "../" * translator.builder.current_docname.count("/")
     translator.body.append(
-        f"""<p class="dl-link"><a href="{prefix}{node.path}"></p>""")
+        f"""<p class="dl-link"><a href="{prefix}{node.path}">""")
 
 
 def handouts_visit_dl_label(translator, node: dl_label):
@@ -98,7 +98,7 @@ def handouts_depart_dl_label(translator, node: dl_label):
 
 
 def handouts_depart_dl_link(translator, node):
-    translator.body.append("</a>")
+    translator.body.append("</a></p>")
 
 
 def setup(app):
