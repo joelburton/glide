@@ -1521,3 +1521,6 @@ codapi-output pre code {
 .dl-link {
   margin-bottom: 1.5em;
 }
+
+/* see https://github.com/joelburton/glide/issues/17 */
+object.graphviz { max-width: inherit !important; }
