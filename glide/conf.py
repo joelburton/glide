@@ -254,6 +254,7 @@ _colors = """
 .. role:: type
 .. role:: bold
 .. role:: ital
+.. role:: caption
 
 .. role:: gp
 .. role:: c

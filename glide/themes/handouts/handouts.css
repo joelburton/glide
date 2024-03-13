@@ -4155,6 +4155,12 @@ img.align-right {
   background-color: red !important;
 }
 
+.caption {
+  font-style: italic;
+  color: #333;
+  font-size: 0.8em;
+}
+
 .caption-text {
   font-style: italic;
   color: #333;
@@ -4224,6 +4230,11 @@ table.docutils.footnote td {
 
 .list-intro + ul {
   margin-top: -0.2em;
+}
+
+.list-all-tight li p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .compound > ul {

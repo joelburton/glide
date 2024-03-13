@@ -1363,6 +1363,14 @@ img.align-right {
 // =================================================================== captions
 // for code blocks, but also other captioned places
 
+// inline role of ours
+.caption {
+  font-style: italic;
+  color: $dark-gray;
+  font-size: 0.8em;
+}
+
+// from sphinx
 .caption-text {
   font-style: italic;
   color: $dark-gray;
@@ -1423,6 +1431,7 @@ table.docutils.footnote td {
 .list-tight > ul > li > p { margin-top: 0; margin-bottom: 0 }
 .list-intro + div > ul { margin-top: -.2em; }
 .list-intro + ul { margin-top: -.2em; }
+.list-all-tight li p { margin-top: 0; margin-bottom: 0; }
 
 .compound > ul { margin-top: -.5em; }
 

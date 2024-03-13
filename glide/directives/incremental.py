@@ -245,6 +245,9 @@ def process_incremental(app, doctree, fromdocname):
             if not building_slides:
                 continue
 
+            if "literal-block-wrapper" in node.parent["classes"]:
+                node = node.parent
+
             node['classes'].extend(['fragment'] + node['classes'])
 
 
