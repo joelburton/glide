@@ -41,19 +41,19 @@ class SpeakernoteDirective(Directive):
 
 
 # noinspection PyUnusedLocal
-def ignore_visit_speakernote(self, node):
+def ignore(self, node):
     """All non-revealjs builders should use this."""
     raise SkipNode
 
 
 # noinspection PyUnusedLocal
-def revealjs_visit_speakernote(revealjs_translator, node):
+def visit(revealjs_translator, node):
     """Wrap contents in an aside element, which is used by revealjs JS."""
     revealjs_translator.body.append("<aside class='notes'>")
 
 
 # noinspection PyUnusedLocal
-def revealjs_depart_speakernote(revealjs_translator, node):
+def depart(revealjs_translator, node):
     """End the aside element we started."""
     revealjs_translator.body.append("</aside>")
 
@@ -63,13 +63,14 @@ def setup(app):
         speakernote,
         # Ignore on any builder except revealjs --- if there are newer builders,
         # these should be added here.
-        epub=(ignore_visit_speakernote, None),
-        html=(ignore_visit_speakernote, None),
-        handouts=(ignore_visit_speakernote, None),
-        latex=(ignore_visit_speakernote, None),
-        revealjs=(revealjs_visit_speakernote, revealjs_depart_speakernote),
-        text=(ignore_visit_speakernote, None),
-        man=(ignore_visit_speakernote, None),
+        epub=(ignore, None),
+        html=(ignore, None),
+        handouts=(ignore, None),
+        singlehandouts=(ignore, None),
+        latex=(ignore, None),
+        revealjs=(visit, depart),
+        text=(ignore, None),
+        man=(ignore, None),
     )
     app.add_directive('speaker', SpeakernoteDirective)
     return {'version': version, 'parallel_read_safe': True}

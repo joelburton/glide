@@ -1,13 +1,12 @@
 import pathlib
 from os import path
-from webbrowser import open_new_tab
 
 from sphinx.application import Sphinx
 from sphinx.util.logging import getLogger
 from pathlib import Path
 import sys
 
-version = "2.7.10"
+version = "2.8.0"
 
 logger = getLogger("glide")
 
@@ -48,6 +47,25 @@ def build_me(builder, extra_conf):
     # except (Exception, KeyboardInterrupt) as exc:
     #     handle_exception(app, {"pdb": False}, exc, [])
     #     return 2
+
+
+def copy_translation_handlers(
+        app,
+        node,
+        handouts="html",
+        singlehandouts="html",
+        revealjs="html"):
+    """Copy translation handlers from html for Glide new builder types."""
+
+    th = app.registry.translation_handlers
+    name = node.__name__
+    app.registry.add_translation_handlers(
+        node,
+        handouts=th[handouts][name],
+        singlehandouts=th[singlehandouts][name],
+        revealjs=th[revealjs][name],
+    )
+
 
 
 def setup(app):

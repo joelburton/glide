@@ -2,13 +2,13 @@
 
 from docutils.nodes import SkipNode, Node
 from sphinx.builders.html import StandaloneHTMLBuilder
+from sphinx.errors import SphinxError
 from sphinx.writers.html import HTMLTranslator
 
 from glide import version, logger
-from .common import FixCompactParagraphsTranslatorMixin
 
 
-class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
+class RevealJSTranslator(HTMLTranslator):
     """Translator for Sphinx structure -> RevealJS HTML structure.
 
     Sphinx normally turns a document like this into::
@@ -62,16 +62,6 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     things are handled in the themes/revealjs/layout.html document.
     """
 
-    def __init__(self, *args):
-        super().__init__(*args)
-        # The default value here is silly-low, and this is the only way to fix.
-        # These are used for "fields" used to describe documents (often, but
-        # not always at the top), like:
-        #
-        # :author: Elmo
-        # :color: red
-
-        self.settings.field_name_limit = 50
 
     def add_new_slide(self, node):
         """Add new grouping or content slide, allowing for revealjs options."""
@@ -109,6 +99,8 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
                     # builder is tracking --- otherwise, it won't get copied
                     # into build directory's images folder and things won't work
                     self.builder.images[background] = background
+                else:
+                    raise SphinxError(f"Invalid background option: {background}")
 
         self.body.append(self.starttag(node, "section", **attrs))
 
@@ -116,7 +108,7 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
         """Handle starting a section.
 
         The input structure has two levels: the overall section surrounding all
-        of the material and the section for each slide. We omit the overall
+        the material and the section for each slide. We omit the overall
         section (we don't want or need any wrapper elements) and emit a
         <section> for each slide.
         """
@@ -166,7 +158,7 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
             self.body.append("</section>\n\n")
 
     def visit_sidebar(self, node):
-        """These should never appear in slides."""
+        """These should normally not appear in slides."""
 
         if "revealjs" in node.attributes['classes']:
             return super().visit_sidebar(node)
@@ -174,12 +166,9 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
         raise SkipNode
 
     def visit_admonition(self, node, name=""):
-        """These should never appear in slides."""
+        """These should normally never appear in slides."""
 
         if "revealjs" in node.attributes['classes']:
-            # add marker class onto generic-type admonition
-            if not name:
-                node.attributes['classes'] += ["admonition-generic"]
             return super().visit_admonition(node, name)
 
         raise SkipNode
@@ -187,12 +176,6 @@ class RevealJSTranslator(FixCompactParagraphsTranslatorMixin, HTMLTranslator):
     def visit_topic(self, node):
         """These should never appear in slides."""
 
-        raise SkipNode
-
-    def unknown_visit(self, node: Node) -> None:
-        """We should never get here, so warn user."""
-
-        logger.warning("Revealjs hit unexpected node: %s", node)
         raise SkipNode
 
 

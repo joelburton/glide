@@ -25,6 +25,9 @@ $heading4Size: 1.0em;
 
 $codeFont: var(--theme-codefont);
 
+$mainFontSize: 34px;
+
+// FIXME: update reveal version
 @import "reveal.js-4.0.2/css/theme/template/theme";
 
 // Import general Glide CSS
@@ -132,6 +135,7 @@ $codeFont: var(--theme-codefont);
   }
 
   // Sub-lists of lists get smaller faster than in general
+  // FIXME: why just simple?
   ul.simple,
   ol.simple {
     ul, ol {
@@ -253,6 +257,7 @@ $codeFont: var(--theme-codefont);
     display: none;
   }
 
+  // FIXME: wtf?
   .headerlink {
     display: none;
   }
@@ -283,3 +288,5 @@ $codeFont: var(--theme-codefont);
   padding: 20px;
   text-align: left;
 }
+
+hr { display: none; }

@@ -3,6 +3,142 @@
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
+
+/* -- main layout ----------------------------------------------------------- */
+
+div.clearer {
+    clear: both;
+}
+
+section::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* -- general body styles --------------------------------------------------- */
+
+div.body p, div.body dd, div.body li, div.body blockquote {
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+//$theme-body-min-width: var(--theme-body-min-width);
+//$theme-body-max-width: var(--theme-body-max-width);
+
+// FIXME: should be specific to handouts!
+//div.body {
+    //min-width: $theme_body_min_width;
+    //max-width: $theme_body_max_width;
+    //@media print {
+    //  width: $theme_body_min_width;
+    //}
+//}
+
+div.sidebar > :last-child,
+aside.sidebar > :last-child,
+nav.contents > :last-child,
+aside.topic > :last-child,
+div.topic > :last-child,
+div.admonition > :last-child {
+    margin-bottom: 0;
+}
+
+div.sidebar::after,
+aside.sidebar::after,
+nav.contents::after,
+aside.topic::after,
+div.topic::after,
+div.admonition::after,
+blockquote::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+dl.field-list {
+    display: grid;
+    grid-template-columns: fit-content(30%) auto;
+}
+
+dl.field-list > dt {
+    font-weight: bold;
+    word-break: break-word;
+    //padding-left: 0.5em;
+    padding-right: 5px;
+}
+
+dl.field-list > dd {
+    padding-left: 0.5em;
+    margin-top: 0em;
+    margin-left: 0em;
+    margin-bottom: 0em;
+}
+
+
+:not(li) > ol > li:first-child > :first-child,
+:not(li) > ul > li:first-child > :first-child {
+    margin-top: 0px;
+}
+
+//:not(li) > ol > li:last-child > :last-child,
+//:not(li) > ul > li:last-child > :last-child {
+//    margin-bottom: 0px;
+//}
+//
+//ol.simple ol p,
+//ol.simple ul p,
+//ul.simple ol p,
+//ul.simple ul p {
+//    margin-top: 0;
+//}
+//
+//ol.simple > li:not(:first-child) > p,
+//ul.simple > li:not(:first-child) > p {
+//    margin-top: 0;
+//}
+//
+//ol.simple p,
+//ul.simple p {
+//    margin-bottom: 0;
+//}
+
+
+dl {
+    margin-bottom: 15px;
+}
+
+dd > :first-child {
+    margin-top: 0px;
+}
+
+dd ul, dd table {
+    margin-bottom: 10px;
+}
+
+dd {
+    margin-top: 3px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+dl > dd:last-child,
+dl > dd:last-child > :last-child {
+    margin-bottom: 0;
+}
+
+
+
+
+
+
+
 // These colors come from Tachyon's color choices:
 $black: #000;
 $near-black: #111;
@@ -70,8 +206,6 @@ $washed-green: #e8fdf5;
 $washed-yellow: #fffceb;
 $washed-red: #ffdfdf;
 
-$firebrick: darkred;
-
 $weight-quiet: 300;
 $weight-text: 300;
 $weight-pop: 400;
@@ -86,18 +220,20 @@ $print-weight-bold: 700;
 $print-weight-extra-bold: 900;
 $print-weight-code: 400;
 
-$code-font-size: 16px;
+//$code-font-size: 16px;
 
 $theme-logo: var(--theme-logo);
 $theme-bodyfont: var(--theme-bodyfont);
 $theme-codefont: var(--theme-codefont);
 $theme-headfont: var(--theme-headfont);
+$theme-altfont: var(--theme-altfont);
 $theme-clientcolor: var(--theme-clientcolor);
 $theme-sidebarcolor: var(--theme-sidebarcolor);
 $theme-backgroundcolor: var(--theme-backgroundcolor);
 
 // ridiculously precise and tied to codefont, probably: get two 40col compare
 // code blocks side-by-side
+// FIXME
 $code-font-size: 10.56pt;
 $print-code-font-size: 8.5pt;
 
@@ -127,7 +263,7 @@ h1, h2, h3, h4, h5, h6, .rubric {
   font-family: $theme-headfont;
   font-weight: $weight-bold;
   @media print {
-    font-weight: $print-weight-bold;
+    font-weight: $print-weight-pop;
   }
 }
 
@@ -135,9 +271,10 @@ h1, h2, h3, h4, h5, h6, .rubric {
 // a second h1-level heading in handouts --- therefore,
 // it's only the first, top-of-doc one that should have
 // little margin above it.
-h1 {
+h1, .h1, .rubric.h1 {
   margin-top: 2.5em;
   margin-bottom: 1em;
+  font-size: 2em;
 }
 
 .section:first-of-type h1 {
@@ -147,18 +284,20 @@ h1 {
   }
 }
 
-h2 {
-  margin-top: 2.5em;
+h2, .h2, .rubric.h2 {
+  margin-top: 1.5em;
   margin-bottom: 1em;
+  font-size: 1.875em;
   @media print {
     margin-top: 1.5em;
     margin-bottom: 1em;
   }
 }
 
-h3 {
-  margin-top: 2em;
+h3, .h3, .rubric.h3 {
+  margin-top: 1.3em;
   margin-bottom: 1em;
+  font-size: 1.5em;
 }
 
 // Rubrics are used when we don't want a TOC heading to appear,
@@ -166,19 +305,19 @@ h3 {
 // "level" like a heading, but they're often used around level 4,
 // so styling them the same.
 
-h4, .rubric {
+h4, .h4, .rubric, .rubric.h4 {
   font-size: 1em;
   margin-top: 1.75em;
   margin-bottom: 0.75em;
 }
 
-h5 {
+h5, .h5, .rubric.h5 {
   // should have very few of these
   font-size: 0.9em;
   margin-bottom: 0;
 }
 
-h6 {
+h6, .h6, .rubric.h6 {
   // shouldn't ever use, but to be safe
   font-size: 0.8em;
   margin-bottom: 0;
@@ -229,7 +368,7 @@ hr {
 
 // ===================================================================== roles
 
-.bold {
+.bold {   // TODO: should this be the bold above?
   font-weight: bold;
 }
 
@@ -241,6 +380,7 @@ hr {
 cite {
   color: $navy;
   font-style: italic;
+  font-family: $theme-altfont;
   font-weight: $weight-pop;
   @media print {
     font-weight: $print-weight-text;
@@ -252,15 +392,16 @@ cite {
   @media print {
     font-weight: $print-weight-pop;
   }
-  color: $firebrick;
+  color: darkred;
 }
 
-.download {
+.download {   // TODO: make look like a link?
   font-weight: $weight-pop;
   @media print {
     font-weight: $print-weight-pop;
   }
   font-style: italic;
+  font-family: $theme-altfont;
 }
 
 .file {
@@ -268,7 +409,8 @@ cite {
   @media print {
     font-weight: $print-weight-pop;
   }
-  font-style: italic;
+  //font-style: italic;
+  font-family: $theme-altfont;
 }
 
 .envvar { }
@@ -278,7 +420,7 @@ cite {
 abbr {
   text-decoration: none;
   // only draw line if abbr has definition
-  &[title] { border-bottom: dashed 0.5px $blue; }
+  &[title] { border-bottom: dashed 0.5px $blue; cursor: help; }
 }
 
 .dfn {
@@ -292,8 +434,8 @@ abbr {
 // doesn't show the curly braces. Add subtle ones to make
 // the placeholder-nature more obvious:
 .samp > em, .file > em {
-  &:before { content: "{"; color: $moon-gray; @media print { color: $gray } }
-  &:after { content: "}"; color: $moon-gray; @media print { color: $gray } }
+  &:before { content: "<"; color: $moon-gray; @media print { color: $gray } }
+  &:after { content: ">"; color: $moon-gray; @media print { color: $gray } }
 }
 
 .ref { }
@@ -304,6 +446,7 @@ abbr {
   @media print { font-weight: $print-weight-pop }
 }
 .menuselection {
+  color: $purple;
   font-weight: $weight-pop;
   @media print { font-weight: $print-weight-pop }
 }
@@ -353,7 +496,7 @@ sub { top: 0.4em; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.9em;
-  color: $firebrick;
+  color: darkred;
 }
 
 img.math {
@@ -372,6 +515,9 @@ body a.toc-backref {
 }
 
 // ========================== glide's added roles
+
+// FIXME: diff color muted vs small-muted?
+// FIXME: add font-size?
 
 .small { font-size: 0.75em; }
 .small-muted { color: $mid-gray; font-size: 0.75em; font-weight: normal }
@@ -411,7 +557,7 @@ span.wrong { background: $washed-red }
 // a role can be added here directly, like `:-)`:emoji:,
 // but for graphical emoji, the class of emoji is automated
 // injected onto 🐱
-img.emoji {
+.emoji {
   width: 1em;
   margin: 0;
 }
@@ -425,6 +571,8 @@ img.emoji {
 .emoji-6x > img.emoji { width: 6em; height: 6em; }
 .emoji-7x > img.emoji { width: 7em; height: 7em; }
 
+// FIXME: add up to 10
+
 .comment {
   font-style: italic;
   color: $gray;
@@ -435,6 +583,7 @@ img.emoji {
   }
 }
 
+// FIXME: make these more like cite
 .type {
   font-family: $theme-codefont;
   color: $dark-blue;
@@ -468,22 +617,16 @@ img.emoji {
 //
 // This works fine.
 
-.glide .line-block {
+.line-block {
   margin: 1em 0;
-  padding-left: 0.25em;
-  border-left: solid 1px $moon-gray;
-
-  // not being real paragraphs, they don't have a natural line-height,
-  // so space them out like our paragraphs would be:
-  .line:nth-child(n+1) {
-    margin-top: 0.25em;
-  }
+  //padding-left: 0.25em;
+  //border-left: solid 1px $moon-gray;
 
   // "paragraphs" inside a line-block (an empty |) should be a bit tighter.
   br {
     display: block;
     content: "";
-    margin-top: 1.2em;
+    margin-top: 1em;
   }
 }
 
@@ -498,6 +641,7 @@ ul, ol {
 }
 
 // "simple" class added when a list are all non-paragraph items
+// FIXME: tighter, resolve top/bottom questions
 ul.simple li,
 ol.simple li {
   margin-top: 0.4em;
@@ -530,7 +674,7 @@ li li:first-child {
   margin-top: 0.4em;
 }
 
-
+// FIXME: add options to tighten
 // hlists use tables, so use table formatting to line up the columns
 //  (note for future: it wouldn't surprise me if these moved to flexbox one
 //  day, so this might break.)
@@ -570,6 +714,7 @@ td {
   padding: 0;
 }
 
+// FIXME: not sure what this is --- why not namespaced?
 .table-paras td > p,
 .table-paras th > p {
   margin: inherit;
@@ -606,6 +751,7 @@ table.docutils {
     }
   }
 
+  // FIXME: can make this a "not:" thing?
   tr:nth-child(even) {
     background-color: $near-white;
   }
@@ -613,6 +759,8 @@ table.docutils {
   &.table-unstriped tr:nth-child(even) {
     background-color: transparent;
   }
+
+  // FIXME: add "th-center", etc.
 
   // adding td-center or td-right to a *table* centers/rights cols after first
   &.td-center th:not(:first-child),
@@ -676,6 +824,8 @@ table.docutils {
 // :name: Elmo
 // :color: red
 
+// FIXME: are field-lists still tables?
+
 table.field-list {
   .field-name {
     font-weight: $weight-pop;
@@ -699,6 +849,7 @@ table.field-list {
 
 
 // show inline code/tech (used by sphinx for ``x = 7``)
+// FIXME: should this code.code ? (for ``)
 code {
   font-family: $theme-codefont;
   font-size: 0.95em;
@@ -719,6 +870,7 @@ pre.literal-block {
   // borders/padding.
   // width: 80ch;
   // 10/6em == 1ch, but prince PDF cannot handle ch as of 10/2020
+  // FIXME: check if prince can now handle ch
   width: #{80 * 6em / 10};
   box-sizing: content-box;
 
@@ -735,6 +887,7 @@ pre.literal-block {
   margin-bottom: 1em;
 }
 
+// FIXME: does still default to green?
 .highlight {
   // need this; otherwise, it defaults to green
   background-color: transparent;
@@ -742,6 +895,7 @@ pre.literal-block {
 }
 
 // Second matches most consoles, first where it contains no markup
+// FIXME: still true for two matchers?
 pre.console,
 .console > .highlight > pre {
   color: $mid-gray;
@@ -781,6 +935,7 @@ pre.console,
 }
 
 // "span." needed to override pygments
+// FIXME: still needed? copy no-copy stuff from alabaster
 span.linenos {
   margin-right: 0.5em;
   color: $silver;
@@ -835,6 +990,7 @@ span.linenos {
 
 .code-comments-pop .highlight .c1,
 .code-comments-pop .highlight .c {
+  // FIXME: blue might pop too much --- perhaps navy?
   color: $dark-blue !important;
 }
 
@@ -868,12 +1024,8 @@ span.linenos {
     font-size: 0.79em;
   }
 
-  // Reduce the size of the text for all the non-title parts. ("generic
-  // admonitions" are ones that are not warning/note/tip/etc --- they get
-  // treated differently bc their title is label, rather than the second
-  // paragraph
-  & > :nth-child(n+3),
-  &.admonition-generic > :nth-child(2) {
+  // Reduce the size of the text for all the non-title parts.
+  & > :nth-child(n+3) {
     font-size: 0.95em;
   }
 
@@ -903,8 +1055,7 @@ span.linenos {
   }
 
   // The first real (second actual) paragraph: put this next to title
-  // see note above about how generic admonitions are different
-  &:not(.Xadmonition-generic) > p:nth-child(2) {
+  & > p:nth-child(2) {
     display: inline-block;
     margin: 0 !important;
     padding: 0 !important;
@@ -915,6 +1066,8 @@ span.linenos {
     line-height: 1 !important;
   }
 }
+
+// FIXME: figure out diff btw important/attention, etc
 
 .admonition.important,
 .admonition.attention,
@@ -967,7 +1120,7 @@ span.linenos {
 .topic {
   background-color: $near-white;
   border-top: solid 1px $moon-gray;
-  border-top: solid 1px $moon-gray;
+  border-top: solid 1px $moon-gray;  // FIXME: dup
   border-bottom: solid 1px #ccc;
   @media print {
     background-color: $near-white;
@@ -1148,6 +1301,7 @@ p.sidebar-title {
 }
 
 @each $size in (20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80) {
+  // FIXME: what is this first for?
   .sidebar-#{$size} + * { width: #{100% - $size * 1% - 4%}; text-align: left; }
   .sidebar-#{$size} { width: #{$size * 1%}; }
 }
@@ -1226,6 +1380,8 @@ blockquote {
     padding-right: 1em;
   }
 
+  // FIXME: in general: margin before paras? or just after?
+
   // Don't let paragraphs add extra margin
   & > div p:first-child { margin-top: 0; }
   & > div p:last-child { margin-bottom: 0; }
@@ -1238,7 +1394,7 @@ blockquote {
   .width-#{$width * 5} { width: #{$width * 5%} }
 }
 
-// .width-n where 5-100% by 5's
+// .width-n where 5-100% by 5's    <-- FIXME
 @for $width from 1 through 30 {
   .width-#{$width}em { width: #{$width}em }
 }
@@ -1317,6 +1473,8 @@ blockquote {
   .code-cols-#{$i} pre,
   pre.code-cols-#{$i} { width: $i * 6em / 10 !important; }
 }
+
+// FIXME: test this
 
 .code-fit-content pre, .fit-content {
   width: fit-content !important;
@@ -1404,6 +1562,7 @@ img.align-right {
 
 // ==================================================================== sphinx
 
+// FIXME why? and won't this override stuff?
 div.math {
   font-size: 1.2em;
 }
@@ -1418,6 +1577,7 @@ table.docutils.footnote td {
   border: none;
 }
 
+// FIXME: where is this used?
 .headerlink {
   margin-left: 0.5rem;
   color: $moon-gray !important;
@@ -1518,10 +1678,12 @@ codapi-output pre code {
   line-height: 1.3;
 }
 
+// FIXME?
 .center {
   text-align: center;
 }
 
+// FIXME: move to .border.padding-x?
 .border-padded {
   padding: 12px;
   border: solid 1px black;

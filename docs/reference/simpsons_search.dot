@@ -1,6 +1,0 @@
-graph {
-    Homer -- { Marge Maggie Lisa }
-    Marge -- { Maggie }
-    Maggie -- { Lisa }
-    Lisa -- { Grampa }
-}

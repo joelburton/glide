@@ -339,8 +339,7 @@ FRAGMENT_STYLES_BLOCK = FRAGMENT_STYLES_INLINE + [
 def setup(app):
     roles.register_local_role("incremental", incremental_text)
     for fs in FRAGMENT_STYLES_INLINE:
-        roles.register_local_role("incremental-%s"
-                                  % fs, incremental_text)
+        roles.register_local_role("incremental-%s" % fs, incremental_text)
 
     roles.register_local_role("incremental-li", incremental_li)
     for fs in FRAGMENT_STYLES_BLOCK:

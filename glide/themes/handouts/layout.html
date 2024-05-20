@@ -32,10 +32,14 @@
         --theme-bodyfont: {{ theme_bodyfont }};
         --theme-headfont: {{ theme_headfont }};
         --theme-codefont: {{ theme_codefont }};
+        --theme-altfont: {{ theme_altfont }};
         --theme-sidebarcolor: {{ theme_sidebarcolor }};
         --theme-backgroundcolor: {{ theme_backgroundcolor }};
         --theme-clientcolor: {{  theme_clientcolor }};
         --theme-logo: url("{{ logo_url }}");
+
+        --theme-body-min-width: {{ theme_body_min_width|todim }};
+        --theme-body-max-width: {{ theme_body_min_width|todim }};
     }
   </style>
 </head>
@@ -69,7 +73,10 @@
 
   <div id="page-content" class="page-content">
     {%- block document %}
-      {% block body %} {% endblock %}
+          <div class="body" role="main">
+            {% block body %} {% endblock %}
+            <div class="clearer"></div>
+          </div>
     {%- endblock %}
 
     <footer class="page-footer">

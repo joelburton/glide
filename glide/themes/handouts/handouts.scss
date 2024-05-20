@@ -18,8 +18,10 @@ body {
 }
 
 @media print {
+  // FIXME: wtf is this?
   h1 { string-set: chapter content() }
   @page {
+    // FIXME: "not allowed here"?
     margin-inside: 1.5in;
     @bottom-left { content: string(chapter) }
     @bottom-right {  content: counter(page)  }
@@ -232,6 +234,7 @@ pre {
   }
 }
 
+// FIXME: what is this for?
 @media print {
   .print-width-120 {
     width: 120%;

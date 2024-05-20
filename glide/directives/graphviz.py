@@ -5,7 +5,7 @@ feature: resizing based on the which builder will be used.
 
 For example::
 
-  .. jdigraph:: cloning
+  .. digraph:: cloning
     :size: 10,10
 
     ... rest of graphviz here
@@ -20,15 +20,14 @@ handouts versions of graphs)
 
 import re
 
+from docutils import nodes
+from docutils.nodes import Node
+from docutils.parsers.rst.directives import unchanged
+from sphinx.ext.graphviz import graphviz, Graphviz, GraphvizSimple
+from sphinx.ext.graphviz import render_dot_latex, render_dot_html, figure_wrapper
+from sphinx.locale import __
 from sphinx.util.i18n import search_image_for_language
 from toolz import curry, merge
-from docutils.parsers.rst.directives import unchanged
-from docutils import nodes
-from sphinx.ext.graphviz import graphviz, render_dot_latex, render_dot_html, figure_wrapper
-from sphinx.ext.graphviz import Graphviz, GraphvizSimple
-from docutils.nodes import Node
-from sphinx.locale import _, __
-
 
 from glide import version
 
@@ -207,6 +206,7 @@ def setup(app):
         handouts=(visit_jgraphviz(render_dot_html), None),
         revealjs=(visit_jgraphviz(render_dot_html), None),
         latex=(visit_jgraphviz(render_dot_latex), None),
+        singlehandouts=(visit_jgraphviz(render_dot_html), None),
     )
     app.add_directive('jgraphviz', JGraphviz)
     app.add_directive('jgraph', JGraphvizSimple)

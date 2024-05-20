@@ -266,8 +266,8 @@ def man_visit_diagram(self: ManualPageTranslator, node: diagram) -> None:
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_node(diagram,
                  html=(html_visit_diagram, None),
-                 handouts=(html_visit_diagram, None),
-                 revealjs=(html_visit_diagram, None),
+                 # handouts=(html_visit_diagram, None),
+                 # revealjs=(html_visit_diagram, None),
                  latex=(latex_visit_diagram, None),
                  texinfo=(texinfo_visit_diagram, None),
                  text=(text_visit_diagram, None),

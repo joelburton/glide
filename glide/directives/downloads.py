@@ -27,7 +27,7 @@ from glide import version
 
 
 class dl_label(nodes.General, nodes.TextElement):
-    pass
+    """Download label."""
 
 
 # noinspection PyPep8Naming
@@ -75,13 +75,13 @@ class DownloadsLinkDirective(Directive):
 
 
 # noinspection PyUnusedLocal
-def ignore_visit_dl_link(self, node):
+def ignore(self, node):
     """All non-handouts builders should use this."""
     raise SkipNode
 
 
 # noinspection PyUnusedLocal
-def handouts_visit_dl_link(translator, node):
+def visit_link(translator, node):
     """Add link."""
 
     prefix = "../" * translator.builder.current_docname.count("/")
@@ -89,33 +89,31 @@ def handouts_visit_dl_link(translator, node):
         f"""<p class="dl-link"><a href="{prefix}{node.path}">""")
 
 
-def handouts_visit_dl_label(translator, node: dl_label):
+def visit_label(translator, node: dl_label):
     return node
 
 
-def handouts_depart_dl_label(translator, node: dl_label):
+def depart_label(translator, node: dl_label):
     return
 
 
-def handouts_depart_dl_link(translator, node):
+def depart_link(translator, node):
     translator.body.append("</a></p>")
 
 
 def setup(app):
     app.add_node(
         dl_link,
-        epub=(ignore_visit_dl_link, None),
-        html=(ignore_visit_dl_link, None),
-        handouts=(handouts_visit_dl_link, handouts_depart_dl_link),
-        latex=(ignore_visit_dl_link, None),
-        revealjs=(ignore_visit_dl_link, None),
-        text=(ignore_visit_dl_link, None),
-        man=(ignore_visit_dl_link, None),
+        epub=(ignore, None),
+        html=(ignore, None),
+        handouts=(visit_link, depart_link),
+        singlehandouts=(ignore, None),
+        latex=(ignore, None),
+        revealjs=(ignore, None),
+        text=(ignore, None),
+        man=(ignore, None),
     )
-    app.add_node(
-        dl_label,
-        handouts=(handouts_visit_dl_label, handouts_depart_dl_label),
-    )
+    app.add_node(dl_label, handouts=(visit_label, depart_label))
     app.add_directive('dl-code', DownloadsLinkDirective)
     app.add_directive('dl-solution', DownloadsLinkDirective)
     app.add_directive('dl-demo', DownloadsLinkDirective)

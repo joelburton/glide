@@ -1,14 +1,6 @@
-"""Speaker notes directive.
+"""Details directive.
 
-Adds a "speaker" directive for RevealJS speaker notes.
-
-For example:
-
-  Dictionaries are cool.
-
-  .. speaker::
-
-    Explain this part really well!
+Adds expanding disclosure-arrow details.
 
 These are ignored in non-RevealJS builders.
 """
@@ -24,16 +16,6 @@ from glide import version
 class details(nodes.Element):
     """Details node."""
 
-
-#         class MyDirective(Directive):
-#                has_content = True
-#                required_arguments = 1
-#                optional_arguments = 0
-#                final_argument_whitespace = True
-#                option_spec = {
-#                    'class': directives.class_option,
-#                    'name': directives.unchanged,
-#                }
 
 class DetailsDirective(Directive):
     """The directive just adds a node for builder to find."""
@@ -56,21 +38,20 @@ class DetailsDirective(Directive):
 
 
 # noinspection PyUnusedLocal
-def ignore_visit_speakernote(self, node):
-    """All non-revealjs builders should use this."""
+def ignore(self, node):
     raise SkipNode
 
 
 # noinspection PyUnusedLocal
-def html_visit_details(translator, node):
-    """Wrap contents in an details."""
+def visit(translator, node):
+    """Wrap contents in details node."""
     translator.body.append("<details>")
     if title := getattr(node, "title", ""):
         translator.body.append(f"<summary>{title}</summary>")
 
 
 # noinspection PyUnusedLocal
-def html_depart_details(translator, node):
+def depart(translator, node):
     """End the details element we started."""
     translator.body.append("</details>")
 
@@ -78,15 +59,13 @@ def html_depart_details(translator, node):
 def setup(app):
     app.add_node(
         details,
-        # Ignore on any builder except revealjs --- if there are newer builders,
-        # these should be added here.
-        epub=(ignore_visit_speakernote, None),
-        html=(html_visit_details, html_depart_details),
-        handouts=(html_visit_details, html_depart_details),
-        latex=(ignore_visit_speakernote, None),
-        revealjs=(ignore_visit_speakernote, None),
-        text=(ignore_visit_speakernote, None),
-        man=(ignore_visit_speakernote, None),
+        epub=(ignore, None),
+        html=(visit, depart),
+        handouts=(visit, depart),
+        latex=(ignore, None),
+        revealjs=(ignore, None),
+        text=(ignore, None),
+        man=(ignore, None),
     )
     app.add_directive('details', DetailsDirective)
     return {'version': version, 'parallel_read_safe': True}
